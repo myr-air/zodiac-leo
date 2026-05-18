@@ -14,6 +14,7 @@ This review covers `source/prompt-pack.md` as a source-only manual field pack. I
 |---|---|---|
 | Original/non-imitation style direction | pass | Uses genre/mood descriptors only; excludes named artist, known song, real-person voice, brand, and competitor-channel imitation. |
 | Lyrics source consistency | pass | Points to the revised lyrics in `source/songs.md`; does not rewrite or invent sung-word variations. |
+| Per-track manual fields | pass | `source/suno-manual-fields.md` provides copy fields while preserving `source/songs.md` as lyric truth. |
 | Episode variation control | pass | Preserves one piano-forward track and one soft-sax accent track. |
 | Adjacent track distinction | pass | Defines first-10-second and arrangement contrast across the 13-song sequence. |
 | Provider/account boundary | pass | Blocks provider automation, APIs, browser operation, generated media, fake provenance, and release claims. |
@@ -28,7 +29,7 @@ The prompt/control pack is coherent enough for continued source planning. It is 
 
 ## Next Source-Only Action
 
-Optional human review of the prompt pack. Use the prepared candidate-intake checklist only if a future separate manual provider/candidate gate is explicitly approved and real user-supplied files exist.
+Optional human review of the prompt pack and Suno manual fields. Use the prepared candidate-intake checklist only if a future separate manual provider/candidate gate is explicitly approved and real user-supplied files exist.
 
 ## Still Blocked
 

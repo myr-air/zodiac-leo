@@ -10,6 +10,8 @@ This pack prepares manual text fields and review criteria only. It does not appr
 
 If a future separate provider gate is approved, use this only as a manually reviewed source reference. Do not invent provider, model, generation date, file path, candidate ID, or provenance facts before real user-supplied files exist.
 
+For per-track copy fields, use `source/suno-manual-fields.md`. This does not approve provider operation or candidate creation.
+
 ## Episode-Level Style Field
 
 ```text

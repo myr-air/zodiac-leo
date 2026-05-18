@@ -18,10 +18,11 @@ This worksheet evaluates internal source readiness only. It does not approve pro
 | Operating boundary | `docs/operating-boundary.md` | yes | Source packet allowed; media/account actions blocked. |
 | Provider/platform boundary | `docs/provider-platform-boundary.md` | yes | Provider and upload actions blocked. |
 | Song source | `source/songs.md` | yes | Tracks 1-13 source lyrics revised after Gemini findings. |
+| Suno manual fields | `source/suno-manual-fields.md`, `reviews/suno-manual-fields.md` | yes | Source-only copy fields; no provider approval. |
 | Prompt/control pack | `source/prompt-pack.md`, `reviews/prompt-pack.md` | yes | Source-only manual field pack reviewed; no provider approval. |
 | Candidate intake checklist | `reviews/candidate-intake-checklist.md` | yes | Future-gate checklist only; no real candidates exist. |
 | External lyric review | `reviews/gemini-lyrics-review.md` | yes | Gemini CLI review completed; recommendations applied in source. |
-| Visual source | `source/visual.md` | yes | Prompt and safe zones drafted. |
+| Visual source | `source/visual.md`, `source/visual-prompt-pack.md`, `reviews/visual-prompt-pack.md` | yes | Source-only visual prompts and safe zones prepared. |
 | Metadata source | `source/metadata.md` | yes | Draft copy and disclosure only. |
 | Tracking CSVs | `tracking/*.csv` | yes | Initial source-state rows only. |
 
@@ -78,7 +79,7 @@ Visual safe zones are planned in `source/visual.md` and reviewed in `reviews/vis
 | 6 | Objective audio QA | n/a | real audio files exist |
 | 7 | Human listening and similarity pass | n/a | real audio files exist |
 | 8 | Sequence/chapter plan | revise | order, gap, chapter, duration, or story arc changes |
-| 9 | Visual world and safe-zone plan | pass_source | subject, layout, overlay, crop, prompt, or source image use changes |
+| 9 | Visual world and safe-zone plan | pass_source_prompt_pack | subject, layout, overlay, crop, prompt, or source image use changes |
 | 10 | Subtitle/source timing plan | pending | lyrics, sung words, timing policy, or timeline exists |
 | 11 | Metadata/disclosure pack | revise | title, description, tags, chapters, disclosure, or claim wording changes |
 | 12 | Internal readiness scorecard | pending | source packet becomes complete enough to score |

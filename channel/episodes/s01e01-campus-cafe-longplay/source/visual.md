@@ -20,6 +20,8 @@ A warm campus cafe table in afternoon light: notebook, coffee, plant shadow, sof
 
 ## Draft Still-Frame Prompt
 
+For copyable prompt variants, use `source/visual-prompt-pack.md`. The prompt pack remains source-only and does not approve image generation or candidate creation.
+
 ```text
 Original reference-free 16:9 cozy music-cover illustration for a soft vocal longplay. A sunlit college campus cafe table beside a large window in late afternoon, open notebook with blank unreadable pages, simple coffee cup with no logo, clean pen, small plant shadow, gray backpack on the chair, and a tiny glossy gold crescent-vinyl charm on a keychain. Optional adult college listener seen from behind or three-quarter back view with long dark hair and cream cardigan, face not emphasized. Warm cream, honey, muted green, and soft brown palette, gentle film-grain texture, calm negative space in upper-left for title overlay, lower 18 percent kept simple for subtitles, no readable text, no brand marks, no real location, no named franchise, no celebrity likeness, no protected character, no imitation of another channel thumbnail.
 ```
