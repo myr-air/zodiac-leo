@@ -1,0 +1,61 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local secrets, credentials, sessions, and account state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credential*
+*credentials*
+*secret*
+*token*
+*cookie*
+*cookies*
+storage_state*.json
+.youtube-auth/
+.youtube-tokens/
+.browser-use/
+browser-use-output/
+chrome-profile/
+profiles/
+
+# Local caches and temporary files
+.cache/
+.tmp/
+tmp/
+logs/
+*.log
+node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Generated output and media exports
+/dist/
+/outputs/
+/renders/
+/exports/
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.aac
+*.m4a
+
+# User-supplied candidate media are local evidence by default.
+candidates/**/*.mp3
+candidates/**/*.wav
+candidates/**/*.flac
+candidates/**/*.aiff
+candidates/**/*.aif
+candidates/**/*.png
+candidates/**/*.jpg
+candidates/**/*.jpeg
+candidates/**/*.webp
+candidates/**/*.tif
+candidates/**/*.tiff
