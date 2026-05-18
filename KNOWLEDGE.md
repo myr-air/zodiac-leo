@@ -9,21 +9,33 @@ Updated: 2026-05-18
 
 ## Active Episode
 
-- None.
-- The previous episode packet and its candidate drop zones were permanently removed from this workspace at user direction on 2026-05-18.
-- The next workflow should start cleanly from a new episode packet, new tracking, and new review gates.
+- `s01e01-campus-cafe-longplay` — Season 1 Week 1 `Campus Cafe Longplay`.
+- Status: Gate 1 source packet open; tracks 1-13 have revised source-only lyric drafts; source-only prompt/control pack and source-only future candidate-intake checklist exist; visual source, metadata source, review gates, and tracking CSVs exist.
+- No audio, image, video, render/export, subtitle timing, candidate media, upload plan, release approval, analytics, or platform/account action exists.
 
 ## Current Source Truth
 
-- Channel strategy: `mellow-longplay/channel.md` and `mellow-longplay/roadmap.md`.
-- Reusable templates: `mellow-longplay/templates/`.
-- Signature visual system: `mellow-longplay/signature-visual-system.md` records source-only channel motifs with stored local reference images in `mellow-longplay/signature-references/`.
-- There is currently no active episode manifest, song source, visual source, metadata source, subtitle sidecar, or episode tracking CSV.
+- Channel strategy: `channel/channel.md` and `channel/roadmap.md`.
+- Reusable templates: `channel/templates/`.
+- Signature visual system: `channel/signature-visual-system.md` records source-only channel motifs with stored local reference images in `channel/signature-references/`.
+- Active episode truth: `channel/episodes/s01e01-campus-cafe-longplay/manifest.json`.
+- Active song source: `channel/episodes/s01e01-campus-cafe-longplay/source/songs.md`.
+- Active prompt pack: `channel/episodes/s01e01-campus-cafe-longplay/source/prompt-pack.md` plus `channel/episodes/s01e01-campus-cafe-longplay/reviews/prompt-pack.md`.
+- Active candidate-intake checklist: `channel/episodes/s01e01-campus-cafe-longplay/reviews/candidate-intake-checklist.md`.
+- Active lyrics review: `channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md`.
+- Active visual source: `channel/episodes/s01e01-campus-cafe-longplay/source/visual.md` plus `channel/episodes/s01e01-campus-cafe-longplay/reviews/visual.md`.
+- Active metadata source: `channel/episodes/s01e01-campus-cafe-longplay/source/metadata.md`.
+- Active tracking: `channel/episodes/s01e01-campus-cafe-longplay/tracking/*.csv`.
 
 ## Current Decisions
 
+- The first episode direction is `Campus Cafe Longplay`: sunlit cafe table, notebook, coffee, and young-adult first-crush details.
+- Baseline format is 12 main songs plus 1 bonus full closing song, English-first, target about 30-35 minutes if later generated naturally.
+- Controlled variation is limited to one piano-forward song and one soft sax accent song unless re-reviewed.
+- Tracks 1-13 passed a revised source-only full lyric arc/repetition checkpoint at 92/100; user-approved Gemini CLI review is complete and recommended revisions have been applied in source.
+- Source-only prompt/control pack passed review; it is not provider approval or media approval.
+- Source-only candidate-intake checklist is prepared for a future separate manual gate; it does not create candidate IDs or approve provider/media/release actions.
 - No current audio candidates, visual candidates, render evidence, subtitle sidecars, readiness gate, or release gate are active.
-- New episode work must begin with source planning, then create a fresh episode packet and tracking files before any media candidate review.
 - Upload/public-publish planning, render/export, provider/account/API/browser automation, Content ID registration, and rights/platform-safety claims remain blocked.
 - Future visual prompts may reuse the channel-level signature motifs only as source-only design guidance unless a later explicit visual gate overrides that rule.
 

@@ -4,6 +4,6 @@ This folder contains the channel-level strategy, templates, and episode packets 
 
 Current packet:
 
-- None. Create a new `episodes/<episode-id>/` packet only after the next episode scope is approved.
+- `episodes/s01e01-campus-cafe-longplay/` — Gate 1 source packet for Season 1 Week 1 `Campus Cafe Longplay`.
 
 Reusable source templates live in `templates/`. Copy them only when real reviewed episode or cycle facts exist.

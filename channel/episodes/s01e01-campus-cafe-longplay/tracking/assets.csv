@@ -1,0 +1,25 @@
+date,episode_id,asset_type,asset_id,path,status,notes
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,manifest,channel/episodes/s01e01-campus-cafe-longplay/manifest.json,active,Episode truth file for source packet state
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,songs_source,channel/episodes/s01e01-campus-cafe-longplay/source/songs.md,draft,Song outline and manual-only style notes
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,visual_source,channel/episodes/s01e01-campus-cafe-longplay/source/visual.md,draft,Still-frame prompt and safe-zone source plan
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,metadata_source,channel/episodes/s01e01-campus-cafe-longplay/source/metadata.md,draft,Title description disclosure and chapter source
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,current_state,channel/episodes/s01e01-campus-cafe-longplay/reviews/current-state.md,active,Current source-only state and next actions
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,visual_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/visual.md,pass_source_draft,Visual source review only
+2026-05-18,s01e01-campus-cafe-longplay,tracking,status,channel/episodes/s01e01-campus-cafe-longplay/tracking/status.csv,active,Durable state rows
+2026-05-18,s01e01-campus-cafe-longplay,media,audio_candidates,candidates/,none,No audio files or candidate IDs exist
+2026-05-18,s01e01-campus-cafe-longplay,media,visual_candidates,candidates/,none,No generated image files or candidate IDs exist
+2026-05-18,s01e01-campus-cafe-longplay,media,video_renders,candidates/,blocked,No render or export exists
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,lyrics_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md,pass_source_checkpoint,Tracks 1 through 3 lyric review only
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,songs_source,channel/episodes/s01e01-campus-cafe-longplay/source/songs.md,lyrics_partial_draft,Tracks 1 through 3 drafted and tracks 4 through 13 pending
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,lyrics_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md,pass_source_midpoint,Tracks 1 through 6 lyric review only
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,songs_source,channel/episodes/s01e01-campus-cafe-longplay/source/songs.md,lyrics_partial_draft,Tracks 1 through 6 drafted and tracks 7 through 13 pending
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,lyrics_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md,pass_source_second_checkpoint,Tracks 1 through 9 lyric review only
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,songs_source,channel/episodes/s01e01-campus-cafe-longplay/source/songs.md,lyrics_partial_draft,Tracks 1 through 9 drafted and tracks 10 through 13 pending
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,lyrics_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md,pass_source_full_lyrics,Tracks 1 through 13 source lyric review only
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,songs_source,channel/episodes/s01e01-campus-cafe-longplay/source/songs.md,lyrics_full_draft,Tracks 1 through 13 drafted; no generated audio exists
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,gemini_lyrics_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/gemini-lyrics-review.md,completed_with_revision_recommendations,External source-only Gemini CLI review notes; no generated media exists
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,songs_source,channel/episodes/s01e01-campus-cafe-longplay/source/songs.md,lyrics_full_draft_revised,Gemini response revisions applied; no generated audio exists
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,lyrics_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md,pass_source_full_lyrics_revised,Revised full source lyric review only
+2026-05-18,s01e01-campus-cafe-longplay,source_doc,prompt_pack,channel/episodes/s01e01-campus-cafe-longplay/source/prompt-pack.md,source_draft_reviewed,Manual-only prompt/control source pack; no generated media exists
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,prompt_pack_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/prompt-pack.md,pass_source_prompt_pack,Prompt pack review only; no provider approval
+2026-05-18,s01e01-campus-cafe-longplay,review_doc,candidate_intake_checklist,channel/episodes/s01e01-campus-cafe-longplay/reviews/candidate-intake-checklist.md,prepared_source_only,Future candidate intake checklist only; no candidate media exists

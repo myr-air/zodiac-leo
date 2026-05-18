@@ -6,16 +6,18 @@ This project keeps the channel small on purpose. It stores source packets, revie
 
 ## Structure
 
-- `mellow-longplay/channel.md` defines the channel promise and safety boundary.
-- `mellow-longplay/roadmap.md` defines the 12-week source-production roadmap.
+- `channel/channel.md` defines the channel promise and safety boundary.
+- `channel/roadmap.md` defines the 12-week source-production roadmap.
 - `channel/episodes/` is reserved for future episode packets.
-- `mellow-longplay/templates/` contains reusable source-only worksheets.
+- `channel/templates/` contains reusable source-only worksheets.
 - `candidates/` is ignored local evidence storage for future user-supplied audio and visuals.
 - `scripts/verify-standalone.sh` validates the reduced standalone structure.
 
 ## Current Episode
 
-No active episode packet exists right now. Start the next workflow by creating a fresh episode packet, tracking files, and review gates before any media generation, render/export, or release planning.
+Active source packet: `channel/episodes/s01e01-campus-cafe-longplay/`.
+
+Current gate: Gate 1 source packet only. Lyrics, real media candidates, subtitle timing, render/export, upload, publishing, and release planning remain blocked until later explicit gates.
 
 ## Verify
 

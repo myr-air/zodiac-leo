@@ -1,0 +1,9 @@
+date,episode_id,item_type,item_id,source_path,provenance_status,notes
+2026-05-18,s01e01-campus-cafe-longplay,planning_hook,season1_week1,channel/roadmap.md,source_internal,Week 1 roadmap hook selected as the first episode direction
+2026-05-18,s01e01-campus-cafe-longplay,channel_contract,mellow_longplay,channel/channel.md,source_internal,Channel promise and boundaries used for source planning
+2026-05-18,s01e01-campus-cafe-longplay,operating_boundary,local_source_first,docs/operating-boundary.md,source_internal,Only source packet work is allowed now
+2026-05-18,s01e01-campus-cafe-longplay,provider_boundary,no_active_provider_generation,docs/provider-platform-boundary.md,source_internal,Provider and platform actions remain blocked
+2026-05-18,s01e01-campus-cafe-longplay,signature_motif,gold_crescent_vinyl_charm,channel/signature-visual-system.md,source_internal_reference_only,May guide visual identity but is not a provider reference input or media proof
+2026-05-18,s01e01-campus-cafe-longplay,external_review,gemini_cli_lyrics_review,channel/episodes/s01e01-campus-cafe-longplay/reviews/gemini-lyrics-review.md,external_review_user_approved,Source-only Gemini CLI lyric review; advisory notes only; no media or release approval
+2026-05-18,s01e01-campus-cafe-longplay,revision_response,gemini_findings_applied,channel/episodes/s01e01-campus-cafe-longplay/source/songs.md,source_internal_revision,Revisions respond to Gemini notes; no provider generation media or release facts created
+2026-05-18,s01e01-campus-cafe-longplay,candidate_intake_checklist,future_gate_preflight,channel/episodes/s01e01-campus-cafe-longplay/reviews/candidate-intake-checklist.md,source_internal,Checklist prepared for future manual intake only; no candidate provenance exists

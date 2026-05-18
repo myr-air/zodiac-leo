@@ -17,12 +17,12 @@ required_files = [
     '.gitignore',
     'docs/operating-boundary.md',
     'docs/provider-platform-boundary.md',
-    'mellow-longplay/channel.md',
-    'mellow-longplay/roadmap.md',
-    'mellow-longplay/signature-visual-system.md',
-    'mellow-longplay/signature-references/README.md',
-    'mellow-longplay/signature-references/gold-crescent-record-charm.png',
-    'mellow-longplay/signature-references/recurring-campus-listener-character-sheet.png',
+    'channel/channel.md',
+    'channel/roadmap.md',
+    'channel/signature-visual-system.md',
+    'channel/signature-references/README.md',
+    'channel/signature-references/gold-crescent-record-charm.png',
+    'channel/signature-references/recurring-campus-listener-character-sheet.png',
     '.agents/skills/suno-song-production-guardrails/SKILL.md',
     '.agents/skills/lyric-craft-multilingual-guardrails/SKILL.md',
     '.agents/skills/gpt-image-prompting-guardrails/SKILL.md',
@@ -35,8 +35,8 @@ required_files = [
 
 required_dirs = [
     'channel/episodes',
-    'mellow-longplay/templates',
-    'mellow-longplay/signature-references',
+    'channel/templates',
+    'channel/signature-references',
     'candidates',
     'scripts',
     'tests',
@@ -113,8 +113,8 @@ for path in sorted(Path('.').glob('**/*')):
 media_extensions = {'.mp3', '.wav', '.flac', '.aiff', '.aif', '.png', '.jpg', '.jpeg', '.webp', '.tif', '.tiff', '.mp4', '.mov', '.mkv', '.webm'}
 tracked_like_media = [str(path) for path in Path('.').glob('**/*') if path.is_file() and path.suffix.lower() in media_extensions]
 allowed_media = {
-    'mellow-longplay/signature-references/gold-crescent-record-charm.png',
-    'mellow-longplay/signature-references/recurring-campus-listener-character-sheet.png',
+    'channel/signature-references/gold-crescent-record-charm.png',
+    'channel/signature-references/recurring-campus-listener-character-sheet.png',
 }
 for path in tracked_like_media:
     if path not in allowed_media:
