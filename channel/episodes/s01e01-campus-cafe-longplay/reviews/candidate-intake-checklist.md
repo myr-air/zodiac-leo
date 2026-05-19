@@ -1,6 +1,6 @@
 # S01E01 Candidate Intake Checklist — After-School First Love Longplay
 
-Status: source-only future-gate checklist  
+Status: intake_recorded_needs_audio_qa_source_only
 Episode: `s01e01-campus-cafe-longplay`  
 Prepared date: 2026-05-18
 
@@ -14,14 +14,14 @@ Do not create candidate IDs, file paths, generation dates, provider facts, QA re
 
 Before any candidate is logged, confirm all items below are true:
 
-- [ ] User explicitly approves the exact manual provider/candidate-intake gate for this episode.
-- [ ] The current source packet still matches `manifest.json`, `source/songs.md`, and `source/prompt-pack.md`.
-- [ ] Any lyric, title, prompt, exclude, vocal policy, provider/model, disclosure, or upload-intent change has been re-reviewed first.
-- [ ] The user supplies real local files or a real local file inventory; no provider/browser/API fetching is performed here.
-- [ ] Candidate files remain local evidence under ignored candidate storage; durable facts go only into reviews and tracking CSVs.
-- [ ] No credentials, cookies, account IDs, account emails, private analytics, browser profiles, or raw account exports are stored.
-- [ ] Provider/model/mode/date facts are recorded only if known, non-private, and supplied by the user.
-- [ ] No claim is made that any candidate is exclusive, rights-cleared, platform-safe, upload-ready, or publish-ready.
+- [x] User explicitly approves the exact manual provider/candidate-intake gate for this episode.
+- [x] The current source packet still matches `manifest.json`, `source/songs.md`, and `source/prompt-pack.md`.
+- [x] Any lyric, title, prompt, exclude, vocal policy, provider/model, disclosure, or upload-intent change has been re-reviewed first.
+- [x] The user supplies real local files or a real local file inventory; no provider/browser/API fetching is performed here.
+- [x] Candidate files remain local evidence under ignored candidate storage; durable facts go only into reviews and tracking CSVs.
+- [x] No credentials, cookies, account IDs, account emails, private analytics, browser profiles, or raw account exports are stored.
+- [x] Provider/model/mode/date facts are recorded only if known, non-private, and supplied by the user.
+- [x] No claim is made that any candidate is exclusive, rights-cleared, platform-safe, upload-ready, or publish-ready.
 
 ## 2. Allowed Intake Inputs After Approval
 
@@ -107,19 +107,19 @@ Do not fill candidate IDs here until files exist.
 
 | Track | Title | Audio intake status | Notes |
 |---:|---|---|---|
-| 1 | Margin Notes at Table Three | not_started | Current user-accepted opener; await real file. |
-| 2 | Two Lids, One Tray | not_started | Current user-accepted Track 2; await real file. |
-| 3 | Borrowed Eraser, Written Name | not_started | Current user-accepted Track 3; await real file. |
-| 4 | Checkout Slip at Chapter Nine | not_started | Current piano-forward guardrail track; await real file. |
-| 5 | Steam on the Glass Door | not_started | Current title/lyric-independence track; await real file. |
-| 6 | Peach Can at B4 | not_started | Current replacement for Bus Stop Receipt; await real file. |
-| 7 | Green Dot on Your Schedule | not_started | Current replacement for Two Taps in the Hallway; await real file. |
-| 8 | Cushion Seat, Charging Cord | not_started | Current study-lounge charging track; await real file. |
-| 9 | Crosswalk Stripes Before Six | not_started | Current only soft-sax secondary accent track; await real file. |
-| 10 | Yellow Tag on the Umbrella Rack | not_started | Current umbrella-rack marker track; await real file. |
-| 11 | Quiz Key in Blue Ink | not_started | Current quiz-key study track; await real file. |
-| 12 | Tray Return at 5:59 | not_started | Current main-set closer; await real file. |
-| 13 bonus | Latch Click at the Courtyard Gate | not_started | Current bonus close only; await real file. |
+| 1 | Margin Notes at Table Three | selected_draft_needs_audio_qa_source_only | Selected `aud-t01_c02`; pool `aud-t01_c01`. |
+| 2 | Two Lids, One Tray | selected_draft_needs_audio_qa_source_only | Selected `aud-t02_c01`; pool `aud-t02_c02`. |
+| 3 | Borrowed Eraser, Written Name | selected_draft_needs_audio_qa_source_only | Selected `aud-t03_c01`; pool `aud-t03_c02`. |
+| 4 | Checkout Slip at Chapter Nine | selected_draft_needs_audio_qa_source_only | Selected `aud-t04_c01`; pool `aud-t04_c02`. |
+| 5 | Steam on the Glass Door | selected_draft_needs_audio_qa_source_only | Selected `aud-t05_c01`; pool `aud-t05_c02`. |
+| 6 | Peach Can at B4 | selected_draft_needs_audio_qa_source_only | Selected `aud-t06_c02`; pool `aud-t06_c01`. |
+| 7 | Green Dot on Your Schedule | selected_draft_needs_audio_qa_source_only | Selected `aud-t07_c01`; pool `aud-t07_c02`. |
+| 8 | Cushion Seat, Charging Cord | selected_draft_needs_audio_qa_source_only | Selected `aud-t08_c01`; pool `aud-t08_c02`; short duration needs listen. |
+| 9 | Crosswalk Stripes Before Six | selected_draft_needs_audio_qa_source_only | Selected `aud-t09_c01`; pool `aud-t09_c02`. |
+| 10 | Yellow Tag on the Umbrella Rack | selected_draft_needs_audio_qa_source_only | Selected `aud-t10_c01`; pool `aud-t10_c02`. |
+| 11 | Quiz Key in Blue Ink | selected_draft_needs_audio_qa_source_only | Selected `aud-t11_c01`; pool `aud-t11_c02`. |
+| 12 | Tray Return at 5:59 | selected_draft_needs_audio_qa_source_only | Selected `aud-t12_c01`; pool `aud-t12_c02`. |
+| 13 bonus | Latch Click at the Courtyard Gate | selected_draft_needs_audio_qa_source_only | Selected `aud-t13_c01`; pool `aud-t13_c02`. |
 
 ## 7. Tracking Sync When Real Files Exist
 
@@ -137,7 +137,7 @@ Do not store raw provider account data, credentials, cookies, browser state, scr
 
 Allowed Candidate Intake outcomes:
 
-- `intake_recorded_needs_audio_qa`
+- `intake_recorded_needs_audio_qa_source_only`
 - `intake_recorded_needs_visual_review`
 - `quarantine_rejected`
 - `needs_regeneration`
@@ -162,4 +162,4 @@ Candidate Intake can close only when real files exist and the review docs/tracki
 - visual files needing review are routed to visual safe-zone/crop review;
 - render/export and release gates remain blocked unless separately approved later.
 
-Current state: no candidates exist; this checklist is preparation only.
+Current state: 26 user-supplied local WAV candidates exist. A source-only selected draft set and pool set are recorded in `reviews/audio-candidate-intake.md`; all selected candidates still need audio QA and human listening before any later gate.

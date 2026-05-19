@@ -10,13 +10,14 @@ Updated: 2026-05-19
 ## Active Episode
 
 - `s01e01-campus-cafe-longplay` — Season 1 Week 1 `After-School First Love Longplay`.
-- Status: Gate 1 source packet open; prior 13-track set is user-rejected/superseded; Tracks 1-3 are user-accepted/source synced; Tracks 4-13 are Mayr source-approved and synced after one-by-one lyric and Suno field review; post-approval review lessons were folded into songwriting/review guardrails and all current `Styles` fields now include BPM; tracking CSVs updated.
-- No audio, image, video, render/export, subtitle timing, candidate media, upload plan, release approval, analytics, or platform/account action exists.
+- Status: Gate 1 source packet open; prior 13-track set is user-rejected/superseded; Tracks 1-3 are user-accepted/source synced; Tracks 4-13 are Mayr source-approved and synced after one-by-one lyric and Suno field review; local audio candidate intake is open with 13 selected draft candidates and 13 pool candidates needing audio QA and human listening.
+- No image, video, render/export, subtitle timing, upload plan, release approval, analytics, or platform/account action exists. Audio candidates are ignored local evidence only.
 
 ## Current Source Truth
 
 - Channel strategy: `channel/channel.md` and `channel/roadmap.md`.
 - Reusable templates: `channel/templates/`.
+- Reusable local audio candidate intake workflow: `channel/templates/audio-candidate-intake-workflow-template.md`.
 - Signature visual system: `channel/signature-visual-system.md` records source-only channel motifs with stored local reference images in `channel/signature-references/`.
 - Active episode truth: `channel/episodes/s01e01-campus-cafe-longplay/manifest.json`.
 - Active song source: `channel/episodes/s01e01-campus-cafe-longplay/source/songs.md`.
@@ -24,6 +25,8 @@ Updated: 2026-05-19
 - Active Suno track copy packs: `channel/episodes/s01e01-campus-cafe-longplay/source/suno-tracks/*.md` (13 files, one per song).
 - Active prompt pack: `channel/episodes/s01e01-campus-cafe-longplay/source/prompt-pack.md` plus `channel/episodes/s01e01-campus-cafe-longplay/reviews/prompt-pack.md`.
 - Active candidate-intake checklist: `channel/episodes/s01e01-campus-cafe-longplay/reviews/candidate-intake-checklist.md`.
+- Active audio candidate intake review: `channel/episodes/s01e01-campus-cafe-longplay/reviews/audio-candidate-intake.md`.
+- Active selected audio QA/listening handoff: `channel/episodes/s01e01-campus-cafe-longplay/reviews/audio-qa-listening.md`.
 - Active source-approval workflow log: `channel/episodes/s01e01-campus-cafe-longplay/reviews/source-approval-workflow.md`.
 - Active lyrics review: `channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md`.
 - Active theme retune review: `channel/episodes/s01e01-campus-cafe-longplay/reviews/theme-retune.md`.
@@ -48,9 +51,11 @@ Updated: 2026-05-19
 - Source-only Suno manual handoff is split into 13 copy-ready per-track files under `source/suno-tracks/`; `source/suno-manual-fields.md` now acts as index/defaults. These remain source-only and are not provider approval or media approval.
 - Source-only Suno prompt retune research trail is recorded in `channel/episodes/s01e01-campus-cafe-longplay/reviews/suno-prompt-research.md`; style/exclude wording and control values were retuned for clearer less repetitive prompts.
 - Source-only prompt/control pack is theme-retuned; it is not provider approval or media approval.
-- Source-only candidate-intake checklist is prepared for a future separate manual gate; it does not create candidate IDs or approve provider/media/release actions.
+- Candidate-intake checklist is now active for local user-supplied S01E01 audio files; candidate IDs exist only for local audio evidence and do not approve provider/media/render/release actions.
+- S01E01 local audio candidate intake is recorded: 26 user-supplied WAV candidates were organized into a selected draft set and a pool set. This is not render/export/upload/release approval and still needs audio QA plus human listening.
+- The local audio candidate intake + Gemini supplemental A/B method is confirmed usable and recorded as a reusable workflow template for future episodes.
 - Source-only visual prompt pack is theme-retuned; it is not image generation approval or visual candidate acceptance.
-- No current audio candidates, visual candidates, render evidence, subtitle sidecars, readiness gate, or release gate are active.
+- Current audio candidates exist as ignored local evidence only; no visual candidates, render evidence, subtitle sidecars, readiness gate, or release gate are active.
 - Upload/public-publish planning, render/export, provider/account/API/browser automation, Content ID registration, and rights/platform-safety claims remain blocked.
 - Future visual prompts may reuse the channel-level signature motifs only as source-only design guidance unless a later explicit visual gate overrides that rule.
 

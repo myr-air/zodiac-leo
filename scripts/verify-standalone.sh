@@ -8,6 +8,7 @@ python3 - <<'PY'
 from pathlib import Path
 import csv
 import json
+import subprocess
 import sys
 
 required_files = [
@@ -86,10 +87,6 @@ for path in blocked_paths:
     if path.exists():
         errors.append(f'old-scope path exists: {path}')
 
-for path in Path('.').glob('**/.DS_Store'):
-    if not any(part in {'.git', '.tmp', 'node_modules', '__pycache__'} for part in path.parts):
-        print(f'WARN: OS metadata file present but ignored by .gitignore: {path}')
-
 text_blockers = [
     'channels/mellow-longplay',
     'channels/miniature-epics',
@@ -114,14 +111,48 @@ for path in sorted(Path('.').glob('**/*')):
             errors.append(f'old-scope reference {token!r} in {path}')
 
 media_extensions = {'.mp3', '.wav', '.flac', '.aiff', '.aif', '.png', '.jpg', '.jpeg', '.webp', '.tif', '.tiff', '.mp4', '.mov', '.mkv', '.webm'}
-tracked_like_media = [str(path) for path in Path('.').glob('**/*') if path.is_file() and path.suffix.lower() in media_extensions]
+source_tree_media = [
+    str(path)
+    for path in Path('.').glob('**/*')
+    if path.is_file()
+    and not any(part in {'.git', '.tmp', 'node_modules', '__pycache__'} for part in path.parts)
+    and path.suffix.lower() in media_extensions
+    and not (path.parts and path.parts[0] == 'candidates')
+]
 allowed_media = {
     'channel/signature-references/gold-crescent-record-charm.png',
     'channel/signature-references/recurring-campus-listener-character-sheet.png',
 }
-for path in tracked_like_media:
+for path in source_tree_media:
     if path not in allowed_media:
         errors.append(f'media file present in source tree: {path}')
+
+try:
+    tracked_result = subprocess.run(
+        ['git', 'ls-files'],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+except Exception as exc:
+    errors.append(f'could not inspect tracked files for ignored artifacts: {exc}')
+else:
+    tracked_paths = tracked_result.stdout.splitlines()
+    tracked_os_metadata = sorted(
+        path for path in tracked_paths if Path(path).name == '.DS_Store'
+    )
+    tracked_candidate_media = sorted(
+        path
+        for path in tracked_paths
+        if Path(path).suffix.lower() in media_extensions
+        and Path(path).parts
+        and Path(path).parts[0] == 'candidates'
+    )
+    for path in tracked_os_metadata:
+        errors.append(f'OS metadata must remain untracked/ignored: {path}')
+    for path in tracked_candidate_media:
+        errors.append(f'candidate media must remain untracked/ignored: {path}')
 
 if errors:
     for error in errors:

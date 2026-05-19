@@ -25,6 +25,7 @@ Still-forbidden terms except as blocked/caution language: `copyright-free`, `roy
 | Operating boundary | `docs/operating-boundary.md` | `<yes/no>` | `<notes>` |
 | Provider/platform boundary | `docs/provider-platform-boundary.md` | `<yes/no>` | `<notes>` |
 | Song source | `channel/episodes/<episode-id>/source/songs.md` | `<yes/no>` | `<notes>` |
+| Local audio candidate workflow, if audio exists | `channel/templates/audio-candidate-intake-workflow-template.md` | `<yes/no/n/a>` | `<notes>` |
 | Lyric overuse blocklist | `<path or n/a>` | `<yes/no>` | `<notes>` |
 | Provenance destination | `<tracking/review path>` | `<yes/no>` | `<notes>` |
 | Subtitle / metadata source docs | `<paths>` | `<yes/no>` | `<notes>` |
@@ -181,7 +182,7 @@ Use 8-15 gates, not open-ended micro-edits. Mark only gates relevant to this epi
 | 2 | Song-source packet | `<pending/pass/revise/block>` | titles, briefs, lyric lanes, structure matrix changes |
 | 3 | Lyric anti-slop audit | `<pending/pass/revise/block>` | lyric/title/hook/bridge/blocklist changes |
 | 4 | Prompt/control package review | `<pending/pass/revise/block>` | style, exclude, provider/model, voice/control field changes |
-| 5 | Candidate intake/provenance check | `<pending/pass/revise/block/n/a>` | real files, provider facts, provenance, or routing changes |
+| 5 | Candidate intake/provenance check | `<pending/pass/revise/block/n/a>` | real files, provider facts, provenance, selected/pool routing, or candidate workflow changes |
 | 6 | Objective audio QA | `<pending/pass/revise/block/n/a>` | file replacement, mastering, metadata, silence, loudness issues |
 | 7 | Human listening and similarity pass | `<pending/pass/revise/block/n/a>` | adjacent similarity, artifacts, imitation concern, sequencing change |
 | 8 | Sequence/chapter plan | `<pending/pass/revise/block>` | order, gap, chapter, duration, or story-arc changes |
