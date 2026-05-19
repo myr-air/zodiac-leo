@@ -107,19 +107,19 @@ Do not fill candidate IDs here until files exist.
 
 | Track | Title | Audio intake status | Notes |
 |---:|---|---|---|
-| 1 | Coffee Rings on My Notes | not_started | Await real file. |
-| 2 | Seat by the Window | not_started | Await real file. |
-| 3 | Your Pen on the Table | not_started | Await real file. |
-| 4 | Quiet Page Turns | not_started | Piano-forward guardrail. |
-| 5 | Half-Smile Refill | not_started | Await real file. |
-| 6 | Library Card in Your Case | not_started | Await real file. |
-| 7 | Blue Straw, Soft Foam | not_started | Confirm revised title. |
-| 8 | Two Plugs, One Outlet | not_started | Await real file. |
-| 9 | Saxophone from the Street | not_started | Soft-sax secondary guardrail. |
-| 10 | Rain Check by the Door | not_started | Avoid joke/pun delivery. |
-| 11 | Backpack by My Chair | not_started | Await real file. |
-| 12 | Last Light on the Counter | not_started | Await real file. |
-| 13 bonus | Walk Me Past the Courtyard | not_started | Bonus close only. |
+| 1 | Margin Notes at Table Three | not_started | Current user-accepted opener; await real file. |
+| 2 | Two Lids, One Tray | not_started | Current user-accepted Track 2; await real file. |
+| 3 | Borrowed Eraser, Written Name | not_started | Current user-accepted Track 3; await real file. |
+| 4 | Checkout Slip at Chapter Nine | not_started | Current piano-forward guardrail track; await real file. |
+| 5 | Steam on the Glass Door | not_started | Current title/lyric-independence track; await real file. |
+| 6 | Peach Can at B4 | not_started | Current replacement for Bus Stop Receipt; await real file. |
+| 7 | Green Dot on Your Schedule | not_started | Current replacement for Two Taps in the Hallway; await real file. |
+| 8 | Cushion Seat, Charging Cord | not_started | Current study-lounge charging track; await real file. |
+| 9 | Crosswalk Stripes Before Six | not_started | Current only soft-sax secondary accent track; await real file. |
+| 10 | Yellow Tag on the Umbrella Rack | not_started | Current umbrella-rack marker track; await real file. |
+| 11 | Quiz Key in Blue Ink | not_started | Current quiz-key study track; await real file. |
+| 12 | Tray Return at 5:59 | not_started | Current main-set closer; await real file. |
+| 13 bonus | Latch Click at the Courtyard Gate | not_started | Current bonus close only; await real file. |
 
 ## 7. Tracking Sync When Real Files Exist
 
