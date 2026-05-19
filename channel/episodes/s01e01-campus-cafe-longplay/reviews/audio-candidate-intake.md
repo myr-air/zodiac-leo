@@ -1,6 +1,6 @@
 # S01E01 Audio Candidate Intake — After-School First Love Longplay
 
-Status: selected_draft_human_listen_passed_needs_lyric_alignment_duration_source_only
+Status: selected_draft_human_listen_lyric_alignment_passed_needs_duration_decision_source_only
 Updated: 2026-05-19
 
 ## Boundary
@@ -53,7 +53,7 @@ This review records local user-supplied audio candidate intake only. It does not
 
 - Continue with selected audio QA handoff in `reviews/audio-qa-listening.md`.
 - Human listening pass is recorded for all selected draft candidates from the user verdict on 2026-05-19.
-- Lyric alignment spot-check remains required for all selected candidates.
+- Gemini supplemental lyric anchor spot-check is recorded for all selected candidates in `reviews/audio-qa-listening.md`; Track 13 opening dialogue remains a caveat because its opening clip was inconclusive while mid/end anchors passed.
 - Duration and sequence pacing review because selected draft is about 41:31.
 - Optional regeneration or swap from pool before any render/export planning.
 

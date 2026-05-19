@@ -111,6 +111,7 @@ Allowed exit statuses:
 - `selected_draft_needs_audio_qa_source_only`
 - `selected_draft_needs_human_listen_source_only`
 - `selected_draft_human_listen_passed_needs_lyric_alignment_duration_source_only`
+- `selected_draft_human_listen_lyric_alignment_passed_needs_duration_decision_source_only`
 - `needs_lyric_alignment_spot_check_source_only`
 - `needs_regeneration_or_pool_swap_source_only`
 - `quarantine_rejected`
