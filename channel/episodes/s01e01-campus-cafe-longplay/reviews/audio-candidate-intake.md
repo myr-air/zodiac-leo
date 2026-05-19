@@ -1,6 +1,6 @@
 # S01E01 Audio Candidate Intake — After-School First Love Longplay
 
-Status: selected_draft_human_listen_lyric_alignment_passed_needs_duration_decision_source_only
+Status: selected_draft_human_listen_lyric_anchor_duration_accepted_source_only
 Updated: 2026-05-19
 
 ## Boundary
@@ -12,7 +12,7 @@ This review records local user-supplied audio candidate intake only. It does not
 - User explicitly opened the S01E01 local audio candidate intake and technical audio QA gate.
 - Local tools used: `ffprobe` and `ffmpeg` for format, duration, loudness, and peak checks.
 - External supplemental review allowed by user: Gemini CLI with `gemini-3-flash-preview` for A/B listening where it returned usable output.
-- Gemini output is advisory only; Mayr selection remains a source-only draft pending human listening.
+- Gemini candidate-selection output is advisory only; final human listening, lyric anchor, and duration decisions are recorded in `reviews/audio-qa-listening.md`.
 - The reusable version of this method is now recorded at `channel/templates/audio-candidate-intake-workflow-template.md`.
 
 ## Inventory Summary
@@ -23,7 +23,7 @@ This review records local user-supplied audio candidate intake only. It does not
 - Local peak check found no severe clipping; max peaks sat roughly between -4.2 dB and -2.6 dB.
 - Selected draft total duration: about `41:31`.
 - Pool total duration: about `42:30`.
-- Duration note: the selected draft is longer than the earlier 30-35 minute target and needs sequence/listening review before any render/export planning.
+- Duration note: the selected draft is longer than the earlier 30-35 minute target, and the user accepted the about 41:31 duration source-only on 2026-05-19 after market-length discussion. This does not approve render/export or release.
 
 ## Selected Draft And Pool Map
 
@@ -54,8 +54,8 @@ This review records local user-supplied audio candidate intake only. It does not
 - Continue with selected audio QA handoff in `reviews/audio-qa-listening.md`.
 - Human listening pass is recorded for all selected draft candidates from the user verdict on 2026-05-19.
 - Gemini supplemental lyric anchor spot-check is recorded for all selected candidates in `reviews/audio-qa-listening.md`; Track 13 opening dialogue remains a caveat because its opening clip was inconclusive while mid/end anchors passed.
-- Duration and sequence pacing review because selected draft is about 41:31.
-- Optional regeneration or swap from pool before any render/export planning.
+- Duration and sequence pacing decision is recorded: accept the selected draft at about 41:31 source-only.
+- Optional regeneration or swap from pool is not needed for the current duration decision, but remains possible if a future separate review changes direction.
 
 ## Still Blocked
 

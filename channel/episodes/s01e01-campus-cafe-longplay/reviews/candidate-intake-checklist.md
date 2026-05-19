@@ -1,6 +1,6 @@
 # S01E01 Candidate Intake Checklist — After-School First Love Longplay
 
-Status: intake_recorded_human_listen_lyric_alignment_passed_needs_duration_decision_source_only
+Status: intake_recorded_human_listen_lyric_anchor_duration_accepted_source_only
 Episode: `s01e01-campus-cafe-longplay`  
 Prepared date: 2026-05-18
 
@@ -107,19 +107,19 @@ Do not fill candidate IDs here until files exist.
 
 | Track | Title | Audio intake status | Notes |
 |---:|---|---|---|
-| 1 | Margin Notes at Table Three | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t01_c02`; pool `aud-t01_c01`; long duration decision pending. |
-| 2 | Two Lids, One Tray | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t02_c01`; pool `aud-t02_c02`. |
-| 3 | Borrowed Eraser, Written Name | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t03_c01`; pool `aud-t03_c02`. |
-| 4 | Checkout Slip at Chapter Nine | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t04_c01`; pool `aud-t04_c02`. |
-| 5 | Steam on the Glass Door | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t05_c01`; pool `aud-t05_c02`. |
-| 6 | Peach Can at B4 | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t06_c02`; pool `aud-t06_c01`. |
-| 7 | Green Dot on Your Schedule | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t07_c01`; pool `aud-t07_c02`. |
-| 8 | Cushion Seat, Charging Cord | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t08_c01`; pool `aud-t08_c02`; short duration decision pending. |
-| 9 | Crosswalk Stripes Before Six | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t09_c01`; pool `aud-t09_c02`. |
-| 10 | Yellow Tag on the Umbrella Rack | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t10_c01`; pool `aud-t10_c02`. |
-| 11 | Quiz Key in Blue Ink | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t11_c01`; pool `aud-t11_c02`. |
-| 12 | Tray Return at 5:59 | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t12_c01`; pool `aud-t12_c02`. |
-| 13 bonus | Latch Click at the Courtyard Gate | human_listen_lyric_alignment_passed_needs_duration_decision_source_only | Selected `aud-t13_c01`; pool `aud-t13_c02`; opening-dialogue caveat. |
+| 1 | Margin Notes at Table Three | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t01_c02`; pool `aud-t01_c01`; long track accepted within 41:31 source-only duration. |
+| 2 | Two Lids, One Tray | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t02_c01`; pool `aud-t02_c02`. |
+| 3 | Borrowed Eraser, Written Name | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t03_c01`; pool `aud-t03_c02`. |
+| 4 | Checkout Slip at Chapter Nine | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t04_c01`; pool `aud-t04_c02`. |
+| 5 | Steam on the Glass Door | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t05_c01`; pool `aud-t05_c02`. |
+| 6 | Peach Can at B4 | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t06_c02`; pool `aud-t06_c01`. |
+| 7 | Green Dot on Your Schedule | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t07_c01`; pool `aud-t07_c02`. |
+| 8 | Cushion Seat, Charging Cord | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t08_c01`; pool `aud-t08_c02`; short track accepted within 41:31 source-only sequence. |
+| 9 | Crosswalk Stripes Before Six | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t09_c01`; pool `aud-t09_c02`. |
+| 10 | Yellow Tag on the Umbrella Rack | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t10_c01`; pool `aud-t10_c02`. |
+| 11 | Quiz Key in Blue Ink | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t11_c01`; pool `aud-t11_c02`. |
+| 12 | Tray Return at 5:59 | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t12_c01`; pool `aud-t12_c02`. |
+| 13 bonus | Latch Click at the Courtyard Gate | human_listen_lyric_anchor_duration_accepted_source_only | Selected `aud-t13_c01`; pool `aud-t13_c02`; opening-dialogue caveat. |
 
 ## 7. Tracking Sync When Real Files Exist
 
@@ -140,6 +140,7 @@ Allowed Candidate Intake outcomes:
 - `intake_recorded_needs_audio_qa_source_only`
 - `intake_recorded_human_listen_passed_needs_lyric_alignment_duration_source_only`
 - `intake_recorded_human_listen_lyric_alignment_passed_needs_duration_decision_source_only`
+- `intake_recorded_human_listen_lyric_anchor_duration_accepted_source_only`
 - `intake_recorded_needs_visual_review`
 - `quarantine_rejected`
 - `needs_regeneration`
@@ -164,4 +165,4 @@ Candidate Intake can close only when real files exist and the review docs/tracki
 - visual files needing review are routed to visual safe-zone/crop review;
 - render/export and release gates remain blocked unless separately approved later.
 
-Current state: 26 user-supplied local WAV candidates exist. A source-only selected draft set and pool set are recorded in `reviews/audio-candidate-intake.md`; all selected candidates passed user human listening and Gemini supplemental lyric anchor spot-check, while duration/sequence decision remains pending before any later gate.
+Current state: 26 user-supplied local WAV candidates exist. A source-only selected draft set and pool set are recorded in `reviews/audio-candidate-intake.md`; all selected candidates passed user human listening and Gemini supplemental lyric anchor spot-check, and the 41:31 duration/sequence is accepted source-only before any later gate.
