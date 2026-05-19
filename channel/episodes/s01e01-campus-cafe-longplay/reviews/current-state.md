@@ -1,39 +1,25 @@
-# S01E01 Current State — Campus Cafe Longplay
+# S01E01 Current State — After-School First Love Longplay
 
 Status: source packet open  
-Episode: `s01e01-campus-cafe-longplay`  
-Updated: 2026-05-18
+Updated: 2026-05-19
 
-## Current Truth
+- Gate remains `gate_1_source_packet` with `revise_source_only`.
+- Previous 13-song source set is user-rejected/superseded.
+- Track 1 replacement opener `Margin Notes at Table Three` v0.6, Track 2 `Two Lids, One Tray` v0.9 macro-form revision, and Track 3 `Borrowed Eraser, Written Name` v1.0 are user-accepted/source synced.
+- Track 4 has been retitled from instrument-led `Piano Between Shelves` to story-led `Checkout Slip at Chapter Nine` v1.1 and passed lyric/Suno source review while preserving the only piano-forward arrangement lane.
+- Track 5 `Steam on the Glass Door` v1.0 is source-approved with title/lyric independence: the exact title is a mood/scene label and does not appear in the lyric.
+- Mayr approved Track 6 replacement `Peach Can at B4` v1.0 after lyric-reviewer PASS and Suno planned-state PASS, then synced it to `source/songs.md`, `source/suno-manual-fields.md`, and `source/suno-tracks/06-peach-can-at-b4.md`.
+- The prior Track 6 `Bus Stop Receipt` is superseded. Avoid bus/receipt/rain-extension motifs in adjacent drafts.
+- Mayr approved Track 7 replacement `Green Dot on Your Schedule` v1.0 after lyric-reviewer PASS, Mayr hard-avoid cleanup, and Suno planned-state PASS, then synced it to source and Suno copy-pack files.
+- The prior Track 7 `Two Taps in the Hallway` is superseded. Avoid tap/two-count/hallway motifs and schedule-sticker overlap in adjacent drafts.
+- User flagged repeated title-hook blocks, instrument-as-title drift, and title-as-hook assumptions; the workflow now requires strict micro-pattern review, Story + Reference Brief, title/arrangement separation, and title/lyric relationship review before approval.
+- Mayr approved and synced Tracks 8-13 after one-by-one lyric review and planned-state Suno review: Track 8 `Cushion Seat, Charging Cord`, Track 9 `Crosswalk Stripes Before Six`, Track 10 `Yellow Tag on the Umbrella Rack`, Track 11 `Quiz Key in Blue Ink`, Track 12 `Tray Return at 5:59`, and bonus Track 13 `Latch Click at the Courtyard Gate`.
+- Track 9 remains the only soft-sax accent track and was retitled from `White Stripes Before Six` to avoid named-reference collision while keeping sax secondary.
+- Track 4-13 workflow and the stricter gates are recorded in `reviews/source-approval-workflow.md`.
+- Full 13-track song source and Suno manual copy packs are source-approved and synced for source-only review purposes.
+- Post-approval quality improvement is applied to the guardrails and source fields: current `Styles` include BPM, and future Suno field reviews must reject missing BPM.
+- Post-approval workflow improvement is applied: future episode/track drafting must define an Episode Style & Theme Spine first and each new or revised track must state a controlled Track Delta; the current spine/delta matrix is recorded in `source/suno-manual-fields.md`.
+- A future provider/manual handoff still requires a separate explicit gate and current source/boundary check.
+- No provider/browser/API/account/media/render/export/upload/release action is approved.
 
-- A fresh episode packet now exists for Season 1 Week 1: `Campus Cafe Longplay`.
-- Current gate: Gate 1 — Source Packet.
-- Song source is a revised full lyric draft with 13 working titles and arrangement lanes.
-- Lyrics for tracks 1-13 are written, source-reviewed, externally reviewed by Gemini CLI, and revised for the flagged lyric issues.
-- User-approved Gemini CLI source-only lyric review is complete; flagged revisions have been applied in source.
-- Source-only Suno manual fields are prepared for all 13 tracks.
-- Manual-only prompt/control pack is drafted and passed source-only review.
-- Source-only candidate-intake checklist is prepared for a future separate manual gate.
-- Source-only visual prompt pack is prepared; metadata source remains draft only.
-- No audio, image, video, render, export, subtitle timing, candidate media, upload plan, release approval, analytics, or platform/account action exists.
-
-## Allowed Next Source-Only Actions
-
-1. Optionally collect human review notes after the Gemini-response revisions.
-2. Use `source/suno-manual-fields.md` only as a user copy reference after a future separate manual provider gate is explicitly approved.
-3. Use `source/visual-prompt-pack.md` only as a user copy reference after a future separate visual gate is explicitly approved.
-4. Use `reviews/candidate-intake-checklist.md` only after a future separate manual provider/candidate gate is explicitly approved and real user-supplied files exist.
-5. Keep tracking CSVs synced when any durable state changes.
-
-## Still Blocked
-
-- Suno, YouTube, provider, browser, API, OAuth, upload, publish, schedule, account, analytics, or Content ID actions.
-- Audio/image/video generation, candidate creation, render/export, screenshots, downloads, or media fetching.
-- Candidate provenance, generation dates, file facts, timestamps, or analytics before real user-supplied evidence exists.
-- Positive rights/platform/release-readiness claims.
-
-## Current Verdict
-
-`revise_source_only`
-
-Reason: the episode packet is opened with revised source lyrics, source-only Suno manual fields, source-only prompt pack, visual prompt pack, and a future candidate-intake checklist, but audio, visual candidate review, subtitles, readiness scoring, and release decision are not complete.
+Verdict: `full_set_source_approved_source_only`

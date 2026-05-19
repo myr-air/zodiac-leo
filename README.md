@@ -17,7 +17,7 @@ This project keeps the channel small on purpose. It stores source packets, revie
 
 Active source packet: `channel/episodes/s01e01-campus-cafe-longplay/`.
 
-Current gate: Gate 1 source packet only. Lyrics, real media candidates, subtitle timing, render/export, upload, publishing, and release planning remain blocked until later explicit gates.
+Current gate: Gate 1 source packet only. The active episode has theme-retuned source lyrics and prompt packs, but real media candidates, subtitle timing, render/export, upload, publishing, and release planning remain blocked until later explicit gates.
 
 ## Verify
 

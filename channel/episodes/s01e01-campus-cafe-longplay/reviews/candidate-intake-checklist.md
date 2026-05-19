@@ -1,4 +1,4 @@
-# S01E01 Candidate Intake Checklist — Campus Cafe Longplay
+# S01E01 Candidate Intake Checklist — After-School First Love Longplay
 
 Status: source-only future-gate checklist  
 Episode: `s01e01-campus-cafe-longplay`  
@@ -68,7 +68,7 @@ Quarantine or reject at intake if any are obvious:
 
 - Named-artist, known-song, real-person voice, celebrity likeness, or competitor-channel imitation.
 - Wrong title, wrong track order, wrong or missing lyrics, unsupported ad-libs, or non-English-first output.
-- Minor/high-school-coded romance or inappropriate adult framing.
+- Sexualized teen framing, adult/minor romance, teacher/student romance, childlike vocal delivery, or inappropriate adult framing.
 - Harsh genre shift: trap, aggressive rap, EDM drop, distorted rock, bombastic choir, or busy jazz soloing.
 - Track 4 is not the only piano-forward color song.
 - Track 9 is not the only soft-sax accent song, or sax dominates the vocal.
@@ -95,10 +95,10 @@ Use one row per real still-image file. Mark unknowns as `unknown`; do not guess.
 Quarantine or reject at intake if any are obvious:
 
 - Real school/cafe names, logos, brand marks, readable private text, or identifiable real-person likeness.
-- High-school/minor-coded subject, school uniform framing, celebrity likeness, or exact face copying.
+- Childlike subject, sexualized teen framing, adult/minor implication, teacher/student romance, revealing school uniform framing, celebrity likeness, or exact face copying.
 - Provider reference-image use that was not separately approved.
 - Heavy text baked into the image, unsafe crop for title/subtitle overlays, or unusable aspect ratio.
-- Visual style that breaks the warm adult campus cafe source direction.
+- Visual style that breaks the warm PG after-school first-love source direction.
 - Rights/platform/upload/publish readiness claims embedded in notes or file labels.
 
 ## 6. Track Coverage Checklist

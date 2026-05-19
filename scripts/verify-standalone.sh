@@ -27,10 +27,13 @@ required_files = [
     '.agents/skills/lyric-craft-multilingual-guardrails/SKILL.md',
     '.agents/skills/gpt-image-prompting-guardrails/SKILL.md',
     '.agents/skills/episode-state-gatekeeper/SKILL.md',
-    '.opencode/agents/mellow-longplay-lyric-quality-reviewer.md',
-    '.opencode/agents/mellow-longplay-production-manager.md',
-    '.opencode/agents/mellow-longplay-readiness-reviewer.md',
-    '.opencode/agents/suno-production-studio-reviewer.md',
+    '.opencode/agents/creative-director.md',
+    '.opencode/agents/song-concept-designer.md',
+    '.opencode/agents/songwriter.md',
+    '.opencode/agents/lyric-reviewer.md',
+    '.opencode/agents/suno-reviewer.md',
+    '.opencode/agents/production-manager.md',
+    '.opencode/agents/readiness-reviewer.md',
 ]
 
 required_dirs = [

@@ -5,75 +5,21 @@
   "status": "source_packet_open",
   "gate": "gate_1_source_packet",
   "created": "2026-05-18",
-  "updated": "2026-05-18",
-  "season": {
-    "number": 1,
-    "name": "Campus Afternoons",
-    "week": 1
-  },
-  "working_longplay": "Campus Cafe Longplay",
-  "listener_hook": "sunlit campus cafe table, notebook, coffee",
-  "lyric_lane": "young-adult first crush with small concrete moments",
+  "updated": "2026-05-19",
+  "working_longplay": "After-School First Love Longplay",
   "format_target": {
     "main_songs": 12,
     "bonus_songs": 1,
-    "target_duration_minutes": "30-35",
-    "language": "English-first",
-    "vocal_policy": "comfortable adult female vocal direction only; no real-person voice imitation"
-  },
-  "source_paths": {
-    "songs": "channel/episodes/s01e01-campus-cafe-longplay/source/songs.md",
-    "suno_manual_fields": "channel/episodes/s01e01-campus-cafe-longplay/source/suno-manual-fields.md",
-    "prompt_pack": "channel/episodes/s01e01-campus-cafe-longplay/source/prompt-pack.md",
-    "visual": "channel/episodes/s01e01-campus-cafe-longplay/source/visual.md",
-    "visual_prompt_pack": "channel/episodes/s01e01-campus-cafe-longplay/source/visual-prompt-pack.md",
-    "metadata": "channel/episodes/s01e01-campus-cafe-longplay/source/metadata.md",
-    "subtitles": "channel/episodes/s01e01-campus-cafe-longplay/subtitles/README.md",
-    "current_state": "channel/episodes/s01e01-campus-cafe-longplay/reviews/current-state.md",
-    "lyrics_review": "channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md",
-    "gemini_lyrics_review": "channel/episodes/s01e01-campus-cafe-longplay/reviews/gemini-lyrics-review.md",
-    "suno_manual_fields_review": "channel/episodes/s01e01-campus-cafe-longplay/reviews/suno-manual-fields.md",
-    "prompt_pack_review": "channel/episodes/s01e01-campus-cafe-longplay/reviews/prompt-pack.md",
-    "candidate_intake_checklist": "channel/episodes/s01e01-campus-cafe-longplay/reviews/candidate-intake-checklist.md",
-    "visual_prompt_pack_review": "channel/episodes/s01e01-campus-cafe-longplay/reviews/visual-prompt-pack.md",
-    "visual_review": "channel/episodes/s01e01-campus-cafe-longplay/reviews/visual.md",
-    "production_worksheet": "channel/episodes/s01e01-campus-cafe-longplay/reviews/episode-production-worksheet.md",
-    "tracking_status": "channel/episodes/s01e01-campus-cafe-longplay/tracking/status.csv",
-    "tracking_provenance": "channel/episodes/s01e01-campus-cafe-longplay/tracking/provenance.csv",
-    "tracking_assets": "channel/episodes/s01e01-campus-cafe-longplay/tracking/assets.csv",
-    "tracking_decisions": "channel/episodes/s01e01-campus-cafe-longplay/tracking/decisions.csv"
+    "language": "English-first"
   },
   "source_state": {
-    "song_source": "lyrics_full_draft_revised",
-    "lyrics": "tracks_1_13_revised_after_gemini",
-    "suno_manual_fields": "prepared_source_only",
-    "prompt_pack": "source_draft_reviewed",
-    "candidate_intake_checklist": "prepared_source_only",
+    "lyrics": "tracks_1_3_user_accepted_tracks_4_13_mayr_source_approved",
+    "suno_tracks": "tracks_1_13_synced_source_only",
+    "prompt_pack": "replacement_sequence_source_only",
+    "metadata": "replacement_chapter_draft",
+    "review_status": "full_set_source_only_lyric_and_suno_field_pass",
     "audio_candidates": "none",
-    "visual_source": "prompt_pack_prepared_source_only",
-    "visual_prompt_pack": "prepared_source_only",
-    "visual_candidates": "none",
-    "metadata": "draft",
-    "subtitles": "not_started",
-    "external_lyrics_review": "gemini_cli_completed_revisions_applied",
-    "internal_readiness": "not_scored"
+    "visual_candidates": "none"
   },
-  "allowed_next_actions": [
-    "optional human review of revised source lyrics",
-    "use source-only Suno manual fields as user copy reference only after a separate explicit manual provider gate",
-    "optional human review of source-only prompt pack",
-    "use source-only visual prompt pack as user copy reference only after a separate explicit visual gate",
-    "use candidate-intake checklist only after a separate explicit manual provider or candidate gate and real user-supplied files exist",
-    "review visual prompt and safe zones as source-only planning",
-    "prepare subtitle segmentation only after lyrics and actual sung words exist"
-  ],
-  "blocked_actions": [
-    "provider or browser automation",
-    "audio image video generation",
-    "render or export",
-    "upload publish schedule or account mutation",
-    "candidate provenance before real user-supplied files exist",
-    "positive rights platform or release-readiness claims"
-  ],
-  "claim_boundary": "Internal source packet only. This episode has no generated media candidates and no release approval."
+  "claim_boundary": "Source-only planning. No provider/media/render/export/upload/release approval."
 }

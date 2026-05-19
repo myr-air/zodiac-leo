@@ -18,7 +18,7 @@ Still-blocked terms except as caution/blocked language: `copyright-free`, `royal
 
 | Input | Required path / source | Present? | Notes |
 |---|---|---:|---|
-| Roadmap | `mellow-longplay/roadmap.md` | `<yes/no>` | `<notes>` |
+| Roadmap | `channel/roadmap.md` | `<yes/no>` | `<notes>` |
 | Operating boundary | `docs/operating-boundary.md` | `<yes/no>` | `<notes>` |
 | Episode production worksheets | `channel/episodes/<episode-id>/reviews/episode-production-worksheet.md` | `<count/12>` | `<missing paths>` |
 | Future analytics loop notes, if release exists | `channel/episodes/<episode-id>/reviews/episode-analytics-loop.md` | `<count or n/a>` | Use only after a future separately approved release. |
@@ -37,7 +37,7 @@ Definitions:
 
 | Week | Season | Working longplay | Location/time hook | Lyric lane | Worksheet path | Source status | Anti-slop score | Internal readiness score | Revision gate count | Critical blockers | Future release / analytics availability | Season decision note |
 |---:|---|---|---|---|---|---|---:|---:|---:|---|---|---|
-| 1 | Campus Afternoons | Campus Cafe Longplay | sunlit cafe table, open window, notebook, coffee | young-adult first crush, small concrete moments | `<path>` | `<unknown>` | `<n>` | `<n>` | `<n>` | `<none/list>` | `<n/a or notes>` | `<note>` |
+| 1 | Campus Afternoons | After-School First Love Longplay | after-school cafe table, school courtyard, notebook, coffee | wholesome PG same-age teenage first love, small concrete moments | `<path>` | `<unknown>` | `<n>` | `<n>` | `<n>` | `<none/list>` | `<n/a or notes>` | `<note>` |
 | 2 | Campus Afternoons | Classroom Window Longplay | college classroom light, desk notes, afternoon window | curiosity, almost-said feelings, study-day warmth | `<path>` | `<unknown>` | `<n>` | `<n>` | `<n>` | `<none/list>` | `<n/a or notes>` | `<note>` |
 | 3 | Campus Afternoons | Rooftop Golden Hour Longplay | campus rooftop, warm sky, late-afternoon breeze | confidence, anticipation, looking ahead | `<path>` | `<unknown>` | `<n>` | `<n>` | `<n>` | `<none/list>` | `<n/a or notes>` | `<note>` |
 | 4 | Campus Afternoons | Bookstore Afternoon Longplay | quiet bookstore corner, paper texture, soft sunlight | private thoughts, shy hope, calm reflection | `<path>` | `<unknown>` | `<n>` | `<n>` | `<n>` | `<none/list>` | `<n/a or notes>` | `<note>` |

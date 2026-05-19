@@ -1,1247 +1,973 @@
-# S01E01 Song Source — Campus Cafe Longplay
+# S01E01 Song Source — After-School First Love Longplay
 
-Status: lyrics full draft revised / source-only  
+Status: tracks 1-3 user-accepted source-only / tracks 4-13 Mayr source-approved and synced / full set source-only reviewed  
 Episode: `s01e01-campus-cafe-longplay`  
-Prepared date: 2026-05-18
+Prepared date: 2026-05-19
 
 ## Source-Only Boundary
 
-This file is a manual planning source for original song concepts, arrangement notes, lyric lanes, and later lyric writing. It does not approve Suno use, browser/provider automation, media generation, downloads, candidate IDs, render/export, upload, publishing, Content ID action, or positive rights/platform claims.
+This file is source-only planning. It does not approve provider/browser/API/account action, media generation, candidate creation, render/export, upload/publish, or rights/platform/release claims.
 
-## Strategy Lock
+## Track Plan (Replacement Set)
 
-- Listener job: soft afternoon companion for study, journaling, coffee breaks, and relaxed desk work.
-- World: adult/college-coded campus cafe in warm afternoon light.
-- Emotional lane: first-crush curiosity told through small objects and ordinary actions.
-- Episode arc: arrival at the cafe -> noticing -> tiny shared routines -> leaving with quiet hope.
-- Format target: 12 main songs plus 1 bonus closing song, about 30-35 minutes if later generated naturally.
-- Variation guardrail: keep the longplay cohesive; add controlled color only through one piano-forward song and one short soft-sax accent song.
+Prior 13-track set is user-rejected and superseded.
 
-## Base Manual Style Field Draft
+| # | Title | Object/action | Arrangement | Status |
+|---:|---|---|---|---|
+| 1 | Margin Notes at Table Three | blue-ink margin notes at cafe table | warm keys groove | user_accepted_source_only |
+| 2 | Two Lids, One Tray | two cup lids on one tray, hook-first left/right steps | clean guitar + light drums | user_accepted_source_only |
+| 3 | Borrowed Eraser, Written Name | eraser passed over worksheet | bass-forward verse | user_accepted_source_only |
+| 4 | Checkout Slip at Chapter Nine | library checkout slip and shared page | **only piano-forward color track** | reference_led_source_approved_v1.1 / source_only |
+| 5 | Steam on the Glass Door | cafe door glass and hand mark | brushed drums | title_independent_source_approved_v1.0 / source_only |
+| 6 | Peach Can at B4 | vending-machine peach can at row B4 | mellow guitar arpeggio | mayr_source_approved_v1.0 / source_only |
+| 7 | Green Dot on Your Schedule | club-table schedule sticker and matching hours | brighter chord lift | mayr_source_approved_v1.0 / source_only |
+| 8 | Cushion Seat, Charging Cord | study-lounge cushion seat and shared charging cord | syncopated keys | mayr_source_approved_v1.0 / source_only |
+| 9 | Crosswalk Stripes Before Six | crosswalk stripes and longer curbside route | **only soft-sax accent (secondary)** | mayr_source_approved_v1.0 / source_only |
+| 10 | Yellow Tag on the Umbrella Rack | practical yellow tag meeting marker | warm pad + restrained snare | mayr_source_approved_v1.0 / source_only |
+| 11 | Quiz Key in Blue Ink | quiz key and study-table help | rounded bass hook | mayr_source_approved_v1.0 / source_only |
+| 12 | Tray Return at 5:59 | cafeteria tray return near six | wider harmonies outro | mayr_source_approved_v1.0 / source_only |
+| 13 bonus | Latch Click at the Courtyard Gate | courtyard gate latch closing image | slower closing reprise | mayr_source_approved_v1.0 / source_only |
 
-Use only as source text for a later separately approved manual provider step:
+## Full Lyrics Drafts (Replacement)
 
+### Track 1 — Margin Notes at Table Three
 ```text
-Cozy chill vocal pop, soft R&B groove, city-pop harmony color, mellow electric piano, clean guitar, rounded bass, soft brushed drums, airy pads, warm intimate adult female vocal, relaxed afternoon cafe feel, English lyrics, gentle melodic hooks, subtle harmonies, 78-92 BPM, no named-artist imitation.
-```
-
-## Base Exclude Field Draft
-
-```text
-named artist, known song, real-person voice, celebrity likeness, child or high-school romance, trap, aggressive rap, EDM drop, harsh drums, distorted rock guitar, busy cafe-jazz soloing, choir bombast, brand names, logos, film/game/TV references, keyword-stuffed lyrics, generic glow/dream/vibe/cosmic-destiny language
-```
-
-## Track Plan
-
-| # | Working title | Scene object/action | Lyric job | Arrangement differentiator | Lyric status |
-|---:|---|---|---|---|---|
-| 1 | Coffee Rings on My Notes | coffee ring beside a half-finished notebook page | open the cafe world and first noticing | warm electric piano intro and soft pocket groove | revised after Gemini review / pass_source_full_lyrics_revised |
-| 2 | Seat by the Window | choosing the same window table on different days | establish recurring routine without melodrama | clean guitar lead with lighter drums | draft written / pass_source_checkpoint |
-| 3 | Your Pen on the Table | a borrowed pen returned with a small smile | make the first interaction concrete | bass-forward verse and airy pad chorus | draft written / pass_source_checkpoint |
-| 4 | Quiet Page Turns | two people reading near each other | intimate piano-forward color song | sparse piano first verse then soft rhythm enters | revised after Gemini review / pass_source_full_lyrics_revised |
-| 5 | Half-Smile Refill | a refill offered before either person asks | show kindness through cafe motion | brushed drums and call-response backing vocals | draft written / pass_source_checkpoint |
-| 6 | Library Card in Your Case | a library card tucked in a clear phone case | connect campus life to the crush detail | mellow guitar arpeggio and tighter chorus | draft written / pass_source_checkpoint |
-| 7 | Blue Straw, Soft Foam | drink straw tapping the lid while waiting | add playful ordinary texture | slightly brighter city-pop chord lift | revised after Gemini review / pass_source_full_lyrics_revised |
-| 8 | Two Plugs, One Outlet | sharing a wall outlet during study time | move from parallel focus to tiny teamwork | syncopated keys and low-volume harmony stack | draft written / pass_source_checkpoint |
-| 9 | Saxophone from the Street | a short street-player phrase through the open door | add one outside color without changing genre | soft saxophone answer lines in intro bridge and outro | draft written / pass_source_checkpoint |
-| 10 | Rain Check by the Door | umbrellas gathering by the cafe entrance | gentle almost-plan for another day | warm pad bed and restrained snare | revised after Gemini review / pass_source_full_lyrics_revised |
-| 11 | Backpack by My Chair | a gray backpack resting near the narrator's chair | make closeness spatial and understated | rounded bass hook with quiet guitar fills | revised after Gemini review / pass_source_full_lyrics_revised |
-| 12 | Last Light on the Counter | afternoon light moving across the counter | close the main set with warmth not certainty | wider harmonies and longer outro | draft written / pass_source_full_lyrics |
-| 13 bonus | Walk Me Past the Courtyard | leaving together past campus trees | full closing song with hopeful walk-away | slower closing tempo and final soft chorus reprise | revised after Gemini review / pass_source_full_lyrics_revised |
-
-## Full Lyrics Drafts
-
-These are source-only lyric drafts for review. They do not approve provider use, generated audio, candidate files, render/export, upload, publishing, Content ID action, or positive rights/platform claims.
-
-### Track 1 — Coffee Rings on My Notes
-
-Arrangement cue: warm electric piano intro, soft pocket groove, rounded bass, gentle adult female vocal.
-
-```text
-[Intro]
-Mm, mm
-Cup down, page open
+[Intro - instrumental, 4 bars]
 
 [Verse 1]
-I saved this table by the fern
-With a pencil and my keys
-My notebook bends at chapter three
-From the steam above my sleeve
+After school, the rain comes down
+On the window by our seats
+You set your bag beside my chair
+At our table, table three
 
-You come in quiet at half past two
-With mist along your shoes
-I look too long at my own page
-Like it has better news
+I draw a line beside my notes
+Blue pen moving left to right
+You ask what page the homework starts
+I say page twelve, then lose my line
+
+[Pause - 1 bar, no vocal]
 
 [Pre-Chorus]
-The spoon taps once
-The front bell rings
-I underline the same small thing
+You write a question in the margin
+I write back small and take my time
+Your sleeve brushes my notebook corner
+Mine stays close beside your line
 
 [Chorus]
-Coffee rings on my notes
-Little circles I do not erase
-You look up over your cup
-And I forget my place
+Margin notes at table three
+Blue ink saying stay with me
+Rain on glass, our cups half full
+Same seat tomorrow after school
 
-Coffee rings on my notes
-Brown moons by a margin line
-If you sit near me again
-I might read the sign
+Margin notes at table three
+One small line from you to me
+If we go when the buses roll
+Save my seat and I'll walk you home
+
+[Instrumental Break - 4 bars]
 
 [Verse 2]
-Your laptop sticker is peeling up
-At the corner by your thumb
-You mouth the words to what you read
-Then laugh at page one-one
+The cafe clock says almost five
+Buses hiss across the lane
+You circle words I spelled half wrong
+I draw a box around your name
 
-I write the date and spell it wrong
-Then cross it with care
-You ask if this chair is free
-I say yes before the air
+You tap your pen against the page
+Two soft beats, then let it rest
+I try to read the printed part
+But read your handwriting instead
+
+[Pause - 2 bars, no vocal]
 
 [Pre-Chorus]
-The cup gets warm
-The page gets slow
-I know less than I want to know
+You fold a corner, I look down
+Like I was watching drops of rain
+You say tomorrow, same old seat
+I nod too fast and smile again
 
 [Chorus]
-Coffee rings on my notes
-Little circles I do not erase
-You look up over your cup
-And I forget my place
+Margin notes at table three
+Blue ink saying stay with me
+Rain on glass, our cups half full
+Same seat tomorrow after school
 
-Coffee rings on my notes
-Brown moons by a margin line
-If you sit near me again
-I might read the sign
+Margin notes at table three
+One small line from you to me
+If we go when the buses roll
+Save my seat and I'll walk you home
+
+[Instrumental Break - 4 bars]
 
 [Bridge]
-No big confession
-No silver screen
-Just your sleeve near my sleeve
-And a table between
+Maybe it starts this quiet
+With a comma by my name
+Not a letter, not a promise
+Just a page we both can change
 
-I keep my voice low
-You keep your smile small
-But the afternoon moves
-Like it heard it all
+No big speech and no loud scene
+Only rain and table three
+You close your book, I pack my pen
+Then ask to walk you to the street
 
 [Final Chorus]
-Coffee rings on my notes
-Little circles I do not erase
-You say see you tomorrow
-Like you saved me a place
+Margin notes at table three
+Blue ink keeping you with me
+Rain on glass, our cups half full
+Same seat tomorrow after school
 
-Coffee rings on my notes
-Brown moons by a margin line
-I walk home holding the cup
-Like the afternoon is mine
+Margin notes at table three
+One small line I want to keep
+When we go and the buses roll
+Save my seat and I'll walk you home
+
+[Outro Hook]
+Same seat tomorrow after school
+Save my seat and I'll walk you home
+Same seat tomorrow after school
+
+[Outro - instrumental, 6 bars]
 ```
 
-### Track 2 — Seat by the Window
-
-Arrangement cue: clean guitar lead, lighter drums, soft pad lift in the chorus.
-
+### Track 2 — Two Lids, One Tray
 ```text
-[Intro]
-Same window
-Same light
-Different day
+[Intro - instrumental, 4 bars]
 
-[Verse 1]
-Third table from the ficus
-Where the late sun cuts the floor
-I leave my bag on the left side
-Like I have been here before
+[Opening Hook]
+Two lids, one tray
+Left foot, right foot, through the doorway
+Two lids, one tray
+We catch our rhythm on the way
 
-You choose the chair by the outlet
-With your charger wrapped in blue
-We both pretend the plug is why
-We know just what to do
+Left, right, don't spill
+Slow down by the door, stand still
+Left, right, okay
+Two lids, one tray
 
-[Pre-Chorus]
-Outside the bikes lean in a row
-Inside the ice melts nice and slow
+[Verse A]
+After class, the counter calls
+Two paper straws lean by the wall
+Two cup lids click into place
+You make that careful counting face
 
-[Chorus]
-Seat by the window
-Two cups in the same old square
-You read the line I almost marked
-I miss the next one there
+One tray waits between our hands
+Napkin folded like a plan
+You say left, I answer right
+Small steps past the menu light
 
-Seat by the window
-Not a promise, not a plan
-Just your shoulder in the afternoon
-Close enough to understand
+[Pause - no vocal, 1 bar]
 
-[Verse 2]
-Tuesday you bring a paper bag
-With a muffin split in two
-You slide the smaller half my way
-Like it is nothing new
+[Refrain]
+Two lids, one tray
+If one cup tips, we pause and wait
+Two lids, one tray
+Slow and steady, we are okay
 
-I tell you my midterm moved
-You say yours did too
-The city bus sighs at the curb
-And I keep listening to you
+[Call And Response]
+You say left
+I answer right
+You say wait
+I hold it tight
 
-[Pre-Chorus]
-The glass holds gold along the frame
-We never have to call it by a name
+I say slow
+You smile and say
+Two lids
+One tray
 
-[Chorus]
-Seat by the window
-Two cups in the same old square
-You read the line I almost marked
-I miss the next one there
+[Instrumental Answer - 4 bars]
 
-Seat by the window
-Not a promise, not a plan
-Just your shoulder in the afternoon
-Close enough to understand
+[Verse B]
+By the side booth, we set them down
+Tray edge marks the paper brown
+You tear the receipt in two
+Write tomorrow, I write me too
 
-[Bridge]
-If someone asks
-I came to study
-If someone asks
-You needed light
+Your straw taps out a little beat
+I move my chair to match your feet
+Coats drip softly by the rack
+You smile and slide my napkin back
 
-But every time
-The bell turns over
-I check the door
-Before I write
+[Refrain Variation]
+Two lids, one tray
+Left foot, right foot, through the doorway
+Two lids, one tray
+We know our rhythm on the way
 
-[Final Chorus]
-Seat by the window
-Two cups in the same old square
-You save the corner with your scarf
-And I find you there
+Two lids, one tray
+If one cup tips, we pause and wait
+Two lids, one tray
+Slow and steady, we are okay
 
-Seat by the window
-Not a promise, not a plan
-Just a small place in the afternoon
-Where this could begin again
+[Half-Time Break]
+Maybe this is how we start
+Not too fast and not too far
+One small task we learn to share
+One short walk in cooler air
+
+[Pause - no vocal, 2 bars]
+
+[Middle Eight]
+You take the tray when we stand up
+I hold the door and almost rush
+No big speech and no parade
+Just careful steps we take
+
+When the crosswalk starts to chime
+And the cafe line moves in time
+I will listen when you say
+Left foot first, then lift the tray
+
+[Final Hook]
+Two lids, one tray
+Left foot, right foot, through the doorway
+Two lids, one tray
+We know our rhythm on the way
+
+Left, right, don't spill
+Slow down by the door, stand still
+Left, right, okay
+Two lids, one tray
+
+Left, right, don't spill
+Slow down by the door, stand still
+Left, right, okay
+Two lids, one tray
+
+[Outro - instrumental, 6 bars]
 ```
 
-### Track 3 — Your Pen on the Table
-
-Arrangement cue: bass-forward verse, airy pad chorus, close dry vocal in the first verse.
-
+### Track 3 — Borrowed Eraser, Written Name
 ```text
-[Intro]
-Blue ink
-Two taps
-Your pen on the table
+[Verse A1]
+I miss a line on worksheet one
+The room hums low, the bell is done
+My pencil drags a gray mistake
+Across the box I meant to make
 
-[Verse 1]
-My pen gives out on a header line
-Right before my name
-I shake it like a tiny storm
-But nothing wants to change
+You pass your eraser, palm up slow
+A small white boat across the row
+I take it like a note with no name
+And leave one corner free of blame
 
-You push yours over without a word
-Blue cap turned my way
-I say thanks too soft to count
-You hear me anyway
+[Refrain]
+Borrowed eraser, written name
+Blue ink underlined twice
+Borrowed eraser, written name
+Shy hello in plain sight
 
-[Pre-Chorus]
-Your fingers drum twice
-Then fold back in
-I start the sentence
-Where you begin
+[Verse A2]
+I hand it back by worksheet two
+You pencil, “Thanks—are you good too?”
+I circle terms for Friday’s test
+But read your label like a text
 
-[Chorus]
-Your pen on the table
-Blue ink on my hand
-A borrowed little yes
-In a line I understand
+The edges wear from every class
+Soft crumbs fall near my water glass
+You smile and tap the answer line
+I miss the term but keep your line
 
-Your pen on the table
-No speech, no perfect start
-Just my name beside your quiet help
-On the same blue line
+[Refrain]
+Borrowed eraser, written name
+Blue ink underlined twice
+Borrowed eraser, written name
+Shy hello in plain sight
 
-[Verse 2]
-I draw a box around the date
-So I can stay composed
-You mark your page with a receipt
-From a coffee that went cold
+[Bass Break - no vocal, 4 bars]
 
-When I give it back, you smile
-And miss it by an inch
-Our hands both stop above the wood
-Like time forgot to blink
+[Bridge B]
+I write my answer small today
+In pencil dust and folded gray
+One erased mark on the page
+Makes my rushing fingers wait
 
-[Pre-Chorus]
-The bass in the speaker
-Walks soft and low
-I know what I feel
-But I move slow
+When last bell clears the classroom row
+You zip your bag and move so slow
+I match my steps beside your shoes
+And ask if I can walk with you
 
-[Chorus]
-Your pen on the table
-Blue ink on my hand
-A borrowed little yes
-In a line I understand
+[Verse A3]
+The worksheet slides beneath my sleeve
+One pale square where marks used to be
+You pack your books and check the door
+Then pause like you forgot one more
 
-Your pen on the table
-No speech, no perfect start
-Just my name beside your quiet help
-On the same blue line
+I write my name below the date
+Slow enough to make you wait
+You see it there, then turn my way
+Two quiet names on one clean page
 
-[Bridge]
-Maybe later
-By the sugar tray
-I will ask what you read
-When you hide your face
+[Final Refrain]
+Borrowed eraser, written name
+Blue ink underlined twice
+Borrowed eraser, written name
+Shy hello in plain sight
 
-Maybe later
-When the cups are clear
-I will say I like this table
-More when you are here
-
-[Final Chorus]
-Your pen on the table
-Blue ink on my hand
-You leave it there on purpose
-Like you want me to understand
-
-Your pen on the table
-Small proof in plain sight
-I write one more line slowly
-Before the chairs are stacked
+Borrowed eraser, written name
+One clean page, one small sign
+Borrowed eraser, written name
+Save me a smile next time
 ```
 
-### Track 4 — Quiet Page Turns
-
-Arrangement cue: intimate piano-forward color song, sparse first verse, soft rhythm entering after the first chorus.
-
+### Track 4 — Checkout Slip at Chapter Nine
 ```text
-[Intro]
-Soft keys
-Low room
-Quiet page turns
+[Piano Motif - no vocal, 4 bars]
 
-[Verse 1]
-You open a novel at the spine
-Like it might bruise in your hands
-I hold my place with a ticket stub
-From a bus across campus
+[Verse A]
+After the bell, in the far left aisle,
+spine labels lean in a paper file.
+Dust in the blinds makes narrow lines,
+your sleeve brushes mine; I lose my line.
 
-The room goes small around the weather
-And the piano in the wall
-You breathe a laugh at chapter five
-I try not to ask at all
+A book cart squeaks by the history row,
+the wall clock ticks like it wants to go.
+You turn a page with careful hands,
+I read where your pencil lands.
 
-[Pre-Chorus]
-One page lifts
-One page falls
-No one hurries
-No one calls
+[Mini Chorus]
+Checkout slip at chapter nine,
+tucked where the margins meet.
+In the quiet place we share,
+the page says what we cannot speak.
 
-[Chorus]
-Quiet page turns
-I hear them more than the rain
-Your thumb keeps a corner down
-Mine tries to do the same
+[Piano Answer - no vocal, 4 bars]
 
-Quiet page turns
-No line has to be spoken
-If I sit still long enough
-Something small might open
+[Verse B]
+You slide the book a little near,
+point to a sentence underlined clear.
+My bookmark waits at chapter nine,
+your checkout slip folds over mine.
 
-[Verse 2]
-You underline with your nail
-Not hard enough to stay
-I copy a sentence I do not need
-Just to keep my eyes away
+The pencil zip sounds loud in the hush,
+we both look down, then almost blush.
+I start to ask about tomorrow’s rain,
+you smile like you heard my name.
 
-The waiter stacks clean glasses up
-In a careful silver row
-You ask if I am almost done
-I say I am reading slow
+[Near-Whisper Bridge / Dialogue]
+“Are you heading out?”
+“After this line.”
+“The front desk closes soon.”
+“We still have time.”
 
-[Pre-Chorus]
-One page lifts
-One page falls
-Your sleeve brushes
-Nothing at all
-
-[Chorus]
-Quiet page turns
-I hear them more than the rain
-Your thumb keeps a corner down
-Mine tries to do the same
-
-Quiet page turns
-No line has to be spoken
-If I sit still long enough
-Something small might open
-
-[Bridge]
-Not every story
-Needs a louder part
-Sometimes the margin
-Does the tender work
-
-You write one word
-On a paper slip
-My name looks different
-In your handwriting
+Your thumb keeps place,
+my courage turns.
+The aisle grows gold,
+the last lamp burns.
 
 [Final Chorus]
-Quiet page turns
-The room lets the weather pass
-You close your book halfway
-But leave your bookmark last
+Checkout slip at chapter nine,
+warm as the lights sink low.
+You fold the corner next to mine,
+we take the slow way home.
 
-Quiet page turns
-I keep the silence near
-If you read beside me tomorrow
-I will save this chair
+[Coda]
+Your checkout slip becomes my mark,
+between the pages, after dark.
+The clock clicks once by the desk light,
+we leave the aisle into the night.
 ```
 
-### Track 5 — Half-Smile Refill
-
-Arrangement cue: brushed drums, gentle call-response backing vocals, warmer movement after the quiet Track 4.
-
+### Track 5 — Steam on the Glass Door
 ```text
-[Intro]
-Refill, refill
-Mm, just enough
+[Intro Groove - no vocal, 4 bars]
 
-[Verse 1]
-The counter line bends by the door
-Three scarves, two phones, one tray
-I count the coins inside my palm
-Then you wave the worry away
+[Verse A]
+After the library, late in the day,
+the cafe bell moves as our coats sway.
+Warm room behind us, cold street in sight,
+your palm leaves a cloud in the streetlamp light.
 
-You lift the pitcher from the bar
-Before I ask for more
-Steam climbs up between us
-Like it knows this part before
+You press one finger and clear a thin lane,
+then make a quick face through the silvered pane.
+I laugh too quiet, you grin and stay,
+your hand on the handle, half turned my way.
 
-[Pre-Chorus]
-You say, you looked empty
-I say, just a little
-You say, take your time
-And I laugh in the middle
+[Short Refrain]
+By the handle, you look back,
+I tuck my laugh inside my bag.
+Rain taps twice along the frame,
+you point outside; I do the same.
 
-[Chorus]
-Half-smile refill
-Warm line rising to the rim
-You do not make a big thing
-Out of letting me in
+[Verse B]
+You draw an arrow, then wipe it back,
+point at my sleeve and make me laugh.
+A bus light blinks past the curb in the rain,
+turning our shadows along the lane.
 
-Half-smile refill
-Small kindness, steady hand
-If this is how you notice me
-I think I understand
-
-[Verse 2]
-A spoon rolls near the sugar tray
-You catch it with your sleeve
-The cashier calls another name
-It is almost time to leave
-
-You split your napkin into two
-When my pen leaves a stain
-I say I owe you one
-You say, remember my name
-
-[Pre-Chorus]
-(Remember my name)
-You say it almost teasing
-(Remember my name)
-I do, without needing
+Your sleeve taps mine by the doorway line,
+a tiny joke at closing time.
+You ask, "Ready?" I watch for your sign,
+then touch the handle, three in time.
 
 [Chorus]
-Half-smile refill
-Warm line rising to the rim
-You do not make a big thing
-Out of letting me in
+Wait by the glass,
+let the cold air pass.
+If your breath turns blue,
+I can stand there too.
 
-Half-smile refill
-Small kindness, steady hand
-If this is how you notice me
-I think I understand
+One clear line appears,
+then the street feels near.
+When you nod me through,
+I walk out with you.
+
+[Door-Swing Break - no vocal, 4 bars]
 
 [Bridge]
-No grand gesture
-No movie rain
-Just a plain white cup
-And your careful aim
-
-No spotlight
-No perfect line
-Just one more minute
-Borrowed from time
-
-[Final Chorus]
-Half-smile refill
-Warm line rising to the rim
-You say, careful, it is hot
-And I hold the feeling in
-
-Half-smile refill
-Small kindness, steady hand
-If you ask where I will be
-I will say, where I am
-```
-
-### Track 6 — Library Card in Your Case
-
-Arrangement cue: mellow guitar arpeggio, tighter chorus, light harmony lift after each title line.
-
-```text
-[Intro]
-Clear case
-Small card
-I saw it when you turned your phone
-
-[Verse 1]
-Your library card in your case
-Shows a corner by the lens
-Barcode stripe and faded blue
-Pressed under fingerprints
-
-You say the printer never works
-In the building after four
-I say the copier downstairs
-Always sticks on drawer two
-
-[Pre-Chorus]
-That is not romance
-That is just a fact
-But you smile like I handed you
-A map to get back
-
-[Chorus]
-Library card in your case
-Little proof you stay awhile
-You carry quiet places
-Under glass and vinyl
-
-Library card in your case
-I remember what I can
-Your due dates, your blue stripe
-The careful way you plan
-
-[Verse 2]
-You show me where the corner cracked
-From dropping it last spring
-I show the crease in my own one
-From using it for everything
-
-We compare the tiny marks
-Like weather on a map
-You say mine looks overworked
-I say yours looks like it laughs
-
-[Pre-Chorus]
-Outside, the courtyard fills
-With shoes and rolling wheels
-Inside, your shoulder turns
-And the whole room feels real
-
-[Chorus]
-Library card in your case
-Little proof you stay awhile
-You carry quiet places
-Under glass and vinyl
-
-Library card in your case
-I remember what I can
-Your due dates, your blue stripe
-The careful way you plan
-
-[Bridge]
-Maybe next week
-Between shelves on floor two
-I will find the book
-You said I should use
-
-Maybe next week
-If the weather stays clear
-You will write the call number
-And I will meet you there
-
-[Final Chorus]
-Library card in your case
-Little proof you stay awhile
-You tap it once against your phone
-And try to hide your smile
-
-Library card in your case
-I remember what I can
-If you walk toward the stacks
-I will walk where I had planned
-```
-
-### Track 7 — Blue Straw, Soft Foam
-
-Arrangement cue: slightly brighter city-pop chord lift, playful pocket, light harmony on the title phrase.
-
-```text
-[Intro]
-Tap, tap
-Blue straw
-Soft foam
-
-[Verse 1]
-Your blue straw taps the plastic lid
-While the line forgets to move
-You count the tiles by the door
-I count the jokes from you
-
-There is foam on your upper lip
-You wipe it with your sleeve
-I look down at the sugar packs
-So you will not see me see
-
-[Pre-Chorus]
-The blender stops
-The room gets light
-You make a face
-And I lose my line
-
-[Chorus]
-Blue straw, soft foam
-Tapping time into the lid
-You say nothing special
-But I laugh harder than I did
-
-Blue straw, soft foam
-Small joke, soft grin
-If waiting feels like this
-I would wait here again
-
-[Verse 2]
-You draw a tiny map in drops
-On the sleeve around your drink
-Two arrows, one crooked star
-Then ask me what I think
-
-I say it looks like campus
-If campus lost its streets
-You say, then we are lucky
-We still know where to meet
-
-[Pre-Chorus]
-The straw taps twice
-The ice shifts low
-I try to hide
-What you already know
-
-[Chorus]
-Blue straw, soft foam
-Tapping time into the lid
-You say nothing special
-But I laugh harder than I did
-
-Blue straw, soft foam
-Small joke, soft grin
-If waiting feels like this
-I would wait here again
-
-[Bridge]
-Not every minute
-Needs somewhere to go
-Some stay bright
-In the line moving slow
-
-You hand me the sleeve
-With the crooked star
-And say, keep this map
-In case we get far
-
-[Final Chorus]
-Blue straw, soft foam
-Tapping time into the lid
-You smile like a secret
-You are letting me in
-
-Blue straw, soft foam
-Small joke, soft grin
-If waiting feels like this
-I would wait here again
-```
-
-### Track 8 — Two Plugs, One Outlet
-
-Arrangement cue: syncopated keys, low-volume harmony stack, practical study groove.
-
-```text
-[Intro]
-Low battery
-Corner wall
-Two plugs
-One outlet
-
-[Verse 1]
-My laptop blinks at seventeen
-Yours is sitting at twelve
-We find the only outlet left
-Behind the narrow shelf
-
-You move your chair a little left
-I pull my cord around
-Two black cables cross the floor
-Like quiet common ground
-
-[Pre-Chorus]
-You say, yours first
-I say, no, yours
-We make a truce
-By the charging cord
-
-[Chorus]
-Two plugs, one outlet
-Borrowed power in the wall
-Your shoulder near my backpack
-No big speech at all
-
-Two plugs, one outlet
-Little teamwork, thin white line
-If your screen stays on a while
-You can sit by mine
-
-[Verse 2]
-You tape my cable to the leg
-So no one trips at four
-I save your file when your screen freezes
-Right before the score
-
-We split a quiet victory
-In a corner by the blinds
-You say group work is better
-When it is only yours and mine
-
-[Pre-Chorus]
-The keys click soft
-The daylight thins
-Your charger warms
-Against my shin
-
-[Chorus]
-Two plugs, one outlet
-Borrowed power in the wall
-Your shoulder near my backpack
-No big speech at all
-
-Two plugs, one outlet
-Little teamwork, thin white line
-If your screen stays on a while
-You can sit by mine
-
-[Bridge]
-Maybe this is how it starts
-Not loud, not planned
-A password shared for campus Wi-Fi
-A cable in your hand
-
-You say, do not close it yet
-I say, I still need five
-But both our papers sit untouched
-And both our screens stay bright
-
-[Final Chorus]
-Two plugs, one outlet
-Borrowed power in the wall
-The room gets dark around us
-But we do not rush at all
-
-Two plugs, one outlet
-Little teamwork, thin white line
-If tomorrow needs a corner
-You can sit by mine
-```
-
-### Track 9 — Saxophone from the Street
-
-Arrangement cue: soft saxophone answer lines in intro, bridge, and outro; keep the core groove mellow and vocal-led.
-
-```text
-[Intro]
-[Soft sax answer]
-Open door
-Late sun
-Street song
-
-[Verse 1]
-Someone plays outside the cafe
-By the crosswalk sign
-Four notes bend through the doorway
-And land between your words and mine
-
-You stop halfway through a story
-With your hand still in the air
-The brass sounds soft and weathered
-Like it walked through open air
-
-[Pre-Chorus]
-The door swings once
-The warm air moves
-You hum the line
-I look at you
-
-[Chorus]
-Saxophone from the street
-Slipping through the open door
-You say, wait, I know that feeling
-Then you do not say more
-
-Saxophone from the street
-Small gold in the afternoon
-If the outside world can find us
-Maybe I can too
-
-[Verse 2]
-A bus sighs low at the corner
-Coins fall into a case
-You tap the rhythm on your knee
-With a careful listening face
-
-I ask if you play anything
-You say, only badly
-Then whistle half the melody
-And laugh when it leaves
-
-[Pre-Chorus]
-The phrase comes back
-Then fades again
-You catch the last note
-With your pen
-
-[Chorus]
-Saxophone from the street
-Slipping through the open door
-You say, wait, I know that feeling
-Then you do not say more
-
-Saxophone from the street
-Small gold in the afternoon
-If the outside world can find us
-Maybe I can too
-
-[Bridge]
-[Soft sax answer]
-No stage lights
-No crowded room
-Just traffic breathing
-Past the window frame
-
-You say, stay quiet
-Until this part is done
-So I sit there smiling
-Under the last warm sun
-
-[Final Chorus]
-Saxophone from the street
-Slipping through the open door
-You say, that was beautiful
-Like you meant something more
-
-Saxophone from the street
-Small gold in the afternoon
-When the last note turns the corner
-I am still hearing you
+The room stays warm behind our backs,
+cups on the table, books in a stack.
+Outside, the buses bend and hiss,
+but your slow smile steadies this.
+
+We do not rush the after-school air,
+we let the clear line lead us there.
+Your hand leaves fog, my fingers trace,
+a clear path across the place.
+
+[Final Chorus Lite]
+Wait by the glass,
+let the bus lights pass.
+One clear line appears,
+and the street feels near.
+
+You nod me through,
+I follow after you.
+Your hand mark fades,
+but the bright path stays.
 
 [Outro]
-[Soft sax answer]
-Open door
-Late sun
-Still you
+One finger clears the glass again,
+a thin bright path where we had been.
+Your hand mark fades, the street feels near,
+the door closes gently behind us here.
 ```
 
-### Track 10 — Rain Check by the Door
-
-Arrangement cue: warm pad bed, restrained snare, gentle almost-plan energy after the sax color recedes.
-
+### Track 6 — Peach Can at B4
 ```text
-[Intro]
-Mist by the door
-Umbrellas lean
-Mm, mm
+[Opening Refrain]
+Save the first sip for me
+I’ll leave the last taste for you
+If the machine gives one can free
+We’ll call it our excuse
 
-[Verse 1]
-Umbrellas crowd the entrance mat
-Like tired little trees
-Your sleeve is damp at the elbow
-From running through the street
+Peach on the pull-ring shine
+Fizz in a careful plan
+You grin at row B-four
+I reach for the can
 
-I check the weather on my phone
-Though the window tells it clear
-You say, no rush, it might slow down
-And I pretend not to hear
+[Verse A]
+Last bell leaves the benches low
+Gym shoes squeak on painted floor
+You read the snack map row by row
+Then stop beside B-four
 
-[Pre-Chorus]
-The door lets in
-A silver sound
-You look outside
-Then turn around
+The peach can sticks, then drops at last
+Metal clacks and rolls out fast
+I catch it near the rubber seam
+You laugh behind the vending machine
 
-[Chorus]
-By the door
-Not a no, not yet
-Just a quiet rain check
-Neither one of us forgets
+[Can-Drop Break - no vocal, 4 bars]
 
-By the door
-Umbrella tips in a row
-If you ask me for tomorrow
-I will say I know
+[Verse B]
+You read the flavors out loud
+Peach, tea, melon cream
+I pick the one you almost chose
+You say, “That was gonna be me”
 
-[Verse 2]
-You point toward the covered path
-That cuts behind the hall
-I say the long way has more trees
-You say, then long is not bad at all
+The can is cold against my sleeve
+Your straw wrapper curls to the floor
+We share it by the practice board
+And talk for half a minute more
 
-The cashier dims the hanging sign
-The floor holds silver drops
-You write a time on your receipt
-And fold it by my name
+[Flavor List Turn]
+Peach for the joke you tried to hide
+Tea for the quiz we both survived
+Melon for words kept safe inside
+Strawberry left on the lower side
 
-[Pre-Chorus]
-The snare stays soft
-The weather waits
-You say, same place
-I say, what date
+The court goes empty past the stairs
+Practice whistles thin the air
+You ask if peach counts as dinner
+I say only if we share
 
-[Chorus]
-By the door
-Not a no, not yet
-Just a quiet rain check
-Neither one of us forgets
+[Short Final Refrain]
+Save the first sip for me
+I’ll leave the last taste for you
+If the machine gives one can free
+We’ll call it our excuse
 
-By the door
-Umbrella tips in a row
-If you ask me for tomorrow
-I will say I know
+[Object Outro]
+You press B-four before we go
+Not for a drink, just so I know
+The empty slot still keeps the place
+Of what we chose that day
+```
+
+### Track 7 — Green Dot on Your Schedule
+```text
+[Verse A]
+Club table by the bulletin board
+Markers sorted red and blue
+You peel a sticker from the sheet
+A green dot lands by room C-three
+
+I check the roster upside down
+Trying not to look at you
+Your Thursday box has one more mark
+Mine gets marked there too
+
+[Verse B]
+The club chart leans beneath the tape
+Your ruler keeps the columns straight
+My pencil hovers, then I try
+To place my choice beside the date
+
+You say, “Drama crew runs Tuesday”
+I say, “Photo meets at four”
+You move your dot beside mine
+Like we found a place for more
+
+[Club-Table Break - no vocal, 4 bars]
+
+[Verse C]
+At the club table, paper clips
+Make silver moons beside the glue
+You trade me orange for my blue
+Our boxes match before we’re through
+
+The room gets louder near the stairs
+Announcements blur above the floor
+I fold the chart back to your side
+You ask, “Are you free at four?”
 
 [Bridge]
-No need to run
-No need to stay
-We stand in the pause
-Between weather and way
+I thought a calendar was only
+Blocks to fill and plans to keep
+But your green mark changed the question
+From where to go to who I’ll see
 
-You hold your hood
-I hold my sleeve
-Both of us smiling
-At reasons not to leave
+Just a Thursday on the sheet
+Written where both of us can see
+If our hours overlap
+Leave a chair across from me
 
-[Final Chorus]
-By the door
-Not a no, not yet
-You say, if it clears up
-I say, send me a text
+[Final-Only Refrain]
+Our hours overlap
+Thursday turns back around
+If your dot stays near mine
+I’ll stay till the speakers wind down
 
-By the door
-Umbrella tips in a row
-If tomorrow opens softly
-I will know where to go
+Our hours overlap
+At the club table now
+You circle four, I circle back
+The green dot writes it down
+
+[Object Outro]
+Green sticker on the chart
+One corner lifting by the glue
+I pack my marker cap-first
+You leave the blue one for me to use
 ```
 
-### Track 11 — Backpack by My Chair
-
-Arrangement cue: rounded bass hook, quiet guitar fills, spatial closeness without overstatement.
-
+### Track 8 — Cushion Seat, Charging Cord
 ```text
-[Intro]
-Gray bag
-Chair leg
-Soft bass
+[Syncopated Keys Intro - no vocal, 4 bars]
 
 [Verse 1]
-Your backpack leans by my chair
-Gray canvas, one loose thread
-A small gold crescent on the zip
-Turns when you tilt your head
+Study lounge when last bell ends
+Cushion seam beneath our books
+Your pencil case has paper gems
+Mine has dates I never look
 
-You say, can I leave this here
-While I go print one page
-I nod like it is nothing much
-Then guard it like a gate
+Battery red at seventeen
+Yours is fading fast at nine
+You pass the cord across the seat
+I pass my workbook down the side
 
-[Pre-Chorus]
-The strap falls down
-I lift it back
-Your little charm
-Clicks against the clasp
+[Short Hook]
+Take the outlet side
+I’ll guard the cord
+You keep the quiz cards
+I’ll clear the board
 
-[Chorus]
-Backpack by my chair
-Close enough to mean you will return
-I keep my foot beside the leg
-Like that is not concern
-
-Backpack by my chair
-Quiet proof you trust the room
-When you come back smiling
-I make a place for you
+Half a charge and homework due
+Both our screens turn blue
+If your phone reaches eighty
+Mine can borrow from you
 
 [Verse 2]
-A pencil sticks from the side pocket
-With teeth marks near the end
-Your key ring hums against the zipper
-When the hallway lets you in
+Your vocab cards fall upside down
+Past tense, future, wrong and right
+I sort the verbs into a stack
+You fix my sentence in blue ink
 
-You say, thanks for watching it
-I say, it watched me too
-You laugh and pull the strap across
-But leave it near my shoe
+The lounge gets full by snack-time rush
+Chair legs drag across the floor
+You angle your screen toward mine
+Then hide a laugh behind your sleeve
 
-[Pre-Chorus]
-The bass walks low
-The guitar answers
-Your shoulder settles
-A little closer
-
-[Chorus]
-Backpack by my chair
-Close enough to mean you will return
-I keep my foot beside the leg
-Like that is not concern
-
-Backpack by my chair
-Quiet proof you trust the room
-When you come back smiling
-I make a place for you
+[Syncopated Keys Answer - no vocal, 4 bars]
 
 [Bridge]
-Some things say more
-By staying near
-Canvas and zipper
-Your crescent clear
+You wrap the cord around your case
+Tuck the plug beneath the flap
+I slide my workbook into place
+You leave your pencil in the gap
 
-I do not ask
-What this becomes
-I just move my chair
-To fit someone
+I say, “Your battery’s at eighty”
+You say, “Yours can borrow mine”
+The charger warms beneath the table
+While we pack our bags in time
 
-[Final Chorus]
-Backpack by my chair
-Close enough to mean you will return
-Your charm catches the late light
-Every time it turns
+[Final Hook - shorter]
+Take the outlet side
+I’ll guard the cord
+Half a charge and homework due
+Still feels enough with you
 
-Backpack by my chair
-Quiet proof you trust the room
-When the afternoon starts closing
-I walk out beside you
+[Outro - no vocal, 4 bars]
 ```
 
-### Track 12 — Last Light on the Counter
-
-Arrangement cue: wider harmonies, longer outro, warm main-set close without final certainty.
-
+### Track 9 — Crosswalk Stripes Before Six
 ```text
-[Intro]
-Last light
-Counter line
-Mm, mm
+[Brief Sax Answer - no vocal, 2 bars]
+[Keys Groove - no vocal, 2 bars]
 
 [Verse 1]
-Last light on the counter
-Moves across the pastry glass
-The barista turns the chairs around
-But lets our corner last
+Painted stripes before six
+Paint still bright beneath our shoes
+Your backpack slips again
+You laugh and pull it true
 
-Your shadow stretches toward the door
-Mine reaches for the wall
-We stack our notes unevenly
-And do not leave at all
-
-[Pre-Chorus]
-The clock clicks low
-The street turns gold
-You say, five more
-Like we are not told
-
-[Chorus]
-Last light on the counter
-Sliding slow across the room
-You gather up your pencils
-I keep watching you
-
-Last light on the counter
-Not goodbye, not a sign
-Just the day taking its time
-The way I wish was mine
+The crossing holds us there
+With bicycles rolling by
+I ask which route you take
+You say, “Depends on why”
 
 [Verse 2]
-The tip jar shines in copper coins
-The menu board goes dim
-You fold your receipt into a square
-And tuck the evening in
+Shop signs blink awake
+Above the awning blue
+You hear a far horn bend
+I hear it after you
 
-I say the bus will come again
-You say, they always do
-But neither of us checks the stop
-When the sky turns peach and blue
+Your notebook bumps your hip
+Mine nearly drops again
+You catch the strap in time
+Then grin like it was planned
 
-[Pre-Chorus]
-The lights come on
-One row at a time
-Your hand finds your strap
-Mine finds mine
+[Brief Sax Answer - no vocal, 4 bars]
 
-[Chorus]
-Last light on the counter
-Sliding slow across the room
-You gather up your pencils
-I keep watching you
+[Verse 3]
+People gather at the curb
+Then spill across the paint
+You keep your pace beside mine
+Not early and not late
 
-Last light on the counter
-Not goodbye, not a sign
-Just the day taking its time
-The way I wish was mine
+I had a faster route today
+Past the bike racks and the gym
+But every shortcut feels too brief
+With you still crossing in
 
-[Bridge]
-If this is the last song
-For the cafe today
-Let it end softly
-In the ordinary way
+[Middle Turn]
+You say, “This side is calmer”
+I say, “Then I’ll take it too”
+The traffic thins behind us
+The curb has room for two
 
-One chair pushed in
-One look at the floor
-One laugh in the hallway
-One hand on the door
+Your sleeve brushes my backpack
+Your laugh lands near my ear
+The other side arrives too soon
+But you are still right here
 
-[Final Chorus]
-Last light on the counter
-Sliding slow across the room
-You ask if I am walking
-I say, only if you do
+[Final Chorus Only]
+Move when I move
+Keep your pace by me
+If the crowd pulls forward
+Let them pass clean
 
-Last light on the counter
-Not goodbye, not a sign
-Just the day taking its time
-While I walk at your side
+Cross where I cross
+Then choose our side
+The short way home can wait
+For the longer curbside
 
-[Outro]
-Last light
-Counter line
-Soft steps
-Your side
+[Outro Sax Tag - no vocal, 4 bars]
 ```
 
-### Track 13 Bonus — Walk Me Past the Courtyard
-
-Arrangement cue: slower closing tempo, full bonus closing song, gentle reprise feeling without copying earlier hooks exactly.
-
+### Track 10 — Yellow Tag on the Umbrella Rack
 ```text
-[Intro]
-Walk me past the courtyard
-Trees are turning quiet
-Mm, mm
+[Pad Intro - no vocal, 4 bars]
 
 [Verse 1]
-Walk me past the courtyard
-Where the brick path bends
-The cafe lights are small behind us
-Like a song that does not end
+Umbrellas crowd the metal rack
+Near the side room by the stairs
+You shake drops from your sleeve
+I find the yellow tag still there
 
-Your backpack taps your shoulder
-In a slow and steady time
-The wet leaves shine under the lamps
-And your sleeve brushes mine
+It has a number, half erased
+A bent edge from another day
+You turn it over, borrow my pen
+Then ask what you should say
 
-[Pre-Chorus]
-No table now
-No window seat
-Just campus air
-And our easy feet
+[Practical Refrain]
+Tuck it under the elastic
+So it doesn’t slip away
+Write the table and the hour
+For the next review day
 
-[Chorus]
-Walk me past the courtyard
-Past the bikes and evening grass
-If you take the longer sidewalk
-I will not walk too fast
-
-Walk me past the courtyard
-Let the cafe fade from view
-I came here for an afternoon
-And left still hearing you
+Your initials fit above mine
+My pen mark crosses through
+If we lose each other later
+The rack knows what to do
 
 [Verse 2]
-You point out where the music rooms
-Keep lights on after nine
-I show the step that always shakes
-And say, skip that one next time
+Your umbrella leans on mine
+Two handles hooked by accident
+I act like I am fixing them
+You know exactly what I meant
 
-The fountain is off for the season
-But the stone still holds the gray
-You say tomorrow might be clear
-I say tomorrow has your name
+The notice board is full of tests
+Cafeteria noise rolls through
+You write, “Study table later?”
+I write, “Only if it’s you”
 
-[Pre-Chorus]
-The crosswalk blinks
-The buses sigh
-You slow down first
-And so do I
+[Refrain Variation]
+Fold it flat beneath the cover
+Keep the number facing out
+If the crowd splits us at pickup
+We can find the table now
 
-[Chorus]
-Walk me past the courtyard
-Past the bikes and evening grass
-If you take the longer sidewalk
-I will not walk too fast
-
-Walk me past the courtyard
-Let the cafe fade from view
-I came here for an afternoon
-And left still hearing you
+My pen cap stays in your pocket
+Your tag rides home with you
+The rack keeps one space open
+Where our umbrellas used to lean
 
 [Bridge]
-The crooked map
-From the cup sleeve
-Folds in your pocket
-Beside my receipt
+Weather changes by the hour
+Plans get crossed and made again
+But a yellow tag is simple
+Table, time, and borrowed pen
 
-Your blue-ink note
-Says same place, two
-I keep the corner
-Like a small proof of you
+You tuck it under notebook elastic
+Flat against the cover blue
+I keep the pen cap by my zipper
+Because it came from you
 
-[Final Chorus]
-Walk me past the courtyard
-Past the bikes and evening grass
-You say, same place tomorrow
-I say yes before you ask
+[Final Refrain - half]
+Place it under the elastic
+Number facing out
+Table, time, and borrowed pen
+That’s enough for now
 
-Walk me past the courtyard
-Let the cafe fade from view
-If the first light saved a seat for us
-The last one walks me home with you
-
-[Outro]
-Walk me past the courtyard
-Trees are turning quiet
-Same place tomorrow
-Mm, mm
+[Object Coda]
+Umbrellas part beside the rack
+Your tag rides home in blue
+The empty hook leans back
+Toward the one I used with you
 ```
 
-## Adjacent Difference Plan
+### Track 11 — Quiz Key in Blue Ink
+```text
+[Groove Intro - no vocal, 4 bars]
 
-- 1 -> 2: keys intro shifts to guitar lead; opener world-building shifts to routine; groove lightens.
-- 2 -> 3: window setting shifts to table object; guitar lead shifts to bass-forward verse; first interaction appears.
-- 3 -> 4: social object shifts to quiet reading; fuller groove shifts to sparse piano; hook density lowers.
-- 4 -> 5: stillness shifts to cafe service motion; piano-forward shifts to brushed-drums call-response; warmth becomes active.
-- 5 -> 6: refill moment shifts to campus object; call-response shifts to guitar arpeggio; chorus becomes tighter.
-- 6 -> 7: campus clue shifts to playful drink detail; guitar arpeggio shifts to brighter chord lift; mood gets lighter.
-- 7 -> 8: waiting detail shifts to practical study teamwork; brighter motion shifts to syncopated keys; harmony stack increases.
-- 8 -> 9: indoor outlet scene shifts to open-door street sound; keys groove gains short sax answers; outside world enters briefly.
-- 9 -> 10: sax color recedes; rain-door scene begins; arrangement softens into pad bed.
-- 10 -> 11: almost-plan shifts to spatial closeness; pad bed shifts to bass hook; lyric focus returns indoors.
-- 11 -> 12: backpack detail shifts to time-of-day closure; bass hook shifts to wider harmonies; outro expands.
-- 12 -> 13: counter closure shifts to outdoor walk; main-set ending shifts to bonus full closing song; tempo relaxes.
+[Verse 1]
+Quiz key in blue ink
+Between your book and mine
+Red marks on my answers
+Yours look almost fine
 
-## Re-Review Triggers
+You circle question seven
+Then slide the sheet my way
+I say, “I knew that part”
+You say, “Then prove it today”
 
-Re-review this file if any title, lyric lane, style field, exclude field, vocal policy, provider/model intent, voice/control setting, source-media input, disclosure, or upload/public intent changes.
+[Refrain]
+Show me where I missed it
+I’ll try it once again
+You read the problem backward
+I steal your better pen
 
-## Next Source-Only Action
+If I get the answer
+You get half the credit too
+Show me where I missed it
+I learn faster next to you
 
-Tracks 1-13 now have revised source-only lyric drafts with Gemini-flagged issues addressed. Next source-only action is optional human review, then tightening the manual-only style/exclude handoff pack if a later provider gate is separately approved.
+[Verse 2]
+Cafeteria clatter
+Fades behind the math
+You split your cookie neatly
+And draw a crooked graph
+
+I mix up signs and angles
+You laugh but never tease
+You say, “Start from the middle”
+And suddenly I see
+
+[Near-Whisper Break]
+“Is this right?”
+“Almost.”
+“Again?”
+“Try.”
+“You’re grinning.”
+“So are you.”
+“Fine.”
+
+[Refrain Variation]
+Show me where I missed it
+I’ll try it once again
+You read the problem backward
+I steal your better pen
+
+If I get the answer
+You get half the credit too
+I may not like the quiz much
+But I like studying with you
+
+[Bridge]
+The answer key gets folded
+Inside chapter two
+You say we should review it
+I say, “If you want to”
+
+The bell has finished ringing
+The tables nearly clear
+You pack the blue-ink paper
+But leave the question here
+
+[Final Refrain - changed]
+Show me where I missed it
+I’ll try it once again
+The answer looks less scary
+Written with your pen
+
+If I get the answer
+You get half the credit too
+I may not like the quiz much
+But I like studying with you
+```
+
+### Track 12 — Tray Return at 5:59
+```text
+[Intro - no vocal, 4 bars]
+
+[Verse 1]
+Cafeteria clock leans near six
+Trays are stacked beside the bins
+You collect the empty cups
+I gather wrappers, folded in
+
+The main room thins to chair-leg sounds
+Aprons move behind the counter
+You ask if I need extra help
+I say I found the answer
+
+[Refrain]
+Put the trays back together
+Leave the table clean
+If the day has to end here
+Keep the space between
+
+Not too far, not too formal
+Just enough to know
+When the clock keeps moving
+I still don’t want to go
+
+[Verse 2]
+Your milk carton bends in half
+Mine still has a straw inside
+You toss the napkins in one shot
+I miss and try to hide
+
+You rescue what I dropped
+With that look you try to bury
+I say, “Nice save,” too late
+You say, “Necessary”
+
+[Refrain Variation]
+Put the trays back together
+Leave the table clean
+If the day has to end here
+Keep the space between
+
+Not too far, not too formal
+Just enough to know
+When the clock keeps moving
+I still don’t want to go
+
+[Instrumental Break - no vocal, 6 bars]
+
+[Final Verse]
+Tray Return at 5:59
+Silver rail and plastic blue
+You push yours beside mine
+Like it knows what we should do
+
+The room is almost empty
+Our chairs face where we sat
+You say, “See you next review”
+I carry that
+
+[Outro Refrain - half]
+Put the trays back together
+Leave the table clean
+If the day has to end here
+Keep the space between
+
+[Outro - no vocal, 6 bars]
+```
+
+### Track 13 Bonus — Latch Click at the Courtyard Gate
+```text
+[Closing Reprise Intro - no vocal, 4 bars]
+
+[Dialogue First]
+“You got question seven?”
+“Only because you helped.”
+“You still owe me half the credit.”
+“I’ll pay in fries next review.”
+
+“You’ll text if math wins?”
+“You’ll answer way too fast.”
+“That sounds like a complaint.”
+“It sounds like I’ll ask.”
+
+[Verse 1]
+Courtyard trees drop brown leaves
+Onto the bench by our bags
+You zip your jacket to your chin
+I fix the strap that always drags
+
+The practice field is nearly bare
+Shoes squeak past the fence
+You tell a story from lunch break
+I laugh before it makes sense
+
+[Verse 2]
+We reach the planter by the gate
+Pebbles pale around the bed
+Your bus route bends away
+Mine turns near the bike-rack shed
+
+We both know the parting spot
+Before the latch is in view
+You check your phone, then put it back
+Like time can wait for you
+
+[Reprise Turn]
+Blue ink, trays, the yellow tag
+Quiz key folded in your bag
+All the day’s plain pieces
+Gather where the hinges drag
+
+You say, “Don’t forget the graph”
+I say, “Don’t lose my pen”
+You grin like that is settled
+And the latch clicks once again
+
+[Closing Image]
+Latch Click at the Courtyard Gate
+Metal note in evening air
+You lift two fingers once
+I lift mine from over there
+
+The gate rests back in place
+Two routes divide in blue
+I turn toward home at last
+Still thinking about you
+```

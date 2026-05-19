@@ -21,7 +21,7 @@ Roadmap titles are planning hooks only until a fresh episode packet and tracking
 
 | Week | Working longplay | Hook | Lyric lane |
 |---:|---|---|---|
-| 1 | Campus Cafe Longplay | sunlit cafe table, notebook, coffee | young-adult first crush, small concrete moments |
+| 1 | After-School First Love Longplay | after-school cafe table, notebook, coffee, school courtyard | wholesome PG same-age teenage first love, small concrete moments |
 | 2 | Classroom Window Longplay | college classroom light, afternoon window | curiosity, almost-said feelings, study-day warmth |
 | 3 | Rooftop Golden Hour Longplay | rooftop, warm sky, late-afternoon breeze | confidence, anticipation, looking ahead |
 | 4 | Bookstore Afternoon Longplay | quiet bookstore corner, paper texture | private thoughts, shy hope, calm reflection |

@@ -1,36 +1,15 @@
-# S01E01 Prompt Pack Review — Campus Cafe Longplay
+# S01E01 Prompt Pack Review — Full Source Sequence
 
-Status: pass source-only prompt/control draft  
-Episode: `s01e01-campus-cafe-longplay`  
-Updated: 2026-05-18
+Status: full_source_sequence_synced_source_only  
+Updated: 2026-05-19
 
-## Scope
+- Prompt-pack sequence now follows the Mayr-approved replacement tracks 1-13.
+- Track 1 is now `Margin Notes at Table Three` after Mayr source approval of v0.6.
+- Track 2 is now `Two Lids, One Tray` after Mayr source approval of v0.9 macro-form revision.
+- Track 4 is now story-led `Checkout Slip at Chapter Nine`; it remains the sole piano-forward color song by arrangement, not title.
+- Track 6 is now `Peach Can at B4`; Track 7 is now `Green Dot on Your Schedule`.
+- Tracks 8-13 are now `Cushion Seat, Charging Cord`, `Crosswalk Stripes Before Six`, `Yellow Tag on the Umbrella Rack`, `Quiz Key in Blue Ink`, `Tray Return at 5:59`, and `Latch Click at the Courtyard Gate`.
+- Track 9 remains the sole soft-sax accent song with sax secondary only; `White Stripes` wording was removed to avoid named-reference collision.
+- Prior title set is superseded and removed from active prompt flow. Source-only boundary remains in force.
 
-This review covers `source/prompt-pack.md` as a source-only manual field pack. It does not approve provider use, Suno operation, generated audio, candidate files, render/export, upload, publishing, Content ID action, or positive rights/platform claims.
-
-## Checks
-
-| Check | Verdict | Notes |
-|---|---|---|
-| Original/non-imitation style direction | pass | Uses genre/mood descriptors only; excludes named artist, known song, real-person voice, brand, and competitor-channel imitation. |
-| Lyrics source consistency | pass | Points to the revised lyrics in `source/songs.md`; does not rewrite or invent sung-word variations. |
-| Per-track manual fields | pass | `source/suno-manual-fields.md` provides copy fields while preserving `source/songs.md` as lyric truth. |
-| Episode variation control | pass | Preserves one piano-forward track and one soft-sax accent track. |
-| Adjacent track distinction | pass | Defines first-10-second and arrangement contrast across the 13-song sequence. |
-| Provider/account boundary | pass | Blocks provider automation, APIs, browser operation, generated media, fake provenance, and release claims. |
-| Candidate/provenance handling | pass | Defers all candidate IDs, files, dates, and provider facts until real user-supplied files exist after a separate gate; now points to `reviews/candidate-intake-checklist.md`. |
-| Rights/platform language | pass | Uses blocked terms only as exclusions/cautions, not positive claims. |
-
-## Verdict
-
-`pass_source_prompt_pack`
-
-The prompt/control pack is coherent enough for continued source planning. It is not provider approval, media approval, audio QA, subtitle timing approval, render/export approval, upload approval, release approval, or rights/platform assurance.
-
-## Next Source-Only Action
-
-Optional human review of the prompt pack and Suno manual fields. Use the prepared candidate-intake checklist only if a future separate manual provider/candidate gate is explicitly approved and real user-supplied files exist.
-
-## Still Blocked
-
-Provider/account automation, Suno operation, browser/API calls, media generation, candidate creation, downloads, render/export, upload/publish, credential handling, Content ID registration, and rights/platform-safety claims remain blocked.
+Verdict: `full_source_sequence_synced_source_only`

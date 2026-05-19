@@ -1,6 +1,6 @@
-# S01E01 Gemini Lyrics Review — Campus Cafe Longplay
+# S01E01 Gemini Lyrics Review — Historical Pre-Retune Review
 
-Status: completed; recommendations applied in source  
+Status: completed; recommendations applied; superseded by theme retune  
 Episode: `s01e01-campus-cafe-longplay`  
 Updated: 2026-05-18
 
@@ -9,6 +9,8 @@ Updated: 2026-05-18
 This is an external Gemini CLI review of source-only lyric drafts after explicit user approval. It does not approve provider generation, generated audio, candidate files, render/export, upload, publishing, Content ID action, or positive rights/platform claims.
 
 The Gemini output is advisory and untrusted until reviewed. No generated media, candidate IDs, timestamps, release facts, or platform-safety facts were created.
+
+Theme-retune note: this review covered the earlier adult/college-coded source lyrics. The user later approved retuning the episode to wholesome PG same-age teenage/high-school first love, so this review is historical context only and no longer validates the current lyric draft.
 
 ## Invocation Summary
 
@@ -52,7 +54,7 @@ Applied in `source/songs.md` on 2026-05-18:
 | Track 7 `warm foam` | Retitled and revised hook to `Blue Straw, Soft Foam`. |
 | Track 10 pun risk | Reduced repeated `Rain check by the door` chorus phrasing to `By the door` plus `quiet rain check`. |
 
-Revision response verdict: `applied_source_revisions`; optional human review remains allowed before any later provider handoff pack.
+Revision response verdict: `applied_source_revisions_superseded_by_theme_retune`; fresh human or external source-only review is recommended before any later provider handoff pack.
 
 ## Still Blocked
 

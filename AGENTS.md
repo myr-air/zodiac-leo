@@ -27,7 +27,7 @@ This project is a single-channel, source-first operating system for `Mellow Long
 
 ## Source Of Truth
 
-- Channel strategy: `mellow-longplay/channel.md` and `mellow-longplay/roadmap.md`.
+- Channel strategy: `channel/channel.md` and `channel/roadmap.md`.
 - Episode packet: `channel/episodes/<episode-id>/`.
 - Song source: `source/songs.md`.
 - Visual source: `source/visual.md` plus `reviews/visual.md`.

@@ -1,4 +1,4 @@
-# S01E01 Visual Prompt Pack — Campus Cafe Longplay
+# S01E01 Visual Prompt Pack — After-School First Love Longplay
 
 Status: source-only visual prompt pack  
 Episode: `s01e01-campus-cafe-longplay`  
@@ -13,21 +13,21 @@ Do not use the local signature reference images as provider inputs or exact-copy
 ## 1. Main 16:9 Cover / Background Prompt
 
 ```text
-Original reference-free 16:9 cozy music-cover illustration for a soft vocal longplay. A warm adult college campus cafe table beside a large window in late afternoon light. On the table: an open notebook with blank unreadable pages, a simple logo-free coffee cup, a clean pen, soft plant shadows, and a tiny glossy gold crescent-vinyl charm attached to a keychain near the notebook corner. A gray backpack rests on the chair. Optional adult college listener shown from behind or three-quarter back view with long dark hair and cream cardigan; face not emphasized. Calm cozy atmosphere for study, journaling, coffee breaks, and mellow background listening. Warm cream, honey, muted green, soft brown, and gentle peach palette. Soft painterly illustration with subtle film-grain texture, clean negative space in the upper-left for title overlay, lower 18 percent kept simple for subtitles, no readable text, no brand marks, no real school or cafe name, no celebrity likeness, no protected character, no imitation of another channel thumbnail.
+Original reference-free 16:9 cozy music-cover illustration for an easy-listening teen first-love vocal longplay. A warm after-school cafe table beside a large window in late afternoon light, with a soft school courtyard silhouette outside but no real school identity. On the table: an open notebook with blank unreadable pages, a simple logo-free coffee or milk-tea cup, a clean pen, soft plant shadows, and a tiny glossy gold crescent-vinyl charm attached to a keychain near the notebook corner. A gray school backpack rests on the chair. Optional same-age high-school listener pair shown from behind or three-quarter back view, modest cardigans or school jackets, faces not emphasized, shy wholesome PG first-love mood. Warm cream, honey, muted green, soft brown, and gentle peach palette. Soft painterly illustration with subtle film-grain texture, clean negative space in the upper-left for title overlay, lower 18 percent kept simple for subtitles, no readable text, no brand marks, no real school or cafe name, no celebrity likeness, no protected character, no sexualized school uniform framing, no imitation of another channel thumbnail.
 ```
 
 ## 2. Negative Prompt / Exclusions
 
 ```text
-logos, brand names, readable text, real school names, real cafe names, celebrity likeness, minor-coded romance, high-school uniforms, exact face copying, reference-image imitation, competitor thumbnail style, dramatic neon, horror mood, cluttered overlays, busy typography, watermark, UI elements, fake platform badges, copyright-free claim, royalty-free claim, Content ID-safe claim, monetization-safe claim, platform-safe claim, upload-ready claim, publish-ready claim
+logos, brand names, readable text, real school names, real cafe names, celebrity likeness, childlike subject, sexualized teen framing, adult/minor implication, teacher/student romance, revealing uniforms, exact face copying, reference-image imitation, competitor thumbnail style, dramatic neon, horror mood, cluttered overlays, busy typography, watermark, UI elements, fake platform badges, copyright-free claim, royalty-free claim, Content ID-safe claim, monetization-safe claim, platform-safe claim, upload-ready claim, publish-ready claim
 ```
 
 ## 3. No-Character Variant
 
-Use this if the image model makes the person too specific or too young-coded.
+Use this if the image model makes the people too specific, too young-coded, or too uniform-focused.
 
 ```text
-Original reference-free 16:9 cozy music-cover illustration for a soft vocal longplay. Empty adult college campus cafe table beside a large window in late afternoon light, open notebook with blank unreadable pages, simple logo-free coffee cup, clean pen, gray backpack on the chair, soft plant shadow across the table, and a tiny glossy gold crescent-vinyl charm attached to a keychain near the notebook corner. Warm cream, honey, muted green, soft brown, and gentle peach palette. Soft painterly illustration with subtle film-grain texture, calm negative space in the upper-left for title overlay, lower 18 percent simple for subtitles, original non-branded scene, no readable text, no real location, no people, no logos, no imitation of another channel thumbnail.
+Original reference-free 16:9 cozy music-cover illustration for an easy-listening teen first-love vocal longplay. Empty after-school cafe table beside a large window in late afternoon light, soft school courtyard shapes outside with no readable identity, open notebook with blank unreadable pages, simple logo-free coffee or milk-tea cup, clean pen, gray school backpack on the chair, soft plant shadow across the table, and a tiny glossy gold crescent-vinyl charm attached to a keychain near the notebook corner. Warm cream, honey, muted green, soft brown, and gentle peach palette. Soft painterly illustration with subtle film-grain texture, calm negative space in the upper-left for title overlay, lower 18 percent simple for subtitles, original non-branded scene, no readable text, no real location, no people, no logos, no imitation of another channel thumbnail.
 ```
 
 ## 4. Thumbnail-Safer Crop Prompt
@@ -35,7 +35,7 @@ Original reference-free 16:9 cozy music-cover illustration for a soft vocal long
 Use this if the main prompt becomes too detailed for small thumbnail viewing.
 
 ```text
-Original reference-free 16:9 cozy campus cafe music-cover illustration, close tabletop composition with open blank notebook, logo-free coffee cup, clean pen, gray backpack edge, soft window light, plant shadow, and small glossy gold crescent-vinyl charm as a subtle signature object. Warm cream and honey afternoon palette, soft painterly texture, uncluttered composition, upper-left negative space for a short title, simple lower subtitle-safe area, no readable text, no logos, no real school or cafe, no celebrity likeness, no protected character, no reference-image imitation.
+Original reference-free 16:9 cozy after-school cafe music-cover illustration, close tabletop composition with open blank notebook, logo-free coffee or milk-tea cup, clean pen, gray school backpack edge, soft window light, plant shadow, and small glossy gold crescent-vinyl charm as a subtle signature object. Warm cream and honey afternoon palette, soft painterly texture, uncluttered composition, shy first-love atmosphere, upper-left negative space for a short title, simple lower subtitle-safe area, no readable text, no logos, no real school or cafe, no celebrity likeness, no protected character, no reference-image imitation.
 ```
 
 ## 5. Overlay And Safe-Zone Instructions
@@ -52,7 +52,7 @@ Reject or regenerate if a future candidate shows:
 
 - readable brand text, school names, cafe names, UI, watermark, or fake platform badge;
 - a real-person likeness, protected character, celebrity-like face, or exact copied face;
-- minor/high-school-coded romance, school uniform framing, or childlike subject;
+- childlike subject, sexualized teen framing, adult/minor implication, teacher/student romance, revealing school uniform framing, or real school identity;
 - overly busy typography or baked-in text that blocks title/subtitles;
 - competitor thumbnail style or obvious franchise/media reference;
 - rights/platform/upload/publish readiness claims in prompt notes or file labels.

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "task": {
+      "creative-director": "allow",
+      "song-concept-designer": "allow",
+      "songwriter": "allow",
+      "lyric-reviewer": "allow",
+      "suno-reviewer": "allow",
+      "production-manager": "allow",
+      "readiness-reviewer": "allow"
+    }
+  }
+}

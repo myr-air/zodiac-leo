@@ -1,4 +1,4 @@
-# S01E01 Visual Review — Campus Cafe Longplay
+# S01E01 Visual Review — After-School First Love Longplay
 
 Status: source draft reviewed  
 Episode: `s01e01-campus-cafe-longplay`  
@@ -6,8 +6,8 @@ Updated: 2026-05-18
 
 ## Inputs Checked
 
-- Channel visual language: warm everyday campus/cafe scenes, original and non-branded.
-- Signature motifs: crescent-vinyl charm and recurring adult campus listener as source-only identity cues.
+- Channel visual language: warm everyday after-school/cafe scenes, original and non-branded.
+- Signature motifs: crescent-vinyl charm and wholesome same-age listener character cues as source-only identity cues.
 - Episode visual source: `source/visual.md`.
 - Visual prompt pack: `source/visual-prompt-pack.md`.
 
@@ -16,7 +16,7 @@ Updated: 2026-05-18
 | Check | Verdict | Notes |
 |---|---|---|
 | Original reference-free prompt | pass_source | The draft forbids provider reference-image input and exact face copying. |
-| Adult/college-coded subject | pass_source | The prompt says adult college listener and blocks high-school/minor-coded framing. |
+| PG same-age teen subject | pass_source | The prompt uses same-age high-school peer framing and blocks sexualized teen, adult/minor, teacher/student, childlike subject, and exact face copying. |
 | Non-branded environment | pass_source | Logos, real school names, real cafe names, and readable text are excluded. |
 | Copyable prompt variants | pass_source | Main, no-character, and thumbnail-safer prompts are prepared as source-only references. |
 | Safe zones | revise_later | Layout is planned, but must be tested against a real candidate if one is separately approved later. |
@@ -24,7 +24,7 @@ Updated: 2026-05-18
 
 ## Verdict
 
-`pass_source_visual_prompt_pack`
+`pass_source_theme_retuned_visual_prompt_pack`
 
 This verdict only means the visual source direction and prompt pack are coherent enough for continued source planning. It is not image generation approval, candidate acceptance, render/export approval, upload approval, or rights/platform assurance.
 

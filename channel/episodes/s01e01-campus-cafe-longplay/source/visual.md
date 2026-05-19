@@ -1,4 +1,4 @@
-# S01E01 Visual Source — Campus Cafe Longplay
+# S01E01 Visual Source — After-School First Love Longplay
 
 Status: draft / source-only  
 Episode: `s01e01-campus-cafe-longplay`  
@@ -10,26 +10,26 @@ This file is a still-frame and layout plan only. It does not approve image gener
 
 ## Visual Promise
 
-A warm campus cafe table in afternoon light: notebook, coffee, plant shadow, soft study objects, and enough clean negative space for a calm longplay title and later subtitles.
+A warm after-school cafe table near a high-school courtyard in afternoon light: notebook, coffee or milk tea, plant shadow, school bag, soft study objects, and enough clean negative space for a calm longplay title and later subtitles.
 
 ## Signature Motif Use
 
 - Use the channel signature motifs as source-only design guidance, not as provider reference inputs.
 - Include a small glossy gold crescent-vinyl charm as an original object on a keychain or notebook corner.
-- If a listener character appears, keep the person adult/college-coded and non-specific: long dark hair, cream cardigan, bow blouse, plaid skirt, gray backpack, gentle thoughtful energy. Do not copy an exact face or supplied reference image.
+- If listener characters appear, keep them wholesome PG same-age high-school peers and non-specific: modest cardigan or school jacket, simple blouse/shirt, plaid skirt or neat trousers, gray backpack, gentle shy first-love energy. Faces should be turned away or not emphasized. Do not copy an exact face or supplied reference image.
 
 ## Draft Still-Frame Prompt
 
 For copyable prompt variants, use `source/visual-prompt-pack.md`. The prompt pack remains source-only and does not approve image generation or candidate creation.
 
 ```text
-Original reference-free 16:9 cozy music-cover illustration for a soft vocal longplay. A sunlit college campus cafe table beside a large window in late afternoon, open notebook with blank unreadable pages, simple coffee cup with no logo, clean pen, small plant shadow, gray backpack on the chair, and a tiny glossy gold crescent-vinyl charm on a keychain. Optional adult college listener seen from behind or three-quarter back view with long dark hair and cream cardigan, face not emphasized. Warm cream, honey, muted green, and soft brown palette, gentle film-grain texture, calm negative space in upper-left for title overlay, lower 18 percent kept simple for subtitles, no readable text, no brand marks, no real location, no named franchise, no celebrity likeness, no protected character, no imitation of another channel thumbnail.
+Original reference-free 16:9 cozy music-cover illustration for a soft vocal longplay. A sunlit after-school cafe table beside a large window in late afternoon, with a school courtyard softly visible outside. On the table: an open notebook with blank unreadable pages, a simple logo-free coffee or milk-tea cup, clean pen, soft plant shadow, gray school backpack on the chair, and a tiny glossy gold crescent-vinyl charm on a keychain. Optional same-age high-school listener pair seen from behind or three-quarter back view, modest school cardigans/jackets, faces not emphasized, shy wholesome first-love mood. Warm cream, honey, muted green, soft brown, and gentle peach palette, gentle film-grain texture, calm negative space in upper-left for title overlay, lower 18 percent kept simple for subtitles, no readable text, no brand marks, no real school name, no real cafe name, no celebrity likeness, no protected character, no sexualized school uniform framing, no imitation of another channel thumbnail.
 ```
 
 ## Negative Prompt / Exclusions
 
 ```text
-logos, brand names, readable text, real school names, real cafe names, celebrity likeness, minor-coded romance, uniforms that imply high school, exact face copying, competitor thumbnail style, dramatic neon, cluttered overlays, busy typography, watermark, UI elements, fake platform badges, claims about copyright or platform safety
+logos, brand names, readable text, real school names, real cafe names, celebrity likeness, childlike subject, sexualized teen framing, adult/minor implication, teacher/student romance, revealing uniforms, exact face copying, competitor thumbnail style, dramatic neon, cluttered overlays, busy typography, watermark, UI elements, fake platform badges, claims about copyright or platform safety
 ```
 
 ## Safe-Zone Layout
@@ -47,5 +47,5 @@ logos, brand names, readable text, real school names, real cafe names, celebrity
 
 - Confirm no provider reference input will be used.
 - Confirm the prompt stays original and non-branded.
-- Confirm the character remains adult/college-coded.
+- Confirm any character remains wholesome PG same-age high-school coded, non-childlike, and non-sexualized.
 - Confirm title/subtitle/equalizer overlays remain secondary.

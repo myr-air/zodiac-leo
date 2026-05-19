@@ -41,7 +41,7 @@ Usage rules:
 
 Visual description:
 
-- Tasteful young-adult/campus-pop listener character, adult-coded and non-eroticized.
+- Tasteful listener character, wholesome and non-eroticized; adult/college-coded by default, or same-age teen/high-school coded only when an episode explicitly records that direction.
 - Long dark hair, gentle expression, soft thoughtful posture.
 - Cream knit cardigan, bow blouse, plaid skirt, socks/loafers, and a soft gray backpack.
 - Mood range: gentle smile, focused/writing, cheerful, calm/daydreaming.
@@ -51,7 +51,7 @@ Usage rules:
 
 - Treat this as a recurring character design language, not a real person, celebrity, influencer, or exact face-copy target.
 - Future prompts may describe the character's wardrobe, posture, accessories, and mood, but must not ask a provider to replicate the exact face from the supplied sheet.
-- Keep the character wholesome, age-ambiguous young adult / college-coded, not childlike, not explicitly underage, not eroticized, and not school-uniform/minor-coded.
+- Keep the character wholesome, age-appropriate, non-childlike, and non-eroticized. Default to age-ambiguous young adult / college-coded; for an explicitly approved teen/high-school first-love episode, use same-age peer framing only and avoid sexualized uniform styling, adult/minor implication, or real school identity.
 - Use the character as the emotional anchor in key visuals when people are present. If a future scene is unusually object-led, keep at least the gray backpack plus gold crescent charm visible as her presence cue unless a visual gate explicitly approves otherwise.
 
 ## Default Prompt Fragment
@@ -59,7 +59,7 @@ Usage rules:
 Use this fragment in future source-only visual prompts:
 
 ```text
-Signature identity: include the small glossy gold crescent-vinyl charm with concentric grooves and a play-triangle mark, preferably clipped to a soft gray backpack or placed near the notebook/coffee objects. Include the recurring Mellow Longplay campus listener character as a tasteful adult-coded young woman with long dark hair, cream knit cardigan, bow blouse, plaid skirt, socks/loafers, soft gray backpack, gentle thoughtful expression, and calm coffee/notebook/music energy. Treat her as an original character archetype, not a real person or exact face-copy reference.
+Signature identity: include the small glossy gold crescent-vinyl charm with concentric grooves and a play-triangle mark, preferably clipped to a soft gray backpack or placed near the notebook/coffee objects. Include the recurring Mellow Longplay listener character as a tasteful wholesome character with long dark hair, cream knit cardigan or modest school cardigan, bow blouse, plaid skirt, socks/loafers, soft gray backpack, gentle thoughtful expression, and calm coffee/notebook/music energy. Default to adult-coded unless the episode explicitly approves same-age teen/high-school first-love framing. Treat her as an original character archetype, not a real person or exact face-copy reference.
 ```
 
 ## Safety Boundary
@@ -67,5 +67,5 @@ Signature identity: include the small glossy gold crescent-vinyl charm with conc
 - Source-only visual identity guidance with local reference assets.
 - No image generation, image editing, render/export, provider/API/browser/account automation, upload, or publishing approval.
 - No use of the stored reference images as provider reference-image inputs unless a future explicit gate records provenance and approves that exact action.
-- No protected likeness, real-person identity, celebrity/influencer resemblance, school-age/minor framing, or sexualized presentation.
+- No protected likeness, real-person identity, celebrity/influencer resemblance, sexualized presentation, adult/minor implication, teacher/student romance, or real school identity. Teen/high-school framing is allowed only as explicitly approved PG same-age first-love source direction.
 - No rights-safe, platform-safe, Content ID-safe, monetization-safe, upload-ready, publish-ready, copyright-free, royalty-free, or exclusive claim.

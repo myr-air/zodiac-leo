@@ -20,7 +20,7 @@ Still-forbidden terms except as blocked/caution language: `copyright-free`, `roy
 | Input | Path / source | Present? | Notes |
 |---|---|---:|---|
 | Lane README | `mellow-longplay/README.md` | `<yes/no>` | `<notes>` |
-| Channel / roadmap | `mellow-longplay/channel.md`, `mellow-longplay/roadmap.md` | `<yes/no>` | `<notes>` |
+| Channel / roadmap | `channel/channel.md`, `channel/roadmap.md` | `<yes/no>` | `<notes>` |
 | Episode manifest or source packet | `<path>` | `<yes/no>` | `<notes>` |
 | Operating boundary | `docs/operating-boundary.md` | `<yes/no>` | `<notes>` |
 | Provider/platform boundary | `docs/provider-platform-boundary.md` | `<yes/no>` | `<notes>` |
@@ -56,7 +56,7 @@ Score each item using the exact strategy weights. Hard-blocked imitation/protect
 | Criterion | Weight | Score | Evidence / required revision |
 |---|---:|---:|---|
 | Concrete scene details, not generic glow/dream/vibe language | 25 | `<0-25>` | `<examples>` |
-| Believable young-adult emotional logic | 20 | `<0-20>` | `<examples>` |
+| Believable age-appropriate emotional logic | 20 | `<0-20>` | `<examples>` |
 | Non-repetitive hooks and images across all 13 songs | 20 | `<0-20>` | `<examples>` |
 | Singable phrasing and subtitle-friendly line lengths | 15 | `<0-15>` | `<examples>` |
 | No blocked/capped words from the lyric overuse blocklist | 10 | `<0-10>` | `<examples>` |

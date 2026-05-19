@@ -7,7 +7,7 @@ description: Use for Mellow Longplay GPT Image/OpenAI image prompt, still-frame 
 
 Use for source-only visual prompt work in Mellow Longplay.
 
-Read first: `AGENTS.md`, `KNOWLEDGE.md`, `docs/operating-boundary.md`, `mellow-longplay/channel.md`, relevant episode `manifest.json`, `source/visual.md`, and `reviews/visual.md`.
+Read first: `AGENTS.md`, `KNOWLEDGE.md`, `docs/operating-boundary.md`, `channel/channel.md`, relevant episode `manifest.json`, `source/visual.md`, and `reviews/visual.md`.
 
 Prompt order: use-case, canvas/aspect, scene, subject, composition, lighting/color, style/medium, text policy, provenance boundary, safety boundary.
 
