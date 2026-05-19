@@ -10,7 +10,7 @@ Updated: 2026-05-19
 ## Active Episode
 
 - `s01e01-campus-cafe-longplay` — Season 1 Week 1 `After-School First Love Longplay`.
-- Status: Gate 1 source packet open; prior 13-track set is user-rejected/superseded; Tracks 1-3 are user-accepted/source synced; Tracks 4-13 are Mayr source-approved and synced after one-by-one lyric and Suno field review; local audio candidate intake is open with 13 selected draft candidates and 13 pool candidates needing audio QA and human listening.
+- Status: Gate 1 source packet open; prior 13-track set is user-rejected/superseded; Tracks 1-3 are user-accepted/source synced; Tracks 4-13 are Mayr source-approved and synced after one-by-one lyric and Suno field review; local audio candidate intake is open with 13 selected draft candidates and 13 pool candidates; user human listening pass is recorded for all selected candidates, with lyric alignment and duration/sequence decision still pending.
 - No image, video, render/export, subtitle timing, upload plan, release approval, analytics, or platform/account action exists. Audio candidates are ignored local evidence only.
 
 ## Current Source Truth
@@ -52,7 +52,7 @@ Updated: 2026-05-19
 - Source-only Suno prompt retune research trail is recorded in `channel/episodes/s01e01-campus-cafe-longplay/reviews/suno-prompt-research.md`; style/exclude wording and control values were retuned for clearer less repetitive prompts.
 - Source-only prompt/control pack is theme-retuned; it is not provider approval or media approval.
 - Candidate-intake checklist is now active for local user-supplied S01E01 audio files; candidate IDs exist only for local audio evidence and do not approve provider/media/render/release actions.
-- S01E01 local audio candidate intake is recorded: 26 user-supplied WAV candidates were organized into a selected draft set and a pool set. This is not render/export/upload/release approval and still needs audio QA plus human listening.
+- S01E01 local audio candidate intake is recorded: 26 user-supplied WAV candidates were organized into a selected draft set and a pool set. User human listening pass is recorded for all selected candidates; lyric alignment and the 41:31 duration/sequence decision remain pending. This is not render/export/upload/release approval.
 - The local audio candidate intake + Gemini supplemental A/B method is confirmed usable and recorded as a reusable workflow template for future episodes.
 - Source-only visual prompt pack is theme-retuned; it is not image generation approval or visual candidate acceptance.
 - Current audio candidates exist as ignored local evidence only; no visual candidates, render evidence, subtitle sidecars, readiness gate, or release gate are active.

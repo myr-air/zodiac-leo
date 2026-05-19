@@ -20,9 +20,9 @@ Updated: 2026-05-19
 - Post-approval quality improvement is applied to the guardrails and source fields: current `Styles` include BPM, and future Suno field reviews must reject missing BPM.
 - Post-approval workflow improvement is applied: future episode/track drafting must define an Episode Style & Theme Spine first and each new or revised track must state a controlled Track Delta; the current spine/delta matrix is recorded in `source/suno-manual-fields.md`.
 - User opened the local audio candidate intake gate. 26 user-supplied local WAV candidates were found and organized into 13 selected draft candidates under `candidates/s01e01-campus-cafe-longplay/audio/selected/` and 13 pool candidates under `candidates/s01e01-campus-cafe-longplay/audio/pool/`.
-- Audio candidate intake is recorded in `reviews/audio-candidate-intake.md`; selected draft duration is about 41:31 and still needs audio QA, human listening, lyric alignment spot-check, and duration/sequence review.
+- Audio candidate intake is recorded in `reviews/audio-candidate-intake.md`; user human listening pass is recorded for all 13 selected draft candidates in `reviews/audio-qa-listening.md`. Selected draft duration is about 41:31 and still needs lyric alignment spot-check plus duration/sequence decision.
 - The local audio intake workflow was promoted to reusable template `channel/templates/audio-candidate-intake-workflow-template.md`; next active review is `reviews/audio-qa-listening.md`.
 - A future provider/manual handoff still requires a separate explicit gate and current source/boundary check.
 - No provider/browser/API/account/render/export/upload/release action is approved.
 
-Verdict: `selected_draft_needs_human_listen_source_only`
+Verdict: `selected_draft_human_listen_passed_needs_lyric_alignment_duration_source_only`
