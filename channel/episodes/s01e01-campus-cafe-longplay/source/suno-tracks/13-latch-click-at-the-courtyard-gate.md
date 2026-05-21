@@ -3,6 +3,17 @@ Lyrics Mode: Custom
 Lyrics:
 [Closing Reprise Intro - no vocal, 4 bars]
 
+[Dialogue First]
+“You got question seven?”
+“Only because you helped.”
+“You still owe me half the credit.”
+“I’ll pay in fries next review.”
+
+“You’ll text if math wins?”
+“You’ll answer way too fast.”
+“That sounds like a complaint.”
+“It sounds like I’ll ask.”
+
 [Verse 1]
 Courtyard trees drop brown leaves
 Onto the bench by our bags
@@ -51,4 +62,4 @@ Exclude Styles: named-artist imitation, finale bombast, adult-minor romance, sex
 Vocal Gender: female
 Weirdness: 8%
 Style Influence: 82%
-Reject Criteria: Reject if walk hook or title appears, grand forever claim appears, full final chorus stack is added, unsafe teen framing appears, named references appear, childlike vocal appears, old glass/door/bus/rain motifs return, or rights/platform claims appear.
+Reject Criteria: Reject if a walk hook appears, the title becomes a repeated or first hook, grand forever claim appears, full final chorus stack is added, unsafe teen framing appears, named references appear, childlike vocal appears, old glass/door/bus/rain motifs return, or rights/platform claims appear.

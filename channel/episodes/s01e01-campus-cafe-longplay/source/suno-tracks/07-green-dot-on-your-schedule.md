@@ -63,7 +63,7 @@ Green sticker on the chart
 One corner lifting by the glue
 I pack my marker cap-first
 You leave the blue one for me to use
-Styles: mellow R&B pop, cozy teen first-love, female vocal, mid-tempo, 92 BPM, bright chord lift, clean guitar, rounded bass, brushed drums, airy pads
+Styles: mellow R&B pop, cozy after-school lift, comfortable female vocal, mid-tempo, 92 BPM, bright chord lift, clean guitar, rounded bass, brushed drums, airy pads
 Exclude Styles: piano-forward ballad, saxophone, trap, aggressive rap, busy jazz, EDM, adult romance, childlike vocal, named-artist imitation
 Vocal Gender: female
 Weirdness: 11%
