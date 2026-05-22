@@ -1,15 +1,15 @@
 # S01E01 Assembly Package Plan — After-School First Love Longplay
 
-Status: assembly package planning passed / final sidecars promoted source-only / render-export blocked  
+Status: assembly package planning passed / final sidecars promoted / render-export plan passed source-only / execution blocked  
 Episode: `s01e01-campus-cafe-longplay`  
 Package ID: `s01e01-assembly-package-plan-01`  
-Updated: 2026-05-22
+Updated: 2026-05-23
 
 ## 0. Boundary
 
 This document defines the source-only assembly package target and records the later final subtitle sidecar promotion. It does not create audio masters, rendered videos, exports, uploads, release readiness, account actions, credentials, API calls, analytics, Content ID registration, or positive rights/platform claims.
 
-Use this plan and the promoted sidecars only as source truth for a later render/export planning gate.
+Use this plan and the promoted sidecars only as source truth for `reviews/render-export-plan.md` or a later separately approved local render/export execution gate.
 
 ## 1. Inputs Carried Forward
 
@@ -23,6 +23,7 @@ Use this plan and the promoted sidecars only as source truth for a later render/
 | Subtitle timing evidence | `subtitles/README.md`, `reviews/subtitle-improvement.md` | Tracks 1-13 draft timings are human-watch passed source-only; final `.en.srt` and `.en.vtt` sidecars are promoted source-only. |
 | Metadata/disclosure | `source/metadata.md` | Gate 11 source-only title, description, disclosure, chapters, and tags policy remain the draft metadata source. |
 | Internal readiness | `reviews/episode-production-worksheet.md` | Gate 12 remains `96/100` source-only; no score uplift from this planning document alone. |
+| Render/export plan | `reviews/render-export-plan.md` | Source-only render/export planning is passed with future local output placeholders and QA checklist; no outputs created. |
 
 ## 2. Assembly Timeline Target
 
@@ -100,12 +101,12 @@ This plan does not approve generating a full visual render. Final video readines
 - Checked chronological cue order, no overlap, no unintended cue in gap windows, line length/readability, Track 13 `Dialogue First` exclusion, and final cue end within the planned `41:43.28` timeline.
 - Recorded results in `subtitles/README.md`, `reviews/current-state.md`, tracking CSVs, and this package document.
 
-### Render/export planning gate, if separately approved later
+### Render/export planning gate, completed source-only
 
-- Re-read this package, `manifest.json`, `current-state.md`, `source/metadata.md`, `subtitles/README.md`, visual reviews, and tracking CSVs.
-- Define exact local render inputs and output paths before rendering.
-- Require rendered-media QA before any ready claim: duration, audio continuity, subtitle readability, safe-zone/crop, frame sampling, final sidecar match, and metadata/disclosure consistency.
-- Keep upload/public-publish planning and external account actions blocked unless a separate future gate explicitly approves them.
+- Source-only render/export planning is recorded in `reviews/render-export-plan.md`.
+- It defines exact future local render inputs, target output path placeholders, final sidecar usage, V6 visual carry-forward, QA checks, and stop conditions.
+- No render/export outputs were created, and no readiness score uplift is supported from planning alone.
+- Local render/export execution, upload/public-publish planning, and external account actions remain blocked unless a separate future gate explicitly approves them.
 
 ## 6. Stop Conditions
 
@@ -121,12 +122,12 @@ Stop and re-plan before sidecar revision or render/export if any of these change
 ## 7. Verdict
 
 ```text
-Verdict: pass_final_subtitle_sidecar_promotion_source_only
-Scope: source-only assembly package target plus promoted English subtitle sidecars for later render planning gates
+Verdict: pass_assembly_package_final_sidecars_and_render_export_plan_source_only
+Scope: source-only assembly package target plus promoted English subtitle sidecars plus render/export planning handoff
 Timeline target: selected Tracks 1-13 with 12 x 1.00s gaps for planned 41:43.28 duration
 Subtitle target: final en.srt and en.vtt paths promoted source-only
 Visual target: V6 cute-smooth direction carried forward source-only
 Readiness score: remains 96/100 source-only
-Next allowed action: separately approve render/export planning if moving beyond source sidecars
-Still blocked: full video assembly, render/export, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
+Next allowed action: separately approve local render/export execution if moving beyond planning
+Still blocked: full video assembly, render/export output creation, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
 ```

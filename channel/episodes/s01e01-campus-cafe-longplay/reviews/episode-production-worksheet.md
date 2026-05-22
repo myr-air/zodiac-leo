@@ -1,9 +1,9 @@
 # S01E01 Production Worksheet — After-School First Love Longplay
 
-Status: internal readiness scorecard passed / final subtitle sidecars promoted / source-only / 96  
+Status: internal readiness scorecard passed / final subtitle sidecars promoted / render-export plan passed source-only / 96  
 Episode: `s01e01-campus-cafe-longplay`  
 Prepared date: 2026-05-18
-Updated: 2026-05-22
+Updated: 2026-05-23
 
 ## 0. Source-Only Boundary
 
@@ -28,10 +28,11 @@ This worksheet evaluates internal source readiness only. It does not approve pro
 | Metadata source | `source/metadata.md` | yes | Gate 8 source-only chapter plan uses selected audio order with 1s gaps and planned duration `41:43.28`; Gate 11 source-only metadata/disclosure pack is passed; no bumper time reserved. |
 | Assembly package plan | `reviews/assembly-package.md` | yes | Source-only package target defines selected audio order, 1s-gap timeline, V6 visual carry-forward, and final subtitle promotion summary; no render/export approval. |
 | Final subtitle sidecars | `subtitles/s01e01-campus-cafe-longplay.en.srt`, `subtitles/s01e01-campus-cafe-longplay.en.vtt` | yes | Promoted source-only from human-watch-passed draft timings; 598 cues, no overlaps, no gap cues, Track 13 `Dialogue First` exclusion preserved. |
+| Render/export plan | `reviews/render-export-plan.md` | yes | Source-only plan defines future local render inputs, target output placeholders, V6 carry-forward, sidecar usage, QA checklist, and stop conditions; no outputs created. |
 | Tracking CSVs | `tracking/*.csv` | yes | Durable source, candidate intake, audio QA, and duration acceptance rows exist. |
 
 Verdict: `pass_internal_readiness_scorecard_source_only`  
-Reason: required source packet files, source lyrics, selected audio candidate evidence, Gate 8 source-only chapter plan, Gate 11 source-only metadata/disclosure pack, source-only visual background direction, AGY-reviewed V4-07 static layout proof, user-rejected V4-07 animated proof, V5 readable-motion proof, user-passed V6 cute-smooth visual direction, all Tracks 1-13 human watch-passed subtitle draft timings, Gate 12 internal readiness scoring, source-only assembly package planning, and final English subtitle sidecars exist. Full render/export and release gates are still not present.
+Reason: required source packet files, source lyrics, selected audio candidate evidence, Gate 8 source-only chapter plan, Gate 11 source-only metadata/disclosure pack, source-only visual background direction, AGY-reviewed V4-07 static layout proof, user-rejected V4-07 animated proof, V5 readable-motion proof, user-passed V6 cute-smooth visual direction, all Tracks 1-13 human watch-passed subtitle draft timings, Gate 12 internal readiness scoring, source-only assembly package planning, final English subtitle sidecars, and source-only render/export planning exist. Full render/export execution and release gates are still not present.
 
 ## 2. Strategy Lock
 
@@ -87,7 +88,7 @@ Internal score out of 100. This is a source-only readiness score, not platform/a
 | Analytics hypothesis and post-publish notes template are ready | 5 | 5 | Source-only hypothesis below plus `channel/templates/episode-analytics-loop-template.md`; no analytics collection or account action is approved. |
 | **Total** | **100** | **96** | `pass_internal_readiness_scorecard_96_source_only` for source-only assembly planning; downstream gates remain blocked. |
 
-Readiness rule: `96/100` is enough to support the source-only assembly package plan and promoted sidecars. It is not render/export, upload/public-publish, platform/account, monetization, Content ID, or rights-safety approval. The requested `98/100` is not supported yet without closing visual safe-zone/final assembly, audio transcript, and downstream final-QA caveats.
+Readiness rule: `96/100` is enough to support the source-only assembly package plan, promoted sidecars, and render/export planning. It is not render/export execution, upload/public-publish, platform/account, monetization, Content ID, or rights-safety approval. The requested `98/100` is not supported yet without closing visual safe-zone/final assembly, audio transcript, and downstream final-QA caveats with actual output evidence.
 
 Critical blocker scan:
 
@@ -129,7 +130,7 @@ These hypotheses are only for a future manual, privacy-safe analytics loop after
 | 12 | Internal readiness scorecard | pass_internal_readiness_scorecard_96_source_only | any score evidence, critical blocker, or readiness assumption changes |
 | 12A | Assembly package planning | pass_assembly_package_planning_source_only | audio order, gap, final sidecar target paths, V6 carry-forward, timeline, sidecar promotion policy, render/export intent, or blockers change |
 | 12B | Final subtitle sidecar promotion | pass_final_subtitle_sidecars_source_only | final `.srt`/`.vtt`, cue timing, cue text, Track 13 exclusion, gap policy, parser/mechanical checks, or render/export intent changes |
-| 13 | Future render/export gate | blocked | render/export intent or final asset path changes |
+| 13 | Render/export planning gate | pass_render_export_planning_source_only_execution_blocked | render/export execution intent, final asset path changes, output exists, QA evidence, or local render scope changes |
 | 14 | Future upload/public-publish planning gate | blocked | upload intent, account boundary, policy, disclosure, or asset status changes |
 | 15 | Post-release analytics loop | n/a | future release exists and manual metrics are provided |
 
@@ -141,8 +142,8 @@ Scope: internal source-only readiness
 Anti-slop lyric score: 88/100 for theme-retuned source lyrics
 Audio candidate state: 13 selected WAV candidates human-listen, lyric-anchor, and 41:31 duration accepted source-only; Track 13 opening dialogue caveat remains noted
 Internal readiness score: 96/100 source-only
-Critical downstream blockers: no full render/export gate, no release gate
-Required revisions: keep reviewed Tracks 1-13 subtitle draft timings, final English sidecars, Gate 8 chapter plan, Gate 11 metadata/disclosure pack, local provenance report, V6 crop/safe-zone proof evidence, Gate 12 scorecard, and assembly package plan as source-only evidence; keep Suno copy packs synced; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
-Next allowed action: separately approve render/export planning if moving beyond source sidecars
-Still blocked: provider/account automation, media generation, render/export, upload/publish, API calls, credential handling, Content ID registration, rights/platform-safety claims
+Critical downstream blockers: no full render/export execution gate, no release gate
+Required revisions: keep reviewed Tracks 1-13 subtitle draft timings, final English sidecars, Gate 8 chapter plan, Gate 11 metadata/disclosure pack, local provenance report, V6 crop/safe-zone proof evidence, Gate 12 scorecard, assembly package plan, and render/export plan as source-only evidence; keep Suno copy packs synced; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
+Next allowed action: separately approve local render/export execution if moving beyond planning
+Still blocked: provider/account automation, media generation beyond approved local gates, render/export output creation, upload/publish, API calls, credential handling, Content ID registration, rights/platform-safety claims
 ```

@@ -5,7 +5,7 @@
   "status": "source_packet_open",
   "gate": "gate_1_source_packet",
   "created": "2026-05-18",
-  "updated": "2026-05-22",
+  "updated": "2026-05-23",
   "working_longplay": "After-School First Love Longplay",
   "format_target": {
     "main_songs": 12,
@@ -16,12 +16,13 @@
     "lyrics": "tracks_1_3_user_accepted_tracks_4_13_mayr_source_approved",
     "suno_tracks": "tracks_1_13_synced_source_only",
     "prompt_pack": "replacement_sequence_source_only",
-    "metadata": "sequence_chapter_plan_1s_gap_metadata_disclosure_assembly_package_and_final_sidecars_passed_source_only",
-    "review_status": "internal_readiness_scorecard_96_assembly_package_and_final_sidecars_pass_source_only",
+    "metadata": "sequence_chapter_plan_1s_gap_metadata_disclosure_assembly_package_final_sidecars_and_render_export_plan_passed_source_only",
+    "review_status": "internal_readiness_scorecard_96_assembly_package_final_sidecars_and_render_export_plan_pass_source_only",
     "audio_candidates": "selected_draft_human_listen_lyric_anchor_duration_accepted_source_only",
     "visual_candidates": "vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only",
-    "subtitles": "final_en_srt_vtt_sidecars_promoted_source_only_render_export_blocked",
-    "assembly_package": "assembly_package_plan_passed_final_sidecars_promoted_source_only_render_export_blocked"
+    "subtitles": "final_en_srt_vtt_sidecars_promoted_source_only_render_export_execution_blocked",
+    "assembly_package": "assembly_package_plan_passed_final_sidecars_promoted_and_render_export_plan_passed_source_only_execution_blocked",
+    "render_export_plan": "source_only_render_export_plan_passed_no_outputs_created_execution_blocked"
   },
-  "claim_boundary": "Source-only planning and subtitle sidecars. Not provider/media/render/export/upload/release approval."
+  "claim_boundary": "Source-only planning and subtitle sidecars. No render/export outputs created. Not provider/media/render/export/upload/release approval."
 }

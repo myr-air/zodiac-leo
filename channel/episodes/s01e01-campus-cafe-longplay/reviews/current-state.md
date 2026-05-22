@@ -1,7 +1,7 @@
 # S01E01 Current State — After-School First Love Longplay
 
 Status: source packet open  
-Updated: 2026-05-22
+Updated: 2026-05-23
 
 - Gate remains `gate_1_source_packet` with `revise_source_only`.
 - Previous 13-song source set is user-rejected/superseded.
@@ -30,7 +30,8 @@ Updated: 2026-05-22
 - Gate 12 internal readiness scorecard is source-passed in `reviews/episode-production-worksheet.md` at `96/100` after adding user-reported non-secret provenance, local file fingerprints, and V6 crop/safe-zone proof evidence. The scorecard supported source-only package planning; final sidecars were promoted later under a separate gate. This still does not approve render/export, upload/publish, release readiness, analytics, or platform/account actions. `98/100` remains unsupported until future final-assembly/final-render/final-sidecar QA evidence exists.
 - Source-only assembly package planning is passed in `reviews/assembly-package.md`: selected Tracks 1-13 stay in the Gate 8 order, 12 x `1.00s` gaps produce the planned `41:43.28` timeline, V6 visual direction carries forward, and final subtitle target paths are defined.
 - Final English subtitle sidecars are promoted source-only at `subtitles/s01e01-campus-cafe-longplay.en.srt` and `subtitles/s01e01-campus-cafe-longplay.en.vtt` using the human-watch-passed track-local draft timings shifted by the Gate 8 chapter starts. Mechanical checks report 598 cues across 13 tracks, no overlaps, no cues in the 1-second inter-track gaps, max line length 37 chars, Track 13 `Dialogue First` exclusion preserved, and final cue timeline within `41:43.28`. Full video assembly, render/export, upload/publish, release, analytics, and platform/account actions remain blocked until separate future gates.
+- Source-only render/export planning is passed in `reviews/render-export-plan.md`: the plan defines future local render inputs, target output path placeholders under ignored `candidates/`, a future durable QA note target under `reviews/`, V6 visual carry-forward, final sidecar usage, metadata/disclosure QA references, required QA checks, and stop conditions. No audio master, video file, export, thumbnail, upload package, provider/account action, or release artifact was created.
 - A future provider/manual handoff still requires a separate explicit gate and current source/boundary check.
 - No provider/browser/API/account/render/export/upload/release action is approved.
 
-Verdict: `selected_audio_duration_accepted_gate_8_sequence_chapter_plan_passed_visual_v6_passed_gate_10_all_subtitle_human_watch_passed_gate_11_metadata_disclosure_passed_gate_12_internal_readiness_96_assembly_package_plan_passed_final_sidecars_promoted_source_only_render_export_blocked`
+Verdict: `selected_audio_duration_accepted_gate_8_sequence_chapter_plan_passed_visual_v6_passed_gate_10_all_subtitle_human_watch_passed_gate_11_metadata_disclosure_passed_gate_12_internal_readiness_96_assembly_package_plan_passed_final_sidecars_promoted_render_export_plan_passed_source_only_execution_blocked`
