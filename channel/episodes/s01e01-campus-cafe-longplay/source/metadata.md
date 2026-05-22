@@ -1,10 +1,10 @@
 # S01E01 Metadata Source — After-School First Love Longplay
 
-Status: metadata/disclosure pack passed / source-only / render-export blocked  
+Status: metadata/disclosure pack passed / assembly package plan defined / source-only / render-export blocked  
 Prepared date: 2026-05-19
 Updated: 2026-05-22
 
-Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13, with final sidecars still blocked pending a later approved assembly package.
+Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13. `reviews/assembly-package.md` defines planned final subtitle target paths source-only, but final sidecars still require a later approved sidecar promotion gate.
 
 Bumper note: a simple channel intro/outro bumper can be authored locally later from existing source visuals/text without needing AI, but any actual bumper media, render/export, or revised duration must use a separate explicit future gate. This Gate 8 plan does not create or reserve bumper media.
 
@@ -21,7 +21,7 @@ Bumper note: a simple channel intro/outro bumper can be authored locally later f
 | Audio content duration | `41:31.28` |
 | Gap total | `12.00s` |
 | Planned sequence duration | `41:43.28` |
-| Still blocked | final subtitle sidecars, assembly package, render/export, upload/publish, release readiness, rights/platform-safety claims |
+| Still blocked | final subtitle sidecars, render/export, upload/publish, release readiness, rights/platform-safety claims |
 
 ## Gate 11 Metadata / Disclosure Pack
 
@@ -96,7 +96,7 @@ Reject or re-review tags that imply a named artist/song/channel, real brand, rea
 
 `pass_metadata_disclosure_pack_source_only`
 
-Next allowed source-only action is a separately approved assembly-package planning gate before final subtitle sidecar promotion. Final `.srt`/`.vtt` sidecars, full video assembly, render/export, upload/publish, release readiness, analytics, platform/account actions, and rights/platform-safety claims remain blocked.
+Assembly package planning is source-passed in `reviews/assembly-package.md`. Next allowed source-only action is a separately approved final subtitle sidecar promotion gate using that package target, or a separately approved render/export planning gate after sidecar policy is settled. Final `.srt`/`.vtt` sidecars, full video assembly, render/export, upload/publish, release readiness, analytics, platform/account actions, and rights/platform-safety claims remain blocked.
 
 ## Chapter Draft
 

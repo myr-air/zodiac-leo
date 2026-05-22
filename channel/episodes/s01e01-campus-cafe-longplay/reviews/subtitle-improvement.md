@@ -1,6 +1,6 @@
 # S01E01 Subtitle Improvement Review
 
-Status: gate_10_all_tracks_human_watch_passed_source_only_final_sidecars_blocked  
+Status: gate_10_all_tracks_human_watch_passed_source_only_assembly_target_defined_final_sidecars_blocked  
 Updated: 2026-05-22
 
 ## Boundary
@@ -48,10 +48,10 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Keep 1-2 lines per cue, with natural line breaks at breath, clause, or musical phrase boundaries.
 - Avoid cue text that stays onscreen after the sung phrase has clearly moved on.
 - Do not invent lyric words if the sung audio differs from source text; mark uncertainty for review.
-- Do not create final sidecars until a later assembly package gate approves the exact output target.
+- Do not create final sidecars until a later sidecar promotion gate uses the exact output target defined in `reviews/assembly-package.md`.
 
 ## Current Verdict
 
-`gate_10_all_tracks_human_watch_passed_source_only_final_sidecars_blocked`
+`gate_10_all_tracks_human_watch_passed_source_only_assembly_target_defined_final_sidecars_blocked`
 
-Next allowed source-only action is Gate 11 metadata/disclosure source-pack work, or a separately approved assembly-package planning gate before any final sidecar promotion. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.
+Next allowed source-only action is a separately approved final subtitle sidecar promotion gate using `reviews/assembly-package.md`. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.
