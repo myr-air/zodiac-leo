@@ -1,26 +1,33 @@
 # S01E01 Subtitles
 
-Status: Gate 10 subtitle/source timing plan passed / all tracks human-watch passed / assembly target defined / source-only / final sidecars blocked  
+Status: final English sidecars promoted / source-only / render-export blocked  
 Episode: `s01e01-campus-cafe-longplay`
 
 ## Boundary
 
-Final subtitle sidecars are still blocked until a later approved sidecar promotion gate. `reviews/assembly-package.md` now defines the exact planned subtitle target paths, but Track 1 reviewed proof timing, Tracks 2-13 watched draft timings, and the Gate 8 chapter plan remain source-only evidence, not final `.srt`/`.vtt` sidecars. Do not invent timestamps, audio durations, or transcript text.
+Final English subtitle sidecars are promoted source-only from the human-watch-passed track-local draft timings and the Gate 8 chapter plan. They are not full assembly, render/export, upload/publish, release readiness, platform/account action, transcript certification, or rights/platform-safety approval. Do not invent timestamps, audio durations, or transcript text if a future sidecar revision is needed.
 
 ## Gate 10 Human Watch Status
 
-User passed the V6 visual direction source-only, then opened subtitle improvement because the proof subtitles did not align closely enough with the sung vocal and some cues were too long. User passed the current Track 1 subtitle proof after human sung-lyric watch source-only, then reported all remaining Tracks 2-13 PASS source-only. Tracks 1-13 now have human-watch-passed draft timing evidence, and the source-only assembly package defines final target paths, but final sidecar promotion still requires a later separate approval.
+User passed the V6 visual direction source-only, then opened subtitle improvement because the proof subtitles did not align closely enough with the sung vocal and some cues were too long. User passed the current Track 1 subtitle proof after human sung-lyric watch source-only, then reported all remaining Tracks 2-13 PASS source-only. Tracks 1-13 have human-watch-passed draft timing evidence, and the source-only sidecar promotion gate has produced the final source `.srt` and `.vtt` targets.
 
-## Planned Final Sidecar Targets
+## Promoted Final Sidecar Targets
 
-Defined in `reviews/assembly-package.md`, not yet created:
+Created source-only on 2026-05-22:
 
 ```text
 channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.srt
 channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.vtt
 ```
 
-Future promotion policy: shift the human-watch-passed track-local draft timings by the exact Gate 8 chapter starts, keep the 1-second gaps subtitle-empty, preserve Track 13 `Dialogue First` exclusion because that section is absent from the selected audio, and validate both sidecar files before treating them as final source sidecars.
+Promotion policy used: shifted the human-watch-passed track-local draft timings by the exact Gate 8 chapter starts, kept the 1-second gaps subtitle-empty, preserved Track 13 `Dialogue First` exclusion because that section is absent from the selected audio, and validated both sidecar files mechanically before recording them as final source sidecars.
+
+Mechanical promotion summary:
+
+- Cue count: 598 across 13 tracks.
+- Planned timeline duration: `41:43.28`.
+- Max line length: 37 chars.
+- Checks passed: all cues remain inside track windows, inter-track gaps remain subtitle-empty, cue order has no overlaps, line length limit respected.
 
 ## Draft Proofs
 
@@ -49,9 +56,8 @@ Allowed source-only work:
 - Use the Track 1 reviewed proof timing as source-only reference for later final timeline planning.
 - Use Tracks 2-13 watched draft timing sidecars as local review inputs only, not final sidecars.
 - Preserve `vocal_start`/`vocal_end` evidence separately from display timing if timing is carried forward.
-- Keep final sidecar creation blocked until a later approved sidecar promotion gate uses the assembly package target.
+- Treat future sidecar edits or regeneration as a separate review/promotion gate.
 
 Still blocked:
 
-- Final `.srt` or `.vtt` sidecars.
 - Full video assembly, render/export, upload/publish, release readiness, platform/account actions, or rights/platform-safety claims.

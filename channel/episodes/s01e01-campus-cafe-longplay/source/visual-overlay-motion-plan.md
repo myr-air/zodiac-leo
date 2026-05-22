@@ -15,7 +15,7 @@ This file defines overlay placement and motion timing for a future local proof o
 - Header copy: `[line-vector headphone icon] MELLOW LONGPLAY . S01 - E01`.
 - Now-playing label: `Now Playing`.
 - Song title source: `source/songs.md` track titles, displayed as `01 - Margin Notes at Table Three` style copy.
-- Subtitle source: Gate 10 draft timings are human watch-passed source-only; `reviews/assembly-package.md` defines planned final sidecar targets; final subtitle sidecars still require a separate sidecar promotion gate.
+- Subtitle source: Gate 10 draft timings are human watch-passed source-only; final English sidecars are promoted source-only in `subtitles/` using `reviews/assembly-package.md`.
 
 ## Recommended Layout For G.png
 
@@ -36,7 +36,7 @@ Coordinate reference: design at `1920x1080`, scale proportionally for final outp
 | Separate large track title card | Do not use by default. | Superseded by V4 because it would compete with the middle-left subtitle. |
 | Micro chapter marker | Not needed while the top-left song number is visible. | Reserve only if later proof review shows orientation is weak. |
 
-Current proof after user review of V4-07 and V5: use V6 cute-smooth motion direction as the user-passed visual direction source-only. It keeps the full header, uses cute readable header/track/subtitle fonts, keeps decorative styling only on `Now Playing`, replaces the blocky headphone icon with an original anti-aliased line-vector icon, uses timed Track 1 proof subtitle cues, replaces the brick equalizer with a soft smoother waveform/ribbon equalizer, slows parallax to near-still, adds subtle local hair/leaf motion, holds the header through the proof, and demonstrates track-title slide-in/out from the vertical divider. Current proof: `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-cute-smooth-motion-proof-30s-01.mp4`. Gate 10 subtitle timing is source-passed with human-watch-passed draft timings and `reviews/assembly-package.md` defines planned final sidecar targets, but final sidecars remain blocked until a separate sidecar promotion gate.
+Current proof after user review of V4-07 and V5: use V6 cute-smooth motion direction as the user-passed visual direction source-only. It keeps the full header, uses cute readable header/track/subtitle fonts, keeps decorative styling only on `Now Playing`, replaces the blocky headphone icon with an original anti-aliased line-vector icon, uses timed Track 1 proof subtitle cues, replaces the brick equalizer with a soft smoother waveform/ribbon equalizer, slows parallax to near-still, adds subtle local hair/leaf motion, holds the header through the proof, and demonstrates track-title slide-in/out from the vertical divider. Current proof: `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-cute-smooth-motion-proof-30s-01.mp4`. Gate 10 subtitle timing is source-passed with human-watch-passed draft timings, and final English sidecars are promoted source-only in `subtitles/`.
 
 ## Crop / Safe-Zone Carry-Forward
 
@@ -45,7 +45,7 @@ Local crop/safe-zone proof sheets are recorded as ignored local evidence:
 - `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-crop-safe-zone-proof-sheet-01.png`
 - `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-downscale-readability-proof-sheet-01.png`
 
-For the source-only assembly package and any future render/export planning, preserve the V6 visual language but enforce a conservative crop-safe carry-forward rule: keep critical header/title text within a target-safe inset unless a fresh proof shows the target output is safe. Use the proof sheets to check the top-left header, middle-left subtitles, and lower-right equalizer before final sidecar promotion or render/export planning.
+For the source-only assembly package and any future render/export planning, preserve the V6 visual language but enforce a conservative crop-safe carry-forward rule: keep critical header/title text within a target-safe inset unless a fresh proof shows the target output is safe. Use the proof sheets to check the top-left header, middle-left subtitles, and lower-right equalizer before render/export planning.
 
 This proof narrows the crop/readability caveat for source planning, but it is still not full-episode assembly QA, final subtitle sidecar QA, render/export approval, upload approval, or rights/platform-safety evidence.
 
@@ -127,7 +127,7 @@ Psychology basis: the copy now behaves like a quiet record sleeve annotation rat
 ## Still Blocked
 
 - Full video assembly.
-- Final subtitle timing.
+- Final subtitle sidecar revision without a separate gate.
 - Render/export.
 - Upload/publish planning.
 - Provider/account/API/browser automation.

@@ -24,6 +24,9 @@ DEFAULT_OUTPUT_DIR = Path("outputs/subtitle-alignment-prototype")
 DEFAULT_TRACK1_AUDIO = Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav")
 DEFAULT_TRACK1_PROOF_DIR = Path("candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-01")
 DEFAULT_SONG_SOURCE = Path("channel/episodes/s01e01-campus-cafe-longplay/source/songs.md")
+DEFAULT_EPISODE_ID = "s01e01-campus-cafe-longplay"
+DEFAULT_S01E01_PROOF_ROOT = Path("candidates/s01e01-campus-cafe-longplay/subtitles/proofs")
+DEFAULT_S01E01_SUBTITLE_DIR = Path("channel/episodes/s01e01-campus-cafe-longplay/subtitles")
 
 
 class Cue(NamedTuple):
@@ -93,6 +96,18 @@ def assert_safe_generated_path(path: Path) -> None:
     ]
     if not any(root in [resolved, *resolved.parents] for root in allowed_roots):
         raise ValueError(f"refusing to write generated prototype outside outputs/ or candidates/: {path}")
+
+
+def assert_safe_final_sidecar_path(path: Path, episode_id: str) -> None:
+    """Allow final subtitle promotion only to the episode subtitle source dir."""
+    resolved = path.resolve()
+    subtitle_root = (PROJECT_ROOT / "channel" / "episodes" / episode_id / "subtitles").resolve()
+    if subtitle_root not in [resolved, *resolved.parents]:
+        raise ValueError(f"refusing to write final sidecar outside episode subtitles dir: {path}")
+    if path.suffix.lower() not in {".srt", ".vtt"}:
+        raise ValueError(f"final sidecar must be .srt or .vtt: {path}")
+    if not path.name.startswith(f"{episode_id}."):
+        raise ValueError(f"final sidecar name must start with episode id {episode_id!r}: {path.name}")
 
 
 def load_json(path: Path | str) -> Any:
@@ -388,6 +403,15 @@ def serialize_vtt(cues: Iterable[Cue]) -> str:
     return "\n".join(blocks) + "\n"
 
 
+def serialize_final_vtt(cues: Iterable[Cue]) -> str:
+    blocks = ["WEBVTT", ""]
+    for cue in cues:
+        blocks.append(f"{seconds_to_vtt_timestamp(cue.start)} --> {seconds_to_vtt_timestamp(cue.end)}")
+        blocks.append(cue.text)
+        blocks.append("")
+    return "\n".join(blocks).rstrip() + "\n"
+
+
 def cue_to_dict(cue: Cue) -> dict[str, Any]:
     return {
         "slot": cue.slot,
@@ -416,6 +440,110 @@ def dict_to_cue(data: dict[str, Any]) -> Cue:
         vocal_start=data.get("vocal_start"),
         vocal_end=data.get("vocal_end"),
     )
+
+
+def load_reviewed_draft_alignment(path: Path | str, *, track_number: int | None = None) -> dict[str, Any]:
+    data = load_json(path)
+    if track_number is not None and int(data.get("track_number", -1)) != track_number:
+        raise ValueError(f"draft alignment track mismatch for {path}: expected {track_number}, got {data.get('track_number')}")
+    if not data.get("line_count_matches"):
+        raise ValueError(f"draft alignment line count does not match: {path}")
+    display_cues = data.get("display_cues") or []
+    if len(display_cues) != int(data.get("display_cue_count", -1)):
+        raise ValueError(f"draft alignment display cue count mismatch: {path}")
+    if int(data.get("track_number", -1)) == 13 and "Dialogue First" not in set(data.get("excluded_sections") or []):
+        raise ValueError("Track 13 final sidecar source must preserve Dialogue First exclusion")
+    return data
+
+
+def default_draft_alignment_path(proof_root: Path, proof_prefix: str, track_number: int) -> Path:
+    return proof_root / f"track-{track_number:02d}" / f"{proof_prefix}-track-{track_number:02d}-subtitle-alignment-draft-01.json"
+
+
+def promote_reviewed_display_cues(
+    drafts: Iterable[dict[str, Any]],
+    *,
+    gap_seconds: float,
+    max_line_chars: int = 37,
+) -> tuple[list[Cue], list[dict[str, Any]], dict[str, Any]]:
+    draft_list = sorted(drafts, key=lambda data: int(data["track_number"]))
+    timeline = compute_track_timeline(
+        [(f"T{int(data['track_number']):02d}", float(data["audio_duration_seconds"])) for data in draft_list],
+        gap_seconds=gap_seconds,
+    )
+    timeline_by_slot = {entry["slot"]: entry for entry in timeline}
+    final_cues: list[Cue] = []
+    cue_counts: dict[str, int] = {}
+    for data in draft_list:
+        slot = f"T{int(data['track_number']):02d}"
+        entry = timeline_by_slot[slot]
+        track_start = float(entry["track_start"])
+        track_end = float(entry["track_end"])
+        local_cues = [dict_to_cue(cue) for cue in data.get("display_cues", [])]
+        cue_counts[slot] = len(local_cues)
+        for cue in local_cues:
+            start = q3(track_start + cue.start)
+            end = q3(min(track_end, track_start + cue.end))
+            if end <= start:
+                raise ValueError(f"invalid shifted cue timing for {slot}: {start} -> {end}")
+            final_cues.append(
+                Cue(
+                    slot=slot,
+                    start=start,
+                    end=end,
+                    text=cue.text,
+                    section=cue.section,
+                    line_index=cue.line_index,
+                    confidence=cue.confidence,
+                    source="reviewed-draft-display-cue-shifted-to-assembly-timeline",
+                    vocal_start=None if cue.vocal_start is None else q3(track_start + float(cue.vocal_start)),
+                    vocal_end=None if cue.vocal_end is None else q3(min(track_end, track_start + float(cue.vocal_end))),
+                )
+            )
+    final_cues.sort(key=lambda cue: (cue.start, cue.end, cue.slot))
+    summary = validate_final_sidecar_cues(final_cues, timeline, max_line_chars=max_line_chars)
+    summary["cue_counts_by_slot"] = cue_counts
+    return final_cues, timeline, summary
+
+
+def validate_final_sidecar_cues(cues: list[Cue], timeline: list[dict[str, Any]], *, max_line_chars: int = 37) -> dict[str, Any]:
+    if not cues:
+        raise ValueError("no final subtitle cues")
+    timeline_by_slot = {entry["slot"]: entry for entry in timeline}
+    previous: Cue | None = None
+    max_observed_line_chars = 0
+    for cue in cues:
+        if cue.slot not in timeline_by_slot:
+            raise ValueError(f"cue slot not in timeline: {cue.slot}")
+        entry = timeline_by_slot[cue.slot]
+        track_start = float(entry["track_start"])
+        track_end = float(entry["track_end"])
+        if cue.start < track_start - 0.001 or cue.end > track_end + 0.001:
+            raise ValueError(f"cue leaks outside track window for {cue.slot}: {cue.start} -> {cue.end}")
+        if cue.end <= cue.start:
+            raise ValueError(f"cue end must be after start for {cue.slot}: {cue.start} -> {cue.end}")
+        if previous is not None and cue.start < previous.end - 0.001:
+            raise ValueError(f"cue overlap: {previous.slot} {previous.end} > {cue.slot} {cue.start}")
+        for line in cue.text.splitlines():
+            max_observed_line_chars = max(max_observed_line_chars, len(line))
+            if len(line) > max_line_chars:
+                raise ValueError(f"cue line exceeds {max_line_chars} chars: {line!r}")
+        previous = cue
+    final_duration = max(float(entry["track_end"]) for entry in timeline)
+    if cues[-1].end > final_duration + 0.001:
+        raise ValueError("final cue exceeds planned timeline duration")
+    return {
+        "cue_count": len(cues),
+        "track_count": len(timeline),
+        "timeline_duration_seconds": q3(final_duration),
+        "max_line_chars": max_observed_line_chars,
+        "checks": [
+            "all cues remain inside their track windows",
+            "inter-track gaps remain subtitle-empty",
+            "cue order has no overlaps",
+            "line length limit respected",
+        ],
+    }
 
 
 def word_probability(word: dict[str, Any]) -> float | None:
@@ -926,6 +1054,48 @@ def build_longplay(args: argparse.Namespace) -> Path:
     return timeline_path
 
 
+def promote_final_sidecars(args: argparse.Namespace) -> Path:
+    proof_root = project_path(args.proof_root)
+    out_dir = project_path(args.out_dir)
+    track_numbers = args.tracks or list(range(1, 14))
+    drafts = [
+        load_reviewed_draft_alignment(
+            default_draft_alignment_path(proof_root, args.proof_prefix, track_number),
+            track_number=track_number,
+        )
+        for track_number in track_numbers
+    ]
+    final_cues, timeline, summary = promote_reviewed_display_cues(
+        drafts,
+        gap_seconds=args.gap_seconds,
+        max_line_chars=args.max_line_chars,
+    )
+    prefix = args.prefix or args.episode_id
+    srt_path = out_dir / f"{prefix}.en.srt"
+    vtt_path = out_dir / f"{prefix}.en.vtt"
+    assert_safe_final_sidecar_path(srt_path, args.episode_id)
+    assert_safe_final_sidecar_path(vtt_path, args.episode_id)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    srt_path.write_text(serialize_srt(final_cues), encoding="utf-8")
+    vtt_path.write_text(serialize_final_vtt(final_cues), encoding="utf-8")
+    result = {
+        "status": "final_sidecars_promoted_source_only",
+        "boundary": "Source-only subtitle sidecars. Not render/export, upload, release, account action, or rights/platform-safety approval.",
+        "episode_id": args.episode_id,
+        "srt_path": str(srt_path.relative_to(PROJECT_ROOT)),
+        "vtt_path": str(vtt_path.relative_to(PROJECT_ROOT)),
+        "summary": summary,
+        "timeline": timeline,
+    }
+    if args.print_json:
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+    else:
+        print(srt_path.relative_to(PROJECT_ROOT))
+        print(vtt_path.relative_to(PROJECT_ROOT))
+        print(f"cue_count={summary['cue_count']} timeline_duration={summary['timeline_duration_seconds']}")
+    return srt_path
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -984,6 +1154,18 @@ def main(argv: list[str] | None = None) -> int:
     build_parser.add_argument("--slots", nargs="*")
     build_parser.add_argument("--require-all", action="store_true")
     build_parser.set_defaults(func=build_longplay)
+
+    promote_parser = subparsers.add_parser("promote-final-sidecars", help="Promote reviewed draft timings into source subtitle sidecars")
+    promote_parser.add_argument("--episode-id", default=DEFAULT_EPISODE_ID)
+    promote_parser.add_argument("--proof-root", default=str(DEFAULT_S01E01_PROOF_ROOT))
+    promote_parser.add_argument("--out-dir", default=str(DEFAULT_S01E01_SUBTITLE_DIR))
+    promote_parser.add_argument("--proof-prefix", default="s01e01")
+    promote_parser.add_argument("--prefix", default=None)
+    promote_parser.add_argument("--gap-seconds", type=float, default=1.0)
+    promote_parser.add_argument("--max-line-chars", type=int, default=37)
+    promote_parser.add_argument("--tracks", nargs="*", type=int)
+    promote_parser.add_argument("--print-json", action="store_true")
+    promote_parser.set_defaults(func=promote_final_sidecars)
 
     args = parser.parse_args(argv)
     args.func(args)

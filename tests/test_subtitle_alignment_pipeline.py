@@ -1,4 +1,5 @@
 import importlib.util
+import argparse
 import sys
 import tempfile
 import unittest
@@ -93,6 +94,87 @@ class SubtitleAlignmentPipelineTest(unittest.TestCase):
         self.assertTrue(vtt.startswith("WEBVTT"))
         self.assertIn("00:00:00.000 --> 00:00:01.000", vtt)
         self.assertIn("00:00:03.000 --> 00:00:04.000", vtt)
+
+    def test_serialize_final_vtt_has_no_draft_note(self):
+        vtt = pipeline.serialize_final_vtt([
+            pipeline.Cue(slot="T01", start=0.0, end=1.0, text="hello"),
+        ])
+
+        self.assertTrue(vtt.startswith("WEBVTT"))
+        self.assertNotIn("DRAFT", vtt)
+        self.assertIn("00:00:00.000 --> 00:00:01.000", vtt)
+
+    def test_promote_reviewed_display_cues_shifts_to_track_starts_and_keeps_gap_blank(self):
+        drafts = [
+            {
+                "track_number": 1,
+                "audio_duration_seconds": 10.0,
+                "display_cue_count": 1,
+                "display_cues": [
+                    {"slot": "T01", "start": 1.0, "end": 2.0, "text": "first line"},
+                ],
+            },
+            {
+                "track_number": 2,
+                "audio_duration_seconds": 5.0,
+                "display_cue_count": 1,
+                "display_cues": [
+                    {"slot": "T02", "start": 0.5, "end": 1.25, "text": "second line"},
+                ],
+            },
+        ]
+
+        cues, timeline, summary = pipeline.promote_reviewed_display_cues(drafts, gap_seconds=1.0)
+
+        self.assertEqual(timeline[0]["track_end"], 10.0)
+        self.assertEqual(timeline[0]["gap_end"], 11.0)
+        self.assertEqual(cues[0].start, 1.0)
+        self.assertEqual(cues[1].start, 11.5)
+        self.assertTrue(all(not (10.0 < cue.start < 11.0) for cue in cues))
+        self.assertEqual(summary["cue_count"], 2)
+
+    def test_final_sidecar_path_guard_rejects_paths_outside_episode_subtitles(self):
+        with self.assertRaises(ValueError):
+            pipeline.assert_safe_final_sidecar_path(Path("outputs/bad.srt"), "s01e01-campus-cafe-longplay")
+
+    def test_promote_final_sidecars_checks_path_before_mkdir(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_root = Path(temp_dir)
+            proof_root = temp_root / "proofs"
+            track_dir = proof_root / "track-01"
+            track_dir.mkdir(parents=True)
+            (track_dir / "s01e01-track-01-subtitle-alignment-draft-01.json").write_text(
+                """
+{
+  "track_number": 1,
+  "audio_duration_seconds": 10.0,
+  "line_count_matches": true,
+  "display_cue_count": 1,
+  "display_cues": [
+    {"slot": "T01", "start": 1.0, "end": 2.0, "text": "first line"}
+  ]
+}
+""".strip()
+                + "\n",
+                encoding="utf-8",
+            )
+            bad_out_dir = temp_root / "outside" / "unsafe"
+            args = argparse.Namespace(
+                episode_id="s01e01-campus-cafe-longplay",
+                proof_root=str(proof_root),
+                out_dir=str(bad_out_dir),
+                proof_prefix="s01e01",
+                prefix="s01e01-campus-cafe-longplay",
+                gap_seconds=1.0,
+                max_line_chars=37,
+                tracks=[1],
+                print_json=False,
+            )
+
+            with self.assertRaises(ValueError):
+                pipeline.promote_final_sidecars(args)
+
+            self.assertFalse(bad_out_dir.exists())
 
     def test_build_track_text_preserves_line_breaks_for_stable_ts_original_split(self):
         track = {

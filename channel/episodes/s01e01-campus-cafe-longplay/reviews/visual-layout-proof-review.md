@@ -261,12 +261,12 @@ User approved a local crop/safe-zone evidence step to support an internal readin
 Source-only findings:
 
 - The proof sheets provide durable local evidence for checking top-left header, middle-left subtitle, and lower-right equalizer placement against conservative crop/safe-zone overlays.
-- The V6 visual direction remains source-passed, and `reviews/assembly-package.md` carries forward target-safe inset checks before final sidecar promotion or render/export planning.
+- The V6 visual direction remains source-passed, and `reviews/assembly-package.md` carries forward target-safe inset checks before render/export planning.
 - This narrows the crop/readability caveat for source planning, but it is not full-episode assembly QA, final render QA, upload/publish approval, or platform/rights-safety evidence.
 
 ## Next Action
 
-Recommended next step is a separately approved final subtitle sidecar promotion gate using `reviews/assembly-package.md`, or a separately approved render/export planning gate after sidecar policy is settled. Any revised/longer visual proof still requires explicit direction and would not be full assembly, render/export, upload, or release approval.
+Recommended next step is a separately approved render/export planning gate if moving beyond source sidecars. Any revised/longer visual proof still requires explicit direction and would not be full assembly, render/export, upload, or release approval.
 
 ## Still Blocked
 

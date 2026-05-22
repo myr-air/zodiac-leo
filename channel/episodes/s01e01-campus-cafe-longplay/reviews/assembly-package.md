@@ -1,15 +1,15 @@
 # S01E01 Assembly Package Plan — After-School First Love Longplay
 
-Status: assembly package planning passed / source-only / final sidecars and render-export blocked  
+Status: assembly package planning passed / final sidecars promoted source-only / render-export blocked  
 Episode: `s01e01-campus-cafe-longplay`  
 Package ID: `s01e01-assembly-package-plan-01`  
 Updated: 2026-05-22
 
 ## 0. Boundary
 
-This document defines the source-only assembly package target for later approval gates. It does not create final `.srt`/`.vtt` sidecars, audio masters, rendered videos, exports, uploads, release readiness, account actions, credentials, API calls, analytics, Content ID registration, or positive rights/platform claims.
+This document defines the source-only assembly package target and records the later final subtitle sidecar promotion. It does not create audio masters, rendered videos, exports, uploads, release readiness, account actions, credentials, API calls, analytics, Content ID registration, or positive rights/platform claims.
 
-Use this plan only as the next source truth for a separately approved final subtitle sidecar promotion gate or a later render/export planning gate.
+Use this plan and the promoted sidecars only as source truth for a later render/export planning gate.
 
 ## 1. Inputs Carried Forward
 
@@ -20,7 +20,7 @@ Use this plan only as the next source truth for a separately approved final subt
 | Gap policy | `source/metadata.md` | Use `1.00s` between tracks; no crossfade; no intro/outro bumper time reserved. |
 | Planned full timeline | `source/metadata.md` | Planned sequence duration is `41:43.28` including 12 gaps. |
 | Visual direction | `reviews/visual-layout-proof-review.md`, `source/visual-overlay-motion-plan.md` | Carry forward V6 cute-smooth visual direction source-only. |
-| Subtitle timing evidence | `subtitles/README.md`, `reviews/subtitle-improvement.md` | Tracks 1-13 draft timings are human-watch passed source-only; final sidecars remain blocked. |
+| Subtitle timing evidence | `subtitles/README.md`, `reviews/subtitle-improvement.md` | Tracks 1-13 draft timings are human-watch passed source-only; final `.en.srt` and `.en.vtt` sidecars are promoted source-only. |
 | Metadata/disclosure | `source/metadata.md` | Gate 11 source-only title, description, disclosure, chapters, and tags policy remain the draft metadata source. |
 | Internal readiness | `reviews/episode-production-worksheet.md` | Gate 12 remains `96/100` source-only; no score uplift from this planning document alone. |
 
@@ -52,21 +52,30 @@ Assembly policy:
 
 ## 3. Final Subtitle Sidecar Target
 
-Planned final sidecar paths, not yet created:
+Promoted final source sidecar paths:
 
 ```text
 channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.srt
 channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.vtt
 ```
 
-Sidecar promotion policy for a future approved gate:
+Sidecar promotion policy used on 2026-05-22:
 
 - Build from the human-watch-passed track-local draft timings under `candidates/s01e01-campus-cafe-longplay/subtitles/proofs/`.
 - Shift each track-local cue by the exact chapter start in Section 2.
 - Keep the planned 1-second inter-track gaps subtitle-empty unless a future approved cue policy says otherwise.
 - Preserve Track 13 selected-audio policy: exclude the absent `Dialogue First` source section from final sidecar timing because the selected audio begins at Verse 1.
 - Do not invent lyric text, timestamps, translation text, speaker labels, or transcript claims.
-- Validate generated sidecars with parser/mechanical checks and at least one human spot-check before treating them as final source sidecars.
+- Validate generated sidecars with parser/mechanical checks before treating them as final source sidecars.
+
+Promotion summary:
+
+- Promoter: `scripts/subtitle_alignment_pipeline.py promote-final-sidecars --print-json`.
+- Cue count: 598 across 13 tracks.
+- Planned timeline duration: `41:43.28`.
+- Max line length: 37 chars.
+- Checks passed: all cues remain inside track windows, inter-track gaps remain subtitle-empty, cue order has no overlaps, line length limit respected.
+- Boundary: source-only subtitle sidecars; not full assembly, render/export, upload/publish, release readiness, transcript certification, or platform/account approval.
 
 ## 4. Visual Carry-forward Target
 
@@ -84,12 +93,12 @@ This plan does not approve generating a full visual render. Final video readines
 
 ## 5. Future Verification Gates
 
-### Final sidecar promotion gate, if separately approved
+### Final sidecar promotion gate, completed source-only
 
-- Generate only the planned `.srt` and `.vtt` targets above.
-- Parse both files successfully.
-- Check chronological cue order, no overlap, no unintended cue in gap windows, line length/readability, Track 13 `Dialogue First` exclusion, and final cue end within the planned `41:43.28` timeline.
-- Record results in `subtitles/README.md`, `reviews/current-state.md`, tracking CSVs, and this package document if the target changes.
+- Generated only the planned `.srt` and `.vtt` targets above.
+- Parsed both files successfully via promotion/mechanical verification.
+- Checked chronological cue order, no overlap, no unintended cue in gap windows, line length/readability, Track 13 `Dialogue First` exclusion, and final cue end within the planned `41:43.28` timeline.
+- Recorded results in `subtitles/README.md`, `reviews/current-state.md`, tracking CSVs, and this package document.
 
 ### Render/export planning gate, if separately approved later
 
@@ -100,7 +109,7 @@ This plan does not approve generating a full visual render. Final video readines
 
 ## 6. Stop Conditions
 
-Stop and re-plan before sidecar promotion or render/export if any of these change:
+Stop and re-plan before sidecar revision or render/export if any of these change:
 
 - selected audio candidate, duration, order, gap, crossfade, or bumper policy;
 - approved lyrics or Track 13 absent-section policy;
@@ -112,12 +121,12 @@ Stop and re-plan before sidecar promotion or render/export if any of these chang
 ## 7. Verdict
 
 ```text
-Verdict: pass_assembly_package_planning_source_only
-Scope: source-only assembly package target for later sidecar or render planning gates
+Verdict: pass_final_subtitle_sidecar_promotion_source_only
+Scope: source-only assembly package target plus promoted English subtitle sidecars for later render planning gates
 Timeline target: selected Tracks 1-13 with 12 x 1.00s gaps for planned 41:43.28 duration
-Subtitle target: planned final en.srt and en.vtt paths defined but not created
+Subtitle target: final en.srt and en.vtt paths promoted source-only
 Visual target: V6 cute-smooth direction carried forward source-only
 Readiness score: remains 96/100 source-only
-Next allowed action: separately approve final subtitle sidecar promotion using this package plan, or separately approve render/export planning after final sidecar policy is settled
-Still blocked: final sidecars until separate sidecar gate, full video assembly, render/export, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
+Next allowed action: separately approve render/export planning if moving beyond source sidecars
+Still blocked: full video assembly, render/export, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
 ```

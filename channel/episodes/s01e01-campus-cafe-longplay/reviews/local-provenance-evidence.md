@@ -93,4 +93,4 @@ These facts supersede the earlier `unknown_user_supplied` provider/date gap for 
 ## Still Blocked
 
 - Treat these hashes as local evidence only, not rights/platform/release evidence.
-- Final subtitle sidecars, assembly, render/export, upload/publish, analytics, account actions, Content ID actions, and rights/platform-safety claims remain blocked until separate explicit gates.
+- Full assembly, render/export, upload/publish, analytics, account actions, Content ID actions, rights/platform-safety claims, and any final sidecar revision remain blocked until separate explicit gates.

@@ -16,12 +16,12 @@
     "lyrics": "tracks_1_3_user_accepted_tracks_4_13_mayr_source_approved",
     "suno_tracks": "tracks_1_13_synced_source_only",
     "prompt_pack": "replacement_sequence_source_only",
-    "metadata": "sequence_chapter_plan_1s_gap_metadata_disclosure_and_assembly_package_plan_passed_source_only",
-    "review_status": "internal_readiness_scorecard_96_and_assembly_package_plan_pass_source_only",
+    "metadata": "sequence_chapter_plan_1s_gap_metadata_disclosure_assembly_package_and_final_sidecars_passed_source_only",
+    "review_status": "internal_readiness_scorecard_96_assembly_package_and_final_sidecars_pass_source_only",
     "audio_candidates": "selected_draft_human_listen_lyric_anchor_duration_accepted_source_only",
     "visual_candidates": "vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only",
-    "subtitles": "gate_10_all_tracks_draft_timing_human_watch_passed_source_only_final_sidecar_targets_defined_final_sidecars_blocked",
-    "assembly_package": "assembly_package_plan_passed_source_only_final_sidecars_render_export_blocked"
+    "subtitles": "final_en_srt_vtt_sidecars_promoted_source_only_render_export_blocked",
+    "assembly_package": "assembly_package_plan_passed_final_sidecars_promoted_source_only_render_export_blocked"
   },
-  "claim_boundary": "Source-only planning. Assembly package plan is not provider/media/render/export/upload/release approval."
+  "claim_boundary": "Source-only planning and subtitle sidecars. Not provider/media/render/export/upload/release approval."
 }
