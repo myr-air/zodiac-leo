@@ -50,9 +50,9 @@ Policy for a future approved local execution:
 | 12 | Tray Return at 5:59 | `candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t12_c01--tray-return-at-559.wav` | 35:52.96 | 39:12.28 | 1.00s |
 | 13 bonus | Latch Click at the Courtyard Gate | `candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t13_c01--latch-click-at-the-courtyard-gate.wav` | 39:13.28 | 41:43.28 | none |
 
-## 3. Future Local Output And QA Target Placeholders
+## 3. Future Local Output Targets And QA Template
 
-These paths are planning placeholders only. Do not create them without a separate explicit local render/export execution gate. Candidate media paths stay ignored local evidence; the future QA note target is a durable review doc path, not a generated candidate artifact.
+The candidate media paths below are planning placeholders only. Do not create them without a separate explicit local render/export execution gate. Candidate media paths stay ignored local evidence. The QA template exists as a durable review doc path, not a generated candidate artifact.
 
 ```text
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
@@ -66,7 +66,7 @@ Planning notes:
 
 - Use a `qa` filename, not a release/public filename, until a later final QA and release-decision gate exists.
 - Any generated render files should remain ignored local evidence under `candidates/` unless a future repo rule explicitly changes that.
-- Put the future render/export QA note in `reviews/render-export-qa.md` if and only if a later execution gate creates outputs that need durable review; do not write generated Markdown under `candidates/`.
+- Use `reviews/render-export-qa.md` for future durable render/export QA evidence after a later execution gate creates outputs; do not write generated Markdown under `candidates/`.
 - If future execution copies sidecars into the render folder for local QA, the source sidecars under `channel/episodes/s01e01-campus-cafe-longplay/subtitles/` remain the authoritative subtitle source.
 - Do not create thumbnails, upload packages, public metadata files, account exports, or platform-specific package artifacts in this gate.
 

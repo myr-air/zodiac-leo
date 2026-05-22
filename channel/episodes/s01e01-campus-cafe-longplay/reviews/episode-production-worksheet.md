@@ -28,7 +28,7 @@ This worksheet evaluates internal source readiness only. It does not approve pro
 | Metadata source | `source/metadata.md` | yes | Gate 8 source-only chapter plan uses selected audio order with 1s gaps and planned duration `41:43.28`; Gate 11 source-only metadata/disclosure pack is passed; no bumper time reserved. |
 | Assembly package plan | `reviews/assembly-package.md` | yes | Source-only package target defines selected audio order, 1s-gap timeline, V6 visual carry-forward, and final subtitle promotion summary; no render/export approval. |
 | Final subtitle sidecars | `subtitles/s01e01-campus-cafe-longplay.en.srt`, `subtitles/s01e01-campus-cafe-longplay.en.vtt` | yes | Promoted source-only from human-watch-passed draft timings; 598 cues, no overlaps, no gap cues, Track 13 `Dialogue First` exclusion preserved. |
-| Render/export plan | `reviews/render-export-plan.md` | yes | Source-only plan defines future local render inputs, target output placeholders, V6 carry-forward, sidecar usage, QA checklist, and stop conditions; no outputs created. |
+| Render/export plan and QA template | `reviews/render-export-plan.md`, `reviews/render-export-qa.md` | yes | Source-only plan defines future local render inputs, target output placeholders, V6 carry-forward, sidecar usage, QA checklist, and stop conditions; QA template is prepared but no outputs or QA results exist. |
 | Tracking CSVs | `tracking/*.csv` | yes | Durable source, candidate intake, audio QA, and duration acceptance rows exist. |
 
 Verdict: `pass_internal_readiness_scorecard_source_only`  

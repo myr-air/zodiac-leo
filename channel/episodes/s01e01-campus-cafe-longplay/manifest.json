@@ -22,7 +22,7 @@
     "visual_candidates": "vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only",
     "subtitles": "final_en_srt_vtt_sidecars_promoted_source_only_render_export_execution_blocked",
     "assembly_package": "assembly_package_plan_passed_final_sidecars_promoted_and_render_export_plan_passed_source_only_execution_blocked",
-    "render_export_plan": "source_only_render_export_plan_passed_no_outputs_created_execution_blocked"
+    "render_export_plan": "source_only_render_export_plan_passed_qa_template_prepared_no_outputs_created_execution_blocked"
   },
   "claim_boundary": "Source-only planning and subtitle sidecars. No render/export outputs created. Not provider/media/render/export/upload/release approval."
 }
