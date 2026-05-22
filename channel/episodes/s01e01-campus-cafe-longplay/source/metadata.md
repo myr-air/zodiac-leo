@@ -1,10 +1,10 @@
 # S01E01 Metadata Source — After-School First Love Longplay
 
-Status: metadata/disclosure pack passed / final subtitle sidecars promoted / render-export plan passed source-only / execution blocked  
+Status: metadata/disclosure pack passed / final subtitle sidecars promoted / local render-export mechanical QA recorded / release blocked  
 Prepared date: 2026-05-19
 Updated: 2026-05-23
 
-Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13, final English subtitle sidecars are promoted source-only in `subtitles/`, and render/export planning is passed source-only in `reviews/render-export-plan.md` with no outputs created. Full assembly/render execution, render/export output creation, upload/publish, and release remain blocked.
+Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, and one approved local render/export execution has mechanical QA recorded in `reviews/render-export-qa.md`. Full human final-output watch/listen, upload/publish, release readiness, provider/account actions, and additional/revised outputs remain blocked.
 
 Bumper note: a simple channel intro/outro bumper can be authored locally later from existing source visuals/text without needing AI, but any actual bumper media, render/export, or revised duration must use a separate explicit future gate. This Gate 8 plan does not create or reserve bumper media.
 
@@ -21,7 +21,7 @@ Bumper note: a simple channel intro/outro bumper can be authored locally later f
 | Audio content duration | `41:31.28` |
 | Gap total | `12.00s` |
 | Planned sequence duration | `41:43.28` |
-| Still blocked | sidecar revisions without a new gate, render/export, upload/publish, release readiness, rights/platform-safety claims |
+| Still blocked | sidecar revisions without a new gate, additional/revised render/export outputs without a new gate, upload/publish, release readiness, rights/platform-safety claims |
 
 ## Gate 11 Metadata / Disclosure Pack
 
@@ -96,7 +96,7 @@ Reject or re-review tags that imply a named artist/song/channel, real brand, rea
 
 `pass_metadata_disclosure_pack_source_only`
 
-Assembly package planning is source-passed in `reviews/assembly-package.md`, final English subtitle sidecars are promoted source-only in `subtitles/`, and render/export planning is source-passed in `reviews/render-export-plan.md`. Next allowed action is a separate explicit local render/export execution gate if the user wants to move beyond planning. Full video assembly/render execution, render/export output creation, upload/publish, release readiness, analytics, platform/account actions, and rights/platform-safety claims remain blocked.
+Assembly package planning is source-passed in `reviews/assembly-package.md`, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, and one approved local render/export mechanical QA result is recorded in `reviews/render-export-qa.md`. Next allowed action is human full watch/listen review of the local QA MP4 or a separate release-decision planning gate if moving beyond local QA. Upload/publish, release readiness, analytics, platform/account actions, additional/revised outputs without a new gate, and rights/platform-safety claims remain blocked.
 
 ## Chapter Draft
 

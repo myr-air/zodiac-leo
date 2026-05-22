@@ -1,31 +1,31 @@
 # S01E01 Render/Export Plan — After-School First Love Longplay
 
-Status: render/export planning passed / source-only / no outputs created / execution blocked  
+Status: render/export planning passed / local execution completed / mechanical QA recorded / release blocked  
 Episode: `s01e01-campus-cafe-longplay`  
 Plan ID: `s01e01-render-export-plan-01`  
 Updated: 2026-05-23
 
 ## 0. Boundary
 
-This document defines a future local render/export execution plan only. It does not create or approve audio masters, video files, exports, uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, or positive rights/platform claims.
+This document defines the approved local render/export execution plan and records that one local QA execution has now been completed. It does not approve uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
 
-No media output paths listed here exist because of this planning gate. Treat every media path in the output section as a future target placeholder that requires a separate explicit local render/export execution gate before creation.
+The media paths listed here now exist as ignored local QA evidence from the approved execution gate. Treat any additional render/export output, revised media, thumbnail, upload package, or public/release artifact as blocked until a separate explicit gate approves it.
 
 ## 1. Source Inputs Confirmed For Planning
 
 | Area | Source truth | Planning decision |
 |---|---|---|
-| Episode state | `manifest.json`, `reviews/current-state.md` | Source packet remains open. Render/export planning is source-only; execution stays blocked. |
+| Episode state | `manifest.json`, `reviews/current-state.md` | Source packet remains open. One approved local render/export QA output exists; release remains blocked. |
 | Assembly package | `reviews/assembly-package.md` | Carry forward selected Tracks 1-13 with `1.00s` inter-track gaps and planned `41:43.28` timeline. |
-| Audio candidates | `reviews/audio-qa-listening.md`, `tracking/assets.csv` | Future execution should use the 13 selected local WAV candidates in the exact order below. No swaps, trims, or normalization policy changes are approved here. |
+| Audio candidates | `reviews/audio-qa-listening.md`, `tracking/assets.csv` | The approved local execution used the 13 selected local WAV candidates in the exact order below. No swaps, trims, or normalization policy changes are approved here. |
 | Visual direction | `source/visual-overlay-motion-plan.md`, `reviews/visual-layout-proof-review.md` | Carry forward V6 cute-smooth visual direction with crop/safe-zone and downscale proof evidence. |
 | Subtitles | `subtitles/README.md`, `reviews/subtitle-improvement.md` | Use the promoted final English `.srt` and `.vtt` sidecars as source truth for subtitle timing. |
 | Metadata/disclosure | `source/metadata.md` | Use Gate 11 title/description/disclosure and chapter display drafts only as local QA references. Not final upload metadata. |
-| Internal readiness | `reviews/episode-production-worksheet.md` | Remains `96/100` source-only. This plan alone does not support a score increase. |
+| Internal readiness | `reviews/episode-production-worksheet.md` | Remains `96/100` internal readiness. Local mechanical QA alone does not support a score increase or release claim. |
 
-## 2. Future Local Timeline Target
+## 2. Local Timeline Target Used
 
-Policy for a future approved local execution:
+Policy used for the approved local execution:
 
 - Use the selected WAV candidates untrimmed.
 - Insert exactly `1.00s` silence/space between Tracks 1-12 and the next track.
@@ -50,27 +50,27 @@ Policy for a future approved local execution:
 | 12 | Tray Return at 5:59 | `candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t12_c01--tray-return-at-559.wav` | 35:52.96 | 39:12.28 | 1.00s |
 | 13 bonus | Latch Click at the Courtyard Gate | `candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t13_c01--latch-click-at-the-courtyard-gate.wav` | 39:13.28 | 41:43.28 | none |
 
-## 3. Future Local Output Targets And QA Template
+## 3. Local Output Targets Created
 
-The candidate media paths below are planning placeholders only. Do not create them without a separate explicit local render/export execution gate. Candidate media paths stay ignored local evidence. The QA template exists as a durable review doc path, not a generated candidate artifact.
+The candidate media paths below were created by the approved local execution and remain ignored local evidence. The QA result lives in a durable review doc path, not as generated Markdown under `candidates/`.
 
 ```text
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/video/s01e01-campus-cafe-longplay.v6-subtitled-1080p24-qa.mp4
-candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/sidecars/s01e01-campus-cafe-longplay.en.srt
-candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/sidecars/s01e01-campus-cafe-longplay.en.vtt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/subtitles/s01e01-campus-cafe-longplay.en.srt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/subtitles/s01e01-campus-cafe-longplay.en.vtt
 channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md
 ```
 
-Planning notes:
+Output notes:
 
-- Use a `qa` filename, not a release/public filename, until a later final QA and release-decision gate exists.
+- The video uses a `qa` filename, not a release/public filename, until a later final QA and release-decision gate exists.
 - Any generated render files should remain ignored local evidence under `candidates/` unless a future repo rule explicitly changes that.
-- Use `reviews/render-export-qa.md` for future durable render/export QA evidence after a later execution gate creates outputs; do not write generated Markdown under `candidates/`.
-- If future execution copies sidecars into the render folder for local QA, the source sidecars under `channel/episodes/s01e01-campus-cafe-longplay/subtitles/` remain the authoritative subtitle source.
+- Use `reviews/render-export-qa.md` for durable render/export QA evidence; do not write generated Markdown under `candidates/`.
+- Copied sidecars in the render folder are local QA copies only; the source sidecars under `channel/episodes/s01e01-campus-cafe-longplay/subtitles/` remain authoritative.
 - Do not create thumbnails, upload packages, public metadata files, account exports, or platform-specific package artifacts in this gate.
 
-## 4. Future Visual Render Target
+## 4. Visual Render Target Used
 
 Carry forward V6 visual language from `source/visual-overlay-motion-plan.md`:
 
@@ -82,9 +82,9 @@ Carry forward V6 visual language from `source/visual-overlay-motion-plan.md`:
 - deterministic motion seed and no hard particle reset at track boundaries;
 - conservative crop-safe inset for header, track title, subtitles, and equalizer unless a future proof demonstrates safety.
 
-Future execution must re-check the V6 crop/safe-zone and downscale proof sheets before rendering, then sample the actual full-length output after rendering. The V6 proof narrows source-planning risk but is not final-render QA.
+The approved local execution re-used the V6 proof convention and sampled the actual output after rendering. The V6 proof plus local samples narrow mechanical/readability risk but are not a full human final-output QA pass.
 
-## 5. Future Subtitle Target
+## 5. Subtitle Target Used
 
 Authoritative source sidecars:
 
@@ -102,7 +102,7 @@ Known source-sidecar facts to preserve:
 - Track 13 `Dialogue First` remains excluded from timing because the selected audio begins at Verse 1.
 - Final cue timeline remains within `41:43.28`.
 
-Future execution should use these timings to drive on-video lyric subtitles and local sidecar QA. Do not revise cue text, cue boundaries, language, Track 13 section policy, or gap cue policy without a separate sidecar revision gate.
+The approved local execution used these timings to drive on-video lyric subtitles and local sidecar QA. Do not revise cue text, cue boundaries, language, Track 13 section policy, or gap cue policy without a separate sidecar revision gate.
 
 ## 6. Metadata / Disclosure QA Reference
 
@@ -116,9 +116,9 @@ Use `source/metadata.md` as a local QA reference only:
 
 Do not upload, publish, schedule, edit public metadata, use YouTube Studio/API/browser automation, or mark the metadata as final. Re-review against actual final local assets and current platform/account policy before any future release-decision gate.
 
-## 7. Future Render/Export QA Checklist
+## 7. Render/Export QA Checklist
 
-A future separately approved local execution should produce a QA note before any readiness claim. Minimum checks:
+The approved local execution produced `reviews/render-export-qa.md` before any readiness claim. Minimum checks:
 
 ### Preflight before rendering
 
@@ -126,7 +126,7 @@ A future separately approved local execution should produce a QA note before any
 - Confirm the 13 selected WAV paths exist and match the selected candidate IDs.
 - Confirm final `.en.srt` and `.en.vtt` sidecars parse.
 - Confirm no selected audio, order, gap, crossfade, bumper, visual, or metadata decision changed.
-- Confirm the explicit local render/export execution gate is approved before creating outputs.
+- Confirm the explicit local render/export execution gate is approved before creating any new or revised outputs.
 
 ### Mechanical output checks after rendering
 
@@ -145,11 +145,11 @@ A future separately approved local execution should produce a QA note before any
 - Full-length watch/listen pass or a documented sampling plan plus risk acceptance.
 - Subtitle readability review in the actual rendered context.
 - Visual crop/readability review on target viewports.
-- Fresh readiness score decision; do not raise `96/100` without new final-output evidence.
+- Fresh readiness score decision; do not raise `96/100` without new final-output evidence and explicit score review.
 
 ## 8. Stop Conditions
 
-Stop and re-plan before local render/export execution if any of these change:
+Stop and re-plan before any additional local render/export execution if any of these change:
 
 - selected audio candidate, duration, order, gap, crossfade, bumper, or trim policy;
 - subtitle sidecar timing, text, Track 13 exclusion, or language policy;
@@ -162,13 +162,13 @@ Stop and re-plan before local render/export execution if any of these change:
 ## 9. Verdict
 
 ```text
-Verdict: pass_render_export_planning_source_only
-Scope: future local render/export input map, output target placeholders, and QA checklist only
+Verdict: pass_local_render_export_execution_mechanical_qa_recorded
+Scope: local render/export input map, ignored output targets, and QA checklist/result only
 Timeline target: selected Tracks 1-13 with 12 x 1.00s gaps for planned 41:43.28 duration
 Subtitle target: promoted final English en.srt and en.vtt sidecars carried forward source-only
-Visual target: V6 cute-smooth direction carried forward source-only with safe-zone checks required later
-Readiness score: remains 96/100 source-only
-Outputs created by this gate: none
-Next allowed action: separately approve local render/export execution if moving beyond planning
-Still blocked: actual full video assembly, render/export output creation, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
+Visual target: V6 cute-smooth direction carried forward with sampled local output checks and full human QA required later
+Readiness score: remains 96/100 internal readiness
+Outputs created by this gate: ignored local WAV timeline, QA MP4, sidecar copies, and sampled PNG snapshots under candidates/
+Next allowed action: human full watch/listen review or separate release-decision planning gate if the user wants to move beyond local QA
+Still blocked: additional/revised render/export output creation without a new gate, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
 ```
