@@ -1,7 +1,7 @@
 # S01E01 Current State — After-School First Love Longplay
 
 Status: source packet open  
-Updated: 2026-05-19
+Updated: 2026-05-22
 
 - Gate remains `gate_1_source_packet` with `revise_source_only`.
 - Previous 13-song source set is user-rejected/superseded.
@@ -21,8 +21,12 @@ Updated: 2026-05-19
 - Post-approval workflow improvement is applied: future episode/track drafting must define an Episode Style & Theme Spine first and each new or revised track must state a controlled Track Delta; the current spine/delta matrix is recorded in `source/suno-manual-fields.md`.
 - User opened the local audio candidate intake gate. 26 user-supplied local WAV candidates were found and organized into 13 selected draft candidates under `candidates/s01e01-campus-cafe-longplay/audio/selected/` and 13 pool candidates under `candidates/s01e01-campus-cafe-longplay/audio/pool/`.
 - Audio candidate intake is recorded in `reviews/audio-candidate-intake.md`; user human listening pass, Gemini supplemental lyric anchor spot-check pass, and 41:31 selected-draft duration/sequence acceptance are recorded for all 13 selected draft candidates in `reviews/audio-qa-listening.md`.
+- Gate 8 sequence/chapter plan is source-passed in `source/metadata.md`: track order stays 1-13, inter-track gaps are `1.00s`, crossfades are none, no intro/outro bumper time is reserved, and planned sequence duration is `41:43.28` including gaps. Simple local bumper creation remains possible later without AI, but any bumper media, duration revision, render/export, or upload/release step requires a separate future gate.
 - The local audio intake workflow was promoted to reusable template `channel/templates/audio-candidate-intake-workflow-template.md`; next active review is `reviews/audio-qa-listening.md`.
+- User approved `candidates/s01e01-campus-cafe-longplay/visual/G.png` as source-only visual background direction `vis-c01`; V1 and V3 static layout directions were rejected by the user, and V4 mockups were generated under `candidates/s01e01-campus-cafe-longplay/visual/proofs/static-layout-mockups-v4/` and recorded in `reviews/visual-layout-proof-review.md`.
+- V4-07 static layout was AGY-reviewed, then a short local animated proof was created at `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v4-07/s01e01-vis-c01-v4-07-animated-proof-15s-01.mp4`. User rejected that proof direction for hard-to-read typography, weak headphone icon, static subtitle behavior, poor equalizer design, and boring motion. V5 readable-motion proof was created and then revised again for cuter readable typography, a smoother equalizer, near-still parallax, local hair/leaf motion, header hold, and title slide-in/out. User passed V6 as the visual direction source-only: `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-cute-smooth-motion-proof-30s-01.mp4`.
+- Subtitle improvement gate is recorded source-only because the V6 proof subtitles needed closer sung-vocal alignment and shorter cue chunks. Track 1 now has a local subtitle-only draft alignment proof generated from selected audio and source lyrics: `candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-01/s01e01-track-01-subtitle-alignment-draft-01.json` plus draft proof sidecars and MP4. Mechanical checks show 59 cues, 0.08s minimum display gap, 37 max line chars, and no overlap; proof motion uses proof-only `1.5s` fade/slide in and `1.0s` fade-only out with no exit slide, without changing cue timing. User passed the Track 1 sung-lyric watch pass source-only; mechanical low-confidence flags on cues 58-59 remain recorded as alignment evidence but no longer block the Track 1 proof. Final `.srt`/`.vtt` sidecars, full assembly, render/export, and release remain blocked until later explicit gates.
 - A future provider/manual handoff still requires a separate explicit gate and current source/boundary check.
 - No provider/browser/API/account/render/export/upload/release action is approved.
 
-Verdict: `selected_draft_human_listen_lyric_anchor_duration_accepted_source_only`
+Verdict: `selected_audio_duration_accepted_gate_8_sequence_chapter_plan_passed_visual_v6_passed_track_1_subtitle_proof_human_watch_passed_source_only_final_sidecars_blocked`

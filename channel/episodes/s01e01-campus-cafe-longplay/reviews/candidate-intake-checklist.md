@@ -1,6 +1,6 @@
 # S01E01 Candidate Intake Checklist — After-School First Love Longplay
 
-Status: intake_recorded_human_listen_lyric_anchor_duration_accepted_source_only
+Status: intake_recorded_audio_accepted_visual_v6_passed_track_1_subtitle_watch_passed_source_only
 Episode: `s01e01-campus-cafe-longplay`  
 Prepared date: 2026-05-18
 
@@ -165,4 +165,4 @@ Candidate Intake can close only when real files exist and the review docs/tracki
 - visual files needing review are routed to visual safe-zone/crop review;
 - render/export and release gates remain blocked unless separately approved later.
 
-Current state: 26 user-supplied local WAV candidates exist. A source-only selected draft set and pool set are recorded in `reviews/audio-candidate-intake.md`; all selected candidates passed user human listening and Gemini supplemental lyric anchor spot-check, and the 41:31 duration/sequence is accepted source-only before any later gate.
+Current state: 26 user-supplied local WAV candidates exist. A source-only selected draft set and pool set are recorded in `reviews/audio-candidate-intake.md`; all selected candidates passed user human listening and Gemini supplemental lyric anchor spot-check, and the 41:31 duration/sequence is accepted source-only before any later gate. One local visual background direction `vis-c01` exists at `candidates/s01e01-campus-cafe-longplay/visual/G.png`; V1/V3 static directions were user-rejected, V4-07 static layout proof is AGY-reviewed and recorded in `reviews/visual-layout-proof-review.md`; user rejected the V4-07 animated proof direction, V5 was revised again, and V6 cute-smooth motion proof is user-passed as the visual direction source-only. Track 1 subtitle proof is human watch-passed source-only; final subtitle sidecars, assembly, render/export, upload/publish, and release remain blocked until later explicit gates.

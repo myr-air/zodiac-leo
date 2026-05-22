@@ -59,3 +59,7 @@ candidates/**/*.jpeg
 candidates/**/*.webp
 candidates/**/*.tif
 candidates/**/*.tiff
+candidates/**/subtitles/**/*.ass
+candidates/**/subtitles/**/*.json
+candidates/**/subtitles/**/*.srt
+candidates/**/subtitles/**/*.vtt

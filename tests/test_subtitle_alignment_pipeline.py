@@ -108,6 +108,113 @@ class SubtitleAlignmentPipelineTest(unittest.TestCase):
         self.assertEqual([m["section"] for m in line_meta], ["verse", "verse", "chorus"])
         self.assertEqual([m["line_index"] for m in line_meta], [0, 1, 0])
 
+    def test_apply_subtitle_display_timing_adds_padding_without_overlap(self):
+        vocal_cues = [
+            pipeline.Cue(slot="T01", start=10.0, end=11.0, text="first line", vocal_start=10.0, vocal_end=11.0),
+            pipeline.Cue(slot="T01", start=11.25, end=12.0, text="second line", vocal_start=11.25, vocal_end=12.0),
+        ]
+
+        display = pipeline.apply_subtitle_display_timing(
+            vocal_cues,
+            lead_in=0.20,
+            tail_hold=0.24,
+            fade_out=0.16,
+            min_gap=0.08,
+            track_end=20.0,
+        )
+
+        self.assertEqual(display[0].start, 9.8)
+        self.assertEqual(display[1].start, 11.05)
+        self.assertLessEqual(display[0].end + 0.08, display[1].start)
+        self.assertEqual(display[0].vocal_start, 10.0)
+        self.assertEqual(display[0].vocal_end, 11.0)
+
+    def test_adjusted_segment_bounds_repairs_stretched_low_confidence_first_word(self):
+        start, end, corrected = pipeline.adjusted_segment_bounds(
+            {
+                "start": 0.42,
+                "end": 16.30,
+                "words": [
+                    {"word": " After", "start": 0.42, "end": 14.24, "probability": 0.008},
+                    {"word": " school,", "start": 14.24, "end": 15.16, "probability": 0.55},
+                    {"word": " down", "start": 15.82, "end": 16.30, "probability": 0.99},
+                ],
+            }
+        )
+
+        self.assertTrue(corrected)
+        self.assertEqual(start, 13.24)
+        self.assertEqual(end, 16.3)
+
+    def test_align_song_source_track_defaults_to_accurate_alignment(self):
+        observed = {}
+        original = pipeline.align_song_source_track
+
+        def fake_align_song_source_track(args):
+            observed["fast_mode"] = args.fast_mode
+            observed["fade_in"] = args.fade_in
+            observed["fade_out"] = args.fade_out
+            observed["motion_fade_in"] = args.motion_fade_in
+            observed["motion_fade_out"] = args.motion_fade_out
+            observed["motion_slide_pixels"] = args.motion_slide_pixels
+            observed["motion_slide_out_pixels"] = args.motion_slide_out_pixels
+
+        pipeline.align_song_source_track = fake_align_song_source_track
+        try:
+            self.assertEqual(pipeline.main(["align-song-source-track", "--no-render"]), 0)
+        finally:
+            pipeline.align_song_source_track = original
+
+        self.assertFalse(observed["fast_mode"])
+        self.assertEqual(observed["fade_in"], 0.34)
+        self.assertEqual(observed["fade_out"], 0.30)
+        self.assertEqual(observed["motion_fade_in"], 1.50)
+        self.assertEqual(observed["motion_fade_out"], 1.00)
+        self.assertEqual(observed["motion_slide_pixels"], 18.0)
+        self.assertEqual(observed["motion_slide_out_pixels"], 0.0)
+
+    def test_subtitle_motion_slides_in_then_fades_out_without_slide(self):
+        fade_in = 1.50
+        fade_out = 1.00
+
+        alpha_start, offset_start = pipeline.subtitle_motion_alpha_and_offset(
+            10.0,
+            10.0,
+            14.0,
+            fade_in=fade_in,
+            fade_out=fade_out,
+        )
+        alpha_mid, offset_mid = pipeline.subtitle_motion_alpha_and_offset(
+            12.0,
+            10.0,
+            14.0,
+            fade_in=fade_in,
+            fade_out=fade_out,
+        )
+        alpha_end, offset_end = pipeline.subtitle_motion_alpha_and_offset(
+            14.0,
+            10.0,
+            14.0,
+            fade_in=fade_in,
+            fade_out=fade_out,
+        )
+        alpha_fading_out, offset_fading_out = pipeline.subtitle_motion_alpha_and_offset(
+            13.5,
+            10.0,
+            14.0,
+            fade_in=fade_in,
+            fade_out=fade_out,
+        )
+
+        self.assertEqual(alpha_start, 0.0)
+        self.assertEqual(alpha_mid, 1.0)
+        self.assertEqual(alpha_end, 0.0)
+        self.assertEqual(offset_start, 18.0)
+        self.assertEqual(offset_mid, 0.0)
+        self.assertEqual(offset_end, 0.0)
+        self.assertLess(alpha_fading_out, 1.0)
+        self.assertEqual(offset_fading_out, 0.0)
+
 
 if __name__ == "__main__":
     unittest.main()

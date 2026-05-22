@@ -25,11 +25,11 @@ This worksheet evaluates internal source readiness only. It does not approve pro
 | Candidate intake checklist / audio QA | `reviews/candidate-intake-checklist.md`, `reviews/audio-candidate-intake.md`, `reviews/audio-qa-listening.md` | yes | 26 user-supplied local WAV candidates recorded; 13 selected draft candidates and 13 pool candidates mapped. Human listening, lyric anchor spot-check, and 41:31 duration/sequence acceptance are source-only recorded. |
 | External lyric review | `reviews/gemini-lyrics-review.md` | historical | Gemini CLI review completed for the earlier adult/college-coded draft; superseded by theme retune. |
 | Visual source | `source/visual.md`, `source/visual-prompt-pack.md`, `reviews/visual-prompt-pack.md` | yes | Theme-retuned source-only visual prompts and safe zones prepared. |
-| Metadata source | `source/metadata.md` | yes | Chapter list synced to selected audio state; exact timestamps remain pending assembly/final timeline. |
+| Metadata source | `source/metadata.md` | yes | Gate 8 source-only chapter plan uses selected audio order with 1s gaps and planned duration `41:43.28`; no bumper time reserved. |
 | Tracking CSVs | `tracking/*.csv` | yes | Durable source, candidate intake, audio QA, and duration acceptance rows exist. |
 
 Verdict: `revise_source_only`  
-Reason: required source packet files, source lyrics, and selected audio candidate evidence exist, but visual candidates, subtitle timing, assembly timeline, internal readiness scoring, render/export, and release gates are not present.
+Reason: required source packet files, source lyrics, selected audio candidate evidence, Gate 8 source-only chapter plan, source-only visual background direction, AGY-reviewed V4-07 static layout proof, user-rejected V4-07 animated proof, V5 readable-motion proof, user-passed V6 cute-smooth visual direction, and Track 1 human watch-passed subtitle proof exist source-only, but final subtitle sidecars, assembly package, internal readiness scoring, full render/export, and release gates are not present.
 
 ## 2. Strategy Lock
 
@@ -67,22 +67,22 @@ The source outline includes adjacent-difference planning across all 13 tracks. A
 
 ## 5. Visual Safe-Zone Status
 
-Visual safe zones are planned in `source/visual.md` and reviewed in `reviews/visual.md`. Real image candidate checks remain blocked until a separate future visual candidate gate exists.
+Visual safe zones are planned in `source/visual.md` and reviewed in `reviews/visual.md`. User approved `G.png` as source-only background direction `vis-c01`; V1/V3 static directions were user-rejected, V4-07 is AGY-reviewed in `reviews/visual-layout-proof-review.md`, and overlay placement/motion is recorded in `source/visual-overlay-motion-plan.md`. User rejected the short V4-07 animated proof direction; V5 was revised again; V6 cute-smooth motion proof is user-passed as the visual direction source-only. Track 1 subtitle proof is human watch-passed source-only in `reviews/subtitle-improvement.md`; final subtitle sidecars remain blocked until a later assembly timeline gate.
 
 ## 6. Named Revision Gates
 
 | # | Gate | Status | Re-review trigger |
 |---:|---|---|---|
 | 1 | Strategy lock | pass | listener job, world, duration, or episode promise changes |
-| 2 | Song-source packet | revise_after_theme_retune | titles, briefs, structure matrix, style, or exclude field changes |
+| 2 | Song-source packet | pass_tracks_1_13_synced_source_only | titles, briefs, structure matrix, style, or exclude field changes |
 | 3 | Lyric anti-slop audit | pass_source_theme_retune_checkpoint | fresh human/external review recommended before provider handoff |
 | 4 | Prompt/control package review | pass_source_theme_retuned | provider/model/control fields or manual handoff notes change |
 | 5 | Candidate intake/provenance check | selected_and_pool_candidates_recorded_source_only | candidate files, candidate IDs, selection, or provenance changes |
 | 6 | Objective audio QA | local_technical_intake_recorded_source_only | audio format, duration, loudness, clipping, or artifact evidence changes |
 | 7 | Human listening and lyric-anchor pass | human_listen_lyric_anchor_duration_accepted_source_only | human verdict, lyric alignment, Track 13 opening caveat, duration, or selected candidate changes |
-| 8 | Sequence/chapter plan | duration_accepted_timestamps_pending_assembly | order, gap, chapter timestamp, final timeline, duration, or story arc changes |
-| 9 | Visual world and safe-zone plan | pass_source_theme_retuned_prompt_pack | subject, layout, overlay, crop, prompt, or source image use changes |
-| 10 | Subtitle/source timing plan | pending_final_timeline | lyrics, sung words, timing policy, or timeline exists |
+| 8 | Sequence/chapter plan | pass_1s_gap_chapter_plan_source_only | order, gap, chapter timestamp, bumper policy, duration, or story arc changes |
+| 9 | Visual world and safe-zone plan | vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only | subject, layout, overlay, crop, prompt, source image use, proof file, or visual direction changes |
+| 10 | Subtitle/source timing plan | track_1_human_watch_passed_source_only_final_sidecars_blocked | lyrics, sung words, timing policy, cue segmentation, final sidecars, or timeline exists |
 | 11 | Metadata/disclosure pack | revise_pending_assembly_timeline | title, description, tags, chapters, disclosure, timestamp source, or claim wording changes |
 | 12 | Internal readiness scorecard | pending | source packet becomes complete enough to score |
 | 13 | Future render/export gate | blocked | render/export intent or final asset path changes |
@@ -97,8 +97,8 @@ Scope: internal source-only readiness
 Anti-slop lyric score: 88/100 for theme-retuned source lyrics
 Audio candidate state: 13 selected WAV candidates human-listen, lyric-anchor, and 41:31 duration accepted source-only; Track 13 opening dialogue caveat remains noted
 Internal readiness score: pending
-Critical blockers: no visual candidate, no subtitle timing or final timeline, no assembly package, no internal readiness gate, no release gate
-Required revisions: keep Suno copy packs synced; keep metadata timestamps pending assembly/final timeline; fresh lyric/provider review before any manual provider handoff; add new evidence only after separate gates
-Next allowed action: source-only assembly preflight planning, metadata/chapter timing plan, visual candidate gate planning, subtitle timing plan, or lyric polish if T1-T3 pattern concerns are not grandfathered
+Critical blockers: no assembly package, no final subtitle sidecars, no internal readiness gate, no render/export gate, no release gate
+Required revisions: keep reviewed Track 1 subtitle proof timing and Gate 8 chapter plan as source-only evidence; keep Suno copy packs synced; keep final subtitle sidecars pending an approved assembly package; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
+Next allowed action: source-only assembly preflight planning, metadata/chapter timing plan, or lyric polish if T1-T3 pattern concerns are not grandfathered
 Still blocked: provider/account automation, media generation, render/export, upload/publish, API calls, credential handling, Content ID registration, rights/platform-safety claims
 ```

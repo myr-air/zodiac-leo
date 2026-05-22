@@ -43,6 +43,8 @@ logos, brand names, readable text, real school names, real cafe names, celebrity
 | Focal subject | center/right 60 percent | do not cover face, notebook, coffee, or charm with text |
 | Mobile crop | keep critical text and charm away from outer 10 percent | title remains readable in 16:9 and thumbnail crop |
 
+Current `vis-c01` V6 proof direction supersedes the generic lower-subtitle/title-card layout for the selected `G.png` background: keep the full top-left header with cute readable fonts, use timed lyric subtitles in the middle-left area, slide the track title in/out from the divider area, use a soft bottom-right waveform/ribbon equalizer, and keep motion near-still with subtle local hair/leaf movement as recorded in `source/visual-overlay-motion-plan.md`.
+
 ## Review Need Before Any Visual Candidate
 
 - Confirm no provider reference input will be used.
