@@ -29,7 +29,7 @@ This worksheet evaluates internal source readiness only. It does not approve pro
 | Tracking CSVs | `tracking/*.csv` | yes | Durable source, candidate intake, audio QA, and duration acceptance rows exist. |
 
 Verdict: `revise_source_only`  
-Reason: required source packet files, source lyrics, selected audio candidate evidence, Gate 8 source-only chapter plan, source-only visual background direction, AGY-reviewed V4-07 static layout proof, user-rejected V4-07 animated proof, V5 readable-motion proof, user-passed V6 cute-smooth visual direction, and Track 1 human watch-passed subtitle proof exist source-only, but final subtitle sidecars, assembly package, internal readiness scoring, full render/export, and release gates are not present.
+Reason: required source packet files, source lyrics, selected audio candidate evidence, Gate 8 source-only chapter plan, source-only visual background direction, AGY-reviewed V4-07 static layout proof, user-rejected V4-07 animated proof, V5 readable-motion proof, user-passed V6 cute-smooth visual direction, Track 1 human watch-passed subtitle proof, and Tracks 2-12 draft subtitle sidecars exist source-only, but Track 13 subtitle alignment is incomplete and final subtitle sidecars, assembly package, internal readiness scoring, full render/export, and release gates are not present.
 
 ## 2. Strategy Lock
 
@@ -82,7 +82,7 @@ Visual safe zones are planned in `source/visual.md` and reviewed in `reviews/vis
 | 7 | Human listening and lyric-anchor pass | human_listen_lyric_anchor_duration_accepted_source_only | human verdict, lyric alignment, Track 13 opening caveat, duration, or selected candidate changes |
 | 8 | Sequence/chapter plan | pass_1s_gap_chapter_plan_source_only | order, gap, chapter timestamp, bumper policy, duration, or story arc changes |
 | 9 | Visual world and safe-zone plan | vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only | subject, layout, overlay, crop, prompt, source image use, proof file, or visual direction changes |
-| 10 | Subtitle/source timing plan | track_1_human_watch_passed_source_only_final_sidecars_blocked | lyrics, sung words, timing policy, cue segmentation, final sidecars, or timeline exists |
+| 10 | Subtitle/source timing plan | revise_track_13_alignment_blocked_tracks_2_12_need_watch_pass_source_only | lyrics, sung words, timing policy, cue segmentation, final sidecars, or timeline exists |
 | 11 | Metadata/disclosure pack | revise_pending_assembly_timeline | title, description, tags, chapters, disclosure, timestamp source, or claim wording changes |
 | 12 | Internal readiness scorecard | pending | source packet becomes complete enough to score |
 | 13 | Future render/export gate | blocked | render/export intent or final asset path changes |
@@ -97,8 +97,8 @@ Scope: internal source-only readiness
 Anti-slop lyric score: 88/100 for theme-retuned source lyrics
 Audio candidate state: 13 selected WAV candidates human-listen, lyric-anchor, and 41:31 duration accepted source-only; Track 13 opening dialogue caveat remains noted
 Internal readiness score: pending
-Critical blockers: no assembly package, no final subtitle sidecars, no internal readiness gate, no render/export gate, no release gate
-Required revisions: keep reviewed Track 1 subtitle proof timing and Gate 8 chapter plan as source-only evidence; keep Suno copy packs synced; keep final subtitle sidecars pending an approved assembly package; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
-Next allowed action: source-only assembly preflight planning, metadata/chapter timing plan, or lyric polish if T1-T3 pattern concerns are not grandfathered
+Critical blockers: Track 13 subtitle alignment incomplete, Tracks 2-12 human subtitle watch pass pending, no assembly package, no final subtitle sidecars, no internal readiness gate, no render/export gate, no release gate
+Required revisions: resolve Track 13 subtitle/source-audio timing coverage; human-watch Tracks 2-13 draft subtitle timings; keep reviewed Track 1 subtitle proof timing and Gate 8 chapter plan as source-only evidence; keep Suno copy packs synced; keep final subtitle sidecars pending an approved assembly package; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
+Next allowed action: Track 13 subtitle timing review/manual timing/swap/regeneration decision, then human-watch Tracks 2-12 draft timings
 Still blocked: provider/account automation, media generation, render/export, upload/publish, API calls, credential handling, Content ID registration, rights/platform-safety claims
 ```

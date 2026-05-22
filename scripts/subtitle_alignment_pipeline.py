@@ -112,7 +112,7 @@ def is_stage_direction(line: str) -> bool:
 def parse_track_from_song_source(source_path: Path | str, track_number: int) -> dict[str, Any]:
     source = project_path(source_path).read_text(encoding="utf-8")
     pattern = re.compile(
-        rf"^### Track {track_number}\s+—\s+(.*?)\n```text\n(.*?)\n```",
+        rf"^### Track {track_number}(?:\s+Bonus)?\s+—\s+(.*?)\n```text\n(.*?)\n```",
         re.MULTILINE | re.DOTALL,
     )
     match = pattern.search(source)

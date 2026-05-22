@@ -1,5 +1,6 @@
 import importlib.util
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -172,6 +173,24 @@ class SubtitleAlignmentPipelineTest(unittest.TestCase):
         self.assertEqual(observed["motion_fade_out"], 1.00)
         self.assertEqual(observed["motion_slide_pixels"], 18.0)
         self.assertEqual(observed["motion_slide_out_pixels"], 0.0)
+
+    def test_parse_track_from_song_source_accepts_bonus_track_header(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            source_path = Path(temp_dir) / "songs.md"
+            source_path.write_text(
+                "### Track 13 Bonus \u2014 Latch Click at the Courtyard Gate\n"
+                "```text\n"
+                "[Verse]\n"
+                "One closing line\n"
+                "```\n",
+                encoding="utf-8",
+            )
+
+            track = pipeline.parse_track_from_song_source(source_path, 13)
+
+        self.assertEqual(track["slot"], "T13")
+        self.assertEqual(track["working_title"], "Latch Click at the Courtyard Gate")
+        self.assertEqual(track["sections"][0]["lines"], ["One closing line"])
 
     def test_subtitle_motion_slides_in_then_fades_out_without_slide(self):
         fade_in = 1.50

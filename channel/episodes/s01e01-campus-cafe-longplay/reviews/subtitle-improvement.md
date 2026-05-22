@@ -1,6 +1,6 @@
 # S01E01 Subtitle Improvement Review
 
-Status: track_1_human_watch_passed_source_only_final_sidecars_blocked  
+Status: tracks_2_12_draft_alignments_generated_track_13_blocked_source_only  
 Updated: 2026-05-22
 
 ## Boundary
@@ -9,7 +9,7 @@ This review opens source-only subtitle improvement for vocal alignment and short
 
 ## User Direction
 
-User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only.
+User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only. Gate 10 work generated no-render draft alignment sidecars for Tracks 2-12; Track 13 remains blocked by incomplete local alignment coverage.
 
 ## Inputs
 
@@ -24,6 +24,8 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Draft JSON: `candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-01/s01e01-track-01-subtitle-alignment-draft-01.json`.
 - Draft proof video: `candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-01/s01e01-track-01-subtitle-alignment-draft-01.proof.mp4`.
 - Draft proof sidecars: `...draft.srt`, `...draft.vtt`, and `...proof.ass` in the same local proof directory.
+- Tracks 2-12 no-render draft sidecars: `candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-02/` through `track-12/`.
+- Track 13 blocker evidence: accurate draft in `track-13/` returned only 11 display cues for 40 expected lyric lines; fast-check draft in `track-13-fast-check/` returned only 31 display cues for 40 expected lines.
 - Method: `stable-ts` alignment from approved source lyrics and selected Track 1 WAV, with accurate mode as the default and `--fast-mode` opt-in only.
 - Motion polish: subtitle proof rendering now keeps cue start/end timing unchanged while using proof-only slower entry motion (`1.5s` fade/slide in with 18px upward slide) and fade-only exit (`1.0s` fade out, no slide out).
 - Boundary: these files are ignored local evidence for subtitle review only. They are not final sidecars, full assembly, render/export, upload, release, or rights/platform-safety approval.
@@ -36,6 +38,8 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Cue 41 bridge timing is corrected from the stale long-span proof to a 3.24s display cue.
 - Review flags retained for provenance: cues 58-59 are low-confidence outro repeat alignments; cue 58 is the longest display cue at 6.26s.
 - Human sung-lyric watch pass: user passed the current Track 1 proof source-only on 2026-05-22.
+- Tracks 2-12: draft line-count coverage matches source lyrics and no-overlap checks pass, but human sung-lyric watch pass is still required.
+- Track 13: local alignment coverage is incomplete and blocks Gate 10 pass until reviewed, manually timed, swapped, or regenerated.
 
 ## Improvement Rules
 
@@ -44,10 +48,10 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Keep 1-2 lines per cue, with natural line breaks at breath, clause, or musical phrase boundaries.
 - Avoid cue text that stays onscreen after the sung phrase has clearly moved on.
 - Do not invent lyric words if the sung audio differs from source text; mark uncertainty for review.
-- Do not create final sidecars until a later final timeline/assembly gate approves the exact output target.
+- Do not create final sidecars until a later assembly package gate approves the exact output target.
 
 ## Current Verdict
 
-`track_1_alignment_proof_human_watch_passed_source_only_final_sidecars_blocked`
+`tracks_2_12_draft_alignments_generated_track_13_blocked_source_only_final_sidecars_blocked`
 
-Next allowed source-only action is to carry the reviewed Track 1 proof timing forward as reference for a later assembly timeline. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.
+Next allowed source-only action is to resolve Track 13 subtitle alignment coverage, then human-watch Tracks 2-13 before promoting any timing. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.
