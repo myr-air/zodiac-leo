@@ -11,6 +11,7 @@ This review records a local visual background direction and overlay motion plan 
 
 - User approved using `G.png` as the S01E01 background direction on 2026-05-22.
 - Local candidate path: `candidates/s01e01-campus-cafe-longplay/visual/G.png`.
+- User-reported non-secret provenance: ChatGPT image, generated in May 2026. No credentials, account IDs, OAuth tokens, cookies, browser profiles, or account state are stored in this repository.
 - Observed dimensions: `1672x941`, near 16:9.
 - Source visual basis: `source/visual.md` and `source/visual-prompt-pack.md`.
 - Overlay motion plan: `source/visual-overlay-motion-plan.md`.

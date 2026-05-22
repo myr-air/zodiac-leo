@@ -17,7 +17,7 @@
     "suno_tracks": "tracks_1_13_synced_source_only",
     "prompt_pack": "replacement_sequence_source_only",
     "metadata": "sequence_chapter_plan_1s_gap_and_metadata_disclosure_passed_source_only",
-    "review_status": "internal_readiness_scorecard_92_pass_source_only",
+    "review_status": "internal_readiness_scorecard_96_pass_source_only",
     "audio_candidates": "selected_draft_human_listen_lyric_anchor_duration_accepted_source_only",
     "visual_candidates": "vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only",
     "subtitles": "gate_10_all_tracks_draft_timing_human_watch_passed_source_only_final_sidecars_blocked"

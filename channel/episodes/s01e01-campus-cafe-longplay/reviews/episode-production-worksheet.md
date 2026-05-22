@@ -1,6 +1,6 @@
 # S01E01 Production Worksheet — After-School First Love Longplay
 
-Status: internal readiness scorecard passed / source-only  
+Status: internal readiness scorecard passed / source-only / 96  
 Episode: `s01e01-campus-cafe-longplay`  
 Prepared date: 2026-05-18
 Updated: 2026-05-22
@@ -75,17 +75,17 @@ Internal score out of 100. This is a source-only readiness score, not platform/a
 
 | Criterion | Weight | Score | Evidence / blockers |
 |---|---:|---:|---|
-| Source/provenance records complete | 20 | 17 | Manifest, reviews, tracking CSVs, source files, selected/pool audio, visual proof, subtitle proof, and metadata source are recorded. Candidate provider/model/date/account provenance remains `unknown_user_supplied`, so it is not rights/platform evidence. |
+| Source/provenance records complete | 20 | 20 | Manifest, reviews, tracking CSVs, source files, selected/pool audio, visual proof, subtitle proof, metadata source, local file hashes, and user-reported non-secret provider/date facts are recorded. This improves source provenance only and is not rights/platform evidence. |
 | AI assistance disclosure drafted clearly | 15 | 15 | Gate 11 description draft discloses AI-assisted music/visual production workflows plus human selection, source review, listening checks, subtitle timing review, and provenance tracking. |
 | No imitation of named artists, songs, channels, brands, stations, labels, films, games, or real-person voices | 15 | 14 | Channel boundary, prompt packs, lyric/source reviews, and audio listening checklist avoid named imitation, real schools, brands, and unsafe voice framing. This is not forensic voice/provenance proof. |
-| Lyrics pass anti-slop and concrete-scene review | 15 | 13 | Theme-retuned lyric audit score is 88/100 with concrete scene anchors and PG same-age framing; fresh human/external review remains recommended before any future manual provider handoff. |
+| Lyrics pass anti-slop and concrete-scene review | 15 | 14 | Fresh source-only lyric review confirms concrete object/action anchors across all 13 songs, clear episode spine/track deltas, PG same-age framing, and no current named-reference blocker; early-track pattern caveats keep this below perfect. |
 | Audio QA has no major artifact/harshness/silence/metadata blockers | 10 | 9 | 13 selected WAVs pass local technical intake, user human listening, lyric-anchor spot-check, and duration decision; Track 13 opening dialogue caveat remains, and anchor review is not full transcript verification. |
-| Visual safe-zone and originality checks pass | 10 | 9 | V6 cute-smooth proof is user-passed source-only with readable typography, secondary equalizer, and safe-zone review; full assembly/mobile/final-render QA is still future-gated. |
+| Visual safe-zone and originality checks pass | 10 | 9 | V6 cute-smooth proof is user-passed source-only and local crop/downscale proof sheets now support carry-forward review; conservative safe-zone exceptions, face-specificity caveat, and full assembly/final-render QA keep this below perfect. |
 | Metadata is mood/use-case led and not keyword-stuffed | 10 | 10 | Gate 11 title, description, chapter display, tags policy, and disclosure are listener-job led and avoid positive rights/platform claims. |
 | Analytics hypothesis and post-publish notes template are ready | 5 | 5 | Source-only hypothesis below plus `channel/templates/episode-analytics-loop-template.md`; no analytics collection or account action is approved. |
-| **Total** | **100** | **92** | `pass_internal_readiness_scorecard_source_only` for source-only assembly planning; downstream gates remain blocked. |
+| **Total** | **100** | **96** | `pass_internal_readiness_scorecard_96_source_only` for source-only assembly planning; downstream gates remain blocked. |
 
-Readiness rule: `92/100` is enough to proceed to a separately approved assembly-package planning gate. It is not a render/export, upload/public-publish, platform/account, monetization, Content ID, or rights-safety approval.
+Readiness rule: `96/100` is enough to proceed to a separately approved assembly-package planning gate. It is not a render/export, upload/public-publish, platform/account, monetization, Content ID, or rights-safety approval. The requested `98/100` is not supported yet without closing visual safe-zone/final assembly, audio transcript, and downstream final-QA caveats.
 
 Critical blocker scan:
 
@@ -95,6 +95,7 @@ Critical blocker scan:
 - Broken subtitles: no current source-level blocker; all draft timings are human watch-passed, but final sidecars remain blocked until assembly package approval.
 - Major audio artifact blocker: none observed at intake/human listening; Track 13 opening-dialogue caveat remains recorded.
 - Unsafe visual/content framing: no current source-level blocker; teen/high-school romance remains PG same-age and non-sexualized.
+- Score ceiling note: `98/100` remains unsupported until a future gate adds stronger final-assembly/final-render QA, final sidecar QA, or equivalent evidence; do not raise the score by assertion alone.
 
 ### Future Analytics Hypothesis (No Account Action)
 
@@ -123,7 +124,7 @@ These hypotheses are only for a future manual, privacy-safe analytics loop after
 | 9 | Visual world and safe-zone plan | vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only | subject, layout, overlay, crop, prompt, source image use, proof file, or visual direction changes |
 | 10 | Subtitle/source timing plan | pass_all_tracks_draft_timing_human_watch_passed_source_only_final_sidecars_blocked | lyrics, sung words, timing policy, cue segmentation, final sidecars, or timeline exists |
 | 11 | Metadata/disclosure pack | pass_metadata_disclosure_pack_source_only | title, description, tags, chapters, disclosure, timestamp source, or claim wording changes |
-| 12 | Internal readiness scorecard | pass_internal_readiness_scorecard_92_source_only | any score evidence, critical blocker, or readiness assumption changes |
+| 12 | Internal readiness scorecard | pass_internal_readiness_scorecard_96_source_only | any score evidence, critical blocker, or readiness assumption changes |
 | 13 | Future render/export gate | blocked | render/export intent or final asset path changes |
 | 14 | Future upload/public-publish planning gate | blocked | upload intent, account boundary, policy, disclosure, or asset status changes |
 | 15 | Post-release analytics loop | n/a | future release exists and manual metrics are provided |
@@ -135,9 +136,9 @@ Verdict: pass_internal_readiness_scorecard_source_only
 Scope: internal source-only readiness
 Anti-slop lyric score: 88/100 for theme-retuned source lyrics
 Audio candidate state: 13 selected WAV candidates human-listen, lyric-anchor, and 41:31 duration accepted source-only; Track 13 opening dialogue caveat remains noted
-Internal readiness score: 92/100 source-only
+Internal readiness score: 96/100 source-only
 Critical downstream blockers: no assembly package, no final subtitle sidecars, no render/export gate, no release gate
-Required revisions: keep reviewed Tracks 1-13 subtitle draft timings, Gate 8 chapter plan, Gate 11 metadata/disclosure pack, and Gate 12 scorecard as source-only evidence; keep Suno copy packs synced; keep final subtitle sidecars pending an approved assembly package; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
+Required revisions: keep reviewed Tracks 1-13 subtitle draft timings, Gate 8 chapter plan, Gate 11 metadata/disclosure pack, local provenance report, V6 crop/safe-zone proof evidence, and Gate 12 scorecard as source-only evidence; keep Suno copy packs synced; keep final subtitle sidecars pending an approved assembly package; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
 Next allowed action: separately approve an assembly-package planning gate before final subtitle sidecar promotion or any render/export planning
 Still blocked: provider/account automation, media generation, render/export, upload/publish, API calls, credential handling, Content ID registration, rights/platform-safety claims
 ```

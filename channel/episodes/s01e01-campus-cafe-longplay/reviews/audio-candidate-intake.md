@@ -1,7 +1,7 @@
 # S01E01 Audio Candidate Intake — After-School First Love Longplay
 
 Status: selected_draft_human_listen_lyric_anchor_duration_accepted_source_only
-Updated: 2026-05-19
+Updated: 2026-05-22
 
 ## Boundary
 
@@ -19,6 +19,7 @@ This review records local user-supplied audio candidate intake only. It does not
 
 - Found 26 `.wav` files: 13 tracks x 2 variants.
 - Organized into 13 selected draft candidates and 13 pool candidates.
+- User-reported non-secret provenance for the selected/pool audio candidates: Suno, `Suno v5.5`, generated in May 2026. No credentials, account IDs, OAuth tokens, cookies, browser profiles, or account state are stored in this repository.
 - All files observed as WAV PCM s16le, 48 kHz, stereo, 16-bit.
 - Local peak check found no severe clipping; max peaks sat roughly between -4.2 dB and -2.6 dB.
 - Selected draft total duration: about `41:31`.

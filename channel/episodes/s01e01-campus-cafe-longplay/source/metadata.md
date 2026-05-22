@@ -96,7 +96,7 @@ Reject or re-review tags that imply a named artist/song/channel, real brand, rea
 
 `pass_metadata_disclosure_pack_source_only`
 
-Next allowed source-only action is Gate 12 internal readiness scorecard, or a separately approved assembly-package planning gate before final subtitle sidecar promotion. Final `.srt`/`.vtt` sidecars, full video assembly, render/export, upload/publish, release readiness, analytics, platform/account actions, and rights/platform-safety claims remain blocked.
+Next allowed source-only action is a separately approved assembly-package planning gate before final subtitle sidecar promotion. Final `.srt`/`.vtt` sidecars, full video assembly, render/export, upload/publish, release readiness, analytics, platform/account actions, and rights/platform-safety claims remain blocked.
 
 ## Chapter Draft
 

@@ -1,6 +1,6 @@
 # S01E01 Visual Layout Proof Review
 
-Status: v1_v3_rejected_v4_07_rejected_v5_revised_v6_visual_passed_source_only_subtitle_improvement_open  
+Status: v1_v3_rejected_v4_07_rejected_v5_revised_v6_visual_passed_source_only_crop_proof_recorded  
 Updated: 2026-05-22
 
 ## Boundary
@@ -249,9 +249,24 @@ Observed V6 proof facts:
 
 Boundary: this is a local animated proof only. It is not final subtitle timing, full assembly, full render/export, upload/publish, release readiness, or a rights/platform-safety claim.
 
+## V6 Crop / Safe-Zone Proof Sheets
+
+User approved a local crop/safe-zone evidence step to support an internal readiness score uplift attempt. The proof sheets annotate existing V6 snapshots only; they do not create new provider media or full assembly output.
+
+- Script: `scripts/create_visual_safe_zone_proof_sheet.py`.
+- Safe-zone proof sheet: `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-crop-safe-zone-proof-sheet-01.png`.
+- Downscale readability sheet: `candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-downscale-readability-proof-sheet-01.png`.
+- Inputs: existing V6 snapshots at 02s, 06s, 14s, 24s, and 29s.
+
+Source-only findings:
+
+- The proof sheets provide durable local evidence for checking top-left header, middle-left subtitle, and lower-right equalizer placement against conservative crop/safe-zone overlays.
+- The V6 visual direction remains source-passed, but any future assembly package must carry forward target-safe inset checks before final sidecar promotion or render/export planning.
+- This narrows the crop/readability caveat for source planning, but it is not full-episode assembly QA, final render QA, upload/publish approval, or platform/rights-safety evidence.
+
 ## Next Action
 
-Recommended next step is subtitle improvement for vocal alignment and shorter cue segmentation. Any revised/longer visual proof still requires explicit direction and would not be full assembly, render/export, upload, or release approval.
+Recommended next step is a separately approved assembly-package planning gate if the user wants to promote final sidecars or plan any render/export step. Any revised/longer visual proof still requires explicit direction and would not be full assembly, render/export, upload, or release approval.
 
 ## Still Blocked
 
