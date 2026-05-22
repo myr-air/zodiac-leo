@@ -1,6 +1,6 @@
 # S01E01 Subtitle Improvement Review
 
-Status: gate_10_subtitle_source_timing_plan_passed_source_only_final_sidecars_blocked  
+Status: gate_10_all_tracks_human_watch_passed_source_only_final_sidecars_blocked  
 Updated: 2026-05-22
 
 ## Boundary
@@ -9,7 +9,7 @@ This review opens source-only subtitle improvement for vocal alignment and short
 
 ## User Direction
 
-User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only. Gate 10 work generated no-render draft alignment sidecars for Tracks 2-13; Track 13 is aligned against sung source sections only because the selected audio begins at Verse 1 and omits the source `Dialogue First` section.
+User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only. Gate 10 work generated no-render draft alignment sidecars for Tracks 2-13; Track 13 is aligned against sung source sections only because the selected audio begins at Verse 1 and omits the source `Dialogue First` section. User later reported all remaining Tracks 2-13 PASS after human watch source-only.
 
 ## Inputs
 
@@ -37,9 +37,9 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Maximum line length: 37 characters.
 - Cue 41 bridge timing is corrected from the stale long-span proof to a 3.24s display cue.
 - Review flags retained for provenance: cues 58-59 are low-confidence outro repeat alignments; cue 58 is the longest display cue at 6.26s.
-- Human sung-lyric watch pass: user passed the current Track 1 proof source-only on 2026-05-22.
-- Tracks 2-12: draft line-count coverage matches source lyrics and no-overlap checks pass, but human sung-lyric watch pass is still required before final sidecar promotion.
-- Track 13: sung-section draft line-count coverage matches selected-audio sections and no-overlap checks pass; the absent `Dialogue First` source section is excluded from subtitle timing and remains a source/audio caveat.
+- Human sung-lyric watch pass: user passed the current Track 1 proof source-only on 2026-05-22, then reported Tracks 2-13 PASS source-only on 2026-05-22.
+- Tracks 2-12: draft line-count coverage matches source lyrics, no-overlap checks pass, and user human-watch pass is recorded source-only.
+- Track 13: sung-section draft line-count coverage matches selected-audio sections, no-overlap checks pass, and user human-watch pass is recorded source-only; the absent `Dialogue First` source section is excluded from subtitle timing and remains a source/audio caveat.
 
 ## Improvement Rules
 
@@ -52,6 +52,6 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 
 ## Current Verdict
 
-`gate_10_subtitle_source_timing_plan_passed_source_only_final_sidecars_blocked`
+`gate_10_all_tracks_human_watch_passed_source_only_final_sidecars_blocked`
 
-Next allowed source-only action is human-watch Tracks 2-13 before promoting any timing into final sidecar work. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.
+Next allowed source-only action is Gate 11 metadata/disclosure source-pack work, or a separately approved assembly-package planning gate before any final sidecar promotion. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.

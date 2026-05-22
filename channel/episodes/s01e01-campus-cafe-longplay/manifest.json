@@ -20,7 +20,7 @@
     "review_status": "full_set_source_only_lyric_and_suno_field_pass",
     "audio_candidates": "selected_draft_human_listen_lyric_anchor_duration_accepted_source_only",
     "visual_candidates": "vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only",
-    "subtitles": "gate_10_all_tracks_draft_timing_source_plan_passed_source_only_final_sidecars_blocked"
+    "subtitles": "gate_10_all_tracks_draft_timing_human_watch_passed_source_only_final_sidecars_blocked"
   },
   "claim_boundary": "Source-only planning. No provider/media/render/export/upload/release approval."
 }
