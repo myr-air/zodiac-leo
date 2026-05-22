@@ -150,11 +150,18 @@ def find_track(segments: dict[str, Any], slot: str) -> dict[str, Any]:
     raise KeyError(f"track slot not found: {slot}")
 
 
-def build_track_text(track: dict[str, Any]) -> tuple[str, list[dict[str, Any]]]:
+def normalized_section_name(value: str) -> str:
+    return re.sub(r"\s+", " ", value.strip().lower())
+
+
+def build_track_text(track: dict[str, Any], excluded_sections: Iterable[str] = ()) -> tuple[str, list[dict[str, Any]]]:
     lines: list[str] = []
     meta: list[dict[str, Any]] = []
+    excluded = {normalized_section_name(section) for section in excluded_sections}
     for section in track.get("sections", []):
         section_name = section.get("section")
+        if normalized_section_name(section_name or "") in excluded:
+            continue
         for index, line in enumerate(section.get("lines", [])):
             cleaned = clean_subtitle_text(line)
             if not cleaned:
@@ -625,7 +632,8 @@ def align_song_source_track(args: argparse.Namespace) -> Path:
 
     track = parse_track_from_song_source(args.song_source, args.track_number)
     slot = args.slot or track["slot"]
-    text, line_meta = build_track_text(track | {"slot": slot})
+    excluded_sections = tuple(args.exclude_sections or ())
+    text, line_meta = build_track_text(track | {"slot": slot}, excluded_sections=excluded_sections)
     audio_path = project_path(args.audio)
     out_dir = project_path(args.out_dir)
     assert_safe_generated_path(out_dir)
@@ -686,6 +694,7 @@ def align_song_source_track(args: argparse.Namespace) -> Path:
             "min_duration_seconds": args.min_duration,
             "note": "Returned cue start/end are display bounds; vocal_start/vocal_end preserve aligned sung bounds.",
         },
+        "excluded_sections": list(excluded_sections),
         "proof_motion_rules": {
             "motion_fade_in_seconds": args.motion_fade_in,
             "motion_fade_out_seconds": args.motion_fade_out,
@@ -952,6 +961,7 @@ def main(argv: list[str] | None = None) -> int:
     source_parser.add_argument("--motion-fade-out", type=float, default=1.00)
     source_parser.add_argument("--motion-slide-pixels", type=float, default=18.0)
     source_parser.add_argument("--motion-slide-out-pixels", type=float, default=0.0)
+    source_parser.add_argument("--exclude-sections", nargs="*", default=[])
     source_parser.add_argument("--min-gap", type=float, default=0.08)
     source_parser.add_argument("--min-duration", type=float, default=0.62)
     source_parser.add_argument("--fps", type=int, default=24)

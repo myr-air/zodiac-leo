@@ -109,6 +109,21 @@ class SubtitleAlignmentPipelineTest(unittest.TestCase):
         self.assertEqual([m["section"] for m in line_meta], ["verse", "verse", "chorus"])
         self.assertEqual([m["line_index"] for m in line_meta], [0, 1, 0])
 
+    def test_build_track_text_can_exclude_absent_sections(self):
+        track = {
+            "slot": "T13",
+            "sections": [
+                {"section": "Dialogue First", "lines": ["missing line"]},
+                {"section": "Verse 1", "lines": ["sung line"]},
+            ],
+        }
+
+        text, line_meta = pipeline.build_track_text(track, excluded_sections=["dialogue first"])
+
+        self.assertEqual(text, "sung line")
+        self.assertEqual(len(line_meta), 1)
+        self.assertEqual(line_meta[0]["section"], "Verse 1")
+
     def test_apply_subtitle_display_timing_adds_padding_without_overlap(self):
         vocal_cues = [
             pipeline.Cue(slot="T01", start=10.0, end=11.0, text="first line", vocal_start=10.0, vocal_end=11.0),

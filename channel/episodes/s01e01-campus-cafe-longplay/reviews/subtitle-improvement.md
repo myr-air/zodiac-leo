@@ -1,6 +1,6 @@
 # S01E01 Subtitle Improvement Review
 
-Status: tracks_2_12_draft_alignments_generated_track_13_blocked_source_only  
+Status: gate_10_subtitle_source_timing_plan_passed_source_only_final_sidecars_blocked  
 Updated: 2026-05-22
 
 ## Boundary
@@ -9,7 +9,7 @@ This review opens source-only subtitle improvement for vocal alignment and short
 
 ## User Direction
 
-User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only. Gate 10 work generated no-render draft alignment sidecars for Tracks 2-12; Track 13 remains blocked by incomplete local alignment coverage.
+User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only. Gate 10 work generated no-render draft alignment sidecars for Tracks 2-13; Track 13 is aligned against sung source sections only because the selected audio begins at Verse 1 and omits the source `Dialogue First` section.
 
 ## Inputs
 
@@ -25,7 +25,7 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Draft proof video: `candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-01/s01e01-track-01-subtitle-alignment-draft-01.proof.mp4`.
 - Draft proof sidecars: `...draft.srt`, `...draft.vtt`, and `...proof.ass` in the same local proof directory.
 - Tracks 2-12 no-render draft sidecars: `candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-02/` through `track-12/`.
-- Track 13 blocker evidence: accurate draft in `track-13/` returned only 11 display cues for 40 expected lyric lines; fast-check draft in `track-13-fast-check/` returned only 31 display cues for 40 expected lines.
+- Track 13 sung-section draft sidecars: `track-13/`, generated with `--exclude-sections "Dialogue First"`, returned 32 expected lines and 32 display cues. Historical incomplete fast-check evidence remains in `track-13-fast-check/` for provenance.
 - Method: `stable-ts` alignment from approved source lyrics and selected Track 1 WAV, with accurate mode as the default and `--fast-mode` opt-in only.
 - Motion polish: subtitle proof rendering now keeps cue start/end timing unchanged while using proof-only slower entry motion (`1.5s` fade/slide in with 18px upward slide) and fade-only exit (`1.0s` fade out, no slide out).
 - Boundary: these files are ignored local evidence for subtitle review only. They are not final sidecars, full assembly, render/export, upload, release, or rights/platform-safety approval.
@@ -38,8 +38,8 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Cue 41 bridge timing is corrected from the stale long-span proof to a 3.24s display cue.
 - Review flags retained for provenance: cues 58-59 are low-confidence outro repeat alignments; cue 58 is the longest display cue at 6.26s.
 - Human sung-lyric watch pass: user passed the current Track 1 proof source-only on 2026-05-22.
-- Tracks 2-12: draft line-count coverage matches source lyrics and no-overlap checks pass, but human sung-lyric watch pass is still required.
-- Track 13: local alignment coverage is incomplete and blocks Gate 10 pass until reviewed, manually timed, swapped, or regenerated.
+- Tracks 2-12: draft line-count coverage matches source lyrics and no-overlap checks pass, but human sung-lyric watch pass is still required before final sidecar promotion.
+- Track 13: sung-section draft line-count coverage matches selected-audio sections and no-overlap checks pass; the absent `Dialogue First` source section is excluded from subtitle timing and remains a source/audio caveat.
 
 ## Improvement Rules
 
@@ -52,6 +52,6 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 
 ## Current Verdict
 
-`tracks_2_12_draft_alignments_generated_track_13_blocked_source_only_final_sidecars_blocked`
+`gate_10_subtitle_source_timing_plan_passed_source_only_final_sidecars_blocked`
 
-Next allowed source-only action is to resolve Track 13 subtitle alignment coverage, then human-watch Tracks 2-13 before promoting any timing. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.
+Next allowed source-only action is human-watch Tracks 2-13 before promoting any timing into final sidecar work. Final `.srt`/`.vtt` sidecars, full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.
