@@ -1,10 +1,10 @@
 # S01E01 Metadata Source — After-School First Love Longplay
 
-Status: metadata/disclosure pack passed / final subtitle sidecars promoted / local render-export mechanical QA recorded / release blocked  
+Status: metadata/disclosure pack passed / final subtitle sidecars promoted / render-02 mechanical QA recorded / human review pending / release blocked  
 Prepared date: 2026-05-19
 Updated: 2026-05-23
 
-Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, and one approved local render/export execution has mechanical QA recorded in `reviews/render-export-qa.md`. Full human final-output watch/listen, upload/publish, release readiness, provider/account actions, and additional/revised outputs remain blocked.
+Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, render-01 failed human visual review after mechanical QA, and the approved render-02 local revision has mechanical QA recorded in `reviews/render-export-qa.md`. Render-02 full human final-output watch/listen, upload/publish, release readiness, provider/account actions, and additional/revised outputs remain blocked.
 
 Bumper note: a simple channel intro/outro bumper can be authored locally later from existing source visuals/text without needing AI, but any actual bumper media, render/export, or revised duration must use a separate explicit future gate. This Gate 8 plan does not create or reserve bumper media.
 
@@ -96,7 +96,7 @@ Reject or re-review tags that imply a named artist/song/channel, real brand, rea
 
 `pass_metadata_disclosure_pack_source_only`
 
-Assembly package planning is source-passed in `reviews/assembly-package.md`, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, and one approved local render/export mechanical QA result is recorded in `reviews/render-export-qa.md`. Next allowed action is human full watch/listen review of the local QA MP4 or a separate release-decision planning gate if moving beyond local QA. Upload/publish, release readiness, analytics, platform/account actions, additional/revised outputs without a new gate, and rights/platform-safety claims remain blocked.
+Assembly package planning is source-passed in `reviews/assembly-package.md`, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, render-01 human visual FAIL is recorded, and the approved render-02 local mechanical QA result is recorded in `reviews/render-export-qa.md`. Next allowed action is human full watch/listen review of the render-02 QA MP4 or a separate release-decision planning gate if moving beyond local QA. Upload/publish, release readiness, analytics, platform/account actions, additional/revised outputs without a new gate, and rights/platform-safety claims remain blocked.
 
 ## Chapter Draft
 

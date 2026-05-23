@@ -33,11 +33,14 @@ class RenderS01E01LocalTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             render.assert_under_candidates(render.PROJECT_ROOT / "channel" / "unsafe.mp4")
 
-    def test_only_canonical_output_root_is_allowed(self):
-        render.assert_default_output_root(render.PROJECT_ROOT / render.DEFAULT_OUTPUT_ROOT)
+    def test_only_current_gate_output_root_is_allowed(self):
+        render.assert_allowed_output_root(render.PROJECT_ROOT / render.DEFAULT_OUTPUT_ROOT)
 
         with self.assertRaises(ValueError):
-            render.assert_default_output_root(render.PROJECT_ROOT / "candidates" / "s01e01-campus-cafe-longplay" / "render" / "smoke-test")
+            render.assert_allowed_output_root(render.PROJECT_ROOT / "candidates" / "s01e01-campus-cafe-longplay" / "render" / "future-local-render-01")
+
+        with self.assertRaises(ValueError):
+            render.assert_allowed_output_root(render.PROJECT_ROOT / "candidates" / "s01e01-campus-cafe-longplay" / "render" / "smoke-test")
 
     def test_temp_root_is_constrained_to_private_temp_subtree(self):
         render.assert_safe_temp_root(render.DEFAULT_TEMP_ROOT / "frames")
@@ -45,8 +48,22 @@ class RenderS01E01LocalTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             render.assert_safe_temp_root(render.PROJECT_ROOT)
 
+        with self.assertRaises(ValueError):
+            render.assert_safe_temp_root(render.DEFAULT_TEMP_ROOT / "bad\nroot")
+
+    def test_concat_paths_reject_control_char_injection(self):
+        with self.assertRaises(ValueError):
+            render.quote_concat_path(render.DEFAULT_TEMP_ROOT / "bad\nfile.png")
+
     def test_parse_srt_time_supports_millisecond_precision(self):
         self.assertEqual(render.parse_srt_time("00:39:26,080"), 2366.08)
+
+    def test_equalizer_frame_has_soft_visible_alpha(self):
+        frame = render.make_equalizer_frame(0.75, 12.0)
+
+        alpha = frame.getchannel("A")
+        self.assertGreater(alpha.getbbox()[2], 300)
+        self.assertGreater(max(alpha.getdata()), 100)
 
 
 if __name__ == "__main__":

@@ -11,10 +11,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import random
 import re
 import shutil
 import subprocess
 import tempfile
+import warnings
 import wave
 from dataclasses import dataclass
 from pathlib import Path
@@ -24,10 +27,15 @@ from PIL import Image, ImageDraw, ImageFilter
 
 import create_v6_cute_smooth_motion_proof as v6
 
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore", DeprecationWarning)
+    import audioop
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 EPISODE_ID = "s01e01-campus-cafe-longplay"
-DEFAULT_OUTPUT_ROOT = Path("candidates/s01e01-campus-cafe-longplay/render/future-local-render-01")
+DEFAULT_OUTPUT_ROOT = Path("candidates/s01e01-campus-cafe-longplay/render/future-local-render-02")
+ALLOWED_OUTPUT_ROOTS = (DEFAULT_OUTPUT_ROOT,)
 DEFAULT_TEMP_ROOT = Path(tempfile.gettempdir()) / "opencode" / "s01e01-render"
 BACKGROUND = Path("candidates/s01e01-campus-cafe-longplay/visual/G.png")
 SOURCE_SRT = Path(f"channel/episodes/{EPISODE_ID}/subtitles/{EPISODE_ID}.en.srt")
@@ -38,6 +46,17 @@ HEIGHT = 1080
 FPS = 24
 GAP_SECONDS = 1.0
 TARGET_DURATION = 2503.28
+EQ_WIDTH = 430
+EQ_HEIGHT = 140
+SNAPSHOT_SPECS: tuple[tuple[str, float], ...] = (
+    ("s01e01-render-02-sample-01-open.png", 2.0),
+    ("s01e01-render-02-sample-02-track02.png", 306.0),
+    ("s01e01-render-02-sample-03-track04.png", 735.0),
+    ("s01e01-render-02-sample-04-track07.png", 1320.0),
+    ("s01e01-render-02-sample-05-track09.png", 1660.0),
+    ("s01e01-render-02-sample-06-track11.png", 2050.0),
+    ("s01e01-render-02-sample-07-track13-subtitle.png", 2367.0),
+)
 
 
 @dataclass(frozen=True)
@@ -85,11 +104,18 @@ def assert_under_candidates(path: Path) -> None:
         raise ValueError(f"refusing to write local render evidence outside candidates/: {path}")
 
 
-def assert_default_output_root(path: Path) -> None:
+def assert_no_control_chars(path: Path) -> None:
+    text = str(path)
+    if any(ord(char) < 32 or ord(char) == 127 for char in text):
+        raise ValueError(f"refusing path with control characters: {path!s}")
+
+
+def assert_allowed_output_root(path: Path) -> None:
     """Refuse extra render roots that would exceed the approved local QA gate."""
+    assert_no_control_chars(path)
     resolved = path.resolve()
-    default = project_path(DEFAULT_OUTPUT_ROOT).resolve()
-    if resolved != default:
+    allowed = {project_path(root).resolve() for root in ALLOWED_OUTPUT_ROOTS}
+    if resolved not in allowed:
         raise ValueError(
             "refusing non-canonical render output root; additional or revised "
             "outputs require a new explicit gate"
@@ -98,6 +124,7 @@ def assert_default_output_root(path: Path) -> None:
 
 def assert_safe_temp_root(path: Path) -> None:
     """Limit removable temp files to this script's private temp subtree."""
+    assert_no_control_chars(path)
     resolved = path.resolve()
     safe_root = DEFAULT_TEMP_ROOT.resolve()
     if safe_root not in [resolved, *resolved.parents]:
@@ -289,7 +316,154 @@ def draw_overlay_frame(path: Path, track: Track, cue: SubtitleCue | None, header
 
 
 def quote_concat_path(path: Path) -> str:
+    assert_no_control_chars(path)
     return str(path).replace("'", "'\\''")
+
+
+def make_particle_texture(path: Path) -> None:
+    rng = random.Random(606)
+    base = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(base, "RGBA")
+    for _ in range(170):
+        x = rng.triangular(10, WIDTH - 10, 430)
+        y = rng.triangular(8, HEIGHT - 8, 260)
+        r = rng.uniform(0.9, 3.4)
+        alpha = int(rng.uniform(16, 64))
+        draw.ellipse((x - r, y - r, x + r, y + r), fill=(255, 222, 172, alpha))
+    for _ in range(18):
+        x = rng.triangular(60, 860, 350)
+        y = rng.triangular(20, 540, 190)
+        r = rng.uniform(5.0, 13.0)
+        alpha = int(rng.uniform(8, 22))
+        draw.ellipse((x - r, y - r, x + r, y + r), fill=(255, 230, 184, alpha))
+    base = base.filter(ImageFilter.GaussianBlur(0.28))
+    texture = Image.new("RGBA", (WIDTH, HEIGHT * 2), (0, 0, 0, 0))
+    texture.alpha_composite(base, (0, 0))
+    texture.alpha_composite(base, (0, HEIGHT))
+    texture.save(path)
+
+
+def make_light_sweep(path: Path) -> None:
+    sweep_width = 2400
+    layer = Image.new("RGBA", (sweep_width, HEIGHT), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer, "RGBA")
+    draw.polygon(
+        [(-30, -100), (190, -100), (840, HEIGHT + 100), (590, HEIGHT + 100)],
+        fill=(255, 230, 178, 18),
+    )
+    draw.polygon(
+        [(160, -100), (270, -100), (930, HEIGHT + 100), (800, HEIGHT + 100)],
+        fill=(255, 245, 211, 10),
+    )
+    layer = layer.filter(ImageFilter.GaussianBlur(58))
+    layer.save(path)
+
+
+def audio_energy(path: Path, fps: int, duration: float) -> list[float]:
+    frame_count = math.ceil(duration * fps)
+    with wave.open(str(path), "rb") as wav:
+        sample_width = wav.getsampwidth()
+        rate = wav.getframerate()
+        total_frames = min(wav.getnframes(), int(duration * rate))
+        values: list[float] = []
+        last_frame = 0
+        for frame in range(frame_count):
+            next_frame = min(total_frames, int((frame + 1) * rate / fps))
+            raw = wav.readframes(max(0, next_frame - last_frame))
+            last_frame = next_frame
+            if not raw or sample_width != 2:
+                values.append(0.0)
+            else:
+                values.append(audioop.rms(raw, sample_width) / 32768.0)
+
+    if not values:
+        return [0.18]
+    sorted_values = sorted(values)
+    p95 = sorted_values[min(len(sorted_values) - 1, int(len(sorted_values) * 0.95))] or max(values) or 1.0
+    normalized = [min(1.0, value / p95) for value in values]
+    smoothed: list[float] = []
+    prev = 0.0
+    for value in normalized:
+        coeff = 0.075 if value > prev else 0.035
+        prev += (value - prev) * coeff
+        smoothed.append(prev)
+    averaged: list[float] = []
+    radius = max(1, int(fps * 0.30))
+    for index in range(len(smoothed)):
+        start = max(0, index - radius)
+        end = min(len(smoothed), index + radius + 1)
+        averaged.append(sum(smoothed[start:end]) / (end - start))
+    return averaged
+
+
+def make_equalizer_frame(energy: float, t: float) -> Image.Image:
+    layer = Image.new("RGBA", (EQ_WIDTH, EQ_HEIGHT), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer, "RGBA")
+    base_y = 68
+    phase = t * 0.32
+    amp = 6.0 + 18.0 * max(0.0, min(1.0, energy))
+    for band, offset in enumerate((-16, 0, 16)):
+        points = []
+        for index in range(170):
+            u = index / 169
+            x = EQ_WIDTH * u
+            arc = 32 * math.sin(u * math.pi * 0.78)
+            wave = amp * math.sin(u * math.tau * 2.1 + phase + band * 0.55)
+            points.append((x, base_y + arc + offset + wave))
+        draw.line(points, fill=(178, 126, 56, 68 + band * 12), width=2 if band != 1 else 3)
+    for index in range(18):
+        u = index / 17
+        x = EQ_WIDTH * u
+        arc = 32 * math.sin(u * math.pi * 0.78)
+        y = base_y + arc + amp * math.sin(u * math.tau * 2.1 + phase)
+        r = 2.5 + 3.2 * energy * (0.65 + 0.35 * math.sin(phase + index * 0.8))
+        draw.ellipse((x - r, y - r, x + r, y + r), fill=(184, 131, 62, int(108 + 62 * energy)))
+    return layer.filter(ImageFilter.GaussianBlur(0.28))
+
+
+def build_equalizer_overlay(audio_path: Path, duration: float, temp_root: Path) -> Path:
+    output = temp_root / "render-02-equalizer-overlay.mov"
+    if output.exists():
+        output.unlink()
+    energies = audio_energy(audio_path, FPS, duration)
+    command = [
+        "ffmpeg",
+        "-y",
+        "-f",
+        "rawvideo",
+        "-pix_fmt",
+        "rgba",
+        "-s",
+        f"{EQ_WIDTH}x{EQ_HEIGHT}",
+        "-r",
+        str(FPS),
+        "-i",
+        "-",
+        "-an",
+        "-c:v",
+        "qtrle",
+        "-pix_fmt",
+        "argb",
+        str(output),
+    ]
+    process = subprocess.Popen(command, stdin=subprocess.PIPE)
+    assert process.stdin is not None
+    for frame, energy in enumerate(energies):
+        process.stdin.write(make_equalizer_frame(energy, frame / FPS).tobytes())
+    process.stdin.close()
+    result = process.wait()
+    if result != 0:
+        raise RuntimeError(f"ffmpeg equalizer overlay exited with {result}")
+    return output
+
+
+def build_visual_assets(audio_path: Path, duration: float, temp_root: Path) -> dict[str, Path]:
+    particle_path = temp_root / "render-02-particles.png"
+    light_path = temp_root / "render-02-light-sweep.png"
+    make_particle_texture(particle_path)
+    make_light_sweep(light_path)
+    equalizer_path = build_equalizer_overlay(audio_path, duration, temp_root)
+    return {"particles": particle_path, "light": light_path, "equalizer": equalizer_path}
 
 
 def build_overlay_concat(cues: list[SubtitleCue], duration: float, temp_root: Path) -> tuple[Path, dict[str, object]]:
@@ -324,22 +498,35 @@ def build_overlay_concat(cues: list[SubtitleCue], duration: float, temp_root: Pa
     }
 
 
-def run_ffmpeg_render(audio_path: Path, overlay_concat: Path, output_root: Path, duration: float) -> Path:
+def run_ffmpeg_render(
+    audio_path: Path,
+    overlay_concat: Path,
+    output_root: Path,
+    duration: float,
+    visual_assets: dict[str, Path],
+    temp_root: Path,
+) -> Path:
     video_out = output_root / "video" / f"{EPISODE_ID}.v6-subtitled-1080p24-qa.mp4"
     prepare_output(video_out)
+    temp_video = temp_root / "render-02-video.tmp.mp4"
+    if temp_video.exists():
+        temp_video.unlink()
     bg = project_path(BACKGROUND)
 
     filter_graph = ";".join(
         [
-            "[1:a]asplit=2[aout][aw]",
+            "[1:a]anull[aout]",
             "[0:v]scale=1928:1085:force_original_aspect_ratio=increase,"
-            "crop=1920:1080:x='(in_w-out_w)/2+sin(t*0.055)*1.1':"
-            "y='(in_h-out_h)/2+cos(t*0.045)*0.6',fps=24,format=rgba[bg]",
-            "[aw]showwaves=s=430x140:mode=line:rate=24:colors=0xB27E3890,format=rgba,"
-            "colorkey=0x000000:0.10:0.05[wave]",
-            "[bg][wave]overlay=1452:850:format=auto[withwave]",
+            "crop=1920:1080:x='(in_w-out_w)/2+sin(t*0.028)*0.45':"
+            "y='(in_h-out_h)/2+cos(t*0.023)*0.28',fps=24,format=rgba[bg]",
+            "[3:v]format=rgba[pt]",
+            "[bg][pt]overlay=x=0:y='mod(-t*5.5,1080)-1080':format=auto[withparticles]",
+            "[4:v]format=rgba[light]",
+            "[withparticles][light]overlay=x='mod(t*10,2400)-480':y=0:format=auto[withlight]",
+            "[5:v]format=rgba[eq]",
+            "[withlight][eq]overlay=1452:850:format=auto[witheq]",
             "[2:v]fps=24,format=rgba[ov]",
-            "[withwave][ov]overlay=0:0:format=auto,format=yuv420p[v]",
+            "[witheq][ov]overlay=0:0:format=auto,format=yuv420p[v]",
         ]
     )
     command = [
@@ -359,6 +546,20 @@ def run_ffmpeg_render(audio_path: Path, overlay_concat: Path, output_root: Path,
         "0",
         "-i",
         str(overlay_concat),
+        "-loop",
+        "1",
+        "-framerate",
+        str(FPS),
+        "-i",
+        str(visual_assets["particles"]),
+        "-loop",
+        "1",
+        "-framerate",
+        str(FPS),
+        "-i",
+        str(visual_assets["light"]),
+        "-i",
+        str(visual_assets["equalizer"]),
         "-filter_complex",
         filter_graph,
         "-map",
@@ -384,10 +585,38 @@ def run_ffmpeg_render(audio_path: Path, overlay_concat: Path, output_root: Path,
         "-movflags",
         "+faststart",
         "-shortest",
-        str(video_out),
+        str(temp_video),
     ]
     subprocess.run(command, check=True)
+    shutil.move(str(temp_video), video_out)
     return video_out
+
+
+def extract_snapshots(video_path: Path, output_root: Path) -> list[str]:
+    snapshot_dir = output_root / "qa" / "snapshots"
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    paths: list[str] = []
+    for name, timestamp in SNAPSHOT_SPECS:
+        path = snapshot_dir / name
+        prepare_output(path)
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-ss",
+                f"{timestamp:.3f}",
+                "-i",
+                str(video_path),
+                "-frames:v",
+                "1",
+                str(path),
+            ],
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        paths.append(str(path.relative_to(PROJECT_ROOT)))
+    return paths
 
 
 def ffprobe_json(path: Path) -> dict[str, object]:
@@ -442,7 +671,7 @@ def main() -> int:
 
     ensure_inputs_exist()
     output_root = project_path(args.output_root)
-    assert_default_output_root(output_root)
+    assert_allowed_output_root(output_root)
     assert_under_candidates(output_root)
     duration = TARGET_DURATION
 
@@ -456,14 +685,18 @@ def main() -> int:
     sidecars = copy_sidecars(output_root)
     cues = parse_srt(project_path(SOURCE_SRT))
     overlay_concat, overlay_summary = build_overlay_concat(cues, duration, temp_root)
-    video_path = run_ffmpeg_render(project_path(audio_summary["path"]), overlay_concat, output_root, duration)
+    visual_assets = build_visual_assets(project_path(audio_summary["path"]), duration, temp_root)
+    video_path = run_ffmpeg_render(project_path(audio_summary["path"]), overlay_concat, output_root, duration, visual_assets, temp_root)
+    snapshots = extract_snapshots(video_path, output_root)
     summary = {
         "episode_id": EPISODE_ID,
         "duration_target_seconds": round(duration, 3),
         "audio_master": audio_summary,
         "rendered_video": summarize_probe(video_path),
         "copied_sidecars": sidecars,
+        "snapshots": snapshots,
         "overlay": overlay_summary,
+        "visual_revision": "render-02 restores V6-like particles/light sweep, soft ribbon equalizer, V6 header typography, and smoother near-still parallax",
         "boundary": "local ignored render evidence only; no upload, provider, account, release, or rights/platform claim",
     }
 

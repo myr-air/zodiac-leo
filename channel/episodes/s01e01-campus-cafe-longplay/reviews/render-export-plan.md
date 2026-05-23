@@ -1,27 +1,27 @@
 # S01E01 Render/Export Plan — After-School First Love Longplay
 
-Status: render/export planning passed / local execution completed / mechanical QA recorded / release blocked  
+Status: render/export planning passed / render-02 revision completed / human review pending / release blocked  
 Episode: `s01e01-campus-cafe-longplay`  
 Plan ID: `s01e01-render-export-plan-01`  
 Updated: 2026-05-23
 
 ## 0. Boundary
 
-This document defines the approved local render/export execution plan and records that one local QA execution has now been completed. It does not approve uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
+This document defines the approved local render/export execution plan and records that render-01 was superseded by a user-approved render-02 visual revision. It does not approve uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
 
-The media paths listed here now exist as ignored local QA evidence from the approved execution gate. Treat any additional render/export output, revised media, thumbnail, upload package, or public/release artifact as blocked until a separate explicit gate approves it.
+The render-01 and render-02 media paths listed here now exist as ignored local QA evidence from approved local gates. Render-01 is not a final visual reference because it failed human visual review. Treat any additional render/export output, revised media, thumbnail, upload package, or public/release artifact as blocked until a separate explicit gate approves it.
 
 ## 1. Source Inputs Confirmed For Planning
 
 | Area | Source truth | Planning decision |
 |---|---|---|
-| Episode state | `manifest.json`, `reviews/current-state.md` | Source packet remains open. One approved local render/export QA output exists; release remains blocked. |
+| Episode state | `manifest.json`, `reviews/current-state.md` | Source packet remains open. Render-02 is the current local QA output; release remains blocked. |
 | Assembly package | `reviews/assembly-package.md` | Carry forward selected Tracks 1-13 with `1.00s` inter-track gaps and planned `41:43.28` timeline. |
 | Audio candidates | `reviews/audio-qa-listening.md`, `tracking/assets.csv` | The approved local execution used the 13 selected local WAV candidates in the exact order below. No swaps, trims, or normalization policy changes are approved here. |
 | Visual direction | `source/visual-overlay-motion-plan.md`, `reviews/visual-layout-proof-review.md` | Carry forward V6 cute-smooth visual direction with crop/safe-zone and downscale proof evidence. |
 | Subtitles | `subtitles/README.md`, `reviews/subtitle-improvement.md` | Use the promoted final English `.srt` and `.vtt` sidecars as source truth for subtitle timing. |
 | Metadata/disclosure | `source/metadata.md` | Use Gate 11 title/description/disclosure and chapter display drafts only as local QA references. Not final upload metadata. |
-| Internal readiness | `reviews/episode-production-worksheet.md` | Remains `96/100` internal readiness. Local mechanical QA alone does not support a score increase or release claim. |
+| Internal readiness | `reviews/episode-production-worksheet.md` | Remains `96/100` internal readiness. Render-02 mechanical QA alone does not support a score increase or release claim. |
 
 ## 2. Local Timeline Target Used
 
@@ -52,13 +52,25 @@ Policy used for the approved local execution:
 
 ## 3. Local Output Targets Created
 
-The candidate media paths below were created by the approved local execution and remain ignored local evidence. The QA result lives in a durable review doc path, not as generated Markdown under `candidates/`.
+The candidate media paths below were created by approved local executions and remain ignored local evidence. The QA result lives in a durable review doc path, not as generated Markdown under `candidates/`.
+
+Render-01 was created first and then superseded by human visual FAIL:
 
 ```text
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/video/s01e01-campus-cafe-longplay.v6-subtitled-1080p24-qa.mp4
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/subtitles/s01e01-campus-cafe-longplay.en.srt
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/subtitles/s01e01-campus-cafe-longplay.en.vtt
+```
+
+Render-02 is the current local QA revision:
+
+```text
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-02/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-02/video/s01e01-campus-cafe-longplay.v6-subtitled-1080p24-qa.mp4
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-02/subtitles/s01e01-campus-cafe-longplay.en.srt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-02/subtitles/s01e01-campus-cafe-longplay.en.vtt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-02/qa/snapshots/
 channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md
 ```
 
@@ -82,7 +94,7 @@ Carry forward V6 visual language from `source/visual-overlay-motion-plan.md`:
 - deterministic motion seed and no hard particle reset at track boundaries;
 - conservative crop-safe inset for header, track title, subtitles, and equalizer unless a future proof demonstrates safety.
 
-The approved local execution re-used the V6 proof convention and sampled the actual output after rendering. The V6 proof plus local samples narrow mechanical/readability risk but are not a full human final-output QA pass.
+Render-01 did not satisfy user visual fidelity expectations. Render-02 revised the helper to restore visible particles/light, a V6-style soft ribbon/dot equalizer, V6 top-left typography, and smoother near-still parallax. Render-02 samples narrow mechanical/readability risk but are not a full human final-output QA pass.
 
 ## 5. Subtitle Target Used
 
@@ -102,7 +114,7 @@ Known source-sidecar facts to preserve:
 - Track 13 `Dialogue First` remains excluded from timing because the selected audio begins at Verse 1.
 - Final cue timeline remains within `41:43.28`.
 
-The approved local execution used these timings to drive on-video lyric subtitles and local sidecar QA. Do not revise cue text, cue boundaries, language, Track 13 section policy, or gap cue policy without a separate sidecar revision gate.
+The approved local executions used these timings to drive on-video lyric subtitles and local sidecar QA. Do not revise cue text, cue boundaries, language, Track 13 section policy, or gap cue policy without a separate sidecar revision gate.
 
 ## 6. Metadata / Disclosure QA Reference
 
@@ -118,7 +130,7 @@ Do not upload, publish, schedule, edit public metadata, use YouTube Studio/API/b
 
 ## 7. Render/Export QA Checklist
 
-The approved local execution produced `reviews/render-export-qa.md` before any readiness claim. Minimum checks:
+The approved local executions produced `reviews/render-export-qa.md` updates before any readiness claim. Minimum checks:
 
 ### Preflight before rendering
 
@@ -162,13 +174,13 @@ Stop and re-plan before any additional local render/export execution if any of t
 ## 9. Verdict
 
 ```text
-Verdict: pass_local_render_export_execution_mechanical_qa_recorded
-Scope: local render/export input map, ignored output targets, and QA checklist/result only
+Verdict: render_02_local_mechanical_qa_recorded_human_review_pending_release_blocked
+Scope: local render/export input map, ignored output targets, render-01 fail record, and render-02 QA result only
 Timeline target: selected Tracks 1-13 with 12 x 1.00s gaps for planned 41:43.28 duration
 Subtitle target: promoted final English en.srt and en.vtt sidecars carried forward source-only
-Visual target: V6 cute-smooth direction carried forward with sampled local output checks and full human QA required later
+Visual target: V6 cute-smooth direction carried forward with render-02 sampled local output checks and full human QA required later
 Readiness score: remains 96/100 internal readiness
-Outputs created by this gate: ignored local WAV timeline, QA MP4, sidecar copies, and sampled PNG snapshots under candidates/
-Next allowed action: human full watch/listen review or separate release-decision planning gate if the user wants to move beyond local QA
+Outputs created by approved local gates: render-01 ignored outputs superseded by human visual FAIL; render-02 ignored WAV timeline, QA MP4, sidecar copies, and sampled PNG snapshots under candidates/
+Next allowed action: human full watch/listen review of render-02 or separate release-decision planning gate if the user wants to move beyond local QA
 Still blocked: additional/revised render/export output creation without a new gate, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
 ```
