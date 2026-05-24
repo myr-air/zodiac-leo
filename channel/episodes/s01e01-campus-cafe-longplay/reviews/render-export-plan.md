@@ -1,27 +1,27 @@
 # S01E01 Render/Export Plan — After-School First Love Longplay
 
-Status: render/export planning passed / render-02 revision completed / human review pending / release blocked  
+Status: render/export planning passed / render-05 local QA user-approved / release blocked  
 Episode: `s01e01-campus-cafe-longplay`  
 Plan ID: `s01e01-render-export-plan-01`  
-Updated: 2026-05-23
+Updated: 2026-05-24
 
 ## 0. Boundary
 
-This document defines the approved local render/export execution plan and records that render-01 was superseded by a user-approved render-02 visual revision. It does not approve uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
+This document defines the approved local render/export execution plan and records that render-01 was superseded by user-approved render-02/render-03/render-04 visual revisions and the user-approved render-05 corrected subtitle refresh. It does not approve uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
 
-The render-01 and render-02 media paths listed here now exist as ignored local QA evidence from approved local gates. Render-01 is not a final visual reference because it failed human visual review. Treat any additional render/export output, revised media, thumbnail, upload package, or public/release artifact as blocked until a separate explicit gate approves it.
+The render-01, render-02, render-03, render-04, and render-05 media paths listed here now exist as ignored local QA evidence from approved local gates. Render-01 is not a final visual reference because it failed human visual review, render-02 is superseded by render-03, render-03 is superseded by render-04, and render-04 is stale for Track 1 cue 58 after the source correction. Render-05 is the current user-approved local QA output with corrected source sidecars copied and burned in. Treat any additional render/export output, corrected render/copy refresh, revised media, thumbnail, upload package, or public/release artifact as blocked until a separate explicit gate approves it.
 
 ## 1. Source Inputs Confirmed For Planning
 
 | Area | Source truth | Planning decision |
 |---|---|---|
-| Episode state | `manifest.json`, `reviews/current-state.md` | Source packet remains open. Render-02 is the current local QA output; release remains blocked. |
+| Episode state | `manifest.json`, `reviews/current-state.md` | Source packet remains open. Render-05 is the current user-approved local QA output after the Track 1 cue 58 correction; release remains blocked. |
 | Assembly package | `reviews/assembly-package.md` | Carry forward selected Tracks 1-13 with `1.00s` inter-track gaps and planned `41:43.28` timeline. |
 | Audio candidates | `reviews/audio-qa-listening.md`, `tracking/assets.csv` | The approved local execution used the 13 selected local WAV candidates in the exact order below. No swaps, trims, or normalization policy changes are approved here. |
 | Visual direction | `source/visual-overlay-motion-plan.md`, `reviews/visual-layout-proof-review.md` | Carry forward V6 cute-smooth visual direction with crop/safe-zone and downscale proof evidence. |
-| Subtitles | `subtitles/README.md`, `reviews/subtitle-improvement.md` | Use the promoted final English `.srt` and `.vtt` sidecars as source truth for subtitle timing. |
+| Subtitles | `subtitles/README.md`, `reviews/subtitle-improvement.md` | Use the promoted final English `.srt` and `.vtt` sidecars as source truth for subtitle timing and text. Track 1 cue 58 now reads `Same seat tomorrow after school` at the existing timing. |
 | Metadata/disclosure | `source/metadata.md` | Use Gate 11 title/description/disclosure and chapter display drafts only as local QA references. Not final upload metadata. |
-| Internal readiness | `reviews/episode-production-worksheet.md` | Remains `96/100` internal readiness. Render-02 mechanical QA alone does not support a score increase or release claim. |
+| Internal readiness | `reviews/episode-production-worksheet.md` | Remains `96/100` internal readiness. Render-05 mechanical QA alone does not support a score increase or release claim. |
 
 ## 2. Local Timeline Target Used
 
@@ -63,7 +63,7 @@ candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/subtitles/s
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-01/subtitles/s01e01-campus-cafe-longplay.en.vtt
 ```
 
-Render-02 is the current local QA revision:
+Render-02 passed mechanical QA and is superseded by render-03:
 
 ```text
 candidates/s01e01-campus-cafe-longplay/render/future-local-render-02/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
@@ -74,12 +74,47 @@ candidates/s01e01-campus-cafe-longplay/render/future-local-render-02/qa/snapshot
 channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md
 ```
 
+Render-03 passed mechanical QA and is superseded by render-04:
+
+```text
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-03/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-03/video/s01e01-campus-cafe-longplay.v6-subtitled-1080p24-qa.mp4
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-03/subtitles/s01e01-campus-cafe-longplay.en.srt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-03/subtitles/s01e01-campus-cafe-longplay.en.vtt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-03/qa/snapshots/
+channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md
+```
+
+Render-04 is the latest local QA revision but predates the Track 1 cue 58 source correction:
+
+```text
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/video/s01e01-campus-cafe-longplay.v6-subtitled-1080p24-qa.mp4
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/video/segments/
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/subtitles/s01e01-campus-cafe-longplay.en.srt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/subtitles/s01e01-campus-cafe-longplay.en.vtt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/qa/snapshots/
+channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md
+```
+
+Render-05 is the current corrected local QA revision:
+
+```text
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/audio/s01e01-campus-cafe-longplay.timeline-41m43s28.wav
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/video/s01e01-campus-cafe-longplay.v6-subtitled-1080p24-qa.mp4
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/video/segments/
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/subtitles/s01e01-campus-cafe-longplay.en.srt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/subtitles/s01e01-campus-cafe-longplay.en.vtt
+candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/qa/snapshots/
+channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md
+```
+
 Output notes:
 
 - The video uses a `qa` filename, not a release/public filename, until a later final QA and release-decision gate exists.
 - Any generated render files should remain ignored local evidence under `candidates/` unless a future repo rule explicitly changes that.
 - Use `reviews/render-export-qa.md` for durable render/export QA evidence; do not write generated Markdown under `candidates/`.
-- Copied sidecars in the render folder are local QA copies only; the source sidecars under `channel/episodes/s01e01-campus-cafe-longplay/subtitles/` remain authoritative.
+- Copied sidecars in the render folder are local QA copies only; the source sidecars under `channel/episodes/s01e01-campus-cafe-longplay/subtitles/` remain authoritative. Render-05 copied sidecars byte-match the corrected source; render-04 copied sidecars no longer match after the Track 1 cue 58 text fix.
 - Do not create thumbnails, upload packages, public metadata files, account exports, or platform-specific package artifacts in this gate.
 
 ## 4. Visual Render Target Used
@@ -94,7 +129,7 @@ Carry forward V6 visual language from `source/visual-overlay-motion-plan.md`:
 - deterministic motion seed and no hard particle reset at track boundaries;
 - conservative crop-safe inset for header, track title, subtitles, and equalizer unless a future proof demonstrates safety.
 
-Render-01 did not satisfy user visual fidelity expectations. Render-02 revised the helper to restore visible particles/light, a V6-style soft ribbon/dot equalizer, V6 top-left typography, and smoother near-still parallax. Render-02 samples narrow mechanical/readability risk but are not a full human final-output QA pass.
+Render-01 did not satisfy user visual fidelity expectations. Render-02 revised the helper to restore visible particles/light, a V6-style soft ribbon/dot equalizer, V6 top-left typography, and smoother near-still parallax. Render-03 added header-matched `Now Playing`, generated subtitle motion, and richer moving sunlight/reflection/shadow/particle layers. Render-04 kept the accepted render-03 look while reducing subtitle movement to `x=2px`, `y=-8px`, replacing the loose headphone mark with a balanced Bézier vector icon at `x=48`, `y=88`, adding subtle low-opacity animated music notes beside the icon, and rendering one resumable video segment per song with global-time visual offsets before muxing one continuous WAV master. Render-05 carries forward render-04 visuals and refreshes the subtitle burn/copies after the Track 1 cue 58 source correction. Render-05 samples narrow mechanical/readability risk but are not a full human final-output QA pass.
 
 ## 5. Subtitle Target Used
 
@@ -113,8 +148,9 @@ Known source-sidecar facts to preserve:
 - Max line length: 37 chars.
 - Track 13 `Dialogue First` remains excluded from timing because the selected audio begins at Verse 1.
 - Final cue timeline remains within `41:43.28`.
+- Track 1 cue 58 at `00:04:10.280 --> 00:04:16.540` is corrected to `Same seat tomorrow after school`; timing and cue count are unchanged.
 
-The approved local executions used these timings to drive on-video lyric subtitles and local sidecar QA. Do not revise cue text, cue boundaries, language, Track 13 section policy, or gap cue policy without a separate sidecar revision gate.
+The approved local executions used the current timings to drive on-video lyric subtitles and local sidecar QA. Render-05 was generated after the Track 1 cue 58 text correction and copied the corrected source sidecars. Do not revise cue text, cue boundaries, language, Track 13 section policy, or gap cue policy without a separate sidecar revision gate.
 
 ## 6. Metadata / Disclosure QA Reference
 
@@ -154,7 +190,7 @@ The approved local executions produced `reviews/render-export-qa.md` updates bef
 
 ### Human review before any later release decision
 
-- Full-length watch/listen pass or a documented sampling plan plus risk acceptance.
+- Render-05 local QA is user-approved; any future release decision still needs a separate release gate and current platform/account/policy review.
 - Subtitle readability review in the actual rendered context.
 - Visual crop/readability review on target viewports.
 - Fresh readiness score decision; do not raise `96/100` without new final-output evidence and explicit score review.
@@ -170,17 +206,18 @@ Stop and re-plan before any additional local render/export execution if any of t
 - provenance, account, credential, provider, platform, rights, or release assumptions;
 - source docs conflict with manifest, current-state, or tracking CSVs;
 - user requests actual render/export without naming the local execution scope and stop conditions.
+- any future corrected sidecars need to be copied or burned into a new QA output; this requires a new explicit local render gate.
 
 ## 9. Verdict
 
 ```text
-Verdict: render_02_local_mechanical_qa_recorded_human_review_pending_release_blocked
-Scope: local render/export input map, ignored output targets, render-01 fail record, and render-02 QA result only
+Verdict: render_05_local_qa_user_approved_release_blocked
+Scope: local render/export input map, ignored output targets, render-01 fail record, render-02/render-03/render-04 supersession, and render-05 QA result only
 Timeline target: selected Tracks 1-13 with 12 x 1.00s gaps for planned 41:43.28 duration
-Subtitle target: promoted final English en.srt and en.vtt sidecars carried forward source-only
-Visual target: V6 cute-smooth direction carried forward with render-02 sampled local output checks and full human QA required later
+Subtitle target: promoted final English en.srt and en.vtt sidecars carried forward source-only with Track 1 cue 58 text corrected
+Visual target: V6 cute-smooth direction carried forward with render-05 sampled local output checks and full human QA required later
 Readiness score: remains 96/100 internal readiness
-Outputs created by approved local gates: render-01 ignored outputs superseded by human visual FAIL; render-02 ignored WAV timeline, QA MP4, sidecar copies, and sampled PNG snapshots under candidates/
-Next allowed action: human full watch/listen review of render-02 or separate release-decision planning gate if the user wants to move beyond local QA
-Still blocked: additional/revised render/export output creation without a new gate, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
+Outputs created by approved local gates: render-01 ignored outputs superseded by human visual FAIL; render-02 ignored outputs superseded by render-03; render-03 ignored outputs superseded by render-04; render-04 ignored outputs superseded for corrected subtitle QA by render-05; render-05 ignored WAV timeline, per-song segment MP4s, final QA MP4, sidecar copies, and sampled PNG snapshots under candidates/
+Next allowed action: separate release-decision planning gate if the user wants to move beyond local QA
+Still blocked: additional/revised render/export output creation beyond render-05 without a new gate, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
 ```

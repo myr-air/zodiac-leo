@@ -1,7 +1,7 @@
 # S01E01 Subtitle Improvement Review
 
-Status: final_sidecars_promoted_source_only_render_export_blocked  
-Updated: 2026-05-22
+Status: final_sidecars_promoted_track_1_cue_58_text_corrected_source_only_render_export_blocked  
+Updated: 2026-05-24
 
 ## Boundary
 
@@ -9,7 +9,7 @@ This review records source-only subtitle improvement for vocal alignment and sho
 
 ## User Direction
 
-User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only. Gate 10 work generated no-render draft alignment sidecars for Tracks 2-13; Track 13 is aligned against sung source sections only because the selected audio begins at Verse 1 and omits the source `Dialogue First` section. User later reported all remaining Tracks 2-13 PASS after human watch source-only, then approved final sidecar promotion using `reviews/assembly-package.md`.
+User passed the V6 cute-smooth visual direction source-only and closed the visual proof review gate. Residual subtitle issue was that proof subtitles were not aligned closely enough to the sung vocal and some cue chunks were too long. User then passed the current Track 1 subtitle proof after the sung-lyric watch pass source-only. Gate 10 work generated no-render draft alignment sidecars for Tracks 2-13; Track 13 is aligned against sung source sections only because the selected audio begins at Verse 1 and omits the source `Dialogue First` section. User later reported all remaining Tracks 2-13 PASS after human watch source-only, then approved final sidecar promotion using `reviews/assembly-package.md`. On 2026-05-24, after render-04 review, the user identified a Track 1 late-song lyric text mismatch; cue 58 at `00:04:10.280 --> 00:04:16.540` was corrected from `Save my seat and I'll walk you home` to `Same seat tomorrow after school` with timing unchanged.
 
 ## Inputs
 
@@ -41,6 +41,7 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 - Tracks 2-12: draft line-count coverage matches source lyrics, no-overlap checks pass, and user human-watch pass is recorded source-only.
 - Track 13: sung-section draft line-count coverage matches selected-audio sections, no-overlap checks pass, and user human-watch pass is recorded source-only; the absent `Dialogue First` source section is excluded from subtitle timing and remains a source/audio caveat.
 - Final sidecar promotion: `scripts/subtitle_alignment_pipeline.py promote-final-sidecars --print-json` produced 598 cues across 13 tracks, max line length 37 chars, no overlaps, no cues in the 1-second inter-track gaps, Track 13 `Dialogue First` exclusion preserved, and final timeline duration `41:43.28`.
+- Track 1 cue 58 source correction: source `.srt` and `.vtt` plus Track 1 lyric mirrors now use `Same seat tomorrow after school` at the existing outro-hook timing. Cue count, timing, gap policy, and line-length ceiling are unchanged.
 
 ## Improvement Rules
 
@@ -53,6 +54,6 @@ User passed the V6 cute-smooth visual direction source-only and closed the visua
 
 ## Current Verdict
 
-`final_sidecars_promoted_source_only_render_export_blocked`
+`final_sidecars_promoted_track_1_cue_58_text_corrected_source_only_render_export_blocked`
 
 Next allowed source-only action is separately approved render/export planning if the user wants to move beyond subtitle source files. Full assembly, render/export, upload/publish, and release remain blocked until a separate explicit gate.

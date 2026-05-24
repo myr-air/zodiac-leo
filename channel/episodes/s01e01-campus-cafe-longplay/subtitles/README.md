@@ -1,6 +1,6 @@
 # S01E01 Subtitles
 
-Status: final English sidecars promoted / source-only / render-export blocked  
+Status: final English sidecars promoted / Track 1 cue 58 text corrected / source-only / render-export blocked  
 Episode: `s01e01-campus-cafe-longplay`
 
 ## Boundary
@@ -9,7 +9,7 @@ Final English subtitle sidecars are promoted source-only from the human-watch-pa
 
 ## Gate 10 Human Watch Status
 
-User passed the V6 visual direction source-only, then opened subtitle improvement because the proof subtitles did not align closely enough with the sung vocal and some cues were too long. User passed the current Track 1 subtitle proof after human sung-lyric watch source-only, then reported all remaining Tracks 2-13 PASS source-only. Tracks 1-13 have human-watch-passed draft timing evidence, and the source-only sidecar promotion gate has produced the final source `.srt` and `.vtt` targets.
+User passed the V6 visual direction source-only, then opened subtitle improvement because the proof subtitles did not align closely enough with the sung vocal and some cues were too long. User passed the current Track 1 subtitle proof after human sung-lyric watch source-only, then reported all remaining Tracks 2-13 PASS source-only. Tracks 1-13 have human-watch-passed draft timing evidence, and the source-only sidecar promotion gate has produced the final source `.srt` and `.vtt` targets. On 2026-05-24, after render-04 review, the user identified a Track 1 late-song text mismatch; cue 58 at `00:04:10.280 --> 00:04:16.540` was corrected from `Save my seat and I'll walk you home` to `Same seat tomorrow after school` with timing unchanged.
 
 ## Promoted Final Sidecar Targets
 
@@ -41,7 +41,7 @@ Local ignored evidence exists at `candidates/s01e01-campus-cafe-longplay/subtitl
 - Tracks 2-12: matching `.json`, `.draft.srt`, `.draft.vtt`, and `.proof.ass` sidecars in `track-02/` through `track-12/`; generated with `--no-render`, so no MP4 proof was created for these tracks.
 - Track 13: complete sung-section draft sidecars in `track-13/` generated with `--exclude-sections "Dialogue First"`, because the selected audio begins at Verse 1 and does not contain the source dialogue section. Historical incomplete fast-check evidence remains in `track-13-fast-check/` as local evidence only.
 
-Track 1 mechanical checks pass for cue count, no overlap, 0.08s minimum gap, and 37-character maximum line length. Proof subtitles use proof-only `1.5s` fade/slide in, then `1.0s` fade-only out with no exit slide while keeping cue start/end timing unchanged. Cues 58-59 remain mechanically low-confidence evidence, but the user passed the human sung-lyric watch pass source-only. Tracks 2-13 pass line-count and no-overlap mechanical checks, and the user reported all remaining draft timings PASS after human watch source-only.
+Track 1 mechanical checks pass for cue count, no overlap, 0.08s minimum gap, and 37-character maximum line length. Proof subtitles use proof-only `1.5s` fade/slide in, then `1.0s` fade-only out with no exit slide while keeping cue start/end timing unchanged. Cues 58-59 were mechanically low-confidence evidence; cue 58 text is now source-corrected per user-reported sung audio while preserving its timing. Tracks 2-13 pass line-count and no-overlap mechanical checks, and the user reported all remaining draft timings PASS after human watch source-only.
 
 ## Track 2-13 Gate 10 Status
 

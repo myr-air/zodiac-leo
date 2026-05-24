@@ -1,10 +1,10 @@
 # S01E01 Metadata Source — After-School First Love Longplay
 
-Status: metadata/disclosure pack passed / final subtitle sidecars promoted / render-02 mechanical QA recorded / human review pending / release blocked  
+Status: metadata/disclosure pack passed / final subtitle sidecars corrected / render-05 local QA user-approved / release blocked  
 Prepared date: 2026-05-19
-Updated: 2026-05-23
+Updated: 2026-05-24
 
-Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, render-01 failed human visual review after mechanical QA, and the approved render-02 local revision has mechanical QA recorded in `reviews/render-export-qa.md`. Render-02 full human final-output watch/listen, upload/publish, release readiness, provider/account actions, and additional/revised outputs remain blocked.
+Audio candidate state: the selected draft audio content is accepted source-only at `41:31.28` in `reviews/audio-qa-listening.md`. Gate 8 sequence/chapter policy is source-only: keep track order 1-13, use `1.00s` inter-track gaps, use no crossfades, and reserve no intro/outro bumper time in this timeline. Planned sequence duration is `41:43.28` including 12 gaps. Gate 10 subtitle draft timings are human watch-passed source-only for Tracks 1-13, final English subtitle sidecars are promoted source-only in `subtitles/`, and Track 1 cue 58 text is corrected there with timing unchanged. Render/export planning is passed in `reviews/render-export-plan.md`, render-01 failed human visual review after mechanical QA, render-02/render-03/render-04 are superseded, and render-05 local QA is user-approved in `reviews/render-export-qa.md`. Upload/publish, release readiness, provider/account actions, and additional/revised outputs remain blocked without a new gate.
 
 Bumper note: a simple channel intro/outro bumper can be authored locally later from existing source visuals/text without needing AI, but any actual bumper media, render/export, or revised duration must use a separate explicit future gate. This Gate 8 plan does not create or reserve bumper media.
 
@@ -21,7 +21,7 @@ Bumper note: a simple channel intro/outro bumper can be authored locally later f
 | Audio content duration | `41:31.28` |
 | Gap total | `12.00s` |
 | Planned sequence duration | `41:43.28` |
-| Still blocked | sidecar revisions without a new gate, additional/revised render/export outputs without a new gate, upload/publish, release readiness, rights/platform-safety claims |
+| Still blocked | further sidecar revisions without a new gate, additional/revised render/export outputs beyond render-05 without a new gate, upload/publish, release readiness, rights/platform-safety claims |
 
 ## Gate 11 Metadata / Disclosure Pack
 
@@ -96,13 +96,13 @@ Reject or re-review tags that imply a named artist/song/channel, real brand, rea
 
 `pass_metadata_disclosure_pack_source_only`
 
-Assembly package planning is source-passed in `reviews/assembly-package.md`, final English subtitle sidecars are promoted source-only in `subtitles/`, render/export planning is passed in `reviews/render-export-plan.md`, render-01 human visual FAIL is recorded, and the approved render-02 local mechanical QA result is recorded in `reviews/render-export-qa.md`. Next allowed action is human full watch/listen review of the render-02 QA MP4 or a separate release-decision planning gate if moving beyond local QA. Upload/publish, release readiness, analytics, platform/account actions, additional/revised outputs without a new gate, and rights/platform-safety claims remain blocked.
+Assembly package planning is source-passed in `reviews/assembly-package.md`, final English subtitle sidecars are promoted source-only in `subtitles/`, Track 1 cue 58 source text is corrected, render/export planning is passed in `reviews/render-export-plan.md`, render-01 human visual FAIL is recorded, render-02/render-03/render-04 are superseded, and the approved render-05 local QA result is recorded in `reviews/render-export-qa.md`. Next allowed action is a separate release-decision planning gate if moving beyond local QA. Upload/publish, release readiness, analytics, platform/account actions, additional/revised outputs without a new gate, and rights/platform-safety claims remain blocked.
 
 ## Chapter Draft
 
 | Track | Working title | Selected draft duration | Chapter start | Track audio end | Gap after | Notes |
 |---:|---|---:|---:|---:|---:|---|
-| 1 | Margin Notes at Table Three | 279.92s | 00:00.00 | 04:39.92 | 1.00s | selected audio accepted; Track 1 subtitle proof human watch-passed source-only |
+| 1 | Margin Notes at Table Three | 279.92s | 00:00.00 | 04:39.92 | 1.00s | selected audio accepted; Track 1 subtitle proof human watch-passed source-only; cue 58 text corrected in final sidecars |
 | 2 | Two Lids, One Tray | 225.00s | 04:40.92 | 08:25.92 | 1.00s | selected audio accepted |
 | 3 | Borrowed Eraser, Written Name | 204.12s | 08:26.92 | 11:51.04 | 1.00s | selected audio accepted |
 | 4 | Checkout Slip at Chapter Nine | 209.56s | 11:52.04 | 15:21.60 | 1.00s | selected audio accepted |

@@ -122,7 +122,7 @@ Save my seat and I'll walk you home
 
 [Outro Hook]
 Same seat tomorrow after school
-Save my seat and I'll walk you home
+Same seat tomorrow after school
 Same seat tomorrow after school
 
 [Outro - instrumental, 6 bars]
