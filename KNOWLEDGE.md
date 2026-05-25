@@ -1,7 +1,7 @@
 # Mellow Longplay Knowledge Contract
 
 Status: active  
-Updated: 2026-05-24
+Updated: 2026-05-25
 
 ## Purpose
 
@@ -16,11 +16,13 @@ Updated: 2026-05-24
 - Gate 10 subtitle/source timing plan is passed source-only: all tracks have local draft timing evidence from selected audio and approved source lyrics, and all Tracks 1-13 are human watch-passed source-only. Track 13 uses sung-section timing that excludes the absent `Dialogue First` source section because the selected audio begins at Verse 1. Gate 11 metadata/disclosure pack is passed source-only with title/description draft, AI-assisted disclosure wording, rounded chapter display draft, tags policy, and blocked-claim checklist. Gate 12 internal readiness scorecard is source-passed at `96/100` after user-reported non-secret provenance, local fingerprints, and V6 crop/safe-zone evidence were recorded. Source-only assembly package planning is passed in `reviews/assembly-package.md` with the selected 1s-gap timeline and V6 carry-forward. Final English subtitle sidecars are promoted source-only at `subtitles/s01e01-campus-cafe-longplay.en.srt` and `.en.vtt` with 598 cues, no overlaps, no gap cues, and Track 13 `Dialogue First` exclusion preserved. Render/export planning is passed in `reviews/render-export-plan.md`; render-01 mechanical QA was recorded but later failed human visual review for particle/light, equalizer, Now Playing typography, and parallax fidelity; render-02 and render-03 mechanical QA were recorded and are now superseded by the user-approved render-04 local revision under `candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/`. `reviews/render-export-qa.md` records render-04 mechanical QA plus pending human review: `2503.28s`, `1920x1080`, `24fps`, sidecar byte-match, 598 cues, no overlaps, no gap cues, 13 resumable per-song segments, clean decode, and 7 sampled snapshots. `98/100` is not supported without future final human/full-release QA evidence. No upload plan, release approval, analytics, or platform/account action exists. Audio candidates, visual proof media, subtitle proof media, and local render outputs remain ignored local evidence only.
 
 - Render-04 sidecar byte-match is historical as of the 2026-05-24 cue 58 correction; render-05 is the current corrected local QA output. Source sidecars remain authoritative before any future render/copy QA.
+- 2026-05-25 release decision planning remains open in `channel/episodes/s01e01-campus-cafe-longplay/reviews/release-decision-plan.md`, and the OAuth/API execution gate is now open in `channel/episodes/s01e01-campus-cafe-longplay/reviews/youtube-api-execution-gate.md` for one private YouTube Data API video upload plus selected-thumbnail follow-up. The user selected an API route rather than manual entry; `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-api-video-upload-package.md`, `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-video-resource.json`, `scripts/youtube_api_video_upload.py`, and `scripts/youtube_api_thumbnail.py` define a channel-level guarded workflow with `channels.list(mine=true)` channel verification before `videos.insert(private)` or `thumbnails.set`. The helpers read reusable `MELLOW_YOUTUBE_*` execution inputs from an external env file; the repo contains only a placeholder template at `channel/templates/youtube-api-upload-env.example`. Captions are not uploaded because subtitles are burned in. Public release is not passed; readiness remains `96/100`; public publish/schedule, browser/Studio actions, analytics, Content ID, caption upload, credentials/tokens in repo, account-state storage, and positive rights/platform-safety claims remain blocked.
 
 ## Current Source Truth
 
 - Channel strategy: `channel/channel.md` and `channel/roadmap.md`.
-- Reusable templates: `channel/templates/`.
+- Reusable templates: `channel/templates/`, including the compact next-video fastlane worksheet in `channel/templates/episode-production-worksheet-template.md`.
+- YouTube API external env template: `channel/templates/youtube-api-upload-env.example`.
 - Reusable local audio candidate intake workflow: `channel/templates/audio-candidate-intake-workflow-template.md`.
 - Signature visual system: `channel/signature-visual-system.md` records source-only channel motifs with stored local reference images in `channel/signature-references/`.
 - Active episode truth: `channel/episodes/s01e01-campus-cafe-longplay/manifest.json`.
@@ -38,9 +40,13 @@ Updated: 2026-05-24
 - Active subtitle timing review: `channel/episodes/s01e01-campus-cafe-longplay/subtitles/README.md` and `channel/episodes/s01e01-campus-cafe-longplay/reviews/subtitle-improvement.md`.
 - Active final subtitle sidecars: `channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.srt` and `channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.vtt`.
 - Active metadata/disclosure source: `channel/episodes/s01e01-campus-cafe-longplay/source/metadata.md`.
+- Active source-only YouTube API video upload package: `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-api-video-upload-package.md`, `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-video-resource.json`, and channel-level helper `scripts/youtube_api_video_upload.py`.
+- Historical source-only manual YouTube metadata package: `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-manual-upload-package.md`.
 - Active assembly package plan: `channel/episodes/s01e01-campus-cafe-longplay/reviews/assembly-package.md`.
 - Active render/export plan: `channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-plan.md`.
 - Active render/export QA result: `channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md`.
+- Active release decision planning gate: `channel/episodes/s01e01-campus-cafe-longplay/reviews/release-decision-plan.md`.
+- Active YouTube API execution gate: `channel/episodes/s01e01-campus-cafe-longplay/reviews/youtube-api-execution-gate.md`.
 - Active tracking: `channel/episodes/s01e01-campus-cafe-longplay/tracking/*.csv`.
 
 ## Current Decisions
@@ -65,8 +71,9 @@ Updated: 2026-05-24
 - The local audio candidate intake + Gemini supplemental A/B method is confirmed usable and recorded as a reusable workflow template for future episodes.
 - Source-only visual prompt pack is theme-retuned; `G.png` is recorded as visual background direction `vis-c01`; V6 cute-smooth motion proof was created after user rejected V4-07 and revised V5 for cuter readable typography, smoother equalizer behavior, slower parallax, local hair/leaf motion, header hold, and title slide-in/out. User passed V6 as the visual direction source-only; all Tracks 1-13 subtitle draft timings are also human watch-passed source-only. This is not image generation approval, full render/export approval, or release approval.
 - Current audio candidates, static visual proof images, V4-07 proof, V5 proof, V6 proof, subtitle timing proofs, and render-01 through render-05 local render/export QA outputs exist as ignored local evidence only; Gate 8 chapter timestamps are source-passed with 1s gaps, Gate 10 subtitle/source timing plan is source-passed with all tracks human watch-passed, Gate 11 metadata/disclosure is source-passed, Gate 12 internal readiness scorecard is source-passed, source-only assembly package planning is source-passed, final English sidecars are promoted source-only with Track 1 cue 58 corrected, render/export planning is passed, render-01 is superseded by human visual FAIL, render-02/render-03/render-04 are superseded, and render-05 local QA is user-approved while release gate remains blocked.
-- Upload/public-publish planning, additional render/export output creation beyond the approved render-05 local QA output, provider/account/API/browser automation, Content ID registration, and rights/platform-safety claims remain blocked.
+- Release decision planning is open and the OAuth/API execution gate is open for one private `videos.insert` upload plus selected-thumbnail follow-up with channel-id verification and no caption upload, but public release/public-publish approval, additional render/export output creation beyond the approved render-05 local QA output, provider/browser automation, Content ID registration, caption upload, extra thumbnail variants, credentials/tokens in repo, account-state storage, and rights/platform-safety claims remain blocked.
 - Future visual prompts may reuse the channel-level signature motifs only as source-only design guidance unless a later explicit visual gate overrides that rule.
+- Future videos should start from the compact next-video fastlane worksheet: reuse approved channel defaults by citation, review only changed episode deltas, and keep local render/export plus external platform/API actions behind explicit gates.
 
 ## Safety
 

@@ -1,13 +1,13 @@
 # S01E01 Production Worksheet — After-School First Love Longplay
 
-Status: internal readiness scorecard passed / render-05 local QA user-approved / release blocked / 96  
+Status: internal readiness scorecard passed / render-05 local QA user-approved / manual metadata package prepared / release decision planning open / release blocked / 96  
 Episode: `s01e01-campus-cafe-longplay`  
 Prepared date: 2026-05-18
-Updated: 2026-05-24
+Updated: 2026-05-25
 
 ## 0. Boundary
 
-This worksheet evaluates internal source readiness and records the approved local render/export mechanical QA outcomes. Render-01 failed human visual review, render-02 and render-03 passed mechanical QA but are superseded, render-04 is stale for Track 1 cue 58 after the source correction, and render-05 is the current user-approved local QA revision. This does not approve provider use, additional media generation/render/export beyond approved local gates, upload, publishing, Suno/YouTube/API/browser automation, account mutation, credential storage, Content ID registration, release readiness, or positive rights/platform claims.
+This worksheet evaluates internal source readiness and records the approved local render/export mechanical QA outcomes. Render-01 failed human visual review, render-02 and render-03 passed mechanical QA but are superseded, render-04 is stale for Track 1 cue 58 after the source correction, render-05 is the current user-approved local QA revision, source-only release decision planning is open in `reviews/release-decision-plan.md`, and `source/youtube-manual-upload-package.md` prepares copyable manual metadata only. This does not approve provider use, additional media generation/render/export beyond approved local gates, upload, publishing, Suno/YouTube/API/browser automation, account mutation, credential storage, Content ID registration, release readiness, or positive rights/platform claims.
 
 ## 1. Required Inputs Checklist
 
@@ -15,7 +15,7 @@ This worksheet evaluates internal source readiness and records the approved loca
 |---|---|---:|---|
 | Channel strategy | `channel/channel.md` | yes | Cozy chill vocal longplay promise. |
 | Roadmap | `channel/roadmap.md` | yes | Week 1 retuned to After-School First Love Longplay. |
-| Episode manifest | `channel/episodes/s01e01-campus-cafe-longplay/manifest.json` | yes | Source packet open. |
+| Episode manifest | `channel/episodes/s01e01-campus-cafe-longplay/manifest.json` | yes | Release decision planning open source-only; source packet remains reviewable. |
 | Operating boundary | `docs/operating-boundary.md` | yes | Source packet allowed; media/account actions blocked. |
 | Provider/platform boundary | `docs/provider-platform-boundary.md` | yes | Provider and upload actions blocked. |
 | Song source | `source/songs.md` | yes | Current 13-track replacement set is source-approved: Tracks 1-3 user-accepted/source-synced; Tracks 4-13 Mayr source-approved/source-synced. |
@@ -25,14 +25,14 @@ This worksheet evaluates internal source readiness and records the approved loca
 | Candidate intake checklist / audio QA | `reviews/candidate-intake-checklist.md`, `reviews/audio-candidate-intake.md`, `reviews/audio-qa-listening.md` | yes | 26 user-supplied local WAV candidates recorded; 13 selected draft candidates and 13 pool candidates mapped. Human listening, lyric anchor spot-check, and 41:31 duration/sequence acceptance are source-only recorded. |
 | External lyric review | `reviews/gemini-lyrics-review.md` | historical | Gemini CLI review completed for the earlier adult/college-coded draft; superseded by theme retune. |
 | Visual source | `source/visual.md`, `source/visual-prompt-pack.md`, `reviews/visual-prompt-pack.md` | yes | Theme-retuned source-only visual prompts and safe zones prepared. |
-| Metadata source | `source/metadata.md` | yes | Gate 8 source-only chapter plan uses selected audio order with 1s gaps and planned duration `41:43.28`; Gate 11 source-only metadata/disclosure pack is passed; no bumper time reserved. |
+| Metadata source | `source/metadata.md`, `source/youtube-manual-upload-package.md` | yes | Gate 8 source-only chapter plan uses selected audio order with 1s gaps and planned duration `41:43.28`; Gate 11 source-only metadata/disclosure pack is passed; source-only manual YouTube metadata package is prepared for user-managed entry; no bumper time reserved. |
 | Assembly package plan | `reviews/assembly-package.md` | yes | Source-only package target defines selected audio order, 1s-gap timeline, V6 visual carry-forward, and final subtitle promotion summary; no render/export approval. |
 | Final subtitle sidecars | `subtitles/s01e01-campus-cafe-longplay.en.srt`, `subtitles/s01e01-campus-cafe-longplay.en.vtt` | yes | Promoted source-only from human-watch-passed draft timings; Track 1 cue 58 text corrected; 598 cues, no overlaps, no gap cues, Track 13 `Dialogue First` exclusion preserved. |
-| Render/export plan and QA result | `reviews/render-export-plan.md`, `reviews/render-export-qa.md` | yes | Plan passed; render-01 mechanical QA was superseded by user human visual FAIL; render-02/render-03/render-04 are superseded; render-05 approved local correction created ignored QA outputs under `candidates/`; mechanical QA records `2503.28s`, `1920x1080` `24fps`, corrected sidecar byte-match, 598 cues, no overlaps, no gap cues, 13 resumable video segments, sampled snapshots, user local-QA approval, and release remains blocked. |
+| Render/export plan and QA result | `reviews/render-export-plan.md`, `reviews/render-export-qa.md`, `reviews/release-decision-plan.md` | yes | Plan passed; render-01 mechanical QA was superseded by user human visual FAIL; render-02/render-03/render-04 are superseded; render-05 approved local correction created ignored QA outputs under `candidates/`; mechanical QA records `2503.28s`, `1920x1080` `24fps`, corrected sidecar byte-match, 598 cues, no overlaps, no gap cues, 13 resumable video segments, sampled snapshots, user local-QA approval, source-only release decision planning is open, and manual metadata package is prepared while release remains blocked. |
 | Tracking CSVs | `tracking/*.csv` | yes | Durable source, candidate intake, audio QA, and duration acceptance rows exist. |
 
-Verdict: `pass_internal_readiness_scorecard_96_render_05_local_qa_user_approved_release_blocked`  
-Reason: required source packet files, source lyrics, selected audio candidate evidence, Gate 8 source-only chapter plan, Gate 11 source-only metadata/disclosure pack, source-only visual background direction, AGY-reviewed V4-07 static layout proof, user-rejected V4-07 animated proof, V5 readable-motion proof, user-passed V6 cute-smooth visual direction, all Tracks 1-13 human watch-passed subtitle draft timings, Gate 12 internal readiness scoring, source-only assembly package planning, final English subtitle sidecars, render/export planning, render-01 visual FAIL record, render-02/render-03/render-04 supersession, Track 1 cue 58 source correction, render-05 approved local mechanical QA result, and user render-05 local-QA approval exist. Release gate is still not present.
+Verdict: `pass_internal_readiness_scorecard_96_render_05_local_qa_user_approved_release_decision_planning_open_release_blocked`  
+Reason: required source packet files, source lyrics, selected audio candidate evidence, Gate 8 source-only chapter plan, Gate 11 source-only metadata/disclosure pack, source-only manual YouTube metadata package, source-only visual background direction, AGY-reviewed V4-07 static layout proof, user-rejected V4-07 animated proof, V5 readable-motion proof, user-passed V6 cute-smooth visual direction, all Tracks 1-13 human watch-passed subtitle draft timings, Gate 12 internal readiness scoring, source-only assembly package planning, final English subtitle sidecars, render/export planning, render-01 visual FAIL record, render-02/render-03/render-04 supersession, Track 1 cue 58 source correction, render-05 approved local mechanical QA result, user render-05 local-QA approval, and source-only release decision planning gate exist. Final release decision is still not passed.
 
 ## 2. Strategy Lock
 
@@ -88,17 +88,17 @@ Internal score out of 100. This remains an internal readiness score, not platfor
 | Analytics hypothesis and post-publish notes template are ready | 5 | 5 | Source-only hypothesis below plus `channel/templates/episode-analytics-loop-template.md`; no analytics collection or account action is approved. |
 | **Total** | **100** | **96** | `pass_internal_readiness_scorecard_96_render_05_local_qa_user_approved` for source plus current local QA evidence; release/platform gates remain blocked. |
 
-Readiness rule: `96/100` is enough to support the source-only assembly package plan, corrected promoted sidecars, render/export planning, and the recorded render-05 local QA result. It is not upload/public-publish, platform/account, monetization, Content ID, release readiness, or rights-safety approval. The requested `98/100` is not supported yet without a separate release-decision, platform/account policy review, visual safe-zone/final assembly review, audio transcript caveats review, and downstream final-QA evidence.
+Readiness rule: `96/100` is enough to support the source-only assembly package plan, corrected promoted sidecars, render/export planning, the recorded render-05 local QA result, and source-only release decision planning. It is not upload/public-publish, platform/account, monetization, Content ID, release readiness, or rights-safety approval. The requested `98/100` is not supported yet without a passed release decision, current platform/account policy review, visual safe-zone/final assembly review, audio transcript caveats review, and downstream final-QA evidence.
 
 Critical blocker scan:
 
 - Unsupported rights/platform/release claims: none; blocked wording remains caution-only.
 - Imitation concern: no current source-level blocker found; future provider/manual handoff still needs fresh review.
 - Credential/account leakage: none recorded.
-- Broken subtitles: no current mechanical blocker; all draft timings are human watch-passed, final English sidecars are promoted, Track 1 cue 58 is source-corrected, render-05 QA confirms corrected copied sidecars byte-match source with 598 cues, no overlaps, and no gap cues, and user approved render-05 local QA. Release claims still require a separate release gate.
+- Broken subtitles: no current mechanical blocker; all draft timings are human watch-passed, final English sidecars are promoted, Track 1 cue 58 is source-corrected, render-05 QA confirms corrected copied sidecars byte-match source with 598 cues, no overlaps, and no gap cues, and user approved render-05 local QA. Release claims still require a passed release decision and explicit approval.
 - Major audio artifact blocker: none observed at intake/human listening; Track 13 opening-dialogue caveat remains recorded.
 - Unsafe visual/content framing: no current source-level blocker; teen/high-school romance remains PG same-age and non-sexualized.
-- Score ceiling note: `98/100` remains unsupported until a future gate adds stronger full human final-output QA, release-decision review, or equivalent evidence; do not raise the score by assertion alone.
+- Score ceiling note: `98/100` remains unsupported until a future gate or release-decision pass adds stronger full human final-output QA, platform/account policy review, or equivalent evidence; do not raise the score by assertion alone.
 
 ### Future Analytics Hypothesis (No Account Action)
 
@@ -131,7 +131,7 @@ These hypotheses are only for a future manual, privacy-safe analytics loop after
 | 12A | Assembly package planning | pass_assembly_package_planning_source_only | audio order, gap, final sidecar target paths, V6 carry-forward, timeline, sidecar promotion policy, render/export intent, or blockers change |
 | 12B | Final subtitle sidecar promotion | pass_final_subtitle_sidecars_track_1_cue_58_corrected_source_only | final `.srt`/`.vtt`, cue timing, cue text, Track 13 exclusion, gap policy, parser/mechanical checks, or render/export intent changes |
 | 13 | Render/export planning/execution QA gate | render_05_local_qa_user_approved_release_blocked | additional/revised render output intent, final asset path changes, QA evidence, full human review, or local render scope changes |
-| 14 | Future upload/public-publish planning gate | blocked | upload intent, account boundary, policy, disclosure, or asset status changes |
+| 14 | Future upload/public-publish planning gate | manual_upload_metadata_package_prepared_source_only_release_blocked | upload intent, account boundary, policy, disclosure, or asset status changes |
 | 15 | Post-release analytics loop | n/a | future release exists and manual metrics are provided |
 
 ## 8. Final Internal Verdict
@@ -142,8 +142,8 @@ Scope: internal source readiness plus one local mechanical render/export QA resu
 Anti-slop lyric score: 88/100 for theme-retuned source lyrics
 Audio candidate state: 13 selected WAV candidates human-listen, lyric-anchor, and 41:31 duration accepted source-only; Track 13 opening dialogue caveat remains noted
 Internal readiness score: 96/100; no release/platform approval
-Critical downstream blockers: no release gate
+Critical downstream blockers: final release decision not passed; current platform/account policy review and explicit release approval remain absent
 Required revisions: keep reviewed Tracks 1-13 subtitle draft timings, corrected final English sidecars, Gate 8 chapter plan, Gate 11 metadata/disclosure pack, local provenance report, V6 crop/safe-zone proof evidence, Gate 12 scorecard, assembly package plan, render/export plan, render-01 fail record, render-02/render-03/render-04 supersession, render-05 QA result, and Track 1 cue 58 correction synced; keep Suno copy packs synced; fresh lyric/provider review before any manual provider handoff; add new proof or render evidence only after separate gates
-Next allowed action: separate release-decision planning gate if the user wants to move beyond local QA
+Next allowed action: continue source-only release-decision planning; any manual upload package, platform action, or release approval requires a separate explicit gate
 Still blocked: provider/account automation, media generation beyond approved local gates, additional/revised render/export output creation beyond render-05, upload/publish, API calls, credential handling, Content ID registration, rights/platform-safety claims
 ```

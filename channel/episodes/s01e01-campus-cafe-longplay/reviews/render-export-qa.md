@@ -1,14 +1,14 @@
 # S01E01 Render/Export QA — After-School First Love Longplay
 
-Status: render-05 local QA user-approved / release blocked  
+Status: render-05 local QA user-approved / release decision planning open / release blocked  
 Episode: `s01e01-campus-cafe-longplay`  
-Updated: 2026-05-24
+Updated: 2026-05-25
 
 ## 0. Boundary
 
 This file records local render/export QA evidence for S01E01. The outputs are ignored local QA evidence under `candidates/` only. This does not approve upload, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
 
-Render-05 was explicitly approved as a local corrected subtitle refresh after the user identified a Track 1 cue 58 text mismatch in render-04 and the authoritative source sidecars were corrected. Render-05 carries forward the render-04 visual revision while copying and burning in the corrected source sidecars. The user later approved render-05 as the current local QA output. This is not release/upload/platform approval. Any additional or revised render/export output, sidecar revision, bumper media, thumbnail, upload package, public metadata package, or release decision requires a separate explicit future gate.
+Render-05 was explicitly approved as a local corrected subtitle refresh after the user identified a Track 1 cue 58 text mismatch in render-04 and the authoritative source sidecars were corrected. Render-05 carries forward the render-04 visual revision while copying and burning in the corrected source sidecars. The user later approved render-05 as the current local QA output. This is not release/upload/platform approval. A source-only release decision planning gate is now open in `reviews/release-decision-plan.md`, but release is not passed. Any additional or revised render/export output, sidecar revision, bumper media, thumbnail, upload package, public metadata package, or release action requires a separate explicit future gate.
 
 ## 1. Current State
 
@@ -27,7 +27,7 @@ Render-05 was explicitly approved as a local corrected subtitle refresh after th
 | Render-05 snapshots | created | 7 PNG samples under `candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/qa/snapshots/`. |
 | Render-05 mechanical QA | passed | Duration/format/sidecar/subtitle/snapshot/segment assertions passed; video decode produced no ffmpeg errors. |
 | Render-05 human/local QA review | user-approved | User approved render-05 as the current local QA output; release remains blocked. |
-| Release/upload readiness | blocked | No release-decision gate exists; no platform/account action is approved. |
+| Release/upload readiness | release decision planning open / blocked | Source-only release decision planning is open; no release pass or platform/account action is approved. |
 
 ## 2. Render-01 Human Visual Review Fail
 
@@ -96,10 +96,10 @@ Render-01 remains mechanical evidence only and is superseded for visual QA by la
 
 Do not mark release/public readiness unless a future gate closes these:
 
-- final release decision and current platform/account policy review do not exist;
+- source-only release decision planning is open, but the final release decision and current platform/account policy review are not passed;
 - any upload/publish/scheduling/API/browser/provider action remains blocked;
 - readiness remains `96/100`; do not raise it without fresh final-output evidence and explicit score review;
-- additional/revised render/export outputs beyond render-05, sidecar revisions, bumper media, thumbnails, or upload packages require a new explicit gate.
+- additional/revised render/export outputs beyond render-05, sidecar revisions, bumper media, thumbnails, upload packages, or release actions require a new explicit gate.
 
 ## 8. Current Verdict
 
@@ -118,5 +118,5 @@ Subtitle QA: render-05 SRT/VTT copies byte-match corrected source; Track 1 cue 5
 Human/local QA: user approved render-05 as the current local QA output
 Visual QA: render-05 sampled locally for refined headphone icon, subtle music notes, approved subtitle motion, V6-style equalizer, richer light/particle/reflection/shadow layers, and smoother parallax
 Readiness score: remains 96/100
-Still blocked: release decision, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims, and additional/revised outputs without a new gate
+Still blocked: final release decision, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims, and additional/revised outputs without a new gate
 ```

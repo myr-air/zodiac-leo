@@ -1,13 +1,13 @@
 # S01E01 Render/Export Plan — After-School First Love Longplay
 
-Status: render/export planning passed / render-05 local QA user-approved / release blocked  
+Status: render/export planning passed / render-05 local QA user-approved / release decision planning open / release blocked  
 Episode: `s01e01-campus-cafe-longplay`  
 Plan ID: `s01e01-render-export-plan-01`  
-Updated: 2026-05-24
+Updated: 2026-05-25
 
 ## 0. Boundary
 
-This document defines the approved local render/export execution plan and records that render-01 was superseded by user-approved render-02/render-03/render-04 visual revisions and the user-approved render-05 corrected subtitle refresh. It does not approve uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
+This document defines the approved local render/export execution plan and records that render-01 was superseded by user-approved render-02/render-03/render-04 visual revisions and the user-approved render-05 corrected subtitle refresh. Source-only release decision planning is now open in `reviews/release-decision-plan.md`. This does not approve uploads, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, or positive rights/platform claims.
 
 The render-01, render-02, render-03, render-04, and render-05 media paths listed here now exist as ignored local QA evidence from approved local gates. Render-01 is not a final visual reference because it failed human visual review, render-02 is superseded by render-03, render-03 is superseded by render-04, and render-04 is stale for Track 1 cue 58 after the source correction. Render-05 is the current user-approved local QA output with corrected source sidecars copied and burned in. Treat any additional render/export output, corrected render/copy refresh, revised media, thumbnail, upload package, or public/release artifact as blocked until a separate explicit gate approves it.
 
@@ -15,7 +15,7 @@ The render-01, render-02, render-03, render-04, and render-05 media paths listed
 
 | Area | Source truth | Planning decision |
 |---|---|---|
-| Episode state | `manifest.json`, `reviews/current-state.md` | Source packet remains open. Render-05 is the current user-approved local QA output after the Track 1 cue 58 correction; release remains blocked. |
+| Episode state | `manifest.json`, `reviews/current-state.md` | Release decision planning is open source-only. Render-05 is the current user-approved local QA output after the Track 1 cue 58 correction; release remains blocked. |
 | Assembly package | `reviews/assembly-package.md` | Carry forward selected Tracks 1-13 with `1.00s` inter-track gaps and planned `41:43.28` timeline. |
 | Audio candidates | `reviews/audio-qa-listening.md`, `tracking/assets.csv` | The approved local execution used the 13 selected local WAV candidates in the exact order below. No swaps, trims, or normalization policy changes are approved here. |
 | Visual direction | `source/visual-overlay-motion-plan.md`, `reviews/visual-layout-proof-review.md` | Carry forward V6 cute-smooth visual direction with crop/safe-zone and downscale proof evidence. |
@@ -190,7 +190,7 @@ The approved local executions produced `reviews/render-export-qa.md` updates bef
 
 ### Human review before any later release decision
 
-- Render-05 local QA is user-approved; any future release decision still needs a separate release gate and current platform/account/policy review.
+- Render-05 local QA is user-approved; source-only release decision planning is open, but any future release pass still needs current platform/account/policy review and explicit approval.
 - Subtitle readability review in the actual rendered context.
 - Visual crop/readability review on target viewports.
 - Fresh readiness score decision; do not raise `96/100` without new final-output evidence and explicit score review.
@@ -218,6 +218,6 @@ Subtitle target: promoted final English en.srt and en.vtt sidecars carried forwa
 Visual target: V6 cute-smooth direction carried forward with render-05 sampled local output checks and full human QA required later
 Readiness score: remains 96/100 internal readiness
 Outputs created by approved local gates: render-01 ignored outputs superseded by human visual FAIL; render-02 ignored outputs superseded by render-03; render-03 ignored outputs superseded by render-04; render-04 ignored outputs superseded for corrected subtitle QA by render-05; render-05 ignored WAV timeline, per-song segment MP4s, final QA MP4, sidecar copies, and sampled PNG snapshots under candidates/
-Next allowed action: separate release-decision planning gate if the user wants to move beyond local QA
+Next allowed action: continue source-only release-decision planning if the user wants to move beyond local QA
 Still blocked: additional/revised render/export output creation beyond render-05 without a new gate, upload/publish, provider/account/API/browser actions, Content ID registration, positive rights/platform claims
 ```

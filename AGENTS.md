@@ -17,14 +17,6 @@ This project is a single-channel, source-first operating system for `Mellow Long
 - Use `.agents/skills/gpt-image-prompting-guardrails/SKILL.md` before visual prompt, still-frame prompt, thumbnail/background prompt, or image-generation planning work.
 - Use `.agents/skills/episode-state-gatekeeper/SKILL.md` before changing episode status, accepted preview direction, render/export planning, or tracking sync.
 
-## Current Boundary
-
-- Do not automate Suno, YouTube, browsers, providers, APIs, OAuth, uploads, publishing, scheduling, analytics, or external accounts.
-- Do not create OAuth tokens, browser profiles, cookies, credentials, API keys, or account-state files.
-- Do not generate or fetch images, audio, video, renders, exports, candidate media, screenshots, or provider output unless a future explicit gate approves that exact local step.
-- Do not represent AI-generated or Suno-assisted music as human-recorded, exclusive, copyright-free, royalty-free, Content ID-safe, monetization-safe, platform-safe, upload-ready, or publish-ready.
-- Candidate media remains ignored by default; durable facts belong in episode tracking CSVs and review docs.
-
 ## Source Of Truth
 
 - Channel strategy: `channel/channel.md` and `channel/roadmap.md`.

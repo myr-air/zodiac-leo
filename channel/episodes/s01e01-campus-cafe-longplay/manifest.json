@@ -2,10 +2,10 @@
   "schema_version": "1.0",
   "episode_id": "s01e01-campus-cafe-longplay",
   "channel": "Mellow Longplay",
-  "status": "source_packet_open",
-  "gate": "gate_1_source_packet",
+  "status": "api_execution_gate_open_private_video_upload_plus_thumbnail_followup",
+  "gate": "gate_5_release_decision_api_execution",
   "created": "2026-05-18",
-  "updated": "2026-05-24",
+  "updated": "2026-05-25",
   "working_longplay": "After-School First Love Longplay",
   "format_target": {
     "main_songs": 12,
@@ -17,12 +17,16 @@
     "suno_tracks": "tracks_1_13_synced_source_only",
     "prompt_pack": "replacement_sequence_source_only",
     "metadata": "sequence_chapter_plan_1s_gap_metadata_disclosure_assembly_package_final_sidecars_render_export_plan_render_01_fail_render_02_render_03_render_04_superseded_and_render_05_qa_recorded_source_only",
-    "review_status": "internal_readiness_scorecard_96_render_05_local_qa_user_approved_release_blocked",
+    "review_status": "internal_readiness_scorecard_96_render_05_local_qa_user_approved_release_decision_planning_open_release_blocked",
     "audio_candidates": "selected_draft_human_listen_lyric_anchor_duration_accepted_source_only",
     "visual_candidates": "vis_c01_v6_cute_smooth_motion_proof_user_passed_source_only",
     "subtitles": "final_en_srt_vtt_sidecars_promoted_track_1_cue_58_text_corrected_source_only",
     "assembly_package": "assembly_package_plan_passed_final_sidecars_promoted_render_export_plan_passed_render_05_local_outputs_created_for_qa",
-    "render_export_plan": "render_01_visual_fail_render_02_render_03_render_04_superseded_by_render_05_local_qa_user_approved_release_blocked"
+    "render_export_plan": "render_01_visual_fail_render_02_render_03_render_04_superseded_by_render_05_local_qa_user_approved_release_blocked",
+    "release_decision": "release_decision_planning_gate_open_api_execution_gate_open_private_video_upload_plus_thumbnail_followup_public_release_not_passed",
+    "youtube_manual_metadata_package": "prepared_source_only_user_managed_manual_upload_notes_no_account_action_historical_route_not_current_preference",
+    "youtube_api_video_upload_package": "execution_gate_open_private_video_channel_level_helper_channel_verification_required_mellow_external_env_workflow_available_resource_json_private_no_caption_upload_no_public_publish",
+    "youtube_api_thumbnail_upload_package": "execution_gate_open_thumbnail_followup_channel_level_helper_selected_local_jpeg_from_g_png_video_id_required_mellow_external_env_workflow_available_no_public_publish"
   },
-  "claim_boundary": "Source plus approved local render/export QA evidence only. Not provider/account/upload/release approval or rights/platform-safety claim."
+  "claim_boundary": "Source plus approved local render/export QA evidence plus selected local thumbnail derivative plus release decision planning plus a narrow private YouTube Data API video-upload and thumbnail-follow-up execution gate. Not public publish/release approval or rights/platform-safety claim."
 }
