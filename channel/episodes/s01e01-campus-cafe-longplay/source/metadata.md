@@ -35,6 +35,14 @@ Primary title draft:
 After-School First Love Longplay | Soft Cozy Vocals for Study & Coffee Breaks
 ```
 
+User-reported current private YouTube title note, after the private API upload and selected thumbnail follow-up:
+
+```text
+『 After-School First Love Longplay 』| Soft Cozy Vocals for Study & Coffee Breaks
+```
+
+This title note was supplied by the user as already corrected outside this repo. It is recorded as private-video metadata state only; no metadata API mutation, public publish, schedule, or release approval is created by this note.
+
 Title policy:
 
 - Lead with the listener promise and episode mood, not `AI music` as the hook.

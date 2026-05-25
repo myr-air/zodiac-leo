@@ -1,12 +1,12 @@
 # S01E01 YouTube API Execution Gate — After-School First Love Longplay
 
-Status: open / private video API upload plus thumbnail follow-up / public release not passed  
+Status: private video API upload completed / selected thumbnail set completed / public release not passed  
 Episode: `s01e01-campus-cafe-longplay`  
 Opened: 2026-05-25
 
 ## 0. Boundary
 
-The user opened the OAuth/API execution gate for the API route and initially kept scope to the video upload only. This gate now allows one future YouTube Data API `videos.insert` upload of the render-05 MP4 as `private`, plus one thumbnail-only `thumbnails.set` follow-up using the selected local JPEG after a private video ID exists. Both helpers must verify that the authenticated channel ID matches the user-provided expected channel ID before any API mutation.
+The user opened the OAuth/API execution gate for the API route and initially kept scope to the video upload only. This gate allowed one YouTube Data API `videos.insert` upload of the render-05 MP4 as `private`, plus one thumbnail-only `thumbnails.set` follow-up using the selected local JPEG after a private video ID existed. Both helpers must verify that the authenticated channel ID matches the user-provided expected channel ID before any API mutation.
 
 This gate does not approve public publishing, scheduling, visibility changes after upload, captions, playlists, comments, analytics, Content ID action, browser automation, YouTube Studio edits, account edits, credential storage in repo, private account-state storage, extra thumbnail variants, or positive rights/platform claims.
 
@@ -85,7 +85,9 @@ python3 scripts/youtube_api_video_upload.py \
 Create or refresh the local thumbnail JPEG from the selected `G.png` background:
 
 ```bash
-python3 scripts/create_s01e01_thumbnail.py
+python3 scripts/create_s01e01_thumbnail.py \
+  --layout big-brand-depth \
+  --output candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg
 ```
 
 Thumbnail dry-run after a private video ID exists:
@@ -93,7 +95,8 @@ Thumbnail dry-run after a private video ID exists:
 ```bash
 python3 scripts/youtube_api_thumbnail.py \
   --expected-channel-id UC_REPLACE_WITH_TARGET_CHANNEL_ID \
-  --video-id VIDEO_REPLACE_AFTER_PRIVATE_UPLOAD
+  --video-id VIDEO_REPLACE_AFTER_PRIVATE_UPLOAD \
+  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg
 ```
 
 Thumbnail execution under this gate requires expected channel ID, video ID, OAuth client secrets path, and token-cache path outside repo:
@@ -101,7 +104,8 @@ Thumbnail execution under this gate requires expected channel ID, video ID, OAut
 ```bash
 python3 scripts/youtube_api_thumbnail.py \
   --execute \
-  --env-file "$HOME/.config/mellow-longplay/youtube-upload/channel.env"
+  --env-file "$HOME/.config/mellow-longplay/youtube-upload/channel.env" \
+  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg
 ```
 
 Do not paste secrets into chat. Do not place the OAuth client secrets file or token cache anywhere under this repository.
@@ -109,11 +113,21 @@ Do not paste secrets into chat. Do not place the OAuth client secrets file or to
 ## 4. Current Verdict
 
 ```text
-Verdict: oauth_api_execution_gate_open_private_video_upload_plus_thumbnail_followup
-Allowed API calls: channels.list(mine=true), videos.insert(private), thumbnails.set after private video ID exists
+Verdict: oauth_api_private_video_upload_completed_selected_thumbnail_set_public_release_not_passed
+Allowed API calls for this completed S01E01 execution: channels.list(mine=true), videos.insert(private), thumbnails.set after private video ID exists
 Upload target: render-05 MP4 only
 Caption upload: blocked because subtitles are burned in
 Thumbnail upload: selected local JPEG derivative from G.png only
 Public release: not passed
 Credential/account storage in repo: blocked
+```
+
+## 5. Execution Evidence
+
+```text
+Private video ID used for thumbnail follow-up: 4pOLXPMQO5g
+Verified channel ID for thumbnail follow-up: UC4qQwe3oiykEGhL_WyVFtMg
+Selected thumbnail path: candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg
+Thumbnail API result: thumbnails.set returned youtube#thumbnailSetResponse with a maxres 1280x720 variant
+Still blocked: public publish schedule visibility mutation captions playlists comments analytics Content ID account edits credential storage in repo extra thumbnail variants and positive rights/platform claims
 ```

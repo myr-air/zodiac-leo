@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Any
@@ -28,18 +29,25 @@ ENV_KEY_EXPECTED_CHANNEL_ID = "MELLOW_YOUTUBE_EXPECTED_CHANNEL_ID"
 ENV_KEY_CLIENT_SECRETS = "MELLOW_YOUTUBE_CLIENT_SECRETS"
 ENV_KEY_TOKEN_CACHE = "MELLOW_YOUTUBE_TOKEN_CACHE"
 
-SCOPES = ("https://www.googleapis.com/auth/youtube.upload",)
+SCOPES = (
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.readonly",
+)
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
 
 
+def expand_path(path: Path | str) -> Path:
+    return Path(os.path.expandvars(str(path))).expanduser()
+
+
 def project_path(path: Path | str) -> Path:
-    path = Path(path).expanduser()
+    path = expand_path(path)
     return path if path.is_absolute() else PROJECT_ROOT / path
 
 
 def path_is_inside_repo(path: Path) -> bool:
-    resolved = path.expanduser().resolve()
+    resolved = expand_path(path).resolve()
     root = PROJECT_ROOT.resolve()
     return root in [resolved, *resolved.parents]
 
@@ -76,7 +84,7 @@ def load_video_resource(resource_json: Path | str = DEFAULT_RESOURCE_JSON) -> di
 
 
 def load_env_file(env_file: Path) -> dict[str, str | Path]:
-    env_file = env_file.expanduser()
+    env_file = expand_path(env_file)
     if path_is_inside_repo(env_file):
         raise ValueError("refusing env file inside this repository; use an external path")
     if not env_file.is_file():
@@ -94,9 +102,9 @@ def load_env_file(env_file: Path) -> dict[str, str | Path]:
     if raw.get(ENV_KEY_EXPECTED_CHANNEL_ID):
         values["expected_channel_id"] = raw[ENV_KEY_EXPECTED_CHANNEL_ID]
     if raw.get(ENV_KEY_CLIENT_SECRETS):
-        values["client_secrets"] = Path(raw[ENV_KEY_CLIENT_SECRETS]).expanduser()
+        values["client_secrets"] = expand_path(raw[ENV_KEY_CLIENT_SECRETS])
     if raw.get(ENV_KEY_TOKEN_CACHE):
-        values["token_cache"] = Path(raw[ENV_KEY_TOKEN_CACHE]).expanduser()
+        values["token_cache"] = expand_path(raw[ENV_KEY_TOKEN_CACHE])
     return values
 
 
@@ -214,12 +222,29 @@ def load_google_api_modules() -> dict[str, Any]:
     }
 
 
+def credentials_have_required_scopes(credentials: Any) -> bool:
+    if hasattr(credentials, "has_scopes"):
+        return bool(credentials.has_scopes(SCOPES))
+    granted = set(getattr(credentials, "granted_scopes", None) or getattr(credentials, "scopes", None) or [])
+    return set(SCOPES).issubset(granted)
+
+
+def load_cached_credentials(credentials_cls: Any, token_cache: Path) -> Any | None:
+    if not token_cache.is_file():
+        return None
+    try:
+        credentials = credentials_cls.from_authorized_user_file(str(token_cache))
+    except ValueError:
+        return None
+    if not credentials_have_required_scopes(credentials):
+        return None
+    return credentials
+
+
 def get_authenticated_service(client_secrets: Path, token_cache: Path):
     modules = load_google_api_modules()
-    credentials = None
     token_cache = token_cache.expanduser()
-    if token_cache.is_file():
-        credentials = modules["Credentials"].from_authorized_user_file(str(token_cache), SCOPES)
+    credentials = load_cached_credentials(modules["Credentials"], token_cache)
     if not credentials or not credentials.valid:
         if credentials and credentials.expired and credentials.refresh_token:
             credentials.refresh(modules["Request"]())

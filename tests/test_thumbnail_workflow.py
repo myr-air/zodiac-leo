@@ -1,4 +1,5 @@
 import importlib.util
+import os
 import sys
 import tempfile
 import unittest
@@ -41,6 +42,63 @@ class ThumbnailWorkflowTest(unittest.TestCase):
             self.assertLessEqual(summary["bytes"], thumbnail.YOUTUBE_THUMBNAIL_MAX_BYTES)
             with Image.open(output) as result:
                 self.assertEqual(result.size, (1280, 720))
+
+    def test_music_playlist_layout_outputs_1280x720_jpeg_under_size_limit(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            temp_root = Path(tmpdir)
+            background = temp_root / "bg.png"
+            output = temp_root / "thumbnail-v2.jpg"
+            Image.new("RGB", (1672, 941), (220, 190, 150)).save(background)
+
+            summary = thumbnail.create_thumbnail(background, output, layout=thumbnail.LAYOUT_MUSIC_PLAYLIST)
+
+            self.assertEqual(summary["layout"], thumbnail.LAYOUT_MUSIC_PLAYLIST)
+            self.assertEqual(summary["width"], 1280)
+            self.assertEqual(summary["height"], 720)
+            self.assertLessEqual(summary["bytes"], thumbnail.YOUTUBE_THUMBNAIL_MAX_BYTES)
+            with Image.open(output) as result:
+                self.assertEqual(result.size, (1280, 720))
+
+    def test_soft_depth_layout_outputs_1280x720_jpeg_under_size_limit(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            temp_root = Path(tmpdir)
+            background = temp_root / "bg.png"
+            output = temp_root / "thumbnail-v3.jpg"
+            Image.new("RGB", (1672, 941), (220, 190, 150)).save(background)
+
+            summary = thumbnail.create_thumbnail(background, output, layout=thumbnail.LAYOUT_SOFT_DEPTH)
+
+            self.assertEqual(summary["layout"], thumbnail.LAYOUT_SOFT_DEPTH)
+            self.assertEqual(summary["width"], 1280)
+            self.assertEqual(summary["height"], 720)
+            self.assertLessEqual(summary["bytes"], thumbnail.YOUTUBE_THUMBNAIL_MAX_BYTES)
+            with Image.open(output) as result:
+                self.assertEqual(result.size, (1280, 720))
+
+    def test_big_brand_depth_layout_outputs_1280x720_jpeg_under_size_limit(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            temp_root = Path(tmpdir)
+            background = temp_root / "bg.png"
+            output = temp_root / "thumbnail-v4.jpg"
+            Image.new("RGB", (1672, 941), (220, 190, 150)).save(background)
+
+            summary = thumbnail.create_thumbnail(background, output, layout=thumbnail.LAYOUT_BIG_BRAND_DEPTH)
+
+            self.assertEqual(summary["layout"], thumbnail.LAYOUT_BIG_BRAND_DEPTH)
+            self.assertEqual(summary["width"], 1280)
+            self.assertEqual(summary["height"], 720)
+            self.assertLessEqual(summary["bytes"], thumbnail.YOUTUBE_THUMBNAIL_MAX_BYTES)
+            with Image.open(output) as result:
+                self.assertEqual(result.size, (1280, 720))
+
+    def test_unknown_thumbnail_layout_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            temp_root = Path(tmpdir)
+            background = temp_root / "bg.png"
+            Image.new("RGB", (1672, 941), (220, 190, 150)).save(background)
+
+            with self.assertRaises(ValueError):
+                thumbnail.compose_thumbnail(background, layout="bad-layout")
 
     def test_thumbnail_output_root_is_allowlisted(self):
         thumbnail.assert_allowed_output_root(PROJECT_ROOT / thumbnail.DEFAULT_OUTPUT_ROOT)
@@ -94,6 +152,24 @@ class ThumbnailWorkflowTest(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             thumbnail_upload.load_thumbnail_env_file(PROJECT_ROOT / ".env")
+
+    def test_thumbnail_env_file_expands_environment_variables_in_paths(self):
+        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+            temp_root = Path(tmpdir)
+            env_file = temp_root / "thumbnail.env"
+            os.environ["MELLOW_TEST_SECRET_ROOT"] = str(temp_root)
+            env_file.write_text(
+                "MELLOW_YOUTUBE_EXPECTED_CHANNEL_ID=UCEXPECTED\n"
+                "MELLOW_YOUTUBE_VIDEO_ID=VIDEO123\n"
+                "MELLOW_YOUTUBE_CLIENT_SECRETS=$MELLOW_TEST_SECRET_ROOT/client_secret.json\n"
+                "MELLOW_YOUTUBE_TOKEN_CACHE=$MELLOW_TEST_SECRET_ROOT/youtube-token.json\n",
+                encoding="utf-8",
+            )
+
+            values = thumbnail_upload.load_thumbnail_env_file(env_file)
+
+        self.assertEqual(values["client_secrets"], temp_root / "client_secret.json")
+        self.assertEqual(values["token_cache"], temp_root / "youtube-token.json")
 
 
 if __name__ == "__main__":

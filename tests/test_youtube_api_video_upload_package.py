@@ -1,4 +1,5 @@
 import importlib.util
+import os
 import sys
 import tempfile
 import unittest
@@ -79,6 +80,23 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
         self.assertEqual(values["client_secrets"].name, "client_secret.json")
         self.assertEqual(values["token_cache"].name, "youtube-token.json")
 
+    def test_load_external_env_file_expands_environment_variables_in_paths(self):
+        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+            temp_root = Path(tmpdir)
+            env_file = temp_root / "mellow-youtube-channel.env"
+            os.environ["MELLOW_TEST_SECRET_ROOT"] = str(temp_root)
+            env_file.write_text(
+                "MELLOW_YOUTUBE_EXPECTED_CHANNEL_ID=UCEXPECTED\n"
+                "MELLOW_YOUTUBE_CLIENT_SECRETS=$MELLOW_TEST_SECRET_ROOT/client_secret.json\n"
+                "MELLOW_YOUTUBE_TOKEN_CACHE=$MELLOW_TEST_SECRET_ROOT/youtube-token.json\n",
+                encoding="utf-8",
+            )
+
+            values = uploader.load_env_file(env_file)
+
+        self.assertEqual(values["client_secrets"], temp_root / "client_secret.json")
+        self.assertEqual(values["token_cache"], temp_root / "youtube-token.json")
+
     def test_env_file_inside_repo_is_rejected(self):
         with self.assertRaises(ValueError):
             uploader.load_env_file(PROJECT_ROOT / ".env")
@@ -121,6 +139,37 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
 
             with self.assertRaises(ValueError):
                 uploader.load_video_resource(resource_json)
+
+    def test_invalid_token_cache_is_treated_as_cache_miss(self):
+        class InvalidCredentials:
+            @staticmethod
+            def from_authorized_user_file(path):
+                raise ValueError("invalid cached token")
+
+        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+            token_cache = Path(tmpdir) / "youtube-token.json"
+            token_cache.write_text("", encoding="utf-8")
+
+            self.assertIsNone(uploader.load_cached_credentials(InvalidCredentials, token_cache))
+
+    def test_token_cache_missing_readonly_scope_is_treated_as_cache_miss(self):
+        class UploadOnlyCredentials:
+            @staticmethod
+            def from_authorized_user_file(path):
+                return UploadOnlyCredentials()
+
+            def has_scopes(self, scopes):
+                return set(scopes).issubset({"https://www.googleapis.com/auth/youtube.upload"})
+
+        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+            token_cache = Path(tmpdir) / "youtube-token.json"
+            token_cache.write_text("{}", encoding="utf-8")
+
+            self.assertIsNone(uploader.load_cached_credentials(UploadOnlyCredentials, token_cache))
+
+    def test_required_scopes_include_upload_and_readonly_for_channel_verification(self):
+        self.assertIn("https://www.googleapis.com/auth/youtube.upload", uploader.SCOPES)
+        self.assertIn("https://www.googleapis.com/auth/youtube.readonly", uploader.SCOPES)
 
 
 if __name__ == "__main__":

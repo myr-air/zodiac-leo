@@ -14,7 +14,7 @@ Future provider use requires a fresh source review if any of these change:
 
 ## YouTube Boundary
 
-Current exception: S01E01 has a narrow OAuth/API execution gate open in `channel/episodes/s01e01-campus-cafe-longplay/reviews/youtube-api-execution-gate.md` for one private YouTube Data API `videos.insert` upload plus one selected-thumbnail `thumbnails.set` follow-up after authenticated channel verification. Credentials and tokens must stay outside the repo.
+Current exception status: S01E01 used the narrow OAuth/API execution gate in `channel/episodes/s01e01-campus-cafe-longplay/reviews/youtube-api-execution-gate.md` for one private YouTube Data API `videos.insert` upload plus one selected-thumbnail `thumbnails.set` follow-up after authenticated channel verification. Credentials and tokens must stay outside the repo. No further YouTube platform/API mutation is approved without a new explicit gate.
 
 No public publish, schedule, Studio/browser automation, Analytics API, playlist action, metadata edit after upload, comment action, unlist/delete, channel rename, caption upload, extra thumbnail variant, account edit, Content ID action, or positive platform/rights claim is approved in this standalone scope.
 

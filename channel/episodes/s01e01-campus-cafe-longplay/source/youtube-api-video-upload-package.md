@@ -1,12 +1,12 @@
 # S01E01 YouTube API Video Upload Package — After-School First Love Longplay
 
-Status: OAuth/API execution gate open / private video upload helper / thumbnail follow-up separate / captions not uploaded / public release not passed  
+Status: private video upload completed / thumbnail follow-up separate completed / captions not uploaded / public release not passed  
 Episode: `s01e01-campus-cafe-longplay`  
 Prepared: 2026-05-25
 
 ## 0. Boundary
 
-This file records the S01E01 video-upload packet for the channel-level OAuth/API helper after the user selected the API route. It approves only a future `videos.insert` private video upload after authenticated channel verification succeeds and after OAuth client secrets/token-cache paths are supplied outside this repo. Thumbnail upload is handled by the separate package `source/youtube-api-thumbnail-upload-package.md` and generic helper `scripts/youtube_api_thumbnail.py` after a private video ID exists; the video helper must not call `thumbnails.set`. This file does not approve browser automation, public publishing, scheduling, visibility mutation after upload, captions, analytics, account edits, playlist edits, comments, Content ID action, credentials or tokens stored in repo, private account-state storage, extra thumbnail variants, or positive rights/platform claims.
+This file records the S01E01 video-upload packet for the channel-level OAuth/API helper after the user selected the API route. It scoped only one `videos.insert` private video upload after authenticated channel verification succeeded and after OAuth client secrets/token-cache paths were supplied outside this repo. Thumbnail upload is handled by the separate package `source/youtube-api-thumbnail-upload-package.md` and generic helper `scripts/youtube_api_thumbnail.py`; the video helper must not call `thumbnails.set`. This file does not approve browser automation, public publishing, scheduling, visibility mutation after upload, captions, analytics, account edits, playlist edits, comments, Content ID action, credentials or tokens stored in repo, private account-state storage, extra thumbnail variants, or positive rights/platform claims.
 
 The allowed API action for this execution gate is only:
 
@@ -32,7 +32,7 @@ Do not describe this episode, render, audio, visual, sidecars, or channel as `co
 | API helper | `scripts/youtube_api_video_upload.py` | Channel-level dry-run default helper. Refuses execution without channel-id and OAuth path guards; accepts per-video `--episode-id`, `--video`, `--resource-json`, and `--metadata-source`. |
 | API resource JSON | `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-video-resource.json` | Per-video request body for `videos.insert`; helper validates `privacyStatus: private` and no captions/thumbnail fields. |
 | Caption sidecars | `channel/episodes/s01e01-campus-cafe-longplay/subtitles/` | Source sidecars remain evidence/source only for this route; do not upload via API because captions are burned in. |
-| Thumbnail | `candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-1280x720.jpg` | Selected local derivative from `G.png`; upload is handled by `scripts/youtube_api_thumbnail.py`, not this video helper. |
+| Thumbnail | `candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg` | User-approved selected local derivative from `G.png`; upload is handled by `scripts/youtube_api_thumbnail.py`, not this video helper. |
 
 ## 2. API Resource Draft
 
@@ -131,7 +131,7 @@ Execution guards:
 
 ```text
 Scope: one S01E01 render-05 MP4 upload through YouTube Data API videos.insert only
-Mode: OAuth/API execution gate open for private upload only
+Mode: OAuth/API execution completed for private upload only
 Allowed operations: channels.list(mine=true), videos.insert(private)
 Required user inputs at execution time: expected channel ID, OAuth client secrets path outside repo, token-cache path outside repo; may be supplied via an external env file
 Credential storage: outside repo only; do not commit, copy, summarize, screenshot, or store tokens/account state here
@@ -142,12 +142,12 @@ Stop triggers: channel ID mismatch, missing expected channel ID, OAuth paths ins
 ## 6. Current Verdict
 
 ```text
-Verdict: oauth_api_execution_gate_open_private_video_upload_helper_public_release_not_passed
+Verdict: oauth_api_private_video_upload_completed_public_release_not_passed
 Scope: video-only YouTube Data API videos.insert execution after channel verification
 Current local QA output: render-05 user-approved local QA only
 Caption decision: no API caption upload because subtitles are burned into the render
 Channel safety: helper must verify authenticated channel id before videos.insert
 Default visibility: private
-Allowed after user supplies execution inputs: OAuth flow and one private videos.insert upload to the verified expected channel
+Execution result: guarded private videos.insert returned video ID 4pOLXPMQO5g for verified channel UC4qQwe3oiykEGhL_WyVFtMg; captions were not uploaded by this route
 Still blocked from this helper: public publish schedule Studio browser analytics Content ID credentials or tokens in repo account-state storage caption upload thumbnail upload playlist comments metadata update after upload and positive rights/platform claims
 ```

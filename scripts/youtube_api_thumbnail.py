@@ -14,19 +14,22 @@ import youtube_api_video_upload as video_upload
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_EPISODE_ID = "s01e01-campus-cafe-longplay"
-DEFAULT_THUMBNAIL_PATH = Path("candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-1280x720.jpg")
+DEFAULT_THUMBNAIL_PATH = Path(
+    "candidates/s01e01-campus-cafe-longplay/thumbnail/"
+    "s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg"
+)
 DEFAULT_THUMBNAIL_SOURCE = Path(f"channel/episodes/{DEFAULT_EPISODE_ID}/source/youtube-api-thumbnail-upload-package.md")
 
 ENV_KEY_VIDEO_ID = "MELLOW_YOUTUBE_VIDEO_ID"
 
 
 def project_path(path: Path | str) -> Path:
-    path = Path(path).expanduser()
+    path = video_upload.expand_path(path)
     return path if path.is_absolute() else PROJECT_ROOT / path
 
 
 def load_thumbnail_env_file(env_file: Path) -> dict[str, str | Path]:
-    env_file = env_file.expanduser()
+    env_file = video_upload.expand_path(env_file)
     if video_upload.path_is_inside_repo(env_file):
         raise ValueError("refusing env file inside this repository; use an external path")
     if not env_file.is_file():
@@ -46,9 +49,9 @@ def load_thumbnail_env_file(env_file: Path) -> dict[str, str | Path]:
     if raw.get(ENV_KEY_VIDEO_ID):
         values["video_id"] = raw[ENV_KEY_VIDEO_ID]
     if raw.get(video_upload.ENV_KEY_CLIENT_SECRETS):
-        values["client_secrets"] = Path(raw[video_upload.ENV_KEY_CLIENT_SECRETS]).expanduser()
+        values["client_secrets"] = video_upload.expand_path(raw[video_upload.ENV_KEY_CLIENT_SECRETS])
     if raw.get(video_upload.ENV_KEY_TOKEN_CACHE):
-        values["token_cache"] = Path(raw[video_upload.ENV_KEY_TOKEN_CACHE]).expanduser()
+        values["token_cache"] = video_upload.expand_path(raw[video_upload.ENV_KEY_TOKEN_CACHE])
     return values
 
 
