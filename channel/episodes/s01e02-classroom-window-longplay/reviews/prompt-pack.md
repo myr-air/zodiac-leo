@@ -20,6 +20,6 @@ This review covers source-only prompt-pack synchronization. It does not approve 
 ```text
 Verdict: full_source_sequence_synced_source_only_not_provider_ready
 Scope: prompt-pack sequence and source-only pack pointers only
-Next allowed action: continue remaining non-provider Gate 1 source work such as visual source, metadata, and subtitles planning
+Next allowed action: stop for explicit local audio candidate intake or another narrow source review while keeping visual metadata and subtitle planning synced
 Still blocked: provider/account automation, generated media, candidate IDs, render/export, upload/API, public publish, credentials in repo, Content ID, and rights/platform-safety claims
 ```

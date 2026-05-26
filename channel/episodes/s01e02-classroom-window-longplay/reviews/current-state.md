@@ -1,6 +1,6 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Current State — Classroom Window Longplay
 
-Status: Gate 1 source shaping complete source-only / Tracks 1-13 lyrics approved / Tracks 1-13 field packs synced / prompt pack synced / visual source approved / Gate 1 not locked / public publish blocked  
+Status: Gate 1 source shaping complete source-only / Tracks 1-13 lyrics approved / Tracks 1-13 field packs synced / prompt pack synced / visual source approved / metadata source passed / subtitle plan passed / Gate 1 not locked / public publish blocked  
 Updated: 2026-05-26
 
 - Episode packet exists for Season 1 Week 2: `Classroom Window Longplay`.
@@ -12,10 +12,12 @@ Updated: 2026-05-26
 - `source/suno-manual-fields.md` records the spine, synced Track 1-13 field matrix, and control values.
 - `source/prompt-pack.md` and `reviews/prompt-pack.md` now follow the synced Tracks 1-13 source sequence and per-track pack pointers.
 - `source/visual.md` and `reviews/visual.md` now define and approve the source-only classroom-window visual direction with safe-zone planning and no provider/image-generation approval.
+- `source/metadata.md` and `reviews/metadata.md` now pass the source-only metadata/disclosure pack: title drafts, description draft, disclosure wording, chapter-title order without timestamps, tags policy, and blocked-claim scan.
+- `subtitles/README.md` and `reviews/subtitles.md` now pass source-only subtitle planning: canonical lyric source, segmentation policy, future timing prerequisites, and blocked output claims.
 - `reviews/source-shaping.md`, `reviews/source-approval-workflow.md`, `reviews/lyrics.md`, `reviews/suno-manual-fields.md`, and `reviews/lyric-antipatterns.md` are active source-only Gate 1 references.
-- Gate 1 source packet is not locked yet. Tracks 1-13 lyrics, source-only field wording, prompt-pack sync, and visual source approval are complete, but metadata, subtitles, audio candidates, render outputs, and release evidence are still pending.
-- No candidate IDs, media files, provider facts, render/export facts, YouTube video IDs, analytics, or release facts exist for this episode.
+- Gate 1 source packet is not locked yet. Tracks 1-13 lyrics, source-only field wording, prompt-pack sync, visual source approval, metadata/disclosure review, and subtitle planning are complete, but subtitle timings/sidecars, audio candidates, render outputs, and release evidence are still pending.
+- No candidate IDs, media files, subtitle sidecars, provider facts, render/export facts, YouTube video IDs, analytics, or release facts exist for this episode.
 - public publish remains blocked until a separate final release gate.
 - Render/export, upload/API, public publish, scheduling, captions, playlists, analytics, Content ID, account edits, credentials in repo, and positive rights/platform-safety claims remain blocked until narrow explicit gates are opened and recorded.
 
-Verdict: `gate_1_source_shaping_complete_tracks_1_13_visual_synced_not_locked_public_publish_blocked`
+Verdict: `gate_1_source_shaping_complete_tracks_1_13_visual_metadata_subtitle_plan_not_locked_public_publish_blocked`

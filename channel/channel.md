@@ -1,7 +1,7 @@
 # Mellow Longplay Channel
 
 Status: active single-channel contract  
-Updated: 2026-05-18
+Updated: 2026-05-26
 
 ## Promise
 
@@ -16,6 +16,15 @@ The listener-facing hook is not `AI music`. The hook is a curated soft afternoon
 - Baseline target: about 30-35 minutes when generated naturally.
 - English-first for the first season.
 - AI-assisted disclosure belongs in description/about copy, not as the title hook.
+
+## EP03+ Creative Direction
+
+- Starting with EP03, do not use saxophone as a planned special color. S01E02's soft sax accent remains episode-specific historical source, not a future default.
+- Piano remains allowed as the recurring intimate color when the episode spine needs it.
+- Each new episode should choose exactly one non-sax special instrument for exactly one song, documented in the Episode Style & Theme Spine and Track Delta before lyrics or fields are approved.
+- The special instrument should add a fresh emotional tint without changing the channel's cozy vocal core; do not put instrument names in titles unless the instrument is a real story object.
+- Future episode concepts should move beyond repeating the same cafe/classroom/campus-object proof pattern while keeping wholesome PG teenage/first-love energy.
+- Each 13-track slate should include several feeling/mood-led songs, not only plot/object-story songs: use atmosphere, body feeling, hesitation, confidence, longing, or afterglow as the main driver while keeping lyrics concrete and subtitle-friendly.
 
 ## Visual Language
 

@@ -1,7 +1,7 @@
 # Mellow Longplay Roadmap
 
 Status: source-only roadmap  
-Updated: 2026-05-18
+Updated: 2026-05-26
 
 ## Principle
 
@@ -9,11 +9,21 @@ Build one coherent weekly music channel, not random AI-song batches. Each episod
 
 ## Future Arrangement Variation Guardrail
 
-- Starting with the next newly created episode, add controlled color to only 1-2 songs per longplay so the episode stays cohesive.
-- Preferred pattern: one intimate piano-forward song, plus one soft saxophone accent song with short intro, bridge, outro, or answer-line use.
+- Starting with EP03, remove saxophone from the planned special-color palette. S01E02 may keep its already-shaped soft sax accent, but it is not a future default.
+- Keep one intimate piano-forward song available when it helps the episode arc.
+- In every new episode from EP03 onward, choose exactly one non-sax special instrument for exactly one song. Record it in the Episode Style & Theme Spine, Track Delta, and Suno `Styles` review before source approval.
+- The special instrument must stay secondary to the cozy vocal longplay core and must not turn the whole episode into a different genre.
 - Keep rap out of the default palette; if tested later, limit it to one mellow spoken-sung/rhythmic bridge of about 4-8 bars and require fresh source review.
 - Avoid trap, aggressive rap, busy cafe-jazz drift, named-artist imitation, known-song imitation, and rights/platform-safety claims.
 - Any future style-prompt or lyric change still needs review before manual provider generation; provider/account automation remains blocked.
+
+## EP03+ Theme And Song Mix Guardrail
+
+- Keep the love/teenage-first-love lane wholesome, PG, same-age peer only, non-sexualized, and non-teacher/student.
+- Push each episode away from the previous main-theme formula: do not repeat the same cafe/classroom/campus-object chain with new nouns only.
+- Each episode should have a fresh emotional premise, setting energy, and visual/listener promise before track drafting.
+- Add more feeling/mood-led tracks: a 13-track slate should include several songs where atmosphere, confidence, nervousness, longing, warmth, or afterglow leads more than plot narration.
+- Mood-led does not mean vague: keep concrete sensory anchors, short subtitle-ready lines, and distinct macro-forms.
 
 Roadmap titles are planning hooks only until a fresh episode packet and tracking files exist.
 
@@ -23,8 +33,8 @@ Roadmap titles are planning hooks only until a fresh episode packet and tracking
 |---:|---|---|---|
 | 1 | After-School First Love Longplay | after-school cafe table, notebook, coffee, school courtyard | wholesome PG same-age teenage first love, small concrete moments |
 | 2 | Classroom Window Longplay | college classroom light, afternoon window | curiosity, almost-said feelings, study-day warmth |
-| 3 | Rooftop Golden Hour Longplay | rooftop, warm sky, late-afternoon breeze | confidence, anticipation, looking ahead |
-| 4 | Bookstore Afternoon Longplay | quiet bookstore corner, paper texture | private thoughts, shy hope, calm reflection |
+| 3 | Rooftop Golden Hour Longplay | rooftop, warm sky, late-afternoon breeze | wholesome teenage first-love confidence, golden-hour anticipation, mood-led looking ahead |
+| 4 | Bookstore Afternoon Longplay | quiet bookstore corner, paper texture | teenage love, private thoughts, shy hope, calm reflection |
 
 ## Season 2: City Windows
 

@@ -140,6 +140,9 @@ Legend:
 2. Then work Gate 1 source packet:
 
    - define Episode Style & Theme Spine;
+   - for EP03 onward, cite the channel/roadmap creative delta: no planned sax,
+     piano still allowed, exactly one non-sax special instrument in exactly one
+     song, and several feeling/mood-led tracks;
    - draft track list one by one;
    - for each song, require Story + Reference Brief, Track Delta, structure
      fingerprint, micro-pattern matrix, lexical count ledger, and Suno 5.5 fields;

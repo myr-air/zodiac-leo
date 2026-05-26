@@ -1,10 +1,10 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Production Worksheet — Classroom Window Longplay
 
-Status: Gate 1 source shaping complete / Tracks 1-13 source synced / prompt pack synced / visual source approved / source-only / no media or release gate  
+Status: Gate 1 source shaping complete / Tracks 1-13 source synced / prompt pack synced / visual source approved / metadata source passed / subtitle plan passed / source-only / no media or release gate  
 Episode: `s01e02-classroom-window-longplay`  
 Prepared by: Mayr  
 Prepared date: 2026-05-26  
-Source packet version: `v0.3-source-shaping-visual-closure`
+Source packet version: `v0.5-source-shaping-subtitle-plan-closure`
 
 ## 0. Boundary
 
@@ -27,10 +27,10 @@ Fastlane rule: reuse approved channel-level defaults by citation; approve only e
 | Step | Exit evidence | Status / notes |
 |---:|---|---|
 | 0. Scaffold | manifest, current state, source/review/tracking placeholders | pass_source_only |
-| 1. Source packet lock | `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, reviews/tracking | Tracks 1-13 lyrics are source-approved, Tracks 1-13 source-only copy packs are field-synced, the prompt pack is synced, and the visual direction is approved source-only; Gate 1 still not locked because metadata, subtitles, and later gates remain pending |
+| 1. Source packet lock | `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, reviews/tracking | Tracks 1-13 lyrics are source-approved, Tracks 1-13 source-only copy packs are field-synced, the prompt pack is synced, the visual direction is approved source-only, metadata/disclosure is passed source-only, and subtitle planning is passed source-only; Gate 1 still not locked because local audio intake and later gates remain pending |
 | 2. Candidate intake | real local audio/visual files exist before IDs/provenance | blocked_until_gate |
-| 3. Sequence + metadata | chapter timeline, disclosure, title/description/tags policy | pending |
-| 4. Subtitles + sidecars | final `.srt`/`.vtt`, parser checks, human watch/spot evidence | pending |
+| 3. Sequence + metadata | chapter timeline, disclosure, title/description/tags policy | metadata_pass_source_only; chapter timestamps blocked until selected audio sequence exists |
+| 4. Subtitles + sidecars | final `.srt`/`.vtt`, parser checks, human watch/spot evidence | subtitle_plan_pass_source_only_no_sidecars; timing and sidecars blocked until selected audio and explicit timing gate |
 | 5. Local render QA | explicit render/export gate, video path, mechanical QA, human spot pass | blocked_until_gate |
 | 6. YouTube handoff planning | release decision, current public policy/account check, API/manual package | blocked_until_gate |
 | 7. Public publish decision | user-owned final action, rollback owner, no-store hygiene | blocked_until_explicit_final_gate |
@@ -40,10 +40,10 @@ Do not open the next step by implication. Each local media render/export or exte
 ## 3. Current Verdict
 
 ```text
-Verdict: gate_1_source_shaping_complete_tracks_1_13_visual_synced_not_locked
-Scope: source-only episode spine, Tracks 1-13 lyrics/Suno fields, synced prompt pack, approved visual direction, and Gate 1 shaping closure
-Evidence: manifest.json, reviews/current-state.md, source/songs.md, source/batch-draft-tracks-2-13.md, source/suno-manual-fields.md, source/prompt-pack.md, reviews/prompt-pack.md, source/visual.md, reviews/visual.md, reviews/lyrics.md, reviews/suno-manual-fields.md, reviews/source-shaping.md, tracking CSVs
-Critical blockers: Gate 1 still lacks metadata, subtitles, and all downstream media/platform evidence; no local candidate media; render/export and YouTube actions blocked
-Next allowed action: continue remaining Gate 1 source assets and reviews without opening provider/media/render/upload gates
-Still blocked: provider/account automation, media generation without gate, render/export without gate, upload/publish/API without gate, credentials in repo, Content ID, rights/platform-safety claims
+Verdict: gate_1_source_shaping_complete_tracks_1_13_visual_metadata_subtitle_plan_not_locked
+Scope: source-only episode spine, Tracks 1-13 lyrics/Suno fields, synced prompt pack, approved visual direction, source-only metadata/disclosure pack, source-only subtitle plan, and Gate 1 shaping closure
+Evidence: manifest.json, reviews/current-state.md, source/songs.md, source/batch-draft-tracks-2-13.md, source/suno-manual-fields.md, source/prompt-pack.md, reviews/prompt-pack.md, source/visual.md, reviews/visual.md, source/metadata.md, reviews/metadata.md, subtitles/README.md, reviews/subtitles.md, reviews/lyrics.md, reviews/suno-manual-fields.md, reviews/source-shaping.md, tracking CSVs
+Critical blockers: Gate 1 still lacks local audio candidates and all downstream media/platform evidence; no local candidate media; subtitle timings and sidecars are blocked; render/export and YouTube actions blocked; chapter timestamps are blocked until selected audio sequence exists
+Next allowed action: stop for explicit local audio candidate intake or another narrow source review gate without opening provider/media/render/upload gates by implication
+Still blocked: provider/account automation, media generation without gate, subtitle timing/sidecars without selected audio, render/export without gate, upload/publish/API without gate, credentials in repo, Content ID, transcript certification, rights/platform-safety claims
 ```

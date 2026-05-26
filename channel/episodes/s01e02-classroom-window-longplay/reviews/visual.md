@@ -30,6 +30,6 @@ This review covers source-only visual direction. It does not approve image gener
 ```text
 Verdict: pass_source_only_visual_direction_classroom_window
 Scope: source-only visual direction and safe-zone planning
-Next allowed action: continue non-provider Gate 1 source work such as metadata and subtitle planning, or open a separate future local visual proof gate if needed
+Next allowed action: stop for explicit local audio candidate intake or open a separate future local visual proof gate if needed
 Still blocked: image generation/editing, provider/browser/API/account action, candidate creation, render/export, upload/publish, credentials in repo, Content ID, and rights/platform-safety claims
 ```

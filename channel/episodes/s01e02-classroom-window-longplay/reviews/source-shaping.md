@@ -1,6 +1,6 @@
 # S01E02 Source Shaping Review — Classroom Window Longplay
 
-Status: Gate 1 source shaping complete source-only / prompt pack synced / visual source approved / Gate 1 not locked  
+Status: Gate 1 source shaping complete source-only / prompt pack synced / visual source approved / metadata source passed / subtitle plan passed / Gate 1 not locked  
 Updated: 2026-05-26
 
 ## Boundary
@@ -30,6 +30,8 @@ This review covers source-only episode shaping. It does not approve lyrics as fi
 | Copy-ready Suno files | Tracks 1-13 source-only packs synced. | tracks_1_13_synced_source_only |
 | Prompt pack | Source-only sequence now matches Tracks 1-13 and points to authoritative per-track packs. | full_source_sequence_synced_source_only |
 | Visual direction | Classroom-window still-frame direction and safe-zone plan approved source-only. | pass_source_only_visual_direction |
+| Metadata/disclosure | Source-only title drafts, description draft, disclosure wording, chapter-title order without timestamps, tags policy, and blocked-claim scan passed. | pass_metadata_disclosure_pack_source_only |
+| Subtitle planning | Source-only subtitle text policy, segmentation guardrail, future timing prerequisites, and blocked output claims passed with no sidecars. | pass_subtitle_plan_source_only_no_sidecars |
 
 ## Working Track Arc
 
@@ -59,10 +61,10 @@ This review covers source-only episode shaping. It does not approve lyrics as fi
 ## Verdict
 
 ```text
-Verdict: gate_1_source_shaping_complete_tracks_1_13_visual_synced_not_locked
-Scope: episode spine, sub-theme matrix, Tracks 1-13 source-approved lyrics/fields, synced prompt pack, approved visual direction, and the batch workflow trail that produced them
-Evidence: source/songs.md, source/suno-manual-fields.md, source/prompt-pack.md, reviews/prompt-pack.md, source/visual.md, reviews/visual.md, reviews/source-approval-workflow.md, reviews/lyric-antipatterns.md, tracking/*.csv
-Critical blockers: metadata/subtitle/audio/render/release gates are not open; Gate 1 is still not locked
-Next allowed action: continue remaining non-provider Gate 1 source assets and reviews using the synced song/field/prompt/visual packet as the base
-Still blocked: provider/account automation, generated media, candidate IDs, render/export, upload/API, public publish, credentials in repo, Content ID, and rights/platform-safety claims
+Verdict: gate_1_source_shaping_complete_tracks_1_13_visual_metadata_subtitle_plan_not_locked
+Scope: episode spine, sub-theme matrix, Tracks 1-13 source-approved lyrics/fields, synced prompt pack, approved visual direction, source-only metadata/disclosure pack, source-only subtitle plan, and the batch workflow trail that produced them
+Evidence: source/songs.md, source/suno-manual-fields.md, source/prompt-pack.md, reviews/prompt-pack.md, source/visual.md, reviews/visual.md, source/metadata.md, reviews/metadata.md, subtitles/README.md, reviews/subtitles.md, reviews/source-approval-workflow.md, reviews/lyric-antipatterns.md, tracking/*.csv
+Critical blockers: audio/render/release gates are not open; subtitle timings sidecars cue counts chapter timestamps and duration claims are blocked until selected audio sequence exists; Gate 1 is still not locked
+Next allowed action: stop for explicit local audio candidate intake or another narrow source review gate; do not open media/provider/render/upload gates by implication
+Still blocked: provider/account automation, generated media, candidate IDs, subtitle sidecars, render/export, upload/API, public publish, credentials in repo, Content ID, transcript certification, and rights/platform-safety claims
 ```

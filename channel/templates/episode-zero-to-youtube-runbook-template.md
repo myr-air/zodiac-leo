@@ -61,6 +61,9 @@ platform/API action needs a separate narrow gate with current evidence.
 
 - Reuse `channel/channel.md` and `channel/roadmap.md` by citation.
 - Define the Episode Style & Theme Spine before track drafting.
+- For EP03 onward, apply the channel/roadmap creative delta: no planned sax
+  special color, piano still allowed, exactly one non-sax special instrument in
+  exactly one song, and several feeling/mood-led tracks in the 13-track slate.
 - For every track, record Story + Reference Brief, Track Delta, structure
   fingerprint, micro-pattern matrix, lexical count ledger, and Suno 5.5 fields.
 - Keep references out of final lyrics, titles, Suno fields, metadata, and visual

@@ -31,7 +31,7 @@ Evidence:
 ```text
 Verdict: tracks_1_13_lyrics_pass_source_only
 Scope: lyrics only; no provider/media/render/upload/release approval
-Next allowed action: continue non-provider Gate 1 source work such as prompt pack, visual source, metadata, and subtitles while keeping lyrics as the approved source base
+Next allowed action: use these approved lyrics as the subtitle text base or stop for explicit local audio candidate intake; do not open media/render/upload gates by implication
 Still blocked: provider/account automation, generated media, candidate IDs, render/export, upload/API, public publish, credentials in repo, Content ID, and rights/platform-safety claims
 ```
 
