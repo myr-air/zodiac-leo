@@ -29,8 +29,8 @@ This project is a single-channel, source-first operating system for `Mellow Long
 
 ## Verification
 
-- Validate changed JSON with `python3 -m json.tool <file>` or the standalone verifier.
+- Validate changed JSON with `bash scripts/dev-python.sh -m json.tool <file>` or the standalone verifier.
 - Parse changed CSVs with the standalone verifier.
-- Run `python3 -m py_compile <script>` after Python script changes.
-- Run relevant tests after script/test changes.
+- Run `bash scripts/dev-python.sh -m py_compile <script>` after Python script changes.
+- Run Python/tests through `bash scripts/dev-python.sh ...` or `bash scripts/run-tests.sh` after script/test changes; these route through `uv`. Avoid `rtk pytest`, bare `pytest`, bare `python3 -m pytest`, and bare `/usr/bin/python3` because this workspace has multiple Python installs.
 - Run `bash scripts/verify-standalone.sh` after structural, manifest, tracking, agent, skill, or source-of-truth changes.

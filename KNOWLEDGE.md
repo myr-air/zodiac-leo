@@ -21,7 +21,8 @@ Updated: 2026-05-25
 ## Current Source Truth
 
 - Channel strategy: `channel/channel.md` and `channel/roadmap.md`.
-- Reusable templates: `channel/templates/`, including the compact next-video fastlane worksheet in `channel/templates/episode-production-worksheet-template.md`.
+- Reusable templates: `channel/templates/`, including the zero-to-YouTube gated runbook in `channel/templates/episode-zero-to-youtube-runbook-template.md` and the compact next-video fastlane worksheet in `channel/templates/episode-production-worksheet-template.md`.
+- Episode scaffold helper: `scripts/bootstrap_episode_packet.py` creates source-only packet skeletons; for S01E02 use `bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02 --dry-run` before creating files.
 - YouTube API external env template: `channel/templates/youtube-api-upload-env.example`.
 - Reusable local audio candidate intake workflow: `channel/templates/audio-candidate-intake-workflow-template.md`.
 - Signature visual system: `channel/signature-visual-system.md` records source-only channel motifs with stored local reference images in `channel/signature-references/`.
@@ -42,6 +43,7 @@ Updated: 2026-05-25
 - Active metadata/disclosure source: `channel/episodes/s01e01-campus-cafe-longplay/source/metadata.md`.
 - Active source-only YouTube API video upload package: `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-api-video-upload-package.md`, `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-video-resource.json`, and channel-level helper `scripts/youtube_api_video_upload.py`.
 - Historical source-only manual YouTube metadata package: `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-manual-upload-package.md`.
+- Repo Python policy: use `uv` through `scripts/dev-python.sh` and `scripts/run-tests.sh`; see `docs/python-uv-policy.md`.
 - Active assembly package plan: `channel/episodes/s01e01-campus-cafe-longplay/reviews/assembly-package.md`.
 - Active render/export plan: `channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-plan.md`.
 - Active render/export QA result: `channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md`.
@@ -89,5 +91,10 @@ Run:
 
 ```bash
 bash scripts/verify-standalone.sh
-python3 -m pytest tests
+bash scripts/run-tests.sh
 ```
+
+Use `bash scripts/dev-python.sh --print` to see the selected interpreter. Do not
+use `rtk pytest`, bare `pytest`, or bare `python3 -m pytest` in this repo; this
+workspace standardizes on `uv` so test dependencies and interpreter selection are
+project-scoped.

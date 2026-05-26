@@ -1,7 +1,7 @@
 # Mellow Longplay Templates
 
 Status: source-only reusable worksheets  
-Updated: 2026-05-25
+Updated: 2026-05-26
 
 This folder holds copyable worksheet templates for future `Mellow Longplay` episode planning and review. They are internal source documents only: they do not approve media generation, render/export, upload, publishing, API/browser/provider/account automation, credential handling, or rights/platform-safety claims.
 
@@ -11,6 +11,7 @@ Recommended copy destinations:
 
 ```text
 channel/episodes/<episode-id>/reviews/episode-production-worksheet.md
+channel/episodes/<episode-id>/reviews/release-decision-plan.md
 channel/episodes/<episode-id>/reviews/episode-analytics-loop.md
 mellow-longplay/reviews/<cycle-id>-season-scoring-sheet.md
 ```
@@ -20,6 +21,7 @@ Use episode templates after the episode has a real source packet or, for analyti
 ## Templates
 
 - `episode-production-worksheet-template.md` — compact next-video fastlane worksheet for approved-default reuse, episode-delta review, source package readiness, local render QA gating, and final internal verdict.
+- `episode-zero-to-youtube-runbook-template.md` — gated runbook from packet bootstrap to guarded YouTube handoff planning, including the S01E02 bootstrap command and publish blockers.
 - `episode-analytics-loop-template.md` — manual, non-private 24h/7d/30d/season-end notes template for future separately approved releases.
 - `season-scoring-sheet-template.md` — 12-week / 12-episode / 3-season cycle source scoring sheet for roadmap rollup, milestone checks, throughput/revision control, content pattern analysis, and final source-system verdict.
 

@@ -1,0 +1,12 @@
+[project]
+name = "mellow-longplay"
+version = "0.1.0"
+description = "Source-first operating system for the Mellow Longplay channel."
+requires-python = ">=3.11"
+dependencies = [
+  "pillow>=10,<12",
+  "pytest>=8.4,<9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-python3 - <<'PY'
+bash "$ROOT/scripts/dev-python.sh" - <<'PY'
 from pathlib import Path
 import csv
 import json
@@ -18,6 +18,12 @@ required_files = [
     '.gitignore',
     'docs/operating-boundary.md',
     'docs/provider-platform-boundary.md',
+    'docs/python-uv-policy.md',
+    'pyproject.toml',
+    'scripts/dev-python.sh',
+    'scripts/run-tests.sh',
+    'scripts/bootstrap_episode_packet.py',
+    'channel/templates/episode-zero-to-youtube-runbook-template.md',
     'channel/channel.md',
     'channel/roadmap.md',
     'channel/signature-visual-system.md',
@@ -55,7 +61,7 @@ for path in required_dirs:
         errors.append(f'missing dir: {path}')
 
 for path in sorted(Path('.').glob('**/*.json')):
-    if any(part in {'.git', '.tmp', 'node_modules', '__pycache__'} for part in path.parts):
+    if any(part in {'.git', '.tmp', '.venv', 'node_modules', '__pycache__'} for part in path.parts):
         continue
     try:
         json.loads(path.read_text(encoding='utf-8'))
@@ -63,7 +69,7 @@ for path in sorted(Path('.').glob('**/*.json')):
         errors.append(f'invalid JSON {path}: {exc}')
 
 for path in sorted(Path('.').glob('**/*.csv')):
-    if any(part in {'.git', '.tmp', 'node_modules', '__pycache__'} for part in path.parts):
+    if any(part in {'.git', '.tmp', '.venv', 'node_modules', '__pycache__'} for part in path.parts):
         continue
     try:
         with path.open(newline='', encoding='utf-8') as handle:
@@ -96,7 +102,7 @@ text_blockers = [
     'ML-PILOT-001',
 ]
 for path in sorted(Path('.').glob('**/*')):
-    if not path.is_file() or any(part in {'.git', '.tmp', 'node_modules', '__pycache__'} for part in path.parts):
+    if not path.is_file() or any(part in {'.git', '.tmp', '.venv', 'node_modules', '__pycache__'} for part in path.parts):
         continue
     if path == Path('scripts/verify-standalone.sh'):
         continue
@@ -115,7 +121,7 @@ source_tree_media = [
     str(path)
     for path in Path('.').glob('**/*')
     if path.is_file()
-    and not any(part in {'.git', '.tmp', 'node_modules', '__pycache__'} for part in path.parts)
+    and not any(part in {'.git', '.tmp', '.venv', 'node_modules', '__pycache__'} for part in path.parts)
     and path.suffix.lower() in media_extensions
     and not (path.parts and path.parts[0] == 'candidates')
 ]
