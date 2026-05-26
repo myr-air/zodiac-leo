@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "s01e02-classroom-window-longplay",
+  "channel": "Mellow Longplay",
+  "status": "gate_1_source_shaping_complete_tracks_1_13_synced_source_only",
+  "gate": "gate_1_source_shaping",
+  "created": "2026-05-26",
+  "updated": "2026-05-26",
+  "working_longplay": "Classroom Window Longplay",
+  "format_target": {
+    "main_songs": 12,
+    "bonus_songs": 1,
+    "language": "English-first"
+  },
+  "source_state": {
+    "episode_brief": "source_shaping_complete_v0_8_tracks_1_13_prompt_pack_synced_not_locked",
+    "lyrics": "tracks_1_13_source_approved_source_only",
+    "suno_tracks": "tracks_1_13_fields_synced_source_only",
+    "prompt_pack": "full_source_sequence_synced_source_only_not_provider_ready",
+    "metadata": "not_started_source_only",
+    "audio_candidates": "none_do_not_create_ids_before_real_files",
+    "visual_candidates": "none_do_not_create_ids_before_real_files",
+    "subtitles": "not_started_source_only",
+    "assembly_package": "not_started_source_only",
+    "render_export_plan": "blocked_until_explicit_gate",
+    "release_decision": "blocked_not_opened",
+    "youtube_api_video_upload_package": "blocked_not_created",
+    "youtube_api_thumbnail_upload_package": "blocked_not_created"
+  },
+  "claim_boundary": "Source-only Gate 1 draft with Tracks 1-13 source-only lyrics approved, Tracks 1-13 source-only field packs synced, and the prompt pack synced as an internal sequence/index layer. Gate 1 is still not locked: this is not provider approval, media existence, render/export approval, upload/API execution, public publish/release approval, or a rights/platform-safety claim."
+}
