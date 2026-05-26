@@ -1,11 +1,11 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Songs — Classroom Window Longplay
 
-Status: Gate 1 shaping v0.8 complete / Tracks 1-13 lyrics approved / Tracks 1-13 source-only field packs synced / prompt pack synced / source-only  
+Status: Gate 1 shaping v0.9 complete / Tracks 1-13 lyrics approved / Tracks 1-13 source-only field packs synced / prompt pack synced / visual source approved / source-only  
 Updated: 2026-05-26
 
 ## Boundary
 
-This file is a source-only Gate 1 draft. It approves no provider handoff, generated audio, candidate IDs, render/export, upload/API, public publish, or rights/platform-safety claim. Tracks 1-13 lyrics are approved source-only; Track 1 and Tracks 2-13 source-only field packs are synced under `source/suno-tracks/*.md`; and `source/prompt-pack.md` is synced as a source-only sequence/index layer. Gate 1 is still not locked because non-lyric/source assets remain pending.
+This file is a source-only Gate 1 draft. It approves no provider handoff, generated audio, candidate IDs, render/export, upload/API, public publish, or rights/platform-safety claim. Tracks 1-13 lyrics are approved source-only; Track 1 and Tracks 2-13 source-only field packs are synced under `source/suno-tracks/*.md`; `source/prompt-pack.md` is synced as a source-only sequence/index layer; and `source/visual.md` is approved as the source-only visual direction. Gate 1 is still not locked because non-lyric/source assets remain pending.
 
 ## Episode Seed
 
@@ -169,4 +169,4 @@ When your sleeve brushed dust away
 
 ## Next Allowed Source Step
 
-Tracks 1-13 lyrics, source-only field packs, and the prompt pack are now synced. Next continue remaining Gate 1 source assets: visual source, metadata, subtitles planning, and other non-provider reviews.
+Tracks 1-13 lyrics, source-only field packs, the prompt pack, and the visual source are now synced/approved. Next continue remaining Gate 1 source assets: metadata, subtitles planning, and other non-provider reviews.

@@ -1,6 +1,6 @@
 # S01E02 Source Approval Workflow
 
-Status: active source-only workflow / Tracks 1-13 synced / prompt-pack closure recorded  
+Status: active source-only workflow / Tracks 1-13 synced / prompt-pack and visual closure recorded  
 Updated: 2026-05-26
 
 ## Boundary
@@ -76,6 +76,7 @@ For every track in sequence, review against all earlier approved/proposed S01E02
 | 2026-05-26 | Tracks 2-13 workflow update | subtheme_music_shape_prior_episode_light_check_active | User requested distinct sub-themes/mini-stories per song plus structure, lyric, melody, rhythm/groove review and light comparison to prior episode songs. |
 | 2026-05-26 | Tracks 2-13 revised batch + per-track packs | lyrics_pass_fields_synced_source_only | Revised batch draft cleared lyric/lexical/pattern review, source-only Suno field review passed, and per-track copy packs were synced with provider/media/release boundaries still blocked. |
 | 2026-05-26 | Prompt-pack closure | full_source_sequence_synced_source_only | Prompt pack now matches synced Tracks 1-13 source sequence and points to authoritative per-track packs; provider handoff remains blocked. |
+| 2026-05-26 | Visual-source closure | pass_source_only_visual_direction | Classroom-window visual direction and safe-zone planning approved source-only; no image generation or candidate gate opened. |
 
 ## Re-Review Triggers
 

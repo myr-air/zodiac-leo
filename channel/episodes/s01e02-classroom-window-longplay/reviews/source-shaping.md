@@ -1,6 +1,6 @@
 # S01E02 Source Shaping Review — Classroom Window Longplay
 
-Status: Gate 1 source shaping complete source-only / prompt pack synced / Gate 1 not locked  
+Status: Gate 1 source shaping complete source-only / prompt pack synced / visual source approved / Gate 1 not locked  
 Updated: 2026-05-26
 
 ## Boundary
@@ -29,6 +29,7 @@ This review covers source-only episode shaping. It does not approve lyrics as fi
 | Lyrics | Tracks 1-13 source-approved source-only. | tracks_1_13_pass_source_only |
 | Copy-ready Suno files | Tracks 1-13 source-only packs synced. | tracks_1_13_synced_source_only |
 | Prompt pack | Source-only sequence now matches Tracks 1-13 and points to authoritative per-track packs. | full_source_sequence_synced_source_only |
+| Visual direction | Classroom-window still-frame direction and safe-zone plan approved source-only. | pass_source_only_visual_direction |
 
 ## Working Track Arc
 
@@ -58,10 +59,10 @@ This review covers source-only episode shaping. It does not approve lyrics as fi
 ## Verdict
 
 ```text
-Verdict: gate_1_source_shaping_complete_tracks_1_13_synced_not_locked
-Scope: episode spine, sub-theme matrix, Tracks 1-13 source-approved lyrics/fields, synced prompt pack, and the batch workflow trail that produced them
-Evidence: source/songs.md, source/suno-manual-fields.md, source/prompt-pack.md, reviews/prompt-pack.md, reviews/source-approval-workflow.md, reviews/lyric-antipatterns.md, tracking/*.csv
-Critical blockers: visual/metadata/subtitle/audio/render/release gates are not open; Gate 1 is still not locked
-Next allowed action: continue remaining non-provider Gate 1 source assets and reviews using the synced song/field/prompt packet as the base
+Verdict: gate_1_source_shaping_complete_tracks_1_13_visual_synced_not_locked
+Scope: episode spine, sub-theme matrix, Tracks 1-13 source-approved lyrics/fields, synced prompt pack, approved visual direction, and the batch workflow trail that produced them
+Evidence: source/songs.md, source/suno-manual-fields.md, source/prompt-pack.md, reviews/prompt-pack.md, source/visual.md, reviews/visual.md, reviews/source-approval-workflow.md, reviews/lyric-antipatterns.md, tracking/*.csv
+Critical blockers: metadata/subtitle/audio/render/release gates are not open; Gate 1 is still not locked
+Next allowed action: continue remaining non-provider Gate 1 source assets and reviews using the synced song/field/prompt/visual packet as the base
 Still blocked: provider/account automation, generated media, candidate IDs, render/export, upload/API, public publish, credentials in repo, Content ID, and rights/platform-safety claims
 ```

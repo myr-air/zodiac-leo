@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "episode_id": "s01e02-classroom-window-longplay",
   "channel": "Mellow Longplay",
-  "status": "gate_1_source_shaping_complete_tracks_1_13_synced_source_only",
+  "status": "gate_1_source_shaping_complete_tracks_1_13_visual_synced_source_only",
   "gate": "gate_1_source_shaping",
   "created": "2026-05-26",
   "updated": "2026-05-26",
@@ -13,7 +13,7 @@
     "language": "English-first"
   },
   "source_state": {
-    "episode_brief": "source_shaping_complete_v0_8_tracks_1_13_prompt_pack_synced_not_locked",
+    "episode_brief": "source_shaping_complete_v0_9_tracks_1_13_prompt_visual_synced_not_locked",
     "lyrics": "tracks_1_13_source_approved_source_only",
     "suno_tracks": "tracks_1_13_fields_synced_source_only",
     "prompt_pack": "full_source_sequence_synced_source_only_not_provider_ready",
@@ -27,5 +27,5 @@
     "youtube_api_video_upload_package": "blocked_not_created",
     "youtube_api_thumbnail_upload_package": "blocked_not_created"
   },
-  "claim_boundary": "Source-only Gate 1 draft with Tracks 1-13 source-only lyrics approved, Tracks 1-13 source-only field packs synced, and the prompt pack synced as an internal sequence/index layer. Gate 1 is still not locked: this is not provider approval, media existence, render/export approval, upload/API execution, public publish/release approval, or a rights/platform-safety claim."
+  "claim_boundary": "Source-only Gate 1 draft with Tracks 1-13 source-only lyrics approved, Tracks 1-13 source-only field packs synced, the prompt pack synced as an internal sequence/index layer, and the visual direction approved source-only. Gate 1 is still not locked: this is not provider approval, media existence, render/export approval, upload/API execution, public publish/release approval, or a rights/platform-safety claim."
 }
