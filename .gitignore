@@ -30,6 +30,7 @@ profiles/
 tmp/
 logs/
 *.log
+.aries/
 node_modules/
 .venv/
 __pycache__/

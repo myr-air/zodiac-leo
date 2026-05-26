@@ -1,13 +1,13 @@
 # Mellow Longplay Workflow Map
 
-Status: active orientation map  
-Updated: 2026-05-26
+Status: active orientation map / three-HIL fastlane  
+Updated: 2026-05-27
 
 ## 0. Read This First
 
-This map explains where the workflow lives, where Human-In-The-Loop (HIL)
-decisions happen, what AI/agents may do, and what evidence is required to pass
-each gate.
+This map explains where the workflow lives, where the three planned
+Human-In-The-Loop (HIL) decisions happen, what AI/agents may do, and what
+evidence is required to pass each internal gate.
 
 Boundary: this map does not approve provider use, generated media, render/export,
 upload, public publish, scheduling, API/browser/account automation, credential
@@ -18,48 +18,44 @@ rights/platform-safety claims.
 
 ```text
 S01E01: local QA + private YouTube API video/thumbnail evidence exists; public release remains blocked.
-S01E02: workflow scaffold helper exists; episode packet has not been created unless the user runs the bootstrap command.
+S01E02: render-01 is the current final-video candidate; final video approval remains pending and public release remains blocked.
 ```
 
-For S01E02, the next safe action is still source-only:
+Default future-episode workflow is now a three-HIL fastlane:
 
-```bash
-bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02 --dry-run
+```text
+HIL-1: User says to make a new episode.
+HIL-2: After source prompts are ready and user/provider-generated media exists, user says to continue to video.
+HIL-3: After the system makes and intensely reviews the final-video candidate, user approves upload prep/execution or asks for point revisions.
 ```
 
-If the dry-run list is correct, create the packet:
-
-```bash
-bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02
-bash scripts/verify-standalone.sh
-```
+There are still internal gates, but they should not create extra planned HIL
+interruptions unless evidence contradicts the episode premise or a risk boundary
+appears.
 
 ## 2. Big Picture Diagram
 
 ```mermaid
 flowchart TD
-  A[Roadmap seed + channel defaults] --> B[Gate 0: scaffold episode packet]
-  B --> C[Gate 1: source packet lock]
-  C --> D[Gate 2: candidate intake]
+  U1((HIL-1: make new episode)) --> B[Gate 0: scaffold episode packet]
+  B --> C[Gate 1: source prompts + episode packet]
+  C --> C2[Stop: source prompt/media-generation handoff]
+  C2 --> M[User/manual provider generation outside repo or exact provider gate]
+  M --> U2((HIL-2: media exists; continue to video))
+  U2 --> D[Gate 2: candidate intake]
   D --> E[Gate 3: assembly package]
-  E --> F[Gate 4: local render/export QA]
-  F --> G[Gate 5: YouTube handoff planning]
-  G --> H[Gate 6: private upload/thumbnail gate, if selected]
-  H --> I[Gate 7: public publish decision]
+  E --> F[Gate 4: local render/export + intensive QA]
+  F --> G[Gate 5: final-video candidate]
+  G --> U3((HIL-3: approve upload path or point revisions))
+  U3 --> H[Gate 6: release/upload package or exact execution gate]
+  U3 --> R[Issue-led local revision gate]
+  H --> I[Gate 7: public/private platform decision if explicitly selected]
 
-  U0((HIL)) --> B
-  U1((HIL)) --> C
-  U2((HIL)) --> D
-  U3((HIL)) --> F
-  U4((HIL)) --> G
-  U5((HIL)) --> H
-  U6((HIL)) --> I
-
-  AI[AI / agents] -. draft, review, verify, package .-> C
+  AI[AI / agents] -. draft prompts, review, verify, package .-> C
   AI -. organize local evidence only after real files exist .-> D
-  AI -. build source docs and local helper checks .-> E
-  AI -. run local scripts only after explicit gate .-> F
-  AI -. prepare source-only handoff packages .-> G
+  AI -. build sequence, subtitles, metadata, render helpers .-> E
+  AI -. render locally and self-review intensely after HIL-2 .-> F
+  AI -. prepare source-only handoff/execution package after HIL-3 .-> H
 
   X[Blocked by default: provider/browser/account/API/public publish/rights claims]
   B -.-> X
@@ -78,6 +74,18 @@ Legend:
 - External provider/account actions remain blocked unless a narrow explicit gate
   opens that exact action.
 
+## 2.1 Three-HIL Contract
+
+| Planned HIL | User action | System may do after it | System must stop before |
+|---|---|---|---|
+| HIL-1 — New episode command | User says to make the next episode and may name the episode seed/direction. | Scaffold packet, shape episode, write/review lyrics, Suno fields, visual prompt(s), metadata draft, prompt packs, and manual handoff notes. | Provider/account/browser generation, candidate IDs, local render/export, upload/publish. |
+| HIL-2 — Continue after generation | User has generated/supplied real audio/image files from the prompts or explicitly opens an exact provider/local media gate, then says to continue to video. | Intake real files, assign candidate IDs, select/map pool, build sequence, subtitles, metadata, render video locally, and run intensive mechanical/visual/layout/content QA. | Upload/API/browser/account actions, public publish, positive rights/platform claims. |
+| HIL-3 — Final video decision | User reviews the final-video candidate and either approves upload prep/execution or sends point revisions. | If approved: prepare release/upload package or execute only the exact approved upload/private/public action. If revisions: open only affected issue-led local gate. | Any broader platform/account action, Content ID, transcript certification, or rights/platform-safety claim not explicitly approved and evidenced. |
+
+Unplanned HIL is allowed only for blockers: contradictory episode direction,
+missing/mismatched media, failed verification, scope expansion, or security/
+provider/platform risk.
+
 ## 3. Channels / Surfaces
 
 | Surface | What it is for | Who owns it | Allowed now | Blocked unless explicit gate |
@@ -94,28 +102,28 @@ Legend:
 
 ## 4. Gate Evidence Matrix
 
-| Gate | Purpose | AI/agents may do | HIL must do | Evidence required to pass | Output / next gate |
+| Gate | Purpose | AI/agents may do | HIL checkpoint | Evidence required to pass | Output / next gate |
 |---:|---|---|---|---|---|
-| 0 | Scaffold source packet | run bootstrap dry-run/create command, create source/review/tracking placeholders | confirm episode seed/slug if needed | `manifest.json`, `reviews/current-state.md`, source placeholders, tracking CSVs, `verify-standalone` pass | source packet exists; no media/external facts |
-| 1 | Lock source packet | draft episode spine, track plan, lyrics, Suno fields, prompt pack; run lyric/Suno reviews; sync docs | approve direction, reject/accept tracks, resolve story/style decisions | `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, prompt/source reviews, tracking rows | source-only song/provider handoff package candidate |
-| 2 | Candidate intake | organize supplied local files, map selected/pool, run local technical QA, record compact provenance | supply real local files; listen/select or approve selection | real file paths under `candidates/`, asset/provenance/status rows, intake review, no invented IDs | selected draft media evidence |
-| 3 | Assembly package | create sequence/chapter plan, metadata/disclosure draft, subtitle plan | accept duration/order/metadata direction | assembly review, metadata source, chapter plan, subtitle plan, blocked-claim scan | source-only assembly package |
-| 4 | Local render/export QA | run local render/export helper only after explicit gate; mechanical QA; sidecar checks | approve final local watch/listen/visual QA | final local asset path, codec/duration/resolution checks, sidecar match, snapshots/spot pass, review/tracking sync | internal local QA asset |
-| 5 | YouTube handoff planning | prepare source-only manual/API package and dry-run plan | final asset selection, current account/policy check, provenance/risk acceptance, rollback owner | final asset list, metadata/disclosure review, current official policy/account check, no-store hygiene, release-decision review | manual/API gate request only |
-| 6 | Private upload/thumbnail, if selected | only under explicit execution gate: channel verification helper, private upload or thumbnail action | provide expected channel ID/env paths/video ID; authorize exact action | external env outside repo, channel ID verification, API result recorded, no credentials in repo, privacy private by default | private platform evidence; public still blocked |
-| 7 | Public publish decision | prepare final checklist and record user decision after action if asked | own public publish/schedule/visibility action and rollback decision | explicit final approval, current platform/account check, final metadata/assets, user-owned action record | public release record or hold |
+| 0 | Scaffold source packet | run bootstrap dry-run/create command, create source/review/tracking placeholders | HIL-1 opens | `manifest.json`, `reviews/current-state.md`, source placeholders, tracking CSVs, `verify-standalone` pass | source packet exists; no media/external facts |
+| 1 | Source prompt packet | draft episode spine, track plan, lyrics, Suno fields, song prompts, visual prompts, metadata draft; run source reviews; sync docs | no extra planned HIL unless blocker | `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, visual prompt/source reviews, tracking rows | source-only prompt/media-generation handoff; stop for HIL-2 |
+| 2 | Candidate intake | organize supplied local files, map selected/pool, run local technical QA, record compact provenance | HIL-2 opens | real file paths under `candidates/`, asset/provenance/status rows, intake review, no invented IDs | selected media evidence |
+| 3 | Assembly package | create sequence/chapter plan, metadata/disclosure draft, subtitle sidecars/plan, blocked-claim scan | no extra planned HIL unless blocker | assembly review, metadata source, chapter plan, subtitle plan/sidecars, parser checks | source-only assembly package |
+| 4 | Local render/export + intensive QA | run local render/export helper; mechanical QA; sidecar checks; visual/layout review; issue-led rerender loop if allowed | no extra planned HIL unless blocker | local asset path, codec/duration/resolution checks, sidecar/cue checks, snapshots/review notes, tracking sync | final-video candidate |
+| 5 | Final video approval | package final-video candidate and residual risks | HIL-3 decides approve or revise | exact MP4 path, render QA, review summaries, known limits, no blocked claims | release/upload package gate or issue-led revision |
+| 6 | Release/upload package or exact execution, if selected | prepare source-only manual/API package; execute only exact approved private/public action under gate | HIL-3 exact action approval | final asset list, metadata/disclosure review, current official policy/account check, external env/no-store hygiene, channel verification if API | platform evidence or hold |
+| 7 | Public publish decision, if separate | prepare final checklist and record user decision after action if asked | HIL-3 or later explicit public action | explicit final visibility approval, current platform/account check, final metadata/assets, user-owned action record | public release record or hold |
 
-## 5. HIL Checklist By Gate
+## 5. HIL Checklist
 
 | HIL point | Human answer needed | If human says no / unclear |
 |---|---|---|
-| Episode seed | Is the roadmap seed/episode direction correct? | stay at Gate 0/shape |
-| Track approvals | Are title, lyric, structure, and style deltas acceptable? | revise only affected track/source |
-| Candidate files | Are these real local files and is selection acceptable? | do not create IDs/provenance |
-| Listening/visual QA | Does the selected media/render pass human watch/listen? | revise, swap, or rerender only behind gate |
-| Final asset selection | Is this exact MP4/thumbnail/sidecar/metadata the intended handoff set? | hold release planning |
-| Account/platform check | Did user check account state, limits, disclosure UI, warnings/strikes? | no upload/public-publish gate |
-| Public publish | Does user explicitly approve public visibility/schedule? | stay private/hold |
+| HIL-1: new episode | What episode/seed should be made now? | stay at source shaping; do not create provider/media facts |
+| HIL-2: generated media exists; continue | Are real audio/image files supplied or is an exact provider/local media gate opened? Should the system continue to video? | do not assign candidate IDs, assemble, or render |
+| HIL-3: final video decision | Is this exact final-video candidate approved for upload prep/exact execution, or should specific issues be revised? | revise only named issues; do not open release/upload gate |
+
+The system may still ask for clarification mid-run only if the answer changes the
+episode premise, fixes a failed proof, or crosses a provider/platform/security
+boundary.
 
 ## 6. AI / Agent Responsibility Split
 
@@ -127,9 +135,10 @@ Legend:
 | Production/readiness agents | check worksheet/tracking/readiness consistency | approve public publish or platform safety |
 | Local scripts | bootstrap packets, verify JSON/CSV, run local QA helpers when gated | store secrets, mutate accounts unless exact gate opens |
 
-## 7. Start Here For S01E02
+## 7. Start Here For Future Episodes
 
-1. Create Gate 0 packet only after dry-run:
+1. HIL-1: user says to make the new episode. Create Gate 0 packet only after
+   dry-run when using the bootstrap helper:
 
    ```bash
    bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02 --dry-run
@@ -137,7 +146,7 @@ Legend:
    bash scripts/verify-standalone.sh
    ```
 
-2. Then work Gate 1 source packet:
+2. Work Gate 1 source/prompt packet without extra planned HIL:
 
    - define Episode Style & Theme Spine;
    - for EP03 onward, cite the channel/roadmap creative delta: no planned sax,
@@ -147,15 +156,22 @@ Legend:
    - for each song, require Story + Reference Brief, Track Delta, structure
      fingerprint, micro-pattern matrix, lexical count ledger, and Suno 5.5 fields;
    - update `manifest.json`, `reviews/current-state.md`, source docs, reviews,
-     and tracking rows together when durable state changes.
+     and tracking rows together when durable state changes;
+   - stop with song prompts, visual prompts, metadata draft, and manual handoff
+     notes ready for user/provider generation.
 
-3. Do not open candidate intake until real local files exist.
+3. HIL-2: user supplies real audio/image files or opens an exact local/provider
+   media gate, then says to continue to video. Do not open candidate intake until
+   real local files exist.
 
-4. Do not open render/export until selected media, subtitles, sequence, metadata,
-   and explicit local render gate exist.
+4. After HIL-2, the system may intake candidates, assemble, subtitle, render
+   locally, run intensive review, and issue-led rerender within the approved
+   local scope. Do not open platform/API actions.
 
-5. Do not open YouTube/API/public publish until final local QA asset exists and a
-   release-decision gate records current policy/account checks and user approval.
+5. HIL-3: user approves the final-video candidate for upload prep/exact action
+   or sends point revisions. Do not open YouTube/API/public publish until this
+   HIL explicitly chooses that action and a release/upload gate records current
+   policy/account checks.
 
 ## 8. Common Confusions
 
@@ -167,6 +183,8 @@ Legend:
 | “Private upload means public release passed?” | No. Private upload evidence is not public publish approval. |
 | “Readiness score >=90 means platform safe?” | No. It means internal source/readiness candidate only. |
 | “Can we store OAuth/token/env in repo?” | No. Use external env path; credentials/tokens stay outside repo. |
+| “Generated media is done, so candidate facts can be invented?” | No. HIL-2 needs real local files or an exact provider gate before candidate IDs/provenance. |
+| “Final video approval means upload-ready/platform-safe?” | No. It only opens a possible release/upload gate; rights/platform claims stay blocked. |
 
 ## 9. Source Paths To Trust
 

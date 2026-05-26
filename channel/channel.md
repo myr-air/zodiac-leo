@@ -1,7 +1,7 @@
 # Mellow Longplay Channel
 
 Status: active single-channel contract  
-Updated: 2026-05-26
+Updated: 2026-05-27
 
 ## Promise
 
@@ -30,18 +30,22 @@ The listener-facing hook is not `AI music`. The hook is a curated soft afternoon
 
 Warm everyday places: after-school cafes, classroom windows, library tables, campus cafes, apartment desks, rooftop golden hour, quiet train windows, seaside shade, paper notes, coffee cups, plants, afternoon light, and clean negative space.
 
+All channel images must use the mandatory house style: **soft watercolor semi-realistic anime playlist-cover illustration** / **lo-fi watercolor anime poster style**. The visual look is the EP1 watercolor-paper longplay look: soft semi-real illustrated portrait, airy cream/parchment left-side wash for overlays, delicate pencil-sketch edges on secondary objects, gentle realistic face rendering, warm natural window or desk-lamp glow, muted greens, pale blue-gray, soft brown wood, subtle film grain, botanical foreground blur, and calm editorial 16:9 composition. Avoid flat anime, glossy digital concept art, neon-cinematic lighting, horror, cyberpunk, generic 3D, or hard sci-fi mood unless a later visual gate explicitly records a narrow override.
+
+The recurring listener woman must be soft semi-realistic / softly lifelike, not flat anime, chibi, doll-like, plastic 3D, or exact-face copied. She should stay recognizable by archetype and motifs while varying pose, gesture, gaze, camera angle, and object interaction from image to image so the channel does not repeat the same seated-by-window writing composition.
+
 Visuals must stay original and non-branded. Overlays such as titles, subtitles, equalizers, chapter cues, bokeh, dust, steam, and glow must be reviewed against the base image and kept secondary to the calm listener job.
 
 ## Signature Visual References
 
-Use `mellow-longplay/signature-visual-system.md` as the channel-level identity reference for future key visuals.
+Use `channel/signature-visual-system.md` as the channel-level identity reference for all future channel images.
 
 Default signature motifs:
 
 - A small glossy gold crescent-vinyl charm with record grooves and a play-triangle mark.
-- A recurring wholesome listener character variant with long dark hair, cream cardigan or modest school cardigan, bow blouse, plaid skirt, gray backpack, gentle thoughtful expression, and cozy coffee/notebook/music energy. Use adult/college-coded styling by default; use same-age teen/high-school styling only when an episode explicitly records that direction.
+- A recurring wholesome listener woman / character archetype with long dark hair, soft realistic / softly lifelike gentle face, cream cardigan or modest school cardigan, bow blouse or modest blouse, plaid skirt when appropriate, gray backpack, varied thoughtful study/listening/daydreaming gestures, and cozy coffee/notebook/music energy. Use adult/college-coded styling by default; use same-age teen/high-school styling only when an episode explicitly records that direction. Lock the archetype, not an exact face or exact pose.
 
-Stored local reference images live in `mellow-longplay/signature-references/`. These are source-only design references. Do not use supplied images as provider reference-image inputs, exact face-copy targets, generated media, or rights/platform-safety evidence without a separate future gate.
+Stored local reference images live in `channel/signature-references/`. These are source-only design references. Do not use supplied images as provider reference-image inputs, exact face-copy targets, generated media, or rights/platform-safety evidence without a separate future gate.
 
 ## Boundaries
 

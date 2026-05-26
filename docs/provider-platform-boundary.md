@@ -1,7 +1,7 @@
 # Provider And Platform Boundary
 
 Status: active  
-Updated: 2026-05-25
+Updated: 2026-05-27
 
 ## Suno Boundary
 
@@ -18,15 +18,15 @@ Current exception status: S01E01 used the narrow OAuth/API execution gate in `ch
 
 No public publish, schedule, Studio/browser automation, Analytics API, playlist action, metadata edit after upload, comment action, unlist/delete, channel rename, caption upload, extra thumbnail variant, account edit, Content ID action, or positive platform/rights claim is approved in this standalone scope.
 
-Future release work must start with a new release-decision gate that checks:
+Future release work must start after HIL-3 final-video approval or an exact HIL-3 upload/prep instruction. The release-decision gate must check:
 
-- Actual final local assets and sidecars.
+- Actual final-video-approved local assets and sidecars.
 - AI-assisted disclosure wording.
 - Current YouTube policy/account constraints.
 - Current provider/source provenance.
 - Rollback/manual-only responsibilities.
 
-For future videos, reuse the approved API helper shape and external env-file pattern by citation, but open a fresh episode-specific execution gate before any platform/API mutation.
+For future videos, reuse the approved API helper shape and external env-file pattern by citation, but open a fresh episode-specific execution gate before any platform/API mutation. Final video approval alone is not upload/API/browser/account approval.
 
 ## Forbidden Positive Claims
 

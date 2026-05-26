@@ -1,11 +1,11 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Visual Source — Classroom Window Longplay
 
-Status: source_direction_approved_source_only  
-Updated: 2026-05-26
+Status: source_direction_approved_night_mode_candidate_gate_open_ep1_style_locked_source_only_no_files  
+Updated: 2026-05-27
 
 ## Source-Only Boundary
 
-This file is a still-frame and layout plan only. It does not approve image generation, image editing, reference-image input use, screenshots, candidate media, proof output, render/export, upload, publishing, provider/account/API/browser automation, or positive rights/platform claims.
+This file is a still-frame and layout plan with a separately opened night-mode visual candidate gate. The gate allows future user-supplied local still-image candidates to be reviewed after real files exist, but no candidate file, candidate ID, accepted visual direction, proof output, or media fact exists yet. It does not approve agent-side image generation/editing, reference-image input use, screenshots as evidence, render/export, upload, publishing, provider/account/API/browser automation, credentials, or positive rights/platform claims.
 
 ## Visual Promise
 
@@ -13,9 +13,12 @@ A late-afternoon college classroom by a tall window: warm sun rectangles across 
 
 ## Signature Motif Use
 
-- Use the channel signature motifs as source-only design guidance, not as provider reference inputs.
+- Use `channel/signature-visual-system.md` as the mandatory channel house style lock and signature motif source for every channel image; this is source-only design guidance, not provider reference input approval.
+- Canonical style name: soft watercolor semi-realistic anime playlist-cover illustration / lo-fi watercolor anime poster style.
+- Preserve the EP1 watercolor-paper longplay look: soft semi-real portrait, airy cream/parchment left wash, delicate pencil-sketch object edges, warm window or desk-lamp glow, subtle film grain, botanical blur, and calm editorial 16:9 composition.
 - Include the small glossy gold crescent-vinyl charm as a subtle visible object on the gray backpack zipper, desk corner, or notebook edge.
-- If a listener character appears, keep her adult/college-coded, wholesome, and non-specific: long dark hair, cream cardigan or light knit layer, modest campus outfit, gray backpack, gentle thoughtful posture. Do not copy an exact face or supplied reference image.
+- If a listener character appears, use the recurring Mellow Longplay listener woman archetype: adult/college-coded, wholesome, non-specific, long dark hair, soft realistic / softly lifelike gentle face, cream cardigan or light knit layer, modest campus outfit, gray backpack, and a varied study/listening/daydreaming pose. Do not copy an exact face, exact pose, real person, celebrity, influencer, or supplied reference image.
+- Vary posture and gesture from prior visuals; for EP2 night mode, avoid simply repeating the EP1 hand-on-cheek cafe writing pose. Prefer a classroom-specific action such as turning a page, reaching toward the backpack charm, adjusting a pencil case, looking toward the dark window, or resting one hand near the notebook while the other holds a highlighter.
 - Optional second peer presence may appear only as a partial shoulder, hand, or adjacent seat cue; the scene should still work if it becomes object-led.
 
 ## Carry-Forward Layout Default
@@ -38,7 +41,7 @@ Scene: late-afternoon college classroom beside a tall sunlit window, soft campus
 Subject: a tasteful adult/college-coded campus listener character near the window, long dark hair, cream cardigan, modest blouse, gentle posture, soft gray backpack with a tiny glossy gold crescent-vinyl charm; optional second peer presence only as a subtle adjacent-seat cue.
 Composition: focal subject and desk details in the center-right 60 percent; left side kept airy for title/subtitle overlays; open notebook, graph paper, folded quiz corner, yellow highlighter, and pencil case visible without clutter.
 Lighting/color: honey afternoon light, cream, muted green, pale blue-gray, soft brown, faint dust in sunbeams.
-Style/medium: original illustrated cozy anime-inspired key visual, calm painterly shading, clean shapes, soft film-grain texture, gentle depth, no dramatic action.
+Style/medium: mandatory channel house style — soft watercolor semi-realistic anime playlist-cover illustration / lo-fi watercolor anime poster style, soft semi-real Mellow Longplay illustrated portrait, EP1 watercolor-paper look, airy cream/parchment negative space on the left, delicate pencil-sketch edges on secondary objects, gentle realistic face rendering, warm natural window glow, muted green and pale blue-gray accents, soft brown wood, subtle film grain, botanical foreground blur, cozy hand-painted texture, calm editorial 16:9 cover composition; not flat anime, not glossy digital concept art, not neon cinematic.
 Text policy: no readable text, no logos, no school emblems, no UI elements baked into the image.
 Provenance boundary: reference-free output target; do not use stored reference images as provider inputs.
 Safety boundary: non-branded, age-appropriate, non-sexualized, no real school identity, no celebrity/protected likeness, no teacher-student or adult-minor implication.
@@ -50,10 +53,44 @@ Safety boundary: non-branded, age-appropriate, non-sexualized, no real school id
 Original reference-free 16:9 cozy classroom-window illustration with no visible faces: late-afternoon window light, two adjacent classroom seats, open notebook with graph paper, folded quiz corner, yellow highlighter, pencil case, gray backpack with a tiny gold crescent-vinyl charm, soft campus trees outside, calm negative space left for title and subtitles, no logos or readable text.
 ```
 
+## Night Mode Candidate Gate — Open / Copy-Ready Prompt
+
+This is a manual/local visual candidate gate for a night-mode still-frame variant. It explores a darker classroom-window mood without replacing the approved source direction until a real candidate file is supplied, reviewed, and accepted.
+
+```text
+Original reference-free 16:9 key visual for Mellow Longplay S01E02 “Classroom Window Longplay”.
+
+Mandatory channel style: soft watercolor semi-realistic anime playlist-cover illustration, lo-fi watercolor anime poster style, soft semi-real / softly lifelike recurring listener woman, airy cream parchment paper texture on the left, delicate pencil-sketch accents on objects, warm pastel beige tone, subtle film grain, botanical softness, calm editorial playlist-cover composition.
+
+Scene: evening college classroom after the last class, tall classroom window on the right with deep indigo-blue night outside, soft distant campus lights, warm cream desk-lamp glow across wooden desks, open notebook, graph paper, folded quiz corner, yellow highlighter, pencil case, and a soft gray backpack.
+
+Subject: recurring Mellow Longplay listener woman archetype, adult/college-coded, wholesome, non-sexualized, long dark hair, soft realistic gentle face, cream knit cardigan over a modest blouse, thoughtful quiet expression. She is not repeating the previous hand-on-cheek cafe pose: show her turning a notebook page with one hand while holding a yellow highlighter in the other, or gently reaching toward the gold crescent-vinyl charm on her gray backpack. Natural posture, softly lifelike face and hair, expressive but calm.
+
+Signature totem: a small glossy gold crescent-vinyl charm with subtle record grooves and a tiny play-triangle mark, clipped to the gray backpack zipper or placed near the notebook edge, visible but not loud.
+
+Composition: center-right character and desk details, left third kept as pale cream watercolor wash / parchment negative space for future title, now-playing block, and subtitles. Calm cover-ready framing, no clutter, no baked-in typography.
+
+Lighting and color: warm desk-lamp amber on the woman, notebook, hands, and charm; cool indigo only outside the window; muted greens, pale blue-gray, soft brown wood, beige cream highlights, gentle dust/bokeh in the light. Cozy study-night mood, not dark or dramatic.
+
+Text policy: no readable text, no logos, no school emblems, no watermark, no UI elements baked into the image.
+
+Safety/provenance boundary: original character archetype, no celebrity likeness, no exact face copying, no exact pose copying, no reference-image copying, no real school identity, no teacher-student or adult-minor implication.
+```
+
+Night-mode candidate checks before acceptance:
+
+- Preserve the classroom-window listener job; do not turn the episode into a city-night, sci-fi, horror, or nightclub scene.
+- Preserve the mandatory channel house style: soft watercolor semi-realistic anime playlist-cover illustration / lo-fi watercolor anime poster style, soft semi-real EP1 watercolor-paper look, pale left wash, delicate pencil-sketch object edges, gentle realistic face, warm glow, and botanical/film-grain softness.
+- Keep enough contrast and negative space for the title block, subtitle lane, and small equalizer.
+- Keep the recurring listener woman archetype adult/college-coded, soft semi-realistic / softly lifelike, wholesome, non-childlike, and non-sexualized without exact face-copying or exact pose-copying.
+- Check that the pose/gesture/composition is not a repeat of the EP1 cafe image or any immediately prior accepted channel image.
+- Keep the gold crescent-vinyl charm subtle but visible if a backpack/notebook edge is shown.
+- Do not create or record candidate IDs until real local image files exist under the episode candidate area.
+
 ## Negative Prompt / Exclusions
 
 ```text
-logos, brand names, readable text, real school names, uniform emblems, celebrity likeness, exact face copying, childlike subject, sexualized student framing, adult/minor implication, teacher/student romance, revealing clothing, competitor thumbnail styling, dramatic neon, cluttered desks, hard sci-fi classroom tech, fake platform badges, watermark, rights-safe or platform-safe claims
+flat anime, chibi, doll-like face, plastic 3D character, glossy digital concept art, hard cinematic realism, cyberpunk, neon club lighting, horror mood, black empty background, exact face copy, exact pose copy, repeated hand-on-cheek cafe writing pose, childlike subject, sexualized student framing, revealing clothing, school logo, readable text, brand names, watermark, fake platform badges, cluttered desks, hard sci-fi classroom tech, adult/minor implication, teacher/student romance, rights-safe or platform-safe claims
 ```
 
 ## Safe-Zone Layout

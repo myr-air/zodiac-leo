@@ -1,6 +1,6 @@
 # Mellow Longplay Next-Video Fastlane Worksheet Template
 
-Status: template / compact source-to-video workflow  
+Status: template / compact source-to-video workflow / three-HIL fastlane  
 Episode: `<episode-id>`  
 Prepared by: `<name-or-agent>`  
 Prepared date: `<YYYY-MM-DD>`  
@@ -10,7 +10,7 @@ Source packet version: `<version>`
 
 This worksheet is an internal source-to-video checklist. It does not approve provider use, media generation, render/export, upload, publishing, Suno/YouTube/API/browser automation, account mutation, credential storage, Content ID registration, public release, or positive rights/platform-safety claims.
 
-Fastlane rule: reuse approved channel-level defaults by citation; approve only episode deltas and real external/local actions.
+Fastlane rule: reuse approved channel-level defaults by citation; planned HIL happens only three times: new episode command, generated-media-ready continue command, and final-video approval/upload-or-revision command. Re-open only episode deltas and real external/local actions.
 
 Still-forbidden positive claims except as blocked/caution language: `copyright-free`, `royalty-free`, `Content ID-safe`, `monetization-safe`, `platform-safe`, `upload-ready`, `publish-ready`.
 
@@ -24,7 +24,7 @@ Still-forbidden positive claims except as blocked/caution language: `copyright-f
 | Audio intake | Local user-supplied files only; selected/pool mapping from `audio-candidate-intake-workflow-template.md` | files, candidate IDs, selection, provenance, variant count, or generation/provider facts change |
 | Sequence policy | Approved simple assembly pattern: fixed order, `1.00s` gaps, no crossfade, no bumper unless explicitly opened | order, gap, bumper, crossfade, duration, chapter policy, or story arc changes |
 | Visual shell | Reuse channel signature motifs and the latest approved calm subtitle/equalizer/overlay behavior as source-only design guidance | background, subject/crop, overlay layout, subtitle region, motion amplitude, thumbnail strategy, or visual prompt changes |
-| Subtitles | Track-local timing -> episode sidecars -> mechanical parser checks -> human watch/spot pass | lyrics/sung words, cue policy, timeline, sidecar text, or render target changes |
+| Subtitles | Track-local timing -> episode sidecars -> mechanical parser checks -> system review; HIL-3 approves the whole final-video candidate | lyrics/sung words, cue policy, timeline, sidecar text, or render target changes |
 | Metadata/API workflow | Reuse source metadata structure, reusable external env-file API helper shape, and channel-id verification rule | public release, privacy, captions, playlist, account, thumbnail variant, API method, or channel target changes |
 
 If a row is unchanged, cite the previous approved source/review path once instead of repeating full analysis.
@@ -33,14 +33,17 @@ If a row is unchanged, cite the previous approved source/review path once instea
 
 | Step | Exit evidence | Status / notes |
 |---:|---|---|
-| 1. Source packet lock | `manifest.json`, `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, relevant reviews/tracking | `<pending/pass/revise/block>` |
-| 2. Candidate intake | real local audio/visual files exist before IDs/provenance; selected/pool map recorded | `<pending/pass/revise/block/n/a>` |
+| 1. Source prompt packet after HIL-1 | `manifest.json`, `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, song prompts, visual prompts, relevant reviews/tracking | `<pending/pass/revise/block>` |
+| 2. Candidate intake after HIL-2 | real local audio/visual files exist before IDs/provenance; selected/pool map recorded | `<pending/pass/revise/block/n/a>` |
 | 3. Sequence + metadata | chapter timeline, disclosure, title/description/tags policy, blocked-claim scan | `<pending/pass/revise/block>` |
-| 4. Subtitles + sidecars | final `.srt`/`.vtt`, no overlaps/gap cues, line-length/timing checks, human watch/spot evidence | `<pending/pass/revise/block>` |
-| 5. Local render QA | explicit render/export gate, video path, mechanical QA, sidecar byte-match/copy result, visual/listening spot pass | `<blocked unless gate opened>` |
-| 6. Release/API planning | explicit release decision, current policy/account check, private-upload/package gate if approved | `<blocked unless gate opened>` |
+| 4. Subtitles + sidecars | `.srt`/`.vtt`, no overlaps/gap cues, line-length/timing checks, source/render fit review | `<pending/pass/revise/block>` |
+| 5. Local render QA + final-video candidate | explicit local render scope from HIL-2, video path, mechanical QA, sidecar checks, visual/layout/listening review, issue-led rerender if allowed | `<pending/pass/revise/block>` |
+| 6. HIL-3 final video decision / release route | exact final-video approval, point revision request, or release/upload package gate | `<blocked until HIL-3>` |
 
-Do not open the next step by implication. Each local media render/export or external platform/API action still needs its own explicit gate.
+Do not open the next step by implication. The system should not ask for routine
+per-track/per-subtitle/per-candidate approval in this fastlane; it should stop
+only at HIL-1, HIL-2, HIL-3, or a real blocker. Each external platform/API
+action still needs its own explicit gate.
 
 ## 3. Compact Scorecard
 
@@ -50,7 +53,7 @@ Do not open the next step by implication. Each local media render/export or exte
 | Lyric/source quality | concrete scene, PG/safety fit, no stale hook/template/lexical pattern | `<pass/revise/block>` |
 | Audio fit | no major artifact, harshness, silence, lyric-anchor, or adjacent-similarity blocker | `<pass/revise/block/n/a>` |
 | Visual fit | safe zones, originality, readable overlays/subtitles, calm motion, no brand/real-person implication | `<pass/revise/block>` |
-| Subtitle fit | parser/mechanical checks and human watch/spot pass match current audio/source lyrics | `<pass/revise/block>` |
+| Subtitle fit | parser/mechanical checks and final-video candidate review match current audio/source lyrics | `<pass/revise/block>` |
 | Metadata/disclosure | listener-job led, disclosure clear, no unsupported rights/platform/release claim | `<pass/revise/block>` |
 | Downstream gate | render/export and platform/API scope are explicit and narrow, or remain blocked | `<pass/revise/block>` |
 
@@ -67,17 +70,20 @@ Re-run only the affected rows/steps when any of these change:
 - visual background, crop, overlay/subtitle placement, motion, thumbnail asset or variant;
 - metadata, disclosure, claim wording, privacy/public release, platform/API method, credentials/account boundary.
 
+If no trigger appears, continue to the next planned HIL instead of asking for
+micro-approval.
+
 No trigger means cite the prior approved default and continue.
 
 ## 5. Final Verdict Card
 
 ```text
-Verdict: pass_internal_candidate | revise_source_only | block
+Verdict: source_prompt_handoff | final_video_candidate_pending | final_video_approved_hold_release | point_revision_requested | block
 Scope: internal source-to-video readiness only
 Reused approvals: <paths / rows cited>
 Episode deltas reviewed: <short list>
 Evidence: <source/review/tracking/asset paths>
 Critical blockers: <none or list>
-Next allowed action: <source-only action or explicit gate request>
+Next allowed action: <HIL-2 media-ready continue / HIL-3 final-video decision / explicit gate request>
 Still blocked: provider/account automation, media generation without gate, render/export without gate, upload/publish/API without gate, credentials in repo, Content ID, rights/platform-safety claims
 ```

@@ -1,20 +1,29 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Subtitles
 
-Status: subtitle plan passed source-only / no timings or sidecars  
-Updated: 2026-05-26
+Status: current render subtitle lane user-approved source-only / final video approval pending / no transcript certification  
+Updated: 2026-05-27
 
 ## Boundary
 
-Final sidecars do not exist yet. This folder currently records only the source-only subtitle plan for S01E02. It does not approve subtitle timings, `.srt` / `.vtt` files, cue counts, sidecar byte-match claims, render/export, upload/API/browser/account action, public publish, transcript certification, or rights/platform-safety claims.
+This folder contains draft mechanical `.srt` / `.vtt` sidecars used for local render-01 QA. User instruction now approves the current render subtitle lane source-only for final-video candidate review. These files do not approve transcript certification, upload/API/browser/account action, public publish, or rights/platform-safety claims.
 
 ## Source Plan
 
 - Subtitle text base: approved Tracks 1-13 lyrics in `source/suno-tracks/*.md`, with `source/songs.md` and `source/batch-draft-tracks-2-13.md` as supporting source references.
 - Review record: `reviews/subtitles.md`.
-- Chapter-title order exists in `source/metadata.md`, but timestamps remain blocked until real selected audio and a sequence/gap plan exist.
+- Local chapter timestamps now exist for render-01 in `reviews/assembly-package.md`, based on selected c01 audio and 1.00s gaps. They are local QA timing facts, not final upload metadata approval.
 - Future cue segmentation should use phrase-level display, 1-2 lines per cue, natural breath/clause breaks, and S01E01's 37-character target as a starting guardrail unless future visual proof changes it.
 - If future selected audio differs from source lyrics, mark the mismatch for review; do not silently rewrite sidecar text.
 
+## Draft Sidecars Created
+
+```text
+channel/episodes/s01e02-classroom-window-longplay/subtitles/s01e02-classroom-window-longplay.draft.en.srt
+channel/episodes/s01e02-classroom-window-longplay/subtitles/s01e02-classroom-window-longplay.draft.en.vtt
+```
+
+Mechanical summary: `532` cues, max line length `37`, no overlaps, no cues crossing the planned 1s gaps. Timing method is deterministic even distribution from approved lyric lines over selected local audio durations; user approval clears it as a current-render blocker but not as transcript certification.
+
 ## Still Blocked
 
-Create subtitle timing only after selected local audio exists and an explicit subtitle timing gate is opened. Do not invent timings, cue counts, sidecar byte-match claims, render facts, upload facts, transcript certification, or platform/right-safety claims.
+Do not claim transcript certification, upload readiness, or platform/right-safety status. Recreate or revise these sidecars only through a new issue-led subtitle gate.
