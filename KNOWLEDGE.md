@@ -21,6 +21,7 @@ Updated: 2026-05-25
 ## Current Source Truth
 
 - Channel strategy: `channel/channel.md` and `channel/roadmap.md`.
+- Workflow orientation map: `docs/workflow-map.md` explains gates, HIL points, AI responsibilities, evidence requirements, and channel/surface boundaries.
 - Reusable templates: `channel/templates/`, including the zero-to-YouTube gated runbook in `channel/templates/episode-zero-to-youtube-runbook-template.md` and the compact next-video fastlane worksheet in `channel/templates/episode-production-worksheet-template.md`.
 - Episode scaffold helper: `scripts/bootstrap_episode_packet.py` creates source-only packet skeletons; for S01E02 use `bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02 --dry-run` before creating files.
 - YouTube API external env template: `channel/templates/youtube-api-upload-env.example`.

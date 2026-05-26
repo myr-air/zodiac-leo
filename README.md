@@ -8,6 +8,7 @@ This project keeps the channel small on purpose. It stores source packets, revie
 
 - `channel/channel.md` defines the channel promise and safety boundary.
 - `channel/roadmap.md` defines the 12-week source-production roadmap.
+- `docs/workflow-map.md` explains the gate flow, HIL points, AI duties, and required evidence.
 - `channel/episodes/` holds episode packets.
 - `channel/templates/` contains reusable source-only worksheets, including the compact next-video fastlane.
 - `candidates/` is ignored local evidence storage for future user-supplied audio and visuals.
@@ -24,6 +25,8 @@ Current gate: S01E01 has source, subtitle, render-05 local QA, release-planning,
 ## Next Video Fastlane
 
 For future videos, start from `channel/templates/episode-zero-to-youtube-runbook-template.md` and `channel/templates/episode-production-worksheet-template.md`: reuse approved channel defaults by citation, review only episode deltas, and keep local render/export or external platform/API actions behind explicit gates.
+
+If the workflow feels unclear, read `docs/workflow-map.md` first.
 
 S01E02 source-only bootstrap:
 
