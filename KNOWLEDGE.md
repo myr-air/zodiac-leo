@@ -1,106 +1,66 @@
 # Mellow Longplay Knowledge Contract
 
-Status: active  
+Status: lean active  
 Updated: 2026-05-27
 
 ## Purpose
 
-`/Users/xiivth/workspaces/mellow-longplay/` is the reduced standalone project for one channel: `Mellow Longplay`. The old multi-lane `youtube-ai-music` scope is intentionally not preserved here.
+`/Users/xiivth/workspaces/mellow-longplay/` is the standalone source-first system for one cozy chill vocal longplay channel: `Mellow Longplay`.
 
-## Active Episode
+## Current Episode State
 
 - `s01e01-campus-cafe-longplay` — Season 1 Week 1 `After-School First Love Longplay`.
-- Status: Gate 1 source packet open; prior 13-track set is user-rejected/superseded; Tracks 1-3 are user-accepted/source synced; Tracks 4-13 are Mayr source-approved and synced after one-by-one lyric and Suno field review; local audio candidate intake is open with 13 selected draft candidates and 13 pool candidates; user human listening pass, Gemini supplemental lyric anchor spot-check pass, and 41:31 duration acceptance are recorded source-only; Gate 8 sequence/chapter plan is source-passed with 1s inter-track gaps for a planned `41:43.28` timeline; local visual background direction `vis-c01` uses `G.png`; V1/V3 static directions were user-rejected; V4-07 animated proof was user-revised; V5 readable-motion proof was revised again; V6 cute-smooth motion proof is user-passed source-only as the visual direction; all Tracks 1-13 subtitle draft timings are human watch-passed source-only; the guarded private API video upload and selected thumbnail follow-up have been executed while public release remains blocked.
+  - Evidence state: source packet, final local render-05 QA, final burned-in subtitle sidecars, private YouTube Data API video upload, and selected thumbnail set are recorded.
+  - Public release remains blocked in repo state; do not claim public publish, platform safety, Content ID safety, or rights safety.
+  - Truth paths: `channel/episodes/s01e01-campus-cafe-longplay/manifest.json`, `reviews/current-state.md`, `reviews/youtube-api-execution-gate.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-api-thumbnail-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
 - `s01e02-classroom-window-longplay` — Season 1 Week 2 `Classroom Window Longplay`.
-- Status: Gate 1 source shaping opened source-only on 2026-05-26 and song/prompt/visual/metadata/subtitle-planning source is synced. On 2026-05-27 the local-only S01E02 render-01 run organized user-supplied media into 13 selected c01 WAV candidates plus 13 c02 pool WAV candidates, selected `vis-c01` night-mode classroom-window image, created a 12 x `1.00s` gap assembly timeline of `39:45.96`, generated draft mechanical SRT/VTT sidecars with `532` cues, and created ignored local render evidence under `candidates/s01e02-classroom-window-longplay/render/local-render-01/` including a 1080p24 H.264/AAC QA MP4 and six snapshots. Mechanical QA is recorded in `reviews/render-export-qa.md`; `agy --print` returned visual/layout/readability `PASS` with limits in `reviews/agy-render-review.md`; user instruction records selected audio, current render subtitles, and visual/readability as approved source-only for the current final-video candidate. Only final video approval remains as the local creative gate in `reviews/final-video-approval.md`. Release decision, upload/API/browser/account actions, transcript certification, Content ID, and rights/platform-safety claims remain blocked.
-- 2026-05-24 source correction: Track 1 cue 58 / outro hook now reads `Same seat tomorrow after school` instead of `Save my seat and I'll walk you home` in source SRT/VTT and Track 1 lyric mirrors. Timing and cue count are unchanged. Render-04 predates this correction, so its burned-in subtitle and sidecar copies are stale for that cue; a corrected render/copy refresh needs a separate explicit local render gate.
-- 2026-05-24 render-05 corrected local QA refresh was user-approved and created under `candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/`. Mechanical QA passed: `2503.28s`, `1920x1080`, `24fps`, H.264/AAC, 13 segments, corrected sidecar byte-match, 598 cues, no overlaps, no gap cues, clean decode, and 7 snapshots. User approved render-05 as the current local QA output. Release remains blocked; readiness remains `96/100`.
-- Gate 10 subtitle/source timing plan is passed source-only: all tracks have local draft timing evidence from selected audio and approved source lyrics, and all Tracks 1-13 are human watch-passed source-only. Track 13 uses sung-section timing that excludes the absent `Dialogue First` source section because the selected audio begins at Verse 1. Gate 11 metadata/disclosure pack is passed source-only with title/description draft, AI-assisted disclosure wording, rounded chapter display draft, tags policy, and blocked-claim checklist. Gate 12 internal readiness scorecard is source-passed at `96/100` after user-reported non-secret provenance, local fingerprints, and V6 crop/safe-zone evidence were recorded. Source-only assembly package planning is passed in `reviews/assembly-package.md` with the selected 1s-gap timeline and V6 carry-forward. Final English subtitle sidecars are promoted source-only at `subtitles/s01e01-campus-cafe-longplay.en.srt` and `.en.vtt` with 598 cues, no overlaps, no gap cues, and Track 13 `Dialogue First` exclusion preserved. Render/export planning is passed in `reviews/render-export-plan.md`; render-01 mechanical QA was recorded but later failed human visual review for particle/light, equalizer, Now Playing typography, and parallax fidelity; render-02 and render-03 mechanical QA were recorded and are now superseded by the user-approved render-04 local revision under `candidates/s01e01-campus-cafe-longplay/render/future-local-render-04/`. `reviews/render-export-qa.md` records render-04 mechanical QA plus pending human review: `2503.28s`, `1920x1080`, `24fps`, sidecar byte-match, 598 cues, no overlaps, no gap cues, 13 resumable per-song segments, clean decode, and 7 sampled snapshots. `98/100` is not supported without future final human/full-release QA evidence. No upload plan, release approval, analytics, or platform/account action exists. Audio candidates, visual proof media, subtitle proof media, and local render outputs remain ignored local evidence only.
+  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, current render subtitles, local chapter draft, render-01 mechanical QA, agy visual/layout PASS, and user pre-final approval are recorded.
+  - Remaining local creative gate: final video approval for render-01 or point revisions.
+  - Release/upload/API/browser/account actions, transcript certification, Content ID, and rights/platform-safety claims remain blocked.
+  - Truth paths: `channel/episodes/s01e02-classroom-window-longplay/manifest.json`, `reviews/current-state.md`, `reviews/final-video-approval.md`, `reviews/render-export-qa.md`, `reviews/agy-render-review.md`, and `tracking/*.csv`.
 
-- Render-04 sidecar byte-match is historical as of the 2026-05-24 cue 58 correction; render-05 is the current corrected local QA output. Source sidecars remain authoritative before any future render/copy QA.
-- 2026-05-25 release decision planning remains open in `channel/episodes/s01e01-campus-cafe-longplay/reviews/release-decision-plan.md`, and the OAuth/API execution gate in `channel/episodes/s01e01-campus-cafe-longplay/reviews/youtube-api-execution-gate.md` has been used for one private YouTube Data API video upload plus selected-thumbnail follow-up. The user selected an API route rather than manual entry; `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-api-video-upload-package.md`, `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-video-resource.json`, `scripts/youtube_api_video_upload.py`, and `scripts/youtube_api_thumbnail.py` define a channel-level guarded workflow with `channels.list(mine=true)` channel verification before `videos.insert(private)` or `thumbnails.set`. The selected thumbnail path is `candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg`, and `thumbnails.set` completed for video ID `4pOLXPMQO5g` after channel verification matched `UC4qQwe3oiykEGhL_WyVFtMg`. The helpers read reusable `MELLOW_YOUTUBE_*` execution inputs from an external env file; the repo contains only a placeholder template at `channel/templates/youtube-api-upload-env.example`. Captions are not uploaded because subtitles are burned in. Public release is not passed; readiness remains `96/100`; public publish/schedule, browser/Studio actions, analytics, Content ID, caption upload, credentials/tokens in repo, account-state storage, and positive rights/platform-safety claims remain blocked.
+## Operating Model
 
-## Current Source Truth
+- Default production flow is the three-HIL fastlane in `docs/workflow-map.md`:
+  1. HIL-1: user says to make a new episode; system creates source packet, song prompts, visual prompts, metadata draft, and handoff notes.
+  2. HIL-2: user says generated/supplied media exists and to continue; system intakes real files, assembles, subtitles, renders locally, and self-reviews intensely.
+  3. HIL-3: user approves the exact final-video candidate for upload prep/execution or sends point revisions.
+- Internal gates still exist for evidence/tracking; do not ask for routine micro-approval unless there is a blocker, contradiction, or risk boundary.
+- Candidate IDs/provenance require real local files or an exact provider gate. Never invent media facts.
+- Final video approval is not release approval and not a rights/platform-safety claim.
 
-- Channel strategy: `channel/channel.md` and `channel/roadmap.md`.
-- Workflow orientation map: `docs/workflow-map.md` explains gates, HIL points, AI responsibilities, evidence requirements, and channel/surface boundaries.
-- Reusable templates: `channel/templates/`, including the zero-to-YouTube gated runbook in `channel/templates/episode-zero-to-youtube-runbook-template.md` and the compact next-video fastlane worksheet in `channel/templates/episode-production-worksheet-template.md`.
-- Episode scaffold helper: `scripts/bootstrap_episode_packet.py` creates source-only packet skeletons; for S01E02 use `bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02 --dry-run` before creating files.
-- YouTube API external env template: `channel/templates/youtube-api-upload-env.example`.
-- Reusable local audio candidate intake workflow: `channel/templates/audio-candidate-intake-workflow-template.md`.
-- Signature visual system: `channel/signature-visual-system.md` records the mandatory channel image style — soft watercolor semi-realistic anime playlist-cover illustration / lo-fi watercolor anime poster style — plus source-only channel motifs with stored local reference images in `channel/signature-references/`.
-- Active episode truth: `channel/episodes/s01e01-campus-cafe-longplay/manifest.json`.
-- Active song source: `channel/episodes/s01e01-campus-cafe-longplay/source/songs.md`.
-- Active Suno manual fields index/defaults plus Episode Style & Theme Spine and Track Delta matrix: `channel/episodes/s01e01-campus-cafe-longplay/source/suno-manual-fields.md` plus `channel/episodes/s01e01-campus-cafe-longplay/reviews/suno-manual-fields.md`.
-- Active Suno track copy packs: `channel/episodes/s01e01-campus-cafe-longplay/source/suno-tracks/*.md` (13 files, one per song).
-- Active prompt pack: `channel/episodes/s01e01-campus-cafe-longplay/source/prompt-pack.md` plus `channel/episodes/s01e01-campus-cafe-longplay/reviews/prompt-pack.md`.
-- Active candidate-intake checklist: `channel/episodes/s01e01-campus-cafe-longplay/reviews/candidate-intake-checklist.md`.
-- Active audio candidate intake review: `channel/episodes/s01e01-campus-cafe-longplay/reviews/audio-candidate-intake.md`.
-- Active selected audio QA/listening handoff: `channel/episodes/s01e01-campus-cafe-longplay/reviews/audio-qa-listening.md`.
-- Active source-approval workflow log: `channel/episodes/s01e01-campus-cafe-longplay/reviews/source-approval-workflow.md`.
-- Active lyrics review: `channel/episodes/s01e01-campus-cafe-longplay/reviews/lyrics.md`.
-- Active theme retune review: `channel/episodes/s01e01-campus-cafe-longplay/reviews/theme-retune.md`.
-- Active visual source: `channel/episodes/s01e01-campus-cafe-longplay/source/visual.md`, `channel/episodes/s01e01-campus-cafe-longplay/source/visual-prompt-pack.md`, `channel/episodes/s01e01-campus-cafe-longplay/source/visual-overlay-motion-plan.md`, `channel/episodes/s01e01-campus-cafe-longplay/reviews/visual-layout-proof-review.md`, and visual reviews.
-- Active subtitle timing review: `channel/episodes/s01e01-campus-cafe-longplay/subtitles/README.md` and `channel/episodes/s01e01-campus-cafe-longplay/reviews/subtitle-improvement.md`.
-- Active final subtitle sidecars: `channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.srt` and `channel/episodes/s01e01-campus-cafe-longplay/subtitles/s01e01-campus-cafe-longplay.en.vtt`.
-- Active metadata/disclosure source: `channel/episodes/s01e01-campus-cafe-longplay/source/metadata.md`.
-- Active source-only YouTube API video upload package: `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-api-video-upload-package.md`, `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-video-resource.json`, and channel-level helper `scripts/youtube_api_video_upload.py`.
-- Historical source-only manual YouTube metadata package: `channel/episodes/s01e01-campus-cafe-longplay/source/youtube-manual-upload-package.md`.
-- Repo Python policy: use `uv` through `scripts/dev-python.sh` and `scripts/run-tests.sh`; see `docs/python-uv-policy.md`.
-- Active assembly package plan: `channel/episodes/s01e01-campus-cafe-longplay/reviews/assembly-package.md`.
-- Active render/export plan: `channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-plan.md`.
-- Active render/export QA result: `channel/episodes/s01e01-campus-cafe-longplay/reviews/render-export-qa.md`.
-- Active release decision planning gate: `channel/episodes/s01e01-campus-cafe-longplay/reviews/release-decision-plan.md`.
-- Active YouTube API execution gate: `channel/episodes/s01e01-campus-cafe-longplay/reviews/youtube-api-execution-gate.md`.
-- Active tracking: `channel/episodes/s01e01-campus-cafe-longplay/tracking/*.csv`.
-- S01E02 source truth: `channel/episodes/s01e02-classroom-window-longplay/manifest.json`, `channel/episodes/s01e02-classroom-window-longplay/reviews/current-state.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/episode-production-worksheet.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/source-shaping.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/visual.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/visual-candidate-intake.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/metadata.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/subtitles.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/render-export-qa.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/agy-render-review.md`, `channel/episodes/s01e02-classroom-window-longplay/reviews/final-video-approval.md`, `channel/episodes/s01e02-classroom-window-longplay/source/songs.md`, `channel/episodes/s01e02-classroom-window-longplay/source/suno-manual-fields.md`, `channel/episodes/s01e02-classroom-window-longplay/source/prompt-pack.md`, `channel/episodes/s01e02-classroom-window-longplay/source/visual.md`, `channel/episodes/s01e02-classroom-window-longplay/source/metadata.md`, `channel/episodes/s01e02-classroom-window-longplay/subtitles/README.md`, and `channel/episodes/s01e02-classroom-window-longplay/tracking/*.csv`.
+## Durable Source Truth
 
-## Current Decisions
+- Channel strategy: `channel/channel.md`, `channel/roadmap.md`, `channel/signature-visual-system.md`.
+- Workflow/boundary: `docs/workflow-map.md`, `docs/operating-boundary.md`, `docs/provider-platform-boundary.md`, `docs/episode-lessons.md`.
+- Templates: `channel/templates/`.
+- Episode truth: `channel/episodes/<episode-id>/manifest.json`, `reviews/current-state.md`, `source/`, `subtitles/`, and `tracking/*.csv`.
+- Candidate media and render outputs under `candidates/` are ignored local evidence, not durable source truth.
 
-- The first episode direction is `After-School First Love Longplay`: after-school cafe table, notebook, coffee or milk tea, school courtyard, and wholesome PG same-age teenage/high-school first-love details.
-- Baseline format is 12 main songs plus 1 bonus full closing song, English-first, target about 30-35 minutes if later generated naturally.
-- EP03+ arrangement rule: do not use saxophone as a planned special color after S01E02; piano remains allowed as an intimate color, and each new episode should choose exactly one non-sax special instrument for exactly one song, recorded in the Episode Style & Theme Spine, Track Delta, and source-only field review.
-- Prior track checkpoint is historical only because the set was replaced by explicit user rejection.
-- Fresh human or external review is required before any future manual provider gate.
-- Track 1 opener is now `Margin Notes at Table Three` v0.6, Track 2 is now `Two Lids, One Tray` v0.9 macro-form revision, and Track 3 is now `Borrowed Eraser, Written Name` v1.0; the user accepted Tracks 1-3 as OK. Track 4 was retitled from instrument-led `Piano Between Shelves` to story-led `Checkout Slip at Chapter Nine` v1.1 while preserving the piano-forward arrangement note. Track 5 `Steam on the Glass Door` v1.0 uses title/lyric independence: the exact title is absent from the lyric and works as a mood/scene label. Track 6 is `Peach Can at B4`, Track 7 is `Green Dot on Your Schedule`, Track 8 is `Cushion Seat, Charging Cord`, Track 9 is `Crosswalk Stripes Before Six`, Track 10 is `Yellow Tag on the Umbrella Rack`, Track 11 is `Quiz Key in Blue Ink`, Track 12 is `Tray Return at 5:59`, and bonus Track 13 is `Latch Click at the Courtyard Gate`. This is source-only and not provider/media/release approval.
-- Source approval workflow now requires a strict micro-pattern gate before approval: compare previous three tracks for title-repeat count, chorus shape, `No ..., no ...`/`No big...`/`Maybe...` rhetoric, bridge opener, final-hook stacking, and repeated small-object payoffs.
-- Source approval workflow now requires a Story + Reference Brief before lyrics and a title/arrangement separation gate: instruments belong in arrangement notes/Styles unless they are real story objects.
-- Source approval workflow now also requires a title/lyric relationship gate: titles do not have to appear in lyrics or hooks if the imagery earns the title.
-- Source approval workflow now also requires issue-led review carryover from prior blockers, accidental named-reference collision scanning, and explicit approximate BPM in every Suno `Styles` field before future manual handoff review.
-- Source approval workflow now requires an Episode Style & Theme Spine before track drafting and a controlled Track Delta for each new or revised track, including story/object function, macro/rhetorical change, style/BPM change, and motif/lexical change against the spine and nearby tracks.
-- Future episode shaping from EP03 onward must keep wholesome PG teenage/first-love energy while moving away from repeated cafe/classroom/campus-object proof formulas; each slate should include several feeling/mood-led tracks where atmosphere, confidence, nervousness, longing, warmth, or afterglow leads more than plot narration while staying concrete and subtitle-ready.
-- Future episode lyric workflow must maintain a Lexical Count Ledger per song: count high-salience nouns, pronouns, adjectives/adverbs, colors, object words, and hook/payoff terms, then lower nonessential repeats in following songs. S01E01 is not being revised solely for this; carry the lesson forward.
-- Source-only Suno manual handoff is split into 13 copy-ready per-track files under `source/suno-tracks/`; `source/suno-manual-fields.md` now acts as index/defaults. These remain source-only and are not provider approval or media approval.
-- Source-only Suno prompt retune research trail is recorded in `channel/episodes/s01e01-campus-cafe-longplay/reviews/suno-prompt-research.md`; style/exclude wording and control values were retuned for clearer less repetitive prompts.
-- Source-only prompt/control pack is theme-retuned; it is not provider approval or media approval.
-- Candidate-intake checklist is now active for local user-supplied S01E01 audio files; candidate IDs exist only for local audio evidence and do not approve provider/media/render/release actions.
-- S01E01 local audio candidate intake is recorded: 26 user-supplied WAV candidates were organized into a selected draft set and a pool set. User human listening pass, Gemini supplemental lyric anchor spot-check pass, and 41:31 duration/sequence acceptance are recorded source-only. This is not render/export/upload/release approval.
-- The local audio candidate intake + Gemini supplemental A/B method is confirmed usable and recorded as a reusable workflow template for future episodes.
-- Source-only visual prompt pack is theme-retuned; `G.png` is recorded as visual background direction `vis-c01`; V6 cute-smooth motion proof was created after user rejected V4-07 and revised V5 for cuter readable typography, smoother equalizer behavior, slower parallax, local hair/leaf motion, header hold, and title slide-in/out. User passed V6 as the visual direction source-only; all Tracks 1-13 subtitle draft timings are also human watch-passed source-only. This is not image generation approval, full render/export approval, or release approval.
-- Current audio candidates, static visual proof images, V4-07 proof, V5 proof, V6 proof, subtitle timing proofs, and render-01 through render-05 local render/export QA outputs exist as ignored local evidence only; Gate 8 chapter timestamps are source-passed with 1s gaps, Gate 10 subtitle/source timing plan is source-passed with all tracks human watch-passed, Gate 11 metadata/disclosure is source-passed, Gate 12 internal readiness scorecard is source-passed, source-only assembly package planning is source-passed, final English sidecars are promoted source-only with Track 1 cue 58 corrected, render/export planning is passed, render-01 is superseded by human visual FAIL, render-02/render-03/render-04 are superseded, and render-05 local QA is user-approved while release gate remains blocked.
-- Release decision planning is open and the OAuth/API execution gate has been used for one private `videos.insert` upload plus selected-thumbnail follow-up with channel-id verification and no caption upload, but public release/public-publish approval, additional render/export output creation beyond the approved render-05 local QA output, provider/browser automation, Content ID registration, caption upload, extra thumbnail variants, credentials/tokens in repo, account-state storage, and rights/platform-safety claims remain blocked.
-- Every future channel image must use the channel-level soft watercolor semi-realistic anime playlist-cover illustration / lo-fi watercolor anime poster style plus signature motifs as source-only design guidance unless a later explicit visual gate records a narrow override. The mandatory style includes soft semi-real portrait rendering, airy cream/parchment left wash, pencil-sketch object edges, a soft lifelike recurring listener woman archetype with varied poses/gestures/compositions instead of repeating prior images, and the gold crescent-vinyl charm/totem; it does not approve reference-image inputs, exact face-copying, exact pose-copying, provider automation, generated media acceptance, or rights/platform claims.
-- Future videos should use the three-HIL fastlane: HIL-1 user says to make a new episode; the system creates the source packet plus song/visual prompts and stops for user/manual generation. HIL-2 user says generated/supplied media exists and to continue; the system intakes files, assembles, subtitles, renders locally, and self-reviews intensely until a final-video candidate exists. HIL-3 user approves that exact final video for upload prep/execution or sends point revisions. Internal gates remain for evidence/tracking, but routine per-track/per-subtitle/per-candidate micro-approval should be skipped unless a blocker or risk boundary appears. Upload/API/browser/account/public-release actions still require exact explicit gates, and final video approval is not rights/platform-safety approval.
-- S01E02 render-01 is the current final-video candidate for `Classroom Window Longplay`: source shaping is synced, selected c01 audio and `vis-c01` visual are recorded, current render subtitles and chapter draft exist, mechanical render QA passed, agy visual/layout review passed with limits, and user pre-final approval is recorded. Only final video approval remains before any separate release decision gate. This does not approve provider use, final readiness/release, upload/API/browser/account action, public release, transcript certification, Content ID, or rights/platform-safety claims.
+## Carry-Forward Rules
+
+- Use the mandatory channel image style for all future channel images: soft watercolor semi-realistic anime playlist-cover illustration / lo-fi watercolor anime poster style, soft lifelike recurring listener woman archetype with varied poses, and gold crescent-vinyl totem.
+- EP03+ arrangement rule: no planned sax special color; piano is allowed; choose exactly one non-sax special instrument for exactly one song.
+- Future episode slates should include several feeling/mood-led tracks, not only cafe/classroom/campus object-proof songs.
+- Lyrics/source workflow must keep Episode Style & Theme Spine, Track Delta, Story + Reference Brief, structure fingerprint, strict micro-pattern gate, lexical count ledger, title/lyric relationship gate, and BPM in every `Styles` field.
+- Visual/render revisions must be issue-led: name the exact audio, subtitle, visual, overlay, crop, or render problem before regenerating/rerendering.
 
 ## Safety
 
-- Candidate media under `candidates/` is ignored local evidence and should only be added after a fresh episode packet exists.
-- Do not invent candidate IDs, provenance, generation dates, analytics, media existence, or release facts.
-- For the active teen/high-school direction, keep all romance PG, same-age peer only, non-sexualized, non-teacher/student, and non-branded; block adult/minor framing, childlike vocal/visual framing, real school names, and revealing uniform framing.
-- Use forbidden terms such as `copyright-free`, `royalty-free`, `Content ID-safe`, `monetization-safe`, `upload-ready`, and `publish-ready` only as blocked/caution language.
-- Before any future external platform work, require a separate explicit gate and current policy/account review.
+- Block provider/browser/API/account/platform actions unless a narrow explicit gate opens the exact action.
+- Keep credentials, OAuth tokens, cookies, profiles, private account state, and private analytics out of repo.
+- Use forbidden terms such as `copyright-free`, `royalty-free`, `Content ID-safe`, `monetization-safe`, `platform-safe`, `upload-ready`, and `publish-ready` only as blocked/caution language.
+- Do not claim transcript certification, final release readiness, public publish, Content ID status, monetization status, or rights/platform safety without exact evidence and a release gate.
 
 ## Verification
 
-Run:
+Run after structural/source/tracking/script changes:
 
 ```bash
+bash scripts/dev-python.sh -m json.tool <changed-manifest-or-json>
+bash scripts/dev-python.sh -m py_compile <changed-script.py>
 bash scripts/verify-standalone.sh
 bash scripts/run-tests.sh
 ```
 
-Use `bash scripts/dev-python.sh --print` to see the selected interpreter. Do not
-use `rtk pytest`, bare `pytest`, or bare `python3 -m pytest` in this repo; this
-workspace standardizes on `uv` so test dependencies and interpreter selection are
-project-scoped.
+Use `bash scripts/dev-python.sh --print` to see the selected interpreter. Do not use `rtk pytest`, bare `pytest`, or bare `python3 -m pytest` in this repo.

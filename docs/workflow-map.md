@@ -188,7 +188,7 @@ boundary.
 
 ## 9. Source Paths To Trust
 
-- Channel boundary: `docs/operating-boundary.md`, `docs/provider-platform-boundary.md`.
+- Channel boundary and lessons: `docs/operating-boundary.md`, `docs/provider-platform-boundary.md`, `docs/episode-lessons.md`.
 - Current knowledge summary: `KNOWLEDGE.md`.
 - S01E02 bootstrap/runbook: `scripts/bootstrap_episode_packet.py`,
   `channel/templates/episode-zero-to-youtube-runbook-template.md`.

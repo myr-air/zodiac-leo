@@ -5,7 +5,7 @@ Updated: 2026-05-27
 
 This folder holds copyable worksheet templates for future `Mellow Longplay` episode planning and review. They are internal source documents only: they do not approve media generation, render/export, upload, publishing, API/browser/provider/account automation, credential handling, or rights/platform-safety claims.
 
-Default rule for the next videos: use the compact three-HIL fastlane worksheet first, cite approved channel defaults once, and re-review only changed episode deltas or newly opened local/external gates. Planned HIL happens at new episode command, generated-media-ready continue command, and final-video approval/upload-or-revision command.
+Default rule for the next videos: use the compact three-HIL fastlane worksheet first, cite approved channel defaults and `docs/episode-lessons.md` once, and re-review only changed episode deltas or newly opened local/external gates. Planned HIL happens at new episode command, generated-media-ready continue command, and final-video approval/upload-or-revision command.
 
 Recommended copy destinations:
 
