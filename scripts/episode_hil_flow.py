@@ -1300,9 +1300,9 @@ def discover_render_script(episode_id: str) -> str | None:
     match = re.match(r"^(s\d+e\d+)", episode_id)
     if not match:
         return None
-    legacy = PROJECT_ROOT / "scripts" / f"render_{match.group(1)}_local.py"
-    if legacy.is_file():
-        return f"python {legacy.as_posix()}"
+    episode_render_script = PROJECT_ROOT / "scripts" / f"render_{match.group(1)}_local.py"
+    if episode_render_script.is_file():
+        return f"python {episode_render_script.as_posix()}"
     return None
 
 

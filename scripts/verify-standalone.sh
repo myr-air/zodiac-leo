@@ -164,7 +164,7 @@ blocked_paths = [
 ]
 for path in blocked_paths:
     if path.exists():
-        errors.append(f'old-scope path exists: {path}')
+        errors.append(f'retired-scope path exists outside the core system: {path}')
 
 text_blockers = [
     'channels/mellow-longplay',
@@ -187,7 +187,7 @@ for path in sorted(Path('.').glob('**/*')):
         continue
     for token in text_blockers:
         if token in text:
-            errors.append(f'old-scope reference {token!r} in {path}')
+            errors.append(f'retired-scope reference {token!r} outside the core system in {path}')
 
 media_extensions = {'.mp3', '.wav', '.flac', '.aiff', '.aif', '.png', '.jpg', '.jpeg', '.webp', '.tif', '.tiff', '.mp4', '.mov', '.mkv', '.webm'}
 source_tree_media = [

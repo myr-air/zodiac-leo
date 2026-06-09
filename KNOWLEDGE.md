@@ -1,32 +1,37 @@
 # Mellow Longplay Knowledge Contract
 
-Status: lean active
-Updated: 2026-05-27
+Status: core active
+Updated: 2026-06-09
 
 ## Purpose
 
-`/Users/xiivth/workspaces/mellow-longplay/` is the standalone source-first system for one cozy chill vocal longplay channel: `Mellow Longplay`.
+This repository is the single core source-first system for one cozy chill vocal longplay channel: `Mellow Longplay`.
+
+There is no separate older active system. EP1-EP4 are episode packets inside the same core; future episodes use the same `channel/episodes/<episode-id>/` structure and the four-HIL fastlane in `docs/workflow-map.md`.
 
 ## Current Episode State
 
 - `s01e01-campus-cafe-longplay` — Season 1 Week 1 `After-School First Love Longplay`.
-  - Evidence state: source packet, final local render-05 QA, final burned-in subtitle sidecars, private YouTube Data API video upload, and selected thumbnail set are recorded.
-  - Public release remains blocked in repo state; do not claim public publish, platform safety, Content ID safety, or rights safety.
+  - Evidence state: source packet, final local render-05 QA, final burned-in subtitle sidecars, private YouTube Data API video upload, selected thumbnail set, and manual public release are recorded.
+  - Current status: manual public release completed for video ID `4pOLXPMQO5g`; do not claim platform safety, Content ID safety, monetization safety, or rights safety.
   - Truth paths: `channel/episodes/s01e01-campus-cafe-longplay/manifest.json`, `reviews/current-state.md`, `reviews/youtube-api-execution-gate.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-api-thumbnail-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
 - `s01e02-classroom-window-longplay` — Season 1 Week 2 `Classroom Window Longplay`.
-  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, current render subtitles, local chapter draft, render-01 mechanical QA, agy visual/layout PASS, and user pre-final approval are recorded.
-  - Remaining local creative gate: final video approval for render-01 or point revisions.
-  - Release/upload/API/browser/account actions, transcript certification, Content ID, and rights/platform-safety claims remain blocked.
+  - Evidence state: source packet, selected c01 audio, `vis-c01` visual, authoritative stable-ts subtitles, render-02 local QA, final-video approval, private YouTube Data API video upload, selected thumbnail set, and manual public release are recorded.
+  - Current status: manual public release completed for video ID `KZNjs0Z7-Pw`; transcript certification, Content ID, monetization/platform-safety, and rights claims remain blocked.
   - Truth paths: `channel/episodes/s01e02-classroom-window-longplay/manifest.json`, `reviews/current-state.md`, `reviews/final-video-approval.md`, `reviews/render-export-qa.md`, `reviews/agy-render-review.md`, and `tracking/*.csv`.
 - `s01e03-rooftop-golden-hour-longplay` — Season 1 Week 3 `Rooftop Golden Hour Longplay`.
   - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, authoritative subtitles timed using stable-ts, render-02 local QA, final-video user approval for upload, YouTube Data API video upload, custom thumbnail set, and top-level comment are completed and recorded. The requested top-level comment initially failed with a 403 response, then succeeded after retry when the video was observed as public/processed; comment pinning remains pending/manual.
   - Current status: EP3 is marked closed as manual public release complete with pin pending (video ID: `2P6fPs7NB0E`, comment ID: `Ugw3CXuFnYeKOp4TNi54AaABAg`); remaining release/account actions remain blocked pending explicit gates.
   - Truth paths: `channel/episodes/s01e03-rooftop-golden-hour-longplay/manifest.json`, `reviews/current-state.md`, `reviews/render-export-qa.md`, `reviews/youtube-api-execution-gate.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
+- `s01e04-bookstore-afternoon-longplay` — Season 1 Week 4 `Bookstore Afternoon Longplay`.
+  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, promoted track-aligned subtitles, local render-01 after track 3 replacement, private YouTube Data API upload, selected thumbnail set, public visibility observation, and top-level comment are recorded.
+  - Current status: manual public release completed for video ID `OMjvEEAIFSU`; comment pinning, captions, playlists, analytics, Content ID, account edits, platform-safety, monetization-safety, and rights claims remain blocked pending explicit gates.
+  - Truth paths: `channel/episodes/s01e04-bookstore-afternoon-longplay/manifest.json`, `reviews/current-state.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
 
 
 ## Operating Model
 
-- Default production flow is the four-HIL fastlane in `docs/workflow-map.md`:
+- Default core production flow is the four-HIL fastlane in `docs/workflow-map.md`:
   1. HIL-1: user says to make a new episode; system creates source packet, song prompts, visual prompts, metadata draft, and handoff notes.
   2. HIL-2: user says generated/supplied media exists and to continue; system intakes real files, assembles, subtitles, renders locally, and self-reviews intensely.
   3. HIL-3: user approves the exact final-video candidate for upload prep or sends point revisions.

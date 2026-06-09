@@ -1,7 +1,7 @@
 # Python / uv Policy
 
-Status: active  
-Updated: 2026-05-26
+Status: active
+Updated: 2026-06-09
 
 ## Rule
 
@@ -33,7 +33,7 @@ a generic `pyproject.toml` / `uv.lock` detector for every directory; that would
 run untrusted projects through `uv` unexpectedly.
 
 ```zsh
-_mellow_repo_root="/Users/xiivth/workspaces/mellow-longplay"
+_mellow_repo_root="$(git -C /Users/xiivth/workspaces/zodiac/leo rev-parse --show-toplevel 2>/dev/null || printf '%s' /Users/xiivth/workspaces/zodiac/leo)"
 
 python() {
   local cwd_root

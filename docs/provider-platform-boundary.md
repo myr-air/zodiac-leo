@@ -1,7 +1,7 @@
 # Provider And Platform Boundary
 
 Status: active
-Updated: 2026-05-27
+Updated: 2026-06-09
 
 ## Suno Boundary
 
@@ -14,7 +14,7 @@ Future provider use requires a fresh source review if any of these change:
 
 ## YouTube Boundary
 
-Current exception status: S01E01 used the narrow OAuth/API execution gate in `channel/episodes/s01e01-campus-cafe-longplay/reviews/youtube-api-execution-gate.md` for one private YouTube Data API `videos.insert` upload plus one selected-thumbnail `thumbnails.set` follow-up after authenticated channel verification. Credentials and tokens must stay outside the repo. No further YouTube platform/API mutation is approved without a new explicit gate.
+Current exception status: EP1-EP4 have episode-specific YouTube/API/manual release evidence recorded in their own `channel/episodes/<episode-id>/` packets. Those records are historical facts inside the core system, not blanket approval for future platform actions. Credentials and tokens must stay outside the repo. No further YouTube platform/API mutation is approved without a fresh explicit gate for the exact action.
 
 No public publish, schedule, Studio/browser automation, Analytics API, playlist action, metadata edit after upload, comment action, unlist/delete, channel rename, caption upload, extra thumbnail variant, account edit, Content ID action, or positive platform/rights claim is approved in this standalone scope.
 

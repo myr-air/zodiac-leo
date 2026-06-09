@@ -1,8 +1,10 @@
 # Mellow Longplay
 
-Standalone source system for one YouTube AI-assisted music channel: `Mellow Longplay`.
+Core source system for one YouTube AI-assisted music channel: `Mellow Longplay`.
 
 This project keeps the channel small on purpose. It stores source packets, review notes, provenance, subtitles, and local helper scripts for Mellow Longplay only. Provider, browser, upload, publish, account, and rights/monetization work stays blocked unless a narrow explicit gate records the exact allowed action.
+
+There is one active system here: the Mellow Longplay core. EP1-EP4 are historical/current episode packets inside that core, not a separate older workflow. Future episodes use the same packet structure and the four-HIL fastlane.
 
 ## Structure
 
@@ -14,13 +16,18 @@ This project keeps the channel small on purpose. It stores source packets, revie
 - `candidates/` is ignored local evidence storage for future user-supplied audio and visuals.
 - `scripts/bootstrap_episode_packet.py` creates source-only episode scaffolds; use `--dry-run` first.
 - `scripts/dev-python.sh` and `scripts/run-tests.sh` route repo Python through `uv`.
-- `scripts/verify-standalone.sh` validates the reduced standalone structure.
+- `scripts/verify-standalone.sh` validates the core structure and retired-scope guards.
 
-## Current Episode
+## Episode Packets
 
-Active source packet: `channel/episodes/s01e03-rooftop-golden-hour-longplay/`.
+Episode truth lives in `channel/episodes/<episode-id>/`:
 
-Current gate: S01E03 has passed Gate 1 source shaping, Gate 2 local candidate intake, dynamic subtitle timing generation via stable-ts, and 10-second proof rendering. Full render and YouTube upload/release remain blocked pending explicit gates. S01E01 and S01E02 have been successfully released manually on YouTube.
+- `s01e01-campus-cafe-longplay`
+- `s01e02-classroom-window-longplay`
+- `s01e03-rooftop-golden-hour-longplay`
+- `s01e04-bookstore-afternoon-longplay`
+
+Each packet carries its own manifest, current-state review, source docs, subtitles, and tracking CSVs. Use those files instead of memory for episode status.
 
 ## Next Video Fastlane
 
@@ -28,11 +35,22 @@ For future videos, start from `channel/templates/episode-zero-to-youtube-runbook
 
 If the workflow feels unclear, read `docs/workflow-map.md` first.
 
-S01E04 source-only bootstrap:
+New episode bootstrap example:
 
 ```bash
-bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e04 --dry-run
-bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e04
+bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py \
+  --episode-id s01e05-quiet-train-window-longplay \
+  --working-longplay "Quiet Train Window Longplay" \
+  --hook "late train window, soft passing lights" \
+  --lyric-lane "calm motion, private hope, after-school reflection" \
+  --week 5 \
+  --dry-run
+bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py \
+  --episode-id s01e05-quiet-train-window-longplay \
+  --working-longplay "Quiet Train Window Longplay" \
+  --hook "late train window, soft passing lights" \
+  --lyric-lane "calm motion, private hope, after-school reflection" \
+  --week 5
 bash scripts/verify-standalone.sh
 ```
 

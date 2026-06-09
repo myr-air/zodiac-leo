@@ -532,9 +532,9 @@ def config_from_args(args: argparse.Namespace) -> EpisodeBootstrapConfig:
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--s01e02", action="store_true", help="Use the Season 1 Week 2 roadmap seed (Legacy)")
-    parser.add_argument("--s01e03", action="store_true", help="Use the Season 1 Week 3 roadmap seed (Legacy)")
-    parser.add_argument("--s01e04", action="store_true", help="Use the Season 1 Week 4 roadmap seed (Active Next)")
+    parser.add_argument("--s01e02", action="store_true", help="Use the Season 1 Week 2 core packet seed")
+    parser.add_argument("--s01e03", action="store_true", help="Use the Season 1 Week 3 core packet seed")
+    parser.add_argument("--s01e04", action="store_true", help="Use the Season 1 Week 4 core packet seed")
     parser.add_argument("--episode-id", help="Episode slug, e.g. s01e04-bookstore-afternoon-longplay")
     parser.add_argument("--working-longplay", help="Working longplay title")
     parser.add_argument("--hook", help="Roadmap/location-time hook")

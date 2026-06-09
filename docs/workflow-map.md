@@ -1,13 +1,16 @@
 # Mellow Longplay Workflow Map
 
-Status: active orientation map / four-HIL fastlane
-Updated: 2026-05-27
+Status: active core orientation map / four-HIL fastlane
+Updated: 2026-06-09
 
 ## 0. Read This First
 
-This map explains where the workflow lives, where the four planned
+This map explains where the single core workflow lives, where the four planned
 Human-In-The-Loop (HIL) decisions happen, what AI/agents may do, and what
 evidence is required to pass each internal gate.
+
+There is one active Mellow Longplay core system. EP1-EP4 are episode packets and
+helper history inside this core, not a separate older system.
 
 Boundary: this map does not approve provider use, generated media, render/export,
 upload, public publish, scheduling, API/browser/account automation, credential
@@ -17,13 +20,13 @@ rights/platform-safety claims.
 ## 1. Current Position
 
 ```text
-S01E01: Successfully released manually on YouTube (video ID: 4pOLXPMQO5g).
-S01E02: Successfully released manually on YouTube (video ID: KZNjs0Z7-Pw).
-S01E03: Dynamic subtitle sync (stable-ts) is complete; full render candidate is pending explicit render gate.
-S01E04: Next upcoming episode on the roadmap.
+S01E01: Manual public release completed (video ID: 4pOLXPMQO5g).
+S01E02: Manual public release completed (video ID: KZNjs0Z7-Pw).
+S01E03: Manual public release completed with comment pin pending (video ID: 2P6fPs7NB0E).
+S01E04: Manual public release completed with policy/account follow-ups still gated (video ID: OMjvEEAIFSU).
 ```
 
-Default future-episode workflow is now a four-HIL fastlane:
+Default future-episode workflow stays on the same four-HIL fastlane:
 
 ```text
 HIL-1: User says to make a new episode.
@@ -98,12 +101,12 @@ provider/platform risk.
 |---|---|---|---|---|
 | `channel/channel.md`, `channel/roadmap.md` | channel promise and roadmap seed | repo/source | cite defaults | changing channel promise without review |
 | `channel/templates/` | reusable source-only runbooks/checklists | repo/source | copy/adapt into episode docs | treating templates as approval |
-| `channel/episodes/<episode-id>/manifest.json` | episode truth file | repo/source | state summary after packet exists | fake state, media, release facts |
+| `channel/episodes/<episode-id>/manifest.json` | episode truth file in the core system | repo/source | state summary after packet exists | fake state, media, release facts |
 | `reviews/current-state.md` | human-readable current gate/status | repo/source | sync after state changes | stale or memory-only state |
 | `source/*.md` | lyrics, Suno fields, visual, metadata source | AI drafts + HIL approves | write/review source | provider/media/release approval |
 | `tracking/*.csv` | durable provenance/assets/status/decisions | repo/source | record only real facts | invented candidate IDs/provenance |
 | `candidates/` | ignored local evidence media | user/local evidence | add only after files exist and gate opens | tracked media, fake paths, provider downloads |
-| `scripts/dev-python.sh`, `scripts/run-tests.sh` | repo Python/test runner through `uv` | repo/tooling | verification | `rtk pytest`, bare `python3 -m pytest` |
+| `scripts/dev-python.sh`, `scripts/run-tests.sh` | core Python/test runner through `uv` | repo/tooling | verification | `rtk pytest`, bare `python3 -m pytest` |
 | YouTube/Suno/browser/provider | external accounts/platforms | user-owned unless explicit gate | blocked by default | automation/account/API/public publish |
 
 ## 4. Gate Evidence Matrix
@@ -148,8 +151,19 @@ boundary.
    dry-run when using the bootstrap helper:
 
    ```bash
-   bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e04 --dry-run
-   bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e04
+   bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py \
+     --episode-id s01e05-quiet-train-window-longplay \
+     --working-longplay "Quiet Train Window Longplay" \
+     --hook "late train window, soft passing lights" \
+     --lyric-lane "calm motion, private hope, after-school reflection" \
+     --week 5 \
+     --dry-run
+   bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py \
+     --episode-id s01e05-quiet-train-window-longplay \
+     --working-longplay "Quiet Train Window Longplay" \
+     --hook "late train window, soft passing lights" \
+     --lyric-lane "calm motion, private hope, after-school reflection" \
+     --week 5
    bash scripts/verify-standalone.sh
    ```
 
@@ -205,7 +219,7 @@ boundary.
 
 - Channel boundary and lessons: `docs/operating-boundary.md`, `docs/provider-platform-boundary.md`, `docs/episode-lessons.md`.
 - Current knowledge summary: `KNOWLEDGE.md`.
-- S01E02 bootstrap/runbook: `scripts/bootstrap_episode_packet.py`,
+- Core bootstrap/runbook: `scripts/bootstrap_episode_packet.py`,
   `channel/templates/episode-zero-to-youtube-runbook-template.md`.
 - YouTube helper shape: `scripts/youtube_api_video_upload.py`,
   `scripts/youtube_api_thumbnail.py`, `scripts/youtube_api_comment.py`, and

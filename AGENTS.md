@@ -1,10 +1,10 @@
 # Mellow Longplay Agent Notes
 
-Scope: this file applies to `/Users/xiivth/workspaces/mellow-longplay/`.
+Scope: this file applies to this repository.
 
 ## Purpose
 
-This project is a single-channel, source-first operating system for `Mellow Longplay`. It exists to keep one cozy chill vocal longplay channel organized without carrying the old multi-channel YouTube AI Music scope.
+This project is the single core, source-first operating system for `Mellow Longplay`. It keeps one cozy chill vocal longplay channel organized; retired multi-channel YouTube AI Music scope is guarded against by verification.
 
 ## Required Reads
 

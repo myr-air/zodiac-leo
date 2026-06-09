@@ -1,7 +1,7 @@
 # Mellow Longplay Episode Lessons And Rules
 
 Status: active carry-forward summary
-Updated: 2026-06-05
+Updated: 2026-06-09
 
 ## Why This Exists
 
@@ -11,8 +11,10 @@ Keep the working memory lean. Detailed episode evidence stays in each episode pa
 
 | Episode | Useful state | Do not over-claim |
 |---|---|---|
-| S01E01 `After-School First Love Longplay` | Final local render-05 QA was user-approved; private YouTube API upload and selected thumbnail set are recorded. | Public release, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
-| S01E02 `Classroom Window Longplay` | Render-01 is the final-video candidate; audio/subtitle/visual lanes are pre-final approved; final video approval is pending. | Final video approval is not release/upload approval. |
+| S01E01 `After-School First Love Longplay` | Final local render-05 QA, private YouTube API upload, selected thumbnail set, and manual public release are recorded in the episode packet. | Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
+| S01E02 `Classroom Window Longplay` | Render-02 final video, private YouTube API upload, selected thumbnail set, and manual public release are recorded in the episode packet. | Transcript certification, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
+| S01E03 `Rooftop Golden Hour Longplay` | Render-02 local QA, private upload, thumbnail set, public visibility observation, and top-level comment are recorded; comment pin remains manual. | Comment pinning, captions, analytics, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
+| S01E04 `Bookstore Afternoon Longplay` | Track 3 replacement, promoted subtitles, local render-01, private upload, thumbnail set, public visibility observation, and top-level comment are recorded. | Policy/account follow-ups, comment pinning, captions, analytics, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
 
 ## Lessons Learned
 
