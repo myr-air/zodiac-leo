@@ -85,6 +85,79 @@ for path in sorted(Path('.').glob('**/*.csv')):
         if len(row) != width:
             errors.append(f'CSV width mismatch {path}:{index}: expected {width}, got {len(row)}')
 
+for manifest_path in sorted(Path('channel/episodes').glob('*/manifest.json')):
+    episode_id = manifest_path.parent.name
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    except Exception:
+        continue
+    source_state = manifest.get('source_state') if isinstance(manifest.get('source_state'), dict) else {}
+    claim_text = ' '.join(
+        str(value).lower()
+        for value in [manifest.get('status'), manifest.get('gate'), *source_state.values()]
+        if value is not None
+    )
+    final_video_claimed = any(
+        token in claim_text
+        for token in {'final_video_approved', 'local_qa_user_approved', 'approved_local_final_video'}
+    )
+    if not final_video_claimed:
+        continue
+    status_path = manifest_path.parent / 'tracking' / 'status.csv'
+    if not status_path.is_file():
+        errors.append(f'final video approval missing subtitle alignment tracking: {episode_id} has no tracking/status.csv')
+        continue
+    has_human_watch_alignment = False
+    try:
+        with status_path.open(newline='', encoding='utf-8') as handle:
+            for row in csv.DictReader(handle):
+                area = (row.get('area') or '').lower()
+                status = (row.get('status') or '').lower()
+                if area not in {'subtitle_human_watch', 'subtitle_alignment_proof', 'subtitle_source_timing_plan', 'subtitle_review'}:
+                    continue
+                all_episode = 'all_tracks' in status or 'full_episode' in status
+                if all_episode and ('human_watch_passed' in status or 'sung_lyric_alignment_passed' in status):
+                    has_human_watch_alignment = True
+                    break
+    except Exception as exc:
+        errors.append(f'could not inspect subtitle alignment tracking for {episode_id}: {exc}')
+        continue
+    if not has_human_watch_alignment:
+        errors.append(
+            'final video approval requires human-watch sung-lyric subtitle alignment evidence '
+            f'in tracking/status.csv: {episode_id}'
+        )
+
+    # Run audio silence check
+    audio_dir = Path('candidates') / episode_id / 'audio' / 'selected'
+    if audio_dir.is_dir() and list(audio_dir.glob('*.wav')):
+        try:
+            import sys
+            scripts_path = str(Path('scripts').resolve())
+            if scripts_path not in sys.path:
+                sys.path.append(scripts_path)
+            from gate_validation_helpers import run_audio_silence_check
+            silence_errs = run_audio_silence_check(episode_id, workspace_root=Path('.'))
+            for err in silence_errs:
+                errors.append(f'[{episode_id}] {err}')
+        except Exception as exc:
+            errors.append(f'[{episode_id}] failed to execute audio silence verification: {exc}')
+
+    # Run subtitle alignment check if promoted SRT exists
+    srt_file = Path('channel/episodes') / episode_id / 'subtitles' / f'{episode_id}.en.srt'
+    if srt_file.is_file():
+        try:
+            import sys
+            scripts_path = str(Path('scripts').resolve())
+            if scripts_path not in sys.path:
+                sys.path.append(scripts_path)
+            from gate_validation_helpers import run_subtitle_alignment_check
+            align_errs = run_subtitle_alignment_check(episode_id, workspace_root=Path('.'))
+            for err in align_errs:
+                errors.append(f'[{episode_id}] {err}')
+        except Exception as exc:
+            errors.append(f'[{episode_id}] failed to execute subtitle alignment timing verification: {exc}')
+
 blocked_paths = [
     Path('channels'),
     Path('tools/chrome-prompt-helper'),

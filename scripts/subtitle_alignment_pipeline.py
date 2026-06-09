@@ -15,6 +15,7 @@ import math
 import re
 import subprocess
 import sys
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any, Iterable, NamedTuple
 
@@ -40,6 +41,10 @@ class Cue(NamedTuple):
     source: str | None = None
     vocal_start: float | None = None
     vocal_end: float | None = None
+
+
+TEXT_ALIGNMENT_MAX_EDIT_RATIO_DEFAULT = 0.18
+TEXT_ALIGNMENT_MAX_SAMPLES = 12
 
 
 def q3(value: float) -> float:
@@ -119,6 +124,137 @@ def clean_subtitle_text(text: str) -> str:
     return text
 
 
+def normalize_for_text_guard(text: str) -> str:
+    normalized = text.lower().replace("’", "'").replace("“", '"').replace("”", '"')
+    normalized = normalized.replace("-", " ")
+    normalized = re.sub(r"[^a-z0-9' ]+", " ", normalized)
+    return re.sub(r"\s+", " ", normalized).strip()
+
+
+def tokenize_for_text_guard(text: str) -> list[str]:
+    return [token for token in normalize_for_text_guard(text).split(" ") if token]
+
+
+def stable_result_to_dict(result: Any) -> dict[str, Any]:
+    if hasattr(result, "to_dict"):
+        data = result.to_dict()
+    elif isinstance(result, dict):
+        data = result
+    else:
+        data = json.loads(result.to_json())
+    if not isinstance(data, dict):
+        raise ValueError("stable-ts result is not parseable into dict form")
+    return data
+
+
+def stable_result_transcript_text(result: dict[str, Any]) -> str:
+    lines: list[str] = []
+    for segment in result.get("segments", []):
+        if not isinstance(segment, dict):
+            continue
+        segment_text = segment.get("text")
+        if isinstance(segment_text, str):
+            lines.append(segment_text)
+    return " ".join(lines)
+
+
+def estimate_text_alignment_guard(
+    *,
+    slot: str,
+    expected_text: str,
+    transcript_text: str,
+    max_edit_ratio: float = TEXT_ALIGNMENT_MAX_EDIT_RATIO_DEFAULT,
+) -> dict[str, Any]:
+    expected_tokens = tokenize_for_text_guard(expected_text)
+    transcript_tokens = tokenize_for_text_guard(transcript_text)
+    if not expected_tokens:
+        return {
+            "slot": slot,
+            "status": "fail",
+            "status_reason": "expected_text_empty_after_normalization",
+            "max_edit_ratio": max_edit_ratio,
+            "expected_token_count": 0,
+            "transcript_token_count": len(transcript_tokens),
+            "equal_count": 0,
+            "insert_count": 0,
+            "delete_count": 0,
+            "replace_count": 0,
+            "edit_count": 0,
+            "ratio": 1.0,
+            "samples": [],
+        }
+
+    matcher = SequenceMatcher(a=expected_tokens, b=transcript_tokens, autojunk=False)
+
+    summary = {
+        "slot": slot,
+        "status": "ok",
+        "status_reason": None,
+        "max_edit_ratio": max_edit_ratio,
+        "expected_token_count": len(expected_tokens),
+        "transcript_token_count": len(transcript_tokens),
+        "equal_count": 0,
+        "insert_count": 0,
+        "delete_count": 0,
+        "replace_count": 0,
+        "edit_count": 0,
+        "ratio": 1.0,
+        "samples": [],
+    }
+
+    for tag, left_start, left_end, right_start, right_end in matcher.get_opcodes():
+        left_len = left_end - left_start
+        right_len = right_end - right_start
+        if tag == "equal":
+            summary["equal_count"] += left_len
+            continue
+
+        if tag == "replace":
+            increment = max(left_len, right_len)
+            summary["replace_count"] += increment
+        elif tag == "insert":
+            increment = right_len
+            summary["insert_count"] += increment
+        else:
+            increment = left_len
+            summary["delete_count"] += increment
+
+        summary["edit_count"] += increment
+        if len(summary["samples"]) < TEXT_ALIGNMENT_MAX_SAMPLES:
+            summary["samples"].append(
+                {
+                    "type": tag,
+                    "expected": " ".join(expected_tokens[left_start:left_end]),
+                    "transcript": " ".join(transcript_tokens[right_start:right_end]),
+                }
+            )
+
+    denominator = max(1, len(expected_tokens))
+    summary["ratio"] = q3(summary["edit_count"] / denominator)
+    if summary["ratio"] > max_edit_ratio:
+        summary["status"] = "fail"
+        summary["status_reason"] = "lyrics_transcript_mismatch_exceeds_threshold"
+
+    return summary
+
+
+def assert_text_alignment_guarded(draft: dict[str, Any], *, allow_text_mismatch: bool) -> None:
+    guard = draft.get("text_alignment")
+    if not isinstance(guard, dict):
+        if allow_text_mismatch:
+            return
+        raise ValueError(
+            "draft alignment missing text alignment guard metadata. "
+            "Re-run align-song-source-track to regenerate draft timing with strict text-diff evidence."
+        )
+    if str(guard.get("status", "")).lower() != "ok" and not allow_text_mismatch:
+        raise ValueError(
+            "draft alignment failed strict lyrics/ASR text guard: "
+            f"ratio={guard.get('ratio')} max={guard.get('max_edit_ratio')}; "
+            f"samples={guard.get('samples', [])[:3]}"
+        )
+
+
 def is_stage_direction(line: str) -> bool:
     stripped = line.strip()
     return stripped.startswith("[") and stripped.endswith("]")
@@ -132,9 +268,39 @@ def parse_track_from_song_source(source_path: Path | str, track_number: int) -> 
     )
     match = pattern.search(source)
     if not match:
-        raise ValueError(f"track {track_number} lyric block not found in {source_path}")
-    title = match.group(1).strip()
-    body = match.group(2)
+        pack_dir = Path(source_path).parent / "suno-tracks"
+        if pack_dir.is_dir():
+            prefix_02 = f"{track_number:02d}"
+            prefix_2 = f"{track_number}"
+            body = None
+            title = None
+            for filename in sorted(pack_dir.iterdir()):
+                if filename.is_file() and filename.suffix == ".md" and (filename.name.startswith(prefix_02) or filename.name.startswith(prefix_2)):
+                    content = filename.read_text(encoding="utf-8")
+                    title_match = re.search(r'\*\*Song Title:\*\*?\s*(.*)', content)
+                    title = title_match.group(1).strip() if title_match else ""
+                    if not title:
+                        header_match = re.search(r'#\s+.*Track\s+\d+\s+—\s+(.*)', content)
+                        title = header_match.group(1).strip() if header_match else f"Track {track_number}"
+
+                    lyrics = ""
+                    lyrics_block_match = re.search(r'\*\*Lyrics:\*\*?\s*\n*\n*```(?:text)?\n([\s\S]*?)```', content)
+                    if lyrics_block_match:
+                        lyrics = lyrics_block_match.group(1).strip()
+                    else:
+                        lyrics_section = re.search(r'\*\*Lyrics:\*\*?\s*\n([\s\S]*?)(?=\*\*|$)', content)
+                        if lyrics_section:
+                            lyrics = lyrics_section.group(1).strip()
+
+                    body = lyrics
+                    break
+            if body is None or title is None:
+                raise ValueError(f"track {track_number} lyric block not found in {source_path} and no suno-tracks sibling found")
+        else:
+            raise ValueError(f"track {track_number} lyric block not found in {source_path}")
+    else:
+        title = match.group(1).strip()
+        body = match.group(2)
     sections: list[dict[str, Any]] = []
     current_section = "lyrics"
     current_lines: list[str] = []
@@ -442,7 +608,12 @@ def dict_to_cue(data: dict[str, Any]) -> Cue:
     )
 
 
-def load_reviewed_draft_alignment(path: Path | str, *, track_number: int | None = None) -> dict[str, Any]:
+def load_reviewed_draft_alignment(
+    path: Path | str,
+    *,
+    track_number: int | None = None,
+    allow_text_mismatch: bool = False,
+) -> dict[str, Any]:
     data = load_json(path)
     if track_number is not None and int(data.get("track_number", -1)) != track_number:
         raise ValueError(f"draft alignment track mismatch for {path}: expected {track_number}, got {data.get('track_number')}")
@@ -451,8 +622,7 @@ def load_reviewed_draft_alignment(path: Path | str, *, track_number: int | None 
     display_cues = data.get("display_cues") or []
     if len(display_cues) != int(data.get("display_cue_count", -1)):
         raise ValueError(f"draft alignment display cue count mismatch: {path}")
-    if int(data.get("track_number", -1)) == 13 and "Dialogue First" not in set(data.get("excluded_sections") or []):
-        raise ValueError("Track 13 final sidecar source must preserve Dialogue First exclusion")
+    assert_text_alignment_guarded(data, allow_text_mismatch=allow_text_mismatch)
     return data
 
 
@@ -571,12 +741,7 @@ def adjusted_segment_bounds(segment: dict[str, Any], *, max_stretched_word: floa
 
 
 def stable_result_to_local_cues(result: Any, slot: str, line_meta: list[dict[str, Any]]) -> list[Cue]:
-    if hasattr(result, "to_dict"):
-        data = result.to_dict()
-    elif isinstance(result, dict):
-        data = result
-    else:
-        data = json.loads(result.to_json())
+    data = stable_result_to_dict(result)
     segments = data.get("segments", [])
     cues: list[Cue] = []
     for index, segment in enumerate(segments):
@@ -724,8 +889,31 @@ def align_track(args: argparse.Namespace) -> Path:
         nonspeech_skip=args.nonspeech_skip,
         verbose=args.verbose,
     )
-    cues = stable_result_to_local_cues(result, args.slot, line_meta)
+    result_data = stable_result_to_dict(result)
+    cues = stable_result_to_local_cues(result_data, args.slot, line_meta)
     onset_evidence = estimate_onset_deltas(audio_path, cues) if args.onset_evidence else []
+    transcript_text = stable_result_transcript_text(result_data)
+    text_alignment = estimate_text_alignment_guard(
+        slot=args.slot,
+        expected_text=text,
+        transcript_text=transcript_text,
+        max_edit_ratio=args.max_text_edit_ratio,
+    )
+    align_notes = [
+        "Generated locally from planned lyrics and local audio; not a final caption claim.",
+        "Onset/pitch-like evidence is advisory only; music transients can be false positives.",
+        "Lyrics-transcript comparison uses token-level diff only; no semantic correction is applied.",
+    ]
+    if text_alignment["status"] != "ok":
+        align_notes.append(
+            "STRICT GUARD FAILED: lyrics/transcript text mismatch exceeds threshold. "
+            f"ratio={text_alignment['ratio']} max={text_alignment['max_edit_ratio']}"
+        )
+        print(
+            f"strict-guard fail [{args.slot}] ratio={text_alignment['ratio']} "
+            f"max={text_alignment['max_edit_ratio']} samples={text_alignment['samples'][:3]}",
+            file=sys.stderr,
+        )
 
     output = {
         "schema_version": "0.1.0",
@@ -740,12 +928,10 @@ def align_track(args: argparse.Namespace) -> Path:
         "line_count_expected": len(line_meta),
         "cue_count_returned": len(cues),
         "line_count_matches": len(line_meta) == len(cues),
-        "notes": [
-            "Generated locally from planned lyrics and local audio; not a final caption claim.",
-            "Onset/pitch-like evidence is advisory only; music transients can be false positives.",
-        ],
+        "notes": align_notes,
         "cues": [cue_to_dict(cue) for cue in cues],
         "onset_evidence": onset_evidence,
+        "text_alignment": text_alignment,
     }
     slug = episode_slug(args.episode_id)
     out_path = out_dir / f"{slug}-{args.slot.lower()}-stable-ts-alignment.json"
@@ -779,7 +965,31 @@ def align_song_source_track(args: argparse.Namespace) -> Path:
     )
     if result is None:
         raise RuntimeError("stable-ts returned no alignment result")
-    raw_cues = stable_result_to_local_cues(result, slot, line_meta)
+    result_data = stable_result_to_dict(result)
+    raw_cues = stable_result_to_local_cues(result_data, slot, line_meta)
+    transcript_text = stable_result_transcript_text(result_data)
+    text_alignment = estimate_text_alignment_guard(
+        slot=slot,
+        expected_text=text,
+        transcript_text=transcript_text,
+        max_edit_ratio=args.max_text_edit_ratio,
+    )
+    draft_notes = [
+        "Generated locally from approved source lyrics and selected local audio.",
+        "First-word stretched silence corrections are applied where stable-ts assigns an implausibly long low-confidence first word over an instrumental intro/break.",
+        "Draft SRT/VTT are proof sidecars only; final sidecars remain blocked until reviewed timing and final assembly timeline exist.",
+        "Lyrics-transcript comparison uses token-level diff only; no semantic correction is applied.",
+    ]
+    if text_alignment["status"] != "ok":
+        draft_notes.append(
+            "STRICT GUARD FAILED: lyrics/transcript text mismatch exceeds threshold. "
+            f"ratio={text_alignment['ratio']} max={text_alignment['max_edit_ratio']}"
+        )
+        print(
+            f"strict-guard fail [{slot}] ratio={text_alignment['ratio']} "
+            f"max={text_alignment['max_edit_ratio']} samples={text_alignment['samples'][:3]}",
+            file=sys.stderr,
+        )
     duration = audio_duration_seconds(audio_path)
     display_cues = apply_subtitle_display_timing(
         raw_cues,
@@ -835,14 +1045,11 @@ def align_song_source_track(args: argparse.Namespace) -> Path:
         "display_cue_count": len(display_cues),
         "line_count_matches": len(line_meta) == len(raw_cues),
         "review_summary": cue_review_summary(display_cues, min_gap=args.min_gap),
-        "notes": [
-            "Generated locally from approved source lyrics and selected local audio.",
-            "First-word stretched silence corrections are applied where stable-ts assigns an implausibly long low-confidence first word over an instrumental intro/break.",
-            "Draft SRT/VTT are proof sidecars only; final sidecars remain blocked until reviewed timing and final assembly timeline exist.",
-        ],
+        "notes": draft_notes,
         "raw_cues": [cue_to_dict(cue) for cue in raw_cues],
         "display_cues": [cue_to_dict(cue) for cue in display_cues],
         "onset_evidence": onset_evidence,
+        "text_alignment": text_alignment,
     }
     json_path.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     srt_path.write_text(serialize_srt(display_cues), encoding="utf-8")
@@ -1062,9 +1269,13 @@ def promote_final_sidecars(args: argparse.Namespace) -> Path:
         load_reviewed_draft_alignment(
             default_draft_alignment_path(proof_root, args.proof_prefix, track_number),
             track_number=track_number,
+            allow_text_mismatch=getattr(args, "allow_text_mismatch", False),
         )
         for track_number in track_numbers
     ]
+    for draft in drafts:
+        if args.episode_id == DEFAULT_EPISODE_ID and int(draft.get("track_number", -1)) == 13 and "Dialogue First" not in set(draft.get("excluded_sections") or []):
+            raise ValueError("Track 13 final sidecar source must preserve Dialogue First exclusion")
     final_cues, timeline, summary = promote_reviewed_display_cues(
         drafts,
         gap_seconds=args.gap_seconds,
@@ -1109,6 +1320,12 @@ def main(argv: list[str] | None = None) -> int:
     align_parser.add_argument("--model", default="base.en")
     align_parser.add_argument("--language", default="en")
     align_parser.add_argument("--nonspeech-skip", type=float, default=5.0)
+    align_parser.add_argument(
+        "--max-text-edit-ratio",
+        type=float,
+        default=TEXT_ALIGNMENT_MAX_EDIT_RATIO_DEFAULT,
+        help="Max token-edit ratio for strict lyrics-vs-transcript guard (default: 0.18).",
+    )
     align_parser.add_argument("--onset-evidence", action="store_true")
     align_parser.add_argument("--verbose", action="store_true")
     align_parser.set_defaults(func=align_track)
@@ -1123,6 +1340,12 @@ def main(argv: list[str] | None = None) -> int:
     source_parser.add_argument("--model", default="base.en")
     source_parser.add_argument("--language", default="en")
     source_parser.add_argument("--nonspeech-skip", type=float, default=5.0)
+    source_parser.add_argument(
+        "--max-text-edit-ratio",
+        type=float,
+        default=TEXT_ALIGNMENT_MAX_EDIT_RATIO_DEFAULT,
+        help="Max token-edit ratio for strict lyrics-vs-transcript guard (default: 0.18).",
+    )
     source_parser.add_argument("--lead-in", type=float, default=0.20)
     source_parser.add_argument("--tail-hold", type=float, default=0.24)
     source_parser.add_argument("--fade-in", type=float, default=0.34)
@@ -1163,6 +1386,12 @@ def main(argv: list[str] | None = None) -> int:
     promote_parser.add_argument("--prefix", default=None)
     promote_parser.add_argument("--gap-seconds", type=float, default=1.0)
     promote_parser.add_argument("--max-line-chars", type=int, default=37)
+    promote_parser.add_argument(
+        "--allow-text-mismatch",
+        action="store_true",
+        default=False,
+        help="Allow final promotion even when strict text-alignment guard fails.",
+    )
     promote_parser.add_argument("--tracks", nargs="*", type=int)
     promote_parser.add_argument("--print-json", action="store_true")
     promote_parser.set_defaults(func=promote_final_sidecars)

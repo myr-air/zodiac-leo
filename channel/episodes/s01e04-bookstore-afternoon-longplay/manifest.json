@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "s01e04-bookstore-afternoon-longplay",
+  "channel": "Mellow Longplay",
+  "status": "manual_public_release_completed",
+  "gate": "release_gate_public_release_completed",
+  "created": "2026-06-03",
+  "updated": "2026-06-08",
+  "working_longplay": "Bookstore Afternoon Longplay",
+  "format_target": {
+    "main_songs": 12,
+    "bonus_songs": 1,
+    "language": "English-first"
+  },
+  "source_state": {
+    "episode_brief": "source_shaping_complete_v1.0_track_pack_ready",
+    "lyrics": "tracks_1_13_source_pack_ready_source_only",
+    "suno_tracks": "tracks_1_13_fields_synced_source_only",
+    "prompt_pack": "full_source_sequence_synced_source_only",
+    "metadata": "metadata_disclosure_pack_pass_source_only_gate1",
+    "audio_candidates": "tracks_1_13_c01_user_approved_source_only_c02_pool_retained",
+    "visual_candidates": "vis_c01_user_selected_source_only",
+    "subtitles": "track_aligned_episode_source_srt_promoted_source_only",
+    "assembly_package": "local_sequence_plan_opened_and_verification_updated_source_only",
+    "render_export_plan": "local_render_01_completed_after_track3_change_source_only",
+    "release_decision": "manual_public_release_completed_video_id_OMjvEEAIFSU",
+    "youtube_api_video_upload_package": "private_video_uploaded_OMjvEEAIFSU_private",
+    "youtube_api_thumbnail_upload_package": "thumbnail_set_completed_OMjvEEAIFSU"
+  },
+  "claim_boundary": "Track 3 replacement and local QA render completed with matching track-aligned subtitle sidecars. Private upload and thumbnail are complete; video ID OMjvEEAIFSU is observed as public and processed, and a top-level comment was posted via YouTube Data API. Comment pin is pending manual Studio action.",
+  "pipeline": {
+    "schema_version": "1.0",
+    "profile": "mellow-longplay-hil-4",
+    "stages": [
+      {
+        "key": "hil-1",
+        "title": "Prompt packet",
+        "scope": "Draft and lock source prompts/metadata, no provider/media/release changes."
+      },
+      {
+        "key": "hil-2",
+        "title": "Preview + issue-led review",
+        "scope": "Intake real media, detect risky segments, review + patch before any upload gate."
+      },
+      {
+        "key": "hil-3",
+        "title": "Full render + thumbnail + comment prep",
+        "scope": "Create final candidate, thumbnail, and post-upload comment draft locally."
+      },
+      {
+        "key": "hil-4",
+        "title": "Upload + schedule",
+        "scope": "Run approved upload and post-upload operations, then schedule release."
+      }
+    ]
+  }
+}

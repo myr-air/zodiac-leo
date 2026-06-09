@@ -2,10 +2,10 @@
   "schema_version": "1.0",
   "episode_id": "s01e01-campus-cafe-longplay",
   "channel": "Mellow Longplay",
-  "status": "api_private_video_uploaded_selected_thumbnail_set_public_release_blocked",
-  "gate": "gate_5_release_decision_api_execution",
+  "status": "manual_public_release_completed",
+  "gate": "release_gate_public_release_completed",
   "created": "2026-05-18",
-  "updated": "2026-05-25",
+  "updated": "2026-05-29",
   "working_longplay": "After-School First Love Longplay",
   "format_target": {
     "main_songs": 12,
@@ -23,10 +23,36 @@
     "subtitles": "final_en_srt_vtt_sidecars_promoted_track_1_cue_58_text_corrected_source_only",
     "assembly_package": "assembly_package_plan_passed_final_sidecars_promoted_render_export_plan_passed_render_05_local_outputs_created_for_qa",
     "render_export_plan": "render_01_visual_fail_render_02_render_03_render_04_superseded_by_render_05_local_qa_user_approved_release_blocked",
-    "release_decision": "release_decision_planning_gate_open_api_private_video_uploaded_selected_thumbnail_set_public_release_not_passed",
+    "release_decision": "manual_public_release_completed_video_id_4pOLXPMQO5g",
     "youtube_manual_metadata_package": "prepared_source_only_user_managed_manual_upload_notes_no_account_action_historical_route_not_current_preference",
     "youtube_api_video_upload_package": "guarded_private_video_upload_completed_video_id_4pOLXPMQO5g_channel_verified_no_caption_upload_no_public_publish",
     "youtube_api_thumbnail_upload_package": "guarded_selected_thumbnail_set_completed_for_video_id_4pOLXPMQO5g_channel_verified_no_public_publish"
   },
-  "claim_boundary": "Source plus approved local render/export QA evidence plus selected local thumbnail derivative plus release decision planning plus guarded private YouTube Data API video-upload and selected-thumbnail-set execution evidence. Not public publish/release approval or rights/platform-safety claim."
+  "claim_boundary": "Source plus approved local render/export QA evidence plus selected local thumbnail derivative plus release decision planning plus guarded private YouTube Data API video-upload and selected-thumbnail-set execution evidence. Manual public release successfully completed on YouTube (video ID: 4pOLXPMQO5g).",
+  "pipeline": {
+    "schema_version": "1.0",
+    "profile": "mellow-longplay-hil-4",
+    "stages": [
+      {
+        "key": "hil-1",
+        "title": "Prompt packet",
+        "scope": "Draft and lock source prompts/metadata, no provider/media/release changes."
+      },
+      {
+        "key": "hil-2",
+        "title": "Preview + issue-led review",
+        "scope": "Intake real media, detect risky segments, review + patch before any upload gate."
+      },
+      {
+        "key": "hil-3",
+        "title": "Full render + thumbnail + comment prep",
+        "scope": "Create final candidate, thumbnail, and post-upload comment draft locally."
+      },
+      {
+        "key": "hil-4",
+        "title": "Upload + schedule",
+        "scope": "Run approved upload and post-upload operations, then schedule release."
+      }
+    ]
+  }
 }

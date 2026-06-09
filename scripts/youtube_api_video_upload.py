@@ -32,6 +32,7 @@ ENV_KEY_TOKEN_CACHE = "MELLOW_YOUTUBE_TOKEN_CACHE"
 SCOPES = (
     "https://www.googleapis.com/auth/youtube.upload",
     "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/youtube.force-ssl",
 )
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
@@ -129,7 +130,23 @@ def build_upload_plan(
     resource_json: Path = DEFAULT_RESOURCE_JSON,
     metadata_source: Path = DEFAULT_METADATA_SOURCE,
     resource: dict[str, Any] | None = None,
+    comment_file: Path | None = None,
 ) -> dict[str, Any]:
+    allowed_ops = ["channels.list(mine=true)", "videos.insert(private)"]
+    blocked_ops = [
+        "captions.insert",
+        "thumbnails.set",
+        "videos.update(public)",
+        "playlistItems.insert",
+        "commentThreads.insert",
+        "youtubeAnalytics.*",
+        "Content ID action",
+    ]
+    if comment_file is not None:
+        allowed_ops.append("commentThreads.insert(top-level)")
+        if "commentThreads.insert" in blocked_ops:
+            blocked_ops.remove("commentThreads.insert")
+
     return {
         "episode_id": episode_id,
         "mode": "dry_run_default_execution_gate_open_private_video_only",
@@ -148,16 +165,8 @@ def build_upload_plan(
         "account_action_default": "blocked_except_private_videos_insert_after_channel_verification",
         "execution_gate": {
             "status": "open_private_video_upload_only",
-            "allowed_operations": ["channels.list(mine=true)", "videos.insert(private)"],
-            "blocked_operations": [
-                "captions.insert",
-                "thumbnails.set",
-                "videos.update(public)",
-                "playlistItems.insert",
-                "commentThreads.insert",
-                "youtubeAnalytics.*",
-                "Content ID action",
-            ],
+            "allowed_operations": allowed_ops,
+            "blocked_operations": blocked_ops,
             "allows_caption_upload": False,
             "allows_public_publish": False,
             "requires_expected_channel_id": True,
@@ -222,34 +231,34 @@ def load_google_api_modules() -> dict[str, Any]:
     }
 
 
-def credentials_have_required_scopes(credentials: Any) -> bool:
+def credentials_have_required_scopes(credentials: Any, scopes: tuple[str, ...] = SCOPES) -> bool:
     if hasattr(credentials, "has_scopes"):
-        return bool(credentials.has_scopes(SCOPES))
+        return bool(credentials.has_scopes(scopes))
     granted = set(getattr(credentials, "granted_scopes", None) or getattr(credentials, "scopes", None) or [])
-    return set(SCOPES).issubset(granted)
+    return set(scopes).issubset(granted)
 
 
-def load_cached_credentials(credentials_cls: Any, token_cache: Path) -> Any | None:
+def load_cached_credentials(credentials_cls: Any, token_cache: Path, scopes: tuple[str, ...] = SCOPES) -> Any | None:
     if not token_cache.is_file():
         return None
     try:
         credentials = credentials_cls.from_authorized_user_file(str(token_cache))
     except ValueError:
         return None
-    if not credentials_have_required_scopes(credentials):
+    if not credentials_have_required_scopes(credentials, scopes):
         return None
     return credentials
 
 
-def get_authenticated_service(client_secrets: Path, token_cache: Path):
+def get_authenticated_service(client_secrets: Path, token_cache: Path, scopes: tuple[str, ...] = SCOPES):
     modules = load_google_api_modules()
     token_cache = token_cache.expanduser()
-    credentials = load_cached_credentials(modules["Credentials"], token_cache)
+    credentials = load_cached_credentials(modules["Credentials"], token_cache, scopes)
     if not credentials or not credentials.valid:
         if credentials and credentials.expired and credentials.refresh_token:
             credentials.refresh(modules["Request"]())
         else:
-            flow = modules["InstalledAppFlow"].from_client_secrets_file(str(client_secrets.expanduser()), SCOPES)
+            flow = modules["InstalledAppFlow"].from_client_secrets_file(str(client_secrets.expanduser()), scopes)
             credentials = flow.run_local_server(port=0)
         token_cache.parent.mkdir(parents=True, exist_ok=True)
         token_cache.write_text(credentials.to_json(), encoding="utf-8")
@@ -277,6 +286,7 @@ def execute_video_upload(
     video_path: Path = DEFAULT_VIDEO_PATH,
     resource_json: Path = DEFAULT_RESOURCE_JSON,
     notify_subscribers: bool = False,
+    comment_file: Path | None = None,
 ) -> dict[str, Any]:
     resolved_video = project_path(video_path)
     validate_execute_preconditions(
@@ -299,12 +309,39 @@ def execute_video_upload(
     response = None
     while response is None:
         _, response = request.next_chunk()
+
+    video_id = response.get("id")
+    comment_posted = False
+    comment_thread_id = None
+    if video_id and comment_file is not None:
+        resolved_comment_file = project_path(comment_file)
+        if resolved_comment_file.is_file():
+            comment_text = resolved_comment_file.read_text(encoding="utf-8").strip()
+            if comment_text:
+                try:
+                    comment_response = youtube.commentThreads().insert(
+                        part="snippet",
+                        body={
+                            "snippet": {
+                                "channelId": actual_channel_id,
+                                "videoId": video_id,
+                                "topLevelComment": {"snippet": {"textOriginal": comment_text}},
+                            }
+                        },
+                    ).execute()
+                    comment_posted = True
+                    comment_thread_id = comment_response.get("id")
+                except Exception as e:
+                    print(f"Warning: failed to post comment: {e}", file=sys.stderr)
+
     return {
-        "video_id": response.get("id"),
+        "video_id": video_id,
         "channel_id": actual_channel_id,
         "privacy_status": resource["status"]["privacyStatus"],
         "caption_upload_attempted": False,
         "thumbnail_upload_attempted": False,
+        "comment_posted": comment_posted,
+        "comment_thread_id": comment_thread_id,
     }
 
 
@@ -318,6 +355,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--video", type=Path, default=DEFAULT_VIDEO_PATH)
     parser.add_argument("--resource-json", type=Path, default=DEFAULT_RESOURCE_JSON)
     parser.add_argument("--metadata-source", type=Path, default=DEFAULT_METADATA_SOURCE)
+    parser.add_argument("--comment-file", type=Path, help="Text file containing the exact pinned comment body")
     parser.add_argument("--execute", action="store_true", help="Perform the API upload after all guards pass")
     parser.add_argument("--notify-subscribers", action="store_true", help="Request subscriber notifications if execution is approved")
     return parser.parse_args(argv)
@@ -325,6 +363,15 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = resolve_execution_inputs(parse_args(sys.argv[1:] if argv is None else argv))
+    comment_file = getattr(args, "comment_file", None)
+    if not comment_file and args.env_file:
+        try:
+            raw_env = load_env_file(args.env_file)
+            if "comment_file" in raw_env:
+                comment_file = Path(raw_env["comment_file"])
+        except Exception:
+            pass
+
     if not args.execute:
         print(
             json.dumps(
@@ -334,6 +381,7 @@ def main(argv: list[str] | None = None) -> int:
                     video_path=args.video,
                     resource_json=args.resource_json,
                     metadata_source=args.metadata_source,
+                    comment_file=comment_file,
                 ),
                 indent=2,
                 sort_keys=True,
@@ -348,6 +396,7 @@ def main(argv: list[str] | None = None) -> int:
         video_path=args.video,
         resource_json=args.resource_json,
         notify_subscribers=args.notify_subscribers,
+        comment_file=comment_file,
     )
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0

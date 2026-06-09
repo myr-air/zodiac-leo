@@ -1,9 +1,9 @@
 # Operating Boundary
 
-Status: active  
+Status: active
 Updated: 2026-05-27
 
-Mellow Longplay is source-first. Local docs, manifests, prompts, reviews, tracking rows, subtitles, and scripts are allowed. External accounts and generated media are blocked unless a future explicit gate approves the exact step. The normal production loop uses three planned HIL checkpoints, not per-track/per-gate approval prompts.
+Mellow Longplay is source-first. Local docs, manifests, prompts, reviews, tracking rows, subtitles, and scripts are allowed. External accounts and generated media are blocked unless a future explicit gate approves the exact step. The normal production loop uses four planned HIL checkpoints, not per-track/per-gate approval prompts.
 
 Allowed now:
 
@@ -20,12 +20,13 @@ Blocked now:
 - Credentials, cookies, account IDs, private analytics, raw account exports, or browser profiles.
 - Positive rights/platform claims.
 
-Three planned HIL checkpoints:
+Four planned HIL checkpoints:
 
 1. HIL-1: user says to make a new episode; system creates source packet, song prompts, visual prompts, metadata draft, and handoff notes.
 2. HIL-2: user says generated/supplied media exists and to continue; system can intake files, assemble, subtitle, render locally, and self-review intensely.
-3. HIL-3: user approves the exact final-video candidate for upload prep/execution or sends point revisions.
+3. HIL-3: user approves the exact final-video candidate for upload prep or sends point revisions.
+4. HIL-4: user approves final route (upload visibility + schedule + comment actions) or requests route revisions.
 
-Internal gates still exist for evidence and tracking, but they should not create extra planned HIL prompts unless a blocker appears. Only HIL-3 can discuss upload/public-publish planning, and it still requires separate exact-action approval.
+Internal gates still exist for evidence and tracking, but they should not create extra planned HIL prompts unless a blocker appears. HIL-4 is the release-route checkpoint and it still requires separate exact-action approval and policy/account checks.
 
 Fastlane rule: for future videos, approved channel defaults may be reused by citation. Re-open only the changed episode delta, local media/render gate, final-video decision, or external platform/API gate.

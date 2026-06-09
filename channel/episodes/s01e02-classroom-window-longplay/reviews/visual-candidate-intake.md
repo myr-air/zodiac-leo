@@ -1,6 +1,6 @@
 # S01E02 Visual Candidate Intake — Classroom Window Longplay
 
-Status: vis_c01_agy_pass_user_approved_source_only / final video approval pending / release blocked  
+Status: vis_c01_agy_pass_user_approved_source_only / render-02 subtitle-sync revision required / release blocked
 Updated: 2026-05-27
 
 ## Boundary
@@ -38,7 +38,7 @@ Required image traits:
 
 | Candidate ID | Path | Format / dimensions | Current status | First-look safe-zone notes | Immediate blockers |
 |---|---|---|---|---|---|
-| `vis-c01` | `candidates/s01e02-classroom-window-longplay/visual/selected/vis-c01--classroom-window-night-mode.png` | PNG / `1672x941` / near 16:9 | agy_pass_user_approved_source_only | Night-mode classroom-window image used for local render-01; upper/left negative space is usable for overlay; mandatory channel style and recurring woman/totem direction carried forward. | final video approval pending |
+| `vis-c01` | `candidates/s01e02-classroom-window-longplay/visual/selected/vis-c01--classroom-window-night-mode.png` | PNG / `1672x941` / near 16:9 | agy_pass_user_approved_source_only_render_02_visual_evidence | Night-mode classroom-window image used for local render QA; upper/left negative space is usable for overlay; mandatory channel style and recurring woman/totem direction carried forward. | subtitle sync and release blocked |
 
 ## Agy Review Evidence
 
@@ -58,7 +58,7 @@ On 2026-05-27, `agy --print` was run with a read-only prompt against render-01 s
 
 ## Next Action
 
-Render-01 used `vis-c01` as the local QA visual background. The visual lane is approved source-only for the current final-video candidate. Next visual action is only final video approval or an issue-led local revision gate if the user finds a problem.
+Render-01 and render-02 used `vis-c01` as the local QA visual background. The visual lane remains approved source-only, but final-video approval is blocked by subtitle sync. Next visual action is only an issue-led local revision gate if the user finds a visual problem.
 
 ## Still Blocked
 

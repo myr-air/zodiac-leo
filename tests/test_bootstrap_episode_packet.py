@@ -53,6 +53,8 @@ class BootstrapEpisodePacketTest(unittest.TestCase):
 
             self.assertEqual(summary["mode"], "write")
             self.assertTrue((packet / "manifest.json").is_file())
+            self.assertTrue((packet / "source" / "comment.txt").is_file())
+            self.assertIn("Thanks for listening", (packet / "source" / "comment.txt").read_text(encoding="utf-8"))
             self.assertFalse((root / "candidates" / "s01e02-classroom-window-longplay").exists())
 
             manifest = json.loads((packet / "manifest.json").read_text(encoding="utf-8"))
@@ -60,6 +62,10 @@ class BootstrapEpisodePacketTest(unittest.TestCase):
             self.assertEqual(manifest["status"], "gate_0_scaffolded_source_only")
             self.assertEqual(manifest["gate"], "gate_0_bootstrap")
             self.assertIn("Not public publish", manifest["claim_boundary"])
+            self.assertIn("pipeline", manifest)
+            self.assertEqual(manifest["pipeline"].get("schema_version"), "1.0")
+            self.assertEqual(manifest["pipeline"].get("profile"), "mellow-longplay-hil-4")
+            self.assertEqual(len(manifest["pipeline"].get("stages", [])), 4)
 
             current_state = (packet / "reviews" / "current-state.md").read_text(encoding="utf-8")
             self.assertIn("public publish remains blocked", current_state)
@@ -71,9 +77,9 @@ class BootstrapEpisodePacketTest(unittest.TestCase):
 
             with (packet / "tracking" / "status.csv").open(newline="", encoding="utf-8") as handle:
                 status_rows = list(csv.DictReader(handle))
-            self.assertEqual(status_rows[0]["gate"], "gate_0_bootstrap")
-            self.assertEqual(status_rows[-1]["status"], "blocked")
-            self.assertIn("Upload publish", status_rows[-1]["notes"])
+                self.assertEqual(status_rows[0]["gate"], "gate_0_bootstrap")
+                self.assertEqual(status_rows[-1]["status"], "blocked")
+                self.assertIn("Upload publish", status_rows[-1]["notes"])
 
     def test_invalid_episode_id_is_rejected_before_paths_are_created(self):
         config = self.config()
@@ -100,6 +106,27 @@ class BootstrapEpisodePacketTest(unittest.TestCase):
         self.assertEqual(config.working_longplay, "Classroom Window Longplay")
         self.assertEqual(config.hook, "college classroom light, afternoon window")
         self.assertIn("almost-said", config.lyric_lane)
+        self.assertEqual(config.week, 2)
+
+    def test_s01e03_cli_preset_uses_roadmap_seed(self):
+        args = bootstrap.parse_args(["--s01e03", "--dry-run", "--prepared-date", "2026-05-29"])
+        config = bootstrap.config_from_args(args)
+
+        self.assertEqual(config.episode_id, "s01e03-rooftop-golden-hour-longplay")
+        self.assertEqual(config.working_longplay, "Rooftop Golden Hour Longplay")
+        self.assertEqual(config.hook, "rooftop, warm sky, late-afternoon breeze")
+        self.assertIn("golden-hour", config.lyric_lane)
+        self.assertEqual(config.week, 3)
+
+    def test_s01e04_cli_preset_uses_roadmap_seed(self):
+        args = bootstrap.parse_args(["--s01e04", "--dry-run", "--prepared-date", "2026-05-30"])
+        config = bootstrap.config_from_args(args)
+
+        self.assertEqual(config.episode_id, "s01e04-bookstore-afternoon-longplay")
+        self.assertEqual(config.working_longplay, "Bookstore Afternoon Longplay")
+        self.assertEqual(config.hook, "quiet bookstore corner, paper texture")
+        self.assertIn("bookstore", config.hook)
+        self.assertEqual(config.week, 4)
 
 
 if __name__ == "__main__":

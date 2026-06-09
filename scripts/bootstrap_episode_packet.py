@@ -29,6 +29,20 @@ S01E02_DEFAULTS = {
     "lyric_lane": "curiosity, almost-said feelings, study-day warmth",
 }
 
+S01E03_DEFAULTS = {
+    "episode_id": "s01e03-rooftop-golden-hour-longplay",
+    "working_longplay": "Rooftop Golden Hour Longplay",
+    "hook": "rooftop, warm sky, late-afternoon breeze",
+    "lyric_lane": "wholesome teenage first-love confidence, golden-hour anticipation, mood-led looking ahead",
+}
+
+S01E04_DEFAULTS = {
+    "episode_id": "s01e04-bookstore-afternoon-longplay",
+    "working_longplay": "Bookstore Afternoon Longplay",
+    "hook": "quiet bookstore corner, paper texture",
+    "lyric_lane": "teenage love, private thoughts, shy hope, calm reflection",
+}
+
 
 @dataclass
 class EpisodeBootstrapConfig:
@@ -43,6 +57,30 @@ class EpisodeBootstrapConfig:
     main_songs: int = 12
     bonus_songs: int = 1
     language: str = "English-first"
+
+
+PIPELINE_STAGES = (
+    {
+        "key": "hil-1",
+        "title": "Prompt packet",
+        "scope": "Draft and lock source prompts/metadata, no provider/media/release changes.",
+    },
+    {
+        "key": "hil-2",
+        "title": "Preview + issue-led review",
+        "scope": "Intake real media, detect risky segments, review + patch before any upload gate.",
+    },
+    {
+        "key": "hil-3",
+        "title": "Full render + thumbnail + comment prep",
+        "scope": "Create final candidate, thumbnail, and post-upload comment draft locally.",
+    },
+    {
+        "key": "hil-4",
+        "title": "Upload + schedule",
+        "scope": "Run approved upload and post-upload operations, then schedule release.",
+    },
+)
 
 
 def validate_config(config: EpisodeBootstrapConfig) -> None:
@@ -78,6 +116,7 @@ def planned_paths(config: EpisodeBootstrapConfig, root: Path = PROJECT_ROOT) -> 
         packet / "source" / "prompt-pack.md",
         packet / "source" / "visual.md",
         packet / "source" / "metadata.md",
+        packet / "source" / "comment.txt",
         packet / "subtitles" / "README.md",
         packet / "tracking" / "status.csv",
         packet / "tracking" / "assets.csv",
@@ -120,13 +159,18 @@ def manifest(config: EpisodeBootstrapConfig) -> dict[str, object]:
             "Source-only scaffold for a future episode packet. Not provider approval, media existence, "
             "render/export approval, upload/API execution. Not public publish/release approval or rights/platform-safety claim."
         ),
+        "pipeline": {
+            "schema_version": "1.0",
+            "profile": "mellow-longplay-hil-4",
+            "stages": [dict(entry) for entry in PIPELINE_STAGES],
+        },
     }
 
 
 def current_state_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Current State — {config.working_longplay}
 
-Status: Gate 0 scaffolded source-only / Gate 1 not locked / public publish blocked  
+Status: Gate 0 scaffolded source-only / Gate 1 not locked / public publish blocked
 Updated: {config.prepared_date}
 
 - Episode packet scaffolded for Season {config.season} Week {config.week}: `{config.working_longplay}`.
@@ -144,10 +188,10 @@ Verdict: `gate_0_scaffolded_source_only_public_publish_blocked`
 def production_worksheet_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Production Worksheet — {config.working_longplay}
 
-Status: template copied / source-only scaffold / no media or release gate  
-Episode: `{config.episode_id}`  
-Prepared by: {config.prepared_by}  
-Prepared date: {config.prepared_date}  
+Status: template copied / source-only scaffold / no media or release gate
+Episode: `{config.episode_id}`
+Prepared by: {config.prepared_by}
+Prepared date: {config.prepared_date}
 Source packet version: `v0.0-scaffold`
 
 ## 0. Boundary
@@ -173,7 +217,7 @@ Fastlane rule: reuse approved channel-level defaults by citation; approve only e
 | 0. Scaffold | manifest, current state, source/review/tracking placeholders | pass_source_only |
 | 1. Source packet lock | `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, reviews/tracking | pending |
 | 2. Candidate intake | real local audio/visual files exist before IDs/provenance | blocked_until_gate |
-| 3. Sequence + metadata | chapter timeline, disclosure, title/description/tags policy | pending |
+| 3. Sequence + metadata | chapter timeline, upload-description timestamps, disclosure, title/description/tags policy, English post-upload comment draft | pending |
 | 4. Subtitles + sidecars | final `.srt`/`.vtt`, parser checks, human watch/spot evidence | pending |
 | 5. Local render QA | explicit render/export gate, video path, mechanical QA, human spot pass | blocked_until_gate |
 | 6. YouTube handoff planning | release decision, current public policy/account check, API/manual package | blocked_until_gate |
@@ -197,8 +241,8 @@ Still blocked: provider/account automation, media generation without gate, rende
 def release_decision_plan_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Release Decision Plan — {config.working_longplay}
 
-Status: not opened / placeholder only / public publish blocked  
-Episode: `{config.episode_id}`  
+Status: not opened / placeholder only / public publish blocked
+Episode: `{config.episode_id}`
 Prepared: {config.prepared_date}
 
 ## 0. Boundary
@@ -212,11 +256,11 @@ Public publish remains blocked until a future explicit final gate records curren
 | Area | Required evidence | Current state |
 |---|---|---|
 | Final local asset selection | exact final MP4/render output and sidecars after QA | none |
-| Metadata/disclosure | title, description, chapters, tags, AI-assisted disclosure | pending |
+| Metadata/disclosure | title, description, chapters, tags, AI-assisted disclosure, English post-upload comment draft | pending |
 | Current policy/account check | official current public platform policy and user-owned account constraints | pending / user-owned |
 | Provenance/risk acceptance | non-secret source provenance and known limitations | pending |
 | Upload route | manual Studio handoff or guarded private API path, selected explicitly | not selected |
-| Rollback owner | user owns privacy changes, delete/unlist, edits, comments, analytics | pending |
+| Rollback owner | user owns privacy changes, delete/unlist, edits, comments/pinning, analytics | pending |
 
 ## 2. Current Verdict
 
@@ -232,7 +276,7 @@ Still blocked: private upload, thumbnail upload, public publish, schedule, visib
 def songs_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Songs — {config.working_longplay}
 
-Status: scaffold / not written / source-only  
+Status: scaffold / not written / source-only
 Updated: {config.prepared_date}
 
 ## Boundary
@@ -275,10 +319,12 @@ Do not invent final titles or candidate IDs here. Fill one track at a time after
 def suno_manual_fields_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Suno Manual Fields — {config.working_longplay}
 
-Status: scaffold / not ready for provider use / source-only  
+Status: scaffold / not ready for provider use / source-only
 Updated: {config.prepared_date}
 
-This index is pending. Before any manual provider handoff, every track must have a copy-ready file under `source/suno-tracks/` with: Song Title, Lyrics Mode, Lyrics, Styles with approximate BPM, Exclude Styles, Vocal Gender, Weirdness, and Style Influence.
+This index is pending. Before any manual provider handoff, every track must have a copy-ready file under `source/suno-tracks/` with: Song Title, Lyrics Mode, Lyrics, Styles with approximate BPM, Exclude Styles, Vocal Gender, Weirdness, Style Influence, and Reject Criteria.
+
+Quality gate: Lyrics must include a pre-song Suno context/control block before the first sung section, Styles must include BPM, vocal lane, instrumentation, arrangement arc, mix/timbre, and a 3-minute/full-length target, and Exclude Styles must block lyric rewriting/auto-lyrics, random vocal drift, under-3-minute sketches, abrupt endings, imitation, and unsafe lanes.
 
 Provider/browser/API/account actions and generated audio remain blocked until a separate explicit gate.
 """
@@ -287,7 +333,7 @@ Provider/browser/API/account actions and generated audio remain blocked until a 
 def prompt_pack_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Prompt Pack — {config.working_longplay}
 
-Status: scaffold / source-only  
+Status: scaffold / source-only
 Updated: {config.prepared_date}
 
 Prompt/control materials are pending. Use the Episode Style & Theme Spine and per-track Track Delta before drafting any provider-facing fields. No provider operation or generated media is approved here.
@@ -297,7 +343,7 @@ Prompt/control materials are pending. Use the Episode Style & Theme Spine and pe
 def visual_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Visual Source — {config.working_longplay}
 
-Status: scaffold / source-only  
+Status: scaffold / source-only
 Updated: {config.prepared_date}
 
 Visual direction is pending. Reuse channel signature motifs only as source-only design guidance unless a later visual gate approves a different direction. No image generation, reference-image input, proof output, render/export, upload, or rights/platform claim is approved here.
@@ -307,17 +353,17 @@ Visual direction is pending. Reuse channel signature motifs only as source-only 
 def metadata_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Metadata — {config.working_longplay}
 
-Status: scaffold / source-only  
+Status: scaffold / source-only
 Updated: {config.prepared_date}
 
-Title, description, disclosure, chapters, tags, and blocked-claim scan are pending. This file is not final upload metadata and does not approve YouTube API/browser/account action or public publish.
+Title, description, disclosure, upload-description chapter timestamps, tags, English post-upload engagement comment draft, and blocked-claim scan are pending. This file is not final upload metadata and does not approve YouTube API/browser/account action, comment posting/pinning, or public publish.
 """
 
 
 def subtitles_readme_md(config: EpisodeBootstrapConfig) -> str:
     return f"""# {config.episode_id.upper()} Subtitles
 
-Status: not started / source-only  
+Status: not started / source-only
 Updated: {config.prepared_date}
 
 Final sidecars do not exist yet. Create subtitle timing only after selected local audio exists and the subtitle timing gate is opened. Do not invent timings, cue counts, sidecar byte-match claims, render facts, or upload facts.
@@ -350,6 +396,11 @@ def write_packet(config: EpisodeBootstrapConfig, root: Path) -> list[Path]:
         packet / "source" / "prompt-pack.md": prompt_pack_md(config),
         packet / "source" / "visual.md": visual_md(config),
         packet / "source" / "metadata.md": metadata_md(config),
+        packet / "source" / "comment.txt": (
+            "Thanks for listening 🌙\n\n"
+            "Which cozy [theme-specific category] [verb] to you — [4 concrete track objects/scenes]?\n\n"
+            "I’d love to hear yours.\n"
+        ),
         packet / "subtitles" / "README.md": subtitles_readme_md(config),
     }
     for path, text in files.items():
@@ -447,7 +498,19 @@ def bootstrap_episode_packet(
 
 
 def config_from_args(args: argparse.Namespace) -> EpisodeBootstrapConfig:
-    values = dict(S01E02_DEFAULTS) if args.s01e02 else {}
+    if args.s01e02:
+        values = dict(S01E02_DEFAULTS)
+        default_week = 2
+    elif args.s01e03:
+        values = dict(S01E03_DEFAULTS)
+        default_week = 3
+    elif args.s01e04:
+        values = dict(S01E04_DEFAULTS)
+        default_week = 4
+    else:
+        values = {}
+        default_week = args.week if args.week else 4
+
     for key in ["episode_id", "working_longplay", "hook", "lyric_lane"]:
         supplied = getattr(args, key)
         if supplied:
@@ -463,21 +526,23 @@ def config_from_args(args: argparse.Namespace) -> EpisodeBootstrapConfig:
         prepared_by=args.prepared_by,
         prepared_date=args.prepared_date,
         season=args.season,
-        week=args.week,
+        week=default_week,
     )
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--s01e02", action="store_true", help="Use the Season 1 Week 2 roadmap seed")
-    parser.add_argument("--episode-id", help="Episode slug, e.g. s01e02-classroom-window-longplay")
+    parser.add_argument("--s01e02", action="store_true", help="Use the Season 1 Week 2 roadmap seed (Legacy)")
+    parser.add_argument("--s01e03", action="store_true", help="Use the Season 1 Week 3 roadmap seed (Legacy)")
+    parser.add_argument("--s01e04", action="store_true", help="Use the Season 1 Week 4 roadmap seed (Active Next)")
+    parser.add_argument("--episode-id", help="Episode slug, e.g. s01e04-bookstore-afternoon-longplay")
     parser.add_argument("--working-longplay", help="Working longplay title")
     parser.add_argument("--hook", help="Roadmap/location-time hook")
     parser.add_argument("--lyric-lane", help="Lyric lane summary")
     parser.add_argument("--prepared-by", default="Mayr")
     parser.add_argument("--prepared-date", default=date.today().isoformat())
     parser.add_argument("--season", type=int, default=1)
-    parser.add_argument("--week", type=int, default=2)
+    parser.add_argument("--week", type=int, default=4)
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args(argv)
 

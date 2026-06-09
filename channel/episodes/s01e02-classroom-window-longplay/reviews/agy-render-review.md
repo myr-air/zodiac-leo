@@ -1,6 +1,6 @@
 # S01E02 Agy Render Review — Classroom Window Longplay
 
-Status: agy_read_only_visual_layout_pass_with_limits / user pre-final approval recorded / final video approval pending  
+Status: historical_agy_read_only_visual_layout_pass_with_limits / render-02 subtitle-sync blocked later / release blocked
 Updated: 2026-05-27
 
 ## Boundary
@@ -9,9 +9,9 @@ This review records a read-only `agy --print` check of local render-01 snapshots
 
 ## Command Scope
 
-Tool: `agy --print`  
-Mode: read-only prompt from temp workdir  
-Target: local render-01 MP4 path, snapshot directory, and S01E02 review docs  
+Tool: `agy --print`
+Mode: read-only prompt from temp workdir
+Target: local render-01 MP4 path, snapshot directory, and S01E02 review docs
 Forbidden in prompt: edits, writes, installs, login, credentials, upload/publish/API/browser/account actions, rights/platform/upload-ready claims
 
 ## Agy Result
@@ -43,10 +43,12 @@ Limits:
 
 User instructed after the agy check that the pre-final blockers should be treated as approved and that only final video approval should remain pending. This is recorded as a source-only user approval for selected audio, current render subtitle lane, and visual/readability, not as a platform/release approval.
 
+Later state update: render-01 was visually superseded by render-02, and the earlier user final-video approval for the exact render-02 MP4 is now superseded by a user-reported subtitle timing mismatch in `reviews/final-video-approval.md`. This agy review remains historical read-only visual/layout evidence only and does not prove sung-lyric subtitle alignment.
+
 ## Verdict
 
 ```text
 Verdict: agy_visual_layout_pass_user_pre_final_approval_recorded
 Scope: read-only local render-01 visual/layout/readability review plus user-directed pre-final approvals
-Still blocked: final video approval, release decision, upload/publish, provider/account/API/browser actions, Content ID, transcript certification, positive rights/platform claims
+Still blocked: release decision, upload/publish, provider/account/API/browser actions, Content ID, transcript certification, positive rights/platform claims
 ```

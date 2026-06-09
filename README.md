@@ -18,9 +18,9 @@ This project keeps the channel small on purpose. It stores source packets, revie
 
 ## Current Episode
 
-Active source packet: `channel/episodes/s01e01-campus-cafe-longplay/`.
+Active source packet: `channel/episodes/s01e03-rooftop-golden-hour-longplay/`.
 
-Current gate: S01E01 has source, subtitle, render-05 local QA, release-planning, and a narrow private YouTube API upload plus selected-thumbnail follow-up gate recorded in the episode packet. Public publish/release, account edits, analytics, Content ID, extra renders, and rights/platform-safety claims remain blocked.
+Current gate: S01E03 has passed Gate 1 source shaping, Gate 2 local candidate intake, dynamic subtitle timing generation via stable-ts, and 10-second proof rendering. Full render and YouTube upload/release remain blocked pending explicit gates. S01E01 and S01E02 have been successfully released manually on YouTube.
 
 ## Next Video Fastlane
 
@@ -28,11 +28,11 @@ For future videos, start from `channel/templates/episode-zero-to-youtube-runbook
 
 If the workflow feels unclear, read `docs/workflow-map.md` first.
 
-S01E02 source-only bootstrap:
+S01E04 source-only bootstrap:
 
 ```bash
-bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02 --dry-run
-bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e02
+bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e04 --dry-run
+bash scripts/dev-python.sh scripts/bootstrap_episode_packet.py --s01e04
 bash scripts/verify-standalone.sh
 ```
 

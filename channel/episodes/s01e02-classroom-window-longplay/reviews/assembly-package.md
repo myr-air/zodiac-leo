@@ -1,13 +1,13 @@
 # S01E02 Assembly Package Plan — Classroom Window Longplay
 
-Status: local sequence/chapter plan approved for render-01 final-video candidate / final video approval pending / release blocked  
-Episode: `s01e02-classroom-window-longplay`  
-Package ID: `s01e02-assembly-package-local-render-01`  
+Status: local sequence/chapter plan approved / render-02 subtitle-sync revision required / release blocked
+Episode: `s01e02-classroom-window-longplay`
+Package ID: `s01e02-assembly-package-local-render-01`
 Updated: 2026-05-27
 
 ## Boundary
 
-This document records the local assembly package used for render-01 QA. It does not approve upload, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, transcript certification, or rights/platform-safety claims.
+This document records the local assembly package used for local render QA. It does not approve upload, publishing, scheduling, analytics, provider/API/browser/account actions, credentials, Content ID action, release readiness, transcript certification, or rights/platform-safety claims.
 
 ## Assembly Policy
 
@@ -16,7 +16,7 @@ This document records the local assembly package used for render-01 QA. It does 
 - Use no crossfades.
 - Reserve no intro/outro bumper time.
 - Use `vis-c01` night-mode visual direction for local render QA.
-- Use current render subtitle lane approved source-only by user instruction; transcript certification remains blocked.
+- Use draft mechanical subtitle sidecars for local QA evidence only; user-reported subtitle timing mismatch requires repair and human-watch sung-lyric alignment evidence before final-video approval. Transcript certification remains blocked.
 
 ## Timeline
 
@@ -60,7 +60,7 @@ Render-01 uses the selected visual, selected c01 audio set, 1s gaps, dynamic top
 ## Verdict
 
 ```text
-Verdict: local_sequence_chapter_plan_approved_for_render_01_final_video_candidate
+Verdict: local_sequence_chapter_plan_approved_render_02_subtitle_sync_revision_required_release_blocked
 Timeline target: 13 selected tracks with 12 x 1.00s gaps for 39:45.96 local QA duration
-Still blocked: final video approval, release readiness, upload/publish, provider/account/API/browser actions, Content ID, transcript certification, positive rights/platform claims
+Still blocked: final video approval, subtitle sung-lyric alignment pass, release readiness, upload/publish, provider/account/API/browser actions, Content ID, transcript certification, positive rights/platform claims
 ```

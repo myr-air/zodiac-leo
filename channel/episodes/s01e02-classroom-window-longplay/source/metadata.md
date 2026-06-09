@@ -1,11 +1,11 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Metadata — Classroom Window Longplay
 
-Status: metadata/disclosure pack passed source-only / local render-01 chapter draft exists / no upload approval  
+Status: metadata/disclosure pack passed source-only / render-02 subtitle-sync revision required / no upload approval
 Updated: 2026-05-27
 
 ## Boundary
 
-This is a source-only metadata draft for later review and handoff planning. It does not approve final upload metadata, YouTube Studio/API/browser/account action, additional render/export beyond render-01, scheduling, public publish, analytics, Content ID, final media acceptance, or rights/platform-safety claims.
+This is a source-only metadata draft for later review and handoff planning. It does not approve final upload metadata, YouTube Studio/API/browser/account action, additional render/export beyond the recorded local render QA gates, scheduling, public publish, analytics, Content ID, final media acceptance, or rights/platform-safety claims.
 
 Do not add video IDs, platform/account claims, or final upload metadata until actual reviewed final assets and a later explicit release gate exist. Local render-01 duration and chapter timestamps may be cited only as local QA facts, not final upload approval.
 
@@ -104,6 +104,20 @@ mellow longplay, cozy vocal music, soft vocal longplay, classroom music, study m
 
 Reject or re-review tags that imply a named artist/song/channel, real brand, real school, label/station affiliation, guaranteed platform outcome, unsupported rights/safety status, or a duration not proven by final assets.
 
+### English post-upload comment draft
+
+This comment is prepared for a top-level pinned video comment after public release to greet the community and invite listener engagement.
+
+```text
+Thanks for listening 🌙
+
+Which quiet classroom moment keeps you company today — sunlight on a second-row seat, pencil taps before the bell, a folded quiz corner, or notebook margins left blank?
+
+I’d love to hear yours.
+```
+
+
+
 ### Blocked-claim scan
 
 | Claim area | Status | Rule |
@@ -120,4 +134,4 @@ Reject or re-review tags that imply a named artist/song/channel, real brand, rea
 
 `pass_metadata_disclosure_pack_source_only`
 
-Subtitle planning and current render subtitle lane approval are recorded in `subtitles/README.md` and `reviews/subtitles.md`. Local render-01 QA exists and pre-final audio/subtitle/visual approval is recorded, but final video approval, final readiness/release, upload, public release, and rights/platform claims remain blocked.
+Subtitle planning and the current subtitle-sync blocker are recorded in `subtitles/README.md` and `reviews/subtitles.md`. Local render-02 QA exists, but final-video approval is superseded until repaired subtitle timing is human-watch passed against sung lyrics. Final readiness/release, upload, public release, and rights/platform claims remain blocked.

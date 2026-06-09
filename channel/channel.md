@@ -1,6 +1,6 @@
 # Mellow Longplay Channel
 
-Status: active single-channel contract  
+Status: active single-channel contract
 Updated: 2026-05-27
 
 ## Promise
@@ -15,6 +15,7 @@ The listener-facing hook is not `AI music`. The hook is a curated soft afternoon
 - Default episode: 12 main songs plus 1 bonus full closing song.
 - Baseline target: about 30-35 minutes when generated naturally.
 - English-first for the first season.
+- Starting with EP03, all listener-facing titles must follow the format `『 Working Longplay 』| Cozy Mood/Use Case Subtitle` (e.g., `『 Classroom Window Longplay 』| Cozy Chill Vocals for Study & Note-Taking` or `『 After-School First Love Longplay 』| Soft Cozy Vocals for Study & Coffee Breaks`).
 - AI-assisted disclosure belongs in description/about copy, not as the title hook.
 
 ## EP03+ Creative Direction

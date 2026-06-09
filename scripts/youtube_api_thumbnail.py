@@ -96,7 +96,7 @@ def build_thumbnail_upload_plan(
         "video_id": video_id,
         "thumbnail_path": str(thumbnail_path),
         "thumbnail_source": str(thumbnail_source),
-        "mime_type": "image/jpeg",
+        "mime_type": "image/png" if str(thumbnail_path).lower().endswith(".png") else "image/jpeg",
         "thumbnail_upload_allowed": True,
         "requires_existing_video_id": True,
         "requires_expected_channel_id": True,
@@ -156,9 +156,10 @@ def execute_thumbnail_upload(
     actual_channel_id = video_upload.authenticated_channel_id(youtube)
     video_upload.assert_expected_channel(actual_channel_id=actual_channel_id, expected_channel_id=expected_channel_id)
 
+    mime_type = "image/png" if str(thumbnail).lower().endswith(".png") else "image/jpeg"
     response = youtube.thumbnails().set(
         videoId=video_id,
-        media_body=modules["MediaFileUpload"](str(thumbnail), mimetype="image/jpeg", chunksize=-1, resumable=True),
+        media_body=modules["MediaFileUpload"](str(thumbnail), mimetype=mime_type, chunksize=-1, resumable=True),
     ).execute()
     return {
         "video_id": video_id,

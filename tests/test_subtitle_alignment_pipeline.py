@@ -289,6 +289,30 @@ class SubtitleAlignmentPipelineTest(unittest.TestCase):
         self.assertEqual(track["working_title"], "Latch Click at the Courtyard Gate")
         self.assertEqual(track["sections"][0]["lines"], ["One closing line"])
 
+    def test_parse_track_from_song_source_falls_back_to_suno_pack_sibling(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            source_root = Path(temp_dir)
+            (source_root / "songs.md").write_text("# Episode\n", encoding="utf-8")
+            pack_dir = source_root / "suno-tracks"
+            pack_dir.mkdir()
+            (pack_dir / "02-second-seat.md").write_text(
+                "**Song Title:** Second Seat from the Sun\n\n"
+                "**Lyrics:**\n\n"
+                "```text\n"
+                "[Verse]\n"
+                "One sung line\n"
+                "Two sung line\n"
+                "```\n",
+                encoding="utf-8",
+            )
+
+            track = pipeline.parse_track_from_song_source(source_root / "songs.md", 2)
+
+        self.assertEqual(track["slot"], "T02")
+        self.assertEqual(track["working_title"], "Second Seat from the Sun")
+        self.assertEqual(track["sections"][0]["section"], "Verse")
+        self.assertEqual(track["sections"][0]["lines"], ["One sung line", "Two sung line"])
+
     def test_subtitle_motion_slides_in_then_fades_out_without_slide(self):
         fade_in = 1.50
         fade_out = 1.00

@@ -10,6 +10,7 @@ uploads, account surfaces, or release tooling.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import random
@@ -26,6 +27,9 @@ from typing import Iterable
 from PIL import Image, ImageDraw, ImageFilter
 
 import create_v6_cute_smooth_motion_proof as v6
+from subtitle_lane_policy import infer_subtitle_drift_with_fallback
+from subtitle_lane_policy import lane_summary
+from subtitle_lane_policy import resolve_subtitle_lane
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore", DeprecationWarning)
@@ -38,8 +42,11 @@ DEFAULT_OUTPUT_ROOT = Path("candidates/s01e01-campus-cafe-longplay/render/future
 ALLOWED_OUTPUT_ROOTS = (DEFAULT_OUTPUT_ROOT,)
 DEFAULT_TEMP_ROOT = Path(tempfile.gettempdir()) / "opencode" / "s01e01-render"
 BACKGROUND = Path("candidates/s01e01-campus-cafe-longplay/visual/G.png")
-SOURCE_SRT = Path(f"channel/episodes/{EPISODE_ID}/subtitles/{EPISODE_ID}.en.srt")
-SOURCE_VTT = Path(f"channel/episodes/{EPISODE_ID}/subtitles/{EPISODE_ID}.en.vtt")
+SOURCE_SUBTITLE_ROOT = Path(f"channel/episodes/{EPISODE_ID}/subtitles")
+PROMOTED_SRT = SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.en.srt"
+PROMOTED_VTT = SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.en.vtt"
+DRAFT_SRT = SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.draft.en.srt"
+DRAFT_VTT = SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.draft.en.vtt"
 HEADER_FONT_PATHS = ("/System/Library/Fonts/Supplemental/ChalkboardSE.ttc", "/System/Library/Fonts/Avenir Next.ttc")
 NOW_PLAYING_FONT_PATHS = HEADER_FONT_PATHS
 SUBTITLE_ASS_FONT_NAME = "Chalkboard SE"
@@ -52,6 +59,7 @@ SUBTITLE_CANVAS_WIDTH = 920
 SUBTITLE_CANVAS_HEIGHT = 260
 SUBTITLE_SLIDE_MAX_SECONDS = 1.35
 HEADPHONE_ICON_POS = (48, 88)
+SUBTITLE_EARLY_OFFSET_SECONDS = 0.0
 MUSIC_NOTE_OVERLAY_X = 46
 MUSIC_NOTE_OVERLAY_Y = 62
 MUSIC_NOTE_CANVAS_WIDTH = 136
@@ -170,7 +178,7 @@ def assert_safe_temp_root(path: Path) -> None:
 
 
 def ensure_inputs_exist() -> None:
-    required = [BACKGROUND, SOURCE_SRT, SOURCE_VTT, *(track.audio_path for track in TRACKS)]
+    required = [BACKGROUND, *(track.audio_path for track in TRACKS)]
     missing = [str(path) for path in required if not project_path(path).exists()]
     if missing:
         raise FileNotFoundError("missing required render input(s): " + ", ".join(missing))
@@ -262,11 +270,11 @@ def concat_audio(output_root: Path) -> dict[str, object]:
     return audio_summary(audio_out, params, total_frames, track_summaries, reused=False)
 
 
-def copy_sidecars(output_root: Path) -> list[str]:
+def copy_sidecars(output_root: Path, source_srt: Path, source_vtt: Path) -> list[str]:
     subtitle_dir = output_root / "subtitles"
     subtitle_dir.mkdir(parents=True, exist_ok=True)
     copied: list[str] = []
-    for source in (SOURCE_SRT, SOURCE_VTT):
+    for source in (source_srt, source_vtt):
         src = project_path(source)
         dest = subtitle_dir / src.name
         if dest.exists():
@@ -301,6 +309,125 @@ def parse_srt(path: Path) -> list[SubtitleCue]:
         start_text, end_text = [part.strip() for part in timing.split("-->", 1)]
         cues.append(SubtitleCue(parse_srt_time(start_text), parse_srt_time(end_text), "\n".join(lines[2:])))
     return cues
+
+
+def apply_onset_drift_to_cues(
+    cues: list[SubtitleCue],
+    drift_ms: float | dict[str, float] | None,
+    duration_seconds: float,
+    timeline: list[RenderSegment] | None = None,
+    *,
+    min_gap_seconds: float = 0.001,
+) -> tuple[list[SubtitleCue], dict[str, object]]:
+    if drift_ms is None or not cues:
+        return cues, {"applied": False, "reason": "insufficient_evidence"}
+
+    timeline_by_slot: dict[str, tuple[float, float]] = {}
+    for segment in timeline or []:
+        timeline_by_slot[f"T{segment.track.number:02d}"] = (segment.start, segment.end)
+
+    drift_mode = "global"
+    slot_drift_ms: dict[str, float] = {}
+    drift_ms_fallback = 0.0
+    if isinstance(drift_ms, dict):
+        drift_mode = "slotwise"
+        slot_drift_ms = {
+            str(slot).strip(): float(value)
+            for slot, value in drift_ms.items()
+            if isinstance(slot, str) and isinstance(value, int | float)
+        }
+        if not slot_drift_ms:
+            return cues, {"applied": False, "reason": "insufficient_evidence"}
+        slot_values = sorted(slot_drift_ms.values())
+        drift_ms_fallback = slot_values[len(slot_values) // 2]
+    else:
+        drift_ms_fallback = float(drift_ms)
+
+    if drift_mode == "global" and abs(drift_ms_fallback) < 0.5:
+        return cues, {"applied": False, "drift_ms": 0.0, "reason": "drift_below_rounding"}
+
+    def cue_slot_by_time(cue: SubtitleCue) -> str | None:
+        if not timeline_by_slot:
+            return None
+        cue_midpoint = (cue.start + cue.end) / 2.0
+        for slot, (slot_start, slot_end) in timeline_by_slot.items():
+            if cue_midpoint >= slot_start and cue_midpoint <= slot_end:
+                return slot
+        return None
+
+    slot_drift_used: dict[str, int] = {}
+    fallback_count = 0
+    applied_count = 0
+    adjusted: list[SubtitleCue] = []
+    clipped_count = 0
+    for cue in cues:
+        slot_delta_ms = drift_ms_fallback
+        if drift_mode == "slotwise":
+            slot = cue_slot_by_time(cue)
+            slot_delta_ms = slot_drift_ms.get(slot or "", drift_ms_fallback)
+            if slot is None:
+                fallback_count += 1
+            else:
+                slot_drift_used[slot] = slot_drift_used.get(slot, 0) + 1
+
+        delta = float(slot_delta_ms) / 1000.0
+        if abs(slot_delta_ms) < 0.5:
+            adjusted.append(cue)
+            continue
+
+        applied_count += 1
+        start = cue.start + delta
+        end = cue.end + delta
+        if start < 0.0:
+            start = 0.0
+            clipped_count += 1
+        if end > duration_seconds:
+            end = duration_seconds
+            clipped_count += 1
+        if end <= start:
+            end = start + min_gap_seconds
+            clipped_count += 1
+            if end > duration_seconds:
+                end = duration_seconds
+                start = max(0.0, end - min_gap_seconds)
+                clipped_count += 1
+        adjusted.append(SubtitleCue(round(start, 3), round(end, 3), cue.text))
+    adjusted.sort(key=lambda cue: (cue.start, cue.end))
+    summary: dict[str, object] = {
+        "applied": applied_count > 0,
+        "drift_mode": drift_mode,
+        "drift_ms": round(drift_ms_fallback, 3),
+        "drift_seconds": round(drift_ms_fallback / 1000.0, 3),
+        "clipped_cues": clipped_count,
+        "cue_count": len(adjusted),
+    }
+    if drift_mode == "slotwise":
+        summary["slotwise_slots_used"] = len(slot_drift_used)
+        summary["slotwise_slots_fallback_count"] = fallback_count
+    return adjusted, summary
+
+
+def cue_signature(cues: list[SubtitleCue]) -> str:
+    payload = json.dumps(
+        [{"start": round(cue.start, 3), "end": round(cue.end, 3), "text": cue.text} for cue in cues],
+        ensure_ascii=False,
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()[:12]
+
+
+def subtitle_overlay_signature(cues: list[SubtitleCue], duration: float, time_offset_seconds: float) -> str:
+    payload = json.dumps(
+        {
+            "cue_signature": cue_signature(cues),
+            "duration_seconds": round(duration, 3),
+            "subtitle_offset": round(time_offset_seconds, 3),
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()[:14]
 
 
 def current_track(t: float) -> Track:
@@ -780,7 +907,13 @@ def render_subtitle_base_layer(cue: SubtitleCue) -> Image.Image:
     return layer
 
 
-def build_subtitle_motion_overlay(cues: list[SubtitleCue], duration: float, temp_root: Path) -> tuple[Path, dict[str, object]]:
+def build_subtitle_motion_overlay(
+    cues: list[SubtitleCue],
+    duration: float,
+    temp_root: Path,
+    *,
+    time_offset_seconds: float = SUBTITLE_EARLY_OFFSET_SECONDS,
+) -> tuple[Path, dict[str, object]]:
     output = temp_root / "render-05-subtitle-motion-overlay.mov"
     if output.exists():
         output.unlink()
@@ -813,7 +946,7 @@ def build_subtitle_motion_overlay(cues: list[SubtitleCue], duration: float, temp
     cache: dict[int, Image.Image] = {}
     cue_index = 0
     for frame in range(frame_count):
-        t = frame / FPS
+        t = frame / FPS + time_offset_seconds
         while cue_index < len(cues) and cues[cue_index].end <= t:
             cue_index += 1
         image = Image.new("RGBA", (SUBTITLE_CANVAS_WIDTH, SUBTITLE_CANVAS_HEIGHT), (0, 0, 0, 0))
@@ -833,6 +966,7 @@ def build_subtitle_motion_overlay(cues: list[SubtitleCue], duration: float, temp
         "cue_count": len(cues),
         "canvas": f"{SUBTITLE_CANVAS_WIDTH}x{SUBTITLE_CANVAS_HEIGHT}",
         "position": {"x": SUBTITLE_OVERLAY_X, "y": SUBTITLE_OVERLAY_Y},
+        "time_offset_seconds": round(time_offset_seconds, 3),
         "fade_max_ms": SUBTITLE_FADE_MAX_MS,
         "slide_pixels": {"x": SUBTITLE_SLIDE[0], "y": -SUBTITLE_SLIDE[1]},
         "motion": "very subtle upward slide-in with minimal right drift and smooth slow fade in/out per cue",
@@ -1248,8 +1382,8 @@ def run_ffmpeg_render(
     return video_out
 
 
-def segment_video_path(output_root: Path, segment: RenderSegment) -> Path:
-    return output_root / "video" / "segments" / f"{EPISODE_ID}.render-05-segment-{segment.index:02d}-track-{segment.track.number:02d}.mp4"
+def segment_video_path(output_root: Path, segment: RenderSegment, *, cache_key: str) -> Path:
+    return output_root / "video" / "segments" / f"{EPISODE_ID}.render-05-segment-{segment.index:02d}-track-{segment.track.number:02d}-{cache_key}.mp4"
 
 
 def video_probe_matches(path: Path, expected_duration: float, tolerance: float = 0.12) -> bool:
@@ -1276,6 +1410,9 @@ def run_ffmpeg_segment_render(
     output_root: Path,
     visual_assets: dict[str, Path],
     temp_root: Path,
+    local_cues: list[SubtitleCue],
+    *,
+    subtitle_early_offset: float = SUBTITLE_EARLY_OFFSET_SECONDS,
 ) -> tuple[Path, bool]:
     """Render one video-only segment with all motion keyed to global time.
 
@@ -1283,7 +1420,11 @@ def run_ffmpeg_segment_render(
     never stitched from per-song AAC chunks. Visual expressions use `t + segment
     start` to avoid particle/light/parallax/music-note resets at segment seams.
     """
-    video_out = segment_video_path(output_root, segment)
+    segment_signature = (
+        f"{cue_signature(local_cues)}_{round(segment.start,3)}-{round(segment.end,3)}-"
+        f"{round(subtitle_early_offset,3)}-{len(local_cues)}"
+    )
+    video_out = segment_video_path(output_root, segment, cache_key=segment_signature)
     if video_probe_matches(video_out, segment.duration):
         return video_out, True
     prepare_output(video_out)
@@ -1406,8 +1547,10 @@ def write_concat_file(paths: list[Path], concat_path: Path) -> None:
             handle.write(f"file '{quote_concat_path(path)}'\n")
 
 
-def assemble_chunked_video(segment_paths: list[Path], audio_path: Path, output_root: Path, temp_root: Path) -> tuple[Path, dict[str, object]]:
-    video_out = output_root / "video" / f"{EPISODE_ID}.v6-subtitled-1080p24-qa.mp4"
+def assemble_chunked_video(
+    segment_paths: list[Path], audio_path: Path, output_root: Path, temp_root: Path, video_signature: str
+) -> tuple[Path, dict[str, object]]:
+    video_out = output_root / "video" / f"{EPISODE_ID}.v6-subtitled-{video_signature}-1080p24-qa.mp4"
     if video_probe_matches(video_out, TARGET_DURATION, tolerance=0.20):
         return video_out, {"reused_existing": True, "segment_count": len(segment_paths)}
     prepare_output(video_out)
@@ -1531,6 +1674,20 @@ def main() -> int:
     parser.add_argument("--temp-root", type=Path, default=DEFAULT_TEMP_ROOT)
     parser.add_argument("--keep-temp", action="store_true")
     parser.add_argument("--print-json", action="store_true")
+    parser.add_argument(
+        "--subtitle-early-offset",
+        type=float,
+        default=SUBTITLE_EARLY_OFFSET_SECONDS,
+        help="Shift subtitle render time in seconds (positive = earlier than cue start, default 0.00).",
+    )
+    parser.add_argument(
+        "--allow-draft-subtitles",
+        action="store_true",
+        help=(
+            "Permit draft subtitle sidecars for manual preview only. "
+            "Production path always requires final .en.srt/.en.vtt."
+        ),
+    )
     args = parser.parse_args()
 
     ensure_inputs_exist()
@@ -1546,9 +1703,38 @@ def main() -> int:
     temp_root.mkdir(parents=True, exist_ok=True)
 
     audio_summary = concat_audio(output_root)
-    sidecars = copy_sidecars(output_root)
-    cues = parse_srt(project_path(SOURCE_SRT))
     audio_path = project_path(audio_summary["path"])
+    timeline = render_segments()
+    subtitle_lane = resolve_subtitle_lane(
+        episode_id=EPISODE_ID,
+        promoted_srt=PROMOTED_SRT,
+        promoted_vtt=PROMOTED_VTT,
+        draft_srt=DRAFT_SRT,
+        draft_vtt=DRAFT_VTT,
+        fallback_srt=SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.draft.en.srt",
+        fallback_vtt=SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.draft.en.vtt",
+        allow_draft_subtitles=args.allow_draft_subtitles,
+        require_final_lane=True,
+    )
+    sidecars = copy_sidecars(output_root, subtitle_lane.source_srt, subtitle_lane.source_vtt)
+    cues = parse_srt(project_path(subtitle_lane.source_srt))
+    subtitle_timing_method = subtitle_lane.timing_method
+    subtitle_drift_ms, subtitle_onset_evidence, subtitle_timing_evidence, subtitle_onset_window_seconds = infer_subtitle_drift_with_fallback(
+        audio_path, cues, timeline=timeline
+    )
+    if isinstance(subtitle_timing_evidence, dict) and subtitle_timing_evidence.get("timing_method") in {
+        "track-aligned_stable_ts_drift",
+        "track-aligned_episode_source_srt",
+        "track-aligned_episode_source_draft_srt",
+    }:
+        subtitle_timing_method = str(subtitle_timing_evidence.get("timing_method"))
+    cues, subtitle_timing_drift = apply_onset_drift_to_cues(
+        cues,
+        subtitle_drift_ms,
+        duration,
+        timeline=timeline,
+    )
+    video_signature = subtitle_overlay_signature(cues, duration, args.subtitle_early_offset)
     segment_summaries: list[dict[str, object]] = []
     segment_paths: list[Path] = []
     for segment in render_segments():
@@ -1556,7 +1742,12 @@ def main() -> int:
         segment_temp.mkdir(parents=True, exist_ok=True)
         local_cues = segment_cues(cues, segment)
         overlay_concat, overlay_summary = build_segment_overlay_concat(segment, segment_temp)
-        subtitle_overlay, subtitle_motion_summary = build_subtitle_motion_overlay(local_cues, segment.duration, segment_temp)
+        subtitle_overlay, subtitle_motion_summary = build_subtitle_motion_overlay(
+            local_cues,
+            segment.duration,
+            segment_temp,
+            time_offset_seconds=args.subtitle_early_offset,
+        )
         music_note_overlay, music_note_summary = build_music_note_overlay(
             segment.duration,
             segment_temp,
@@ -1571,6 +1762,8 @@ def main() -> int:
             output_root,
             visual_assets,
             segment_temp,
+            local_cues,
+            subtitle_early_offset=args.subtitle_early_offset,
         )
         segment_paths.append(segment_path)
         segment_summaries.append(
@@ -1587,12 +1780,17 @@ def main() -> int:
                 "music_notes": music_note_summary,
             }
         )
-    video_path, assembly_summary = assemble_chunked_video(segment_paths, audio_path, output_root, temp_root)
+    video_path, assembly_summary = assemble_chunked_video(segment_paths, audio_path, output_root, temp_root, video_signature)
     snapshots = extract_snapshots(video_path, output_root)
     summary = {
         "episode_id": EPISODE_ID,
         "duration_target_seconds": round(duration, 3),
         "audio_master": audio_summary,
+        "subtitle_timing_method": subtitle_timing_method,
+        "subtitle_timing_drift": subtitle_timing_drift,
+        "subtitle_timing_window_seconds": round(subtitle_onset_window_seconds, 3),
+        "subtitle_timing_evidence": subtitle_timing_evidence,
+        "subtitle_source": lane_summary(subtitle_lane),
         "rendered_video": summarize_probe(video_path),
         "copied_sidecars": sidecars,
         "snapshots": snapshots,

@@ -1,7 +1,7 @@
 # S01E01 YouTube API Thumbnail Upload Package — After-School First Love Longplay
 
-Status: thumbnail-only follow-up completed after private video ID / public release not passed  
-Episode: `s01e01-campus-cafe-longplay`  
+Status: thumbnail-only follow-up completed after private video ID / public release not passed
+Episode: `s01e01-campus-cafe-longplay`
 Prepared: 2026-05-25
 
 ## 0. Boundary
@@ -25,10 +25,8 @@ Do not describe this episode, render, audio, visual, sidecars, thumbnail, or cha
 
 ## 1. Source Inputs
 
-| Item | Source path / value | Notes |
-|---|---|---|
-| Thumbnail candidate | `candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg` | User-approved local JPEG derivative from the accepted `G.png` background; `1280x720`; `228476` bytes at upload-time generation. |
-| Thumbnail generator | `scripts/create_s01e01_thumbnail.py` | Local-only PIL composition from `G.png`; no provider/browser/API/account action. |
+| Thumbnail candidate | `candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-layered-premium-1280x720.png` | User-approved local PNG derivative from the accepted `G.png` background; `1280x720` dimensions. |
+| Thumbnail generator | `scripts/create_layered_thumbnail.py` | Local-only PIL composition from `G.png` using soft feather masking; no provider/browser/API/account action. |
 | Thumbnail API helper | `scripts/youtube_api_thumbnail.py` | Channel-level dry-run default helper; refuses execution without channel ID, video ID, and OAuth path guards and accepts per-video thumbnail paths. |
 | Video ID | external value only | Use the private video ID returned by the guarded `videos.insert` call or supplied by the user. Do not store private account state here. |
 | API env template | `channel/templates/youtube-api-upload-env.example` | Channel-level placeholder only; real env file must stay outside repo and may include `MELLOW_YOUTUBE_VIDEO_ID`. |
@@ -54,7 +52,7 @@ Dry-run default:
 python3 scripts/youtube_api_thumbnail.py \
   --expected-channel-id UC_REPLACE_WITH_TARGET_CHANNEL_ID \
   --video-id VIDEO_REPLACE_AFTER_PRIVATE_UPLOAD \
-  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg
+  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-layered-premium-1280x720.png
 ```
 
 External env-file execution mode under this gate:
@@ -63,7 +61,7 @@ External env-file execution mode under this gate:
 python3 scripts/youtube_api_thumbnail.py \
   --execute \
   --env-file "$HOME/.config/mellow-longplay/youtube-upload/channel.env" \
-  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg
+  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-layered-premium-1280x720.png
 ```
 
 Direct flag execution mode under this gate:
@@ -75,7 +73,7 @@ python3 scripts/youtube_api_thumbnail.py \
   --video-id VIDEO_REPLACE_AFTER_PRIVATE_UPLOAD \
   --client-secrets /path/outside/repo/client_secret.json \
   --token-cache /path/outside/repo/youtube-token.json \
-  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg
+  --thumbnail candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-layered-premium-1280x720.png
 ```
 
 Execution guards:
@@ -91,7 +89,7 @@ Execution guards:
 ## 4. Execution Gate Packet
 
 ```text
-Scope: one S01E01 thumbnails.set upload for the selected local JPEG after a private video ID exists
+Scope: one S01E01 thumbnails.set upload for the selected local PNG after a private video ID exists
 Mode: OAuth/API execution completed for thumbnail-only follow-up
 Allowed operations: channels.list(mine=true), thumbnails.set
 Required user inputs at execution time: expected channel ID, video ID, OAuth client secrets path outside repo, token-cache path outside repo; may be supplied via an external env file
@@ -105,7 +103,7 @@ Stop triggers: channel ID mismatch, missing expected channel ID, missing video I
 ```text
 Verdict: oauth_api_thumbnail_followup_completed_public_release_not_passed
 Scope: thumbnail-only YouTube Data API thumbnails.set execution after channel verification and after a private S01E01 video ID exists
-Current local thumbnail: selected JPEG derivative from G.png under candidates/s01e01-campus-cafe-longplay/thumbnail/
+Current local thumbnail: selected PNG derivative from G.png under candidates/s01e01-campus-cafe-longplay/thumbnail/
 Channel safety: helper verified authenticated channel id before thumbnails.set
 Execution result: thumbnails.set completed for video ID 4pOLXPMQO5g on verified channel UC4qQwe3oiykEGhL_WyVFtMg and returned youtube#thumbnailSetResponse with a maxres 1280x720 variant
 Still blocked: public publish schedule Studio browser analytics Content ID credentials or tokens in repo account-state storage caption upload playlist comments metadata update after upload extra thumbnail variants and positive rights/platform claims

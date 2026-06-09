@@ -30,11 +30,14 @@ profiles/
 tmp/
 logs/
 *.log
+.antigravitycli/
 .aries/
+backups/
 node_modules/
 .venv/
 __pycache__/
 .pytest_cache/
+scripts/_diag_*.py
 
 # Generated output and media exports
 /dist/
@@ -48,7 +51,10 @@ __pycache__/
 *.aac
 *.m4a
 
-# User-supplied candidate media are local evidence by default.
+# User-supplied candidate media and local review artifacts are local evidence by default.
+candidates/**
+!candidates/
+!candidates/README.md
 candidates/**/*.mp3
 candidates/**/*.wav
 candidates/**/*.flac

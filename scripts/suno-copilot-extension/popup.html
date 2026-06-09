@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suno Mellow Copilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <span class="logo-icon">🌅</span>
+        <h1>Suno Mellow Copilot</h1>
+      </div>
+      <p class="subtitle" id="episode-subtitle">Loading episodes...</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Episode Selector -->
+      <div class="form-group" style="margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <label for="episode-select" style="font-weight: 600;">Active Episode (EP)</label>
+        <select id="episode-select" style="width: 100%; margin-top: 4px; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 13px;">
+          <!-- Filled dynamically -->
+        </select>
+      </div>
+
+      <!-- Tab Control -->
+      <div class="tab-bar">
+        <button class="tab-btn active" id="tab-tracks-btn">Track List</button>
+        <button class="tab-btn" id="tab-auto-btn">Auto Series</button>
+      </div>
+
+      <!-- Content Area 1: Tracks List -->
+      <div class="tab-content active" id="tab-tracks">
+        <div class="section-title">Select Track to Generate</div>
+        <div class="track-list" id="track-list-container">
+          <div class="loading-state">Loading tracks...</div>
+        </div>
+      </div>
+
+      <!-- Content Area 2: Auto-Gen Series -->
+      <div class="tab-content" id="tab-auto">
+        <div class="section-title">Automated Series Generator</div>
+        <p class="description-text" id="auto-description-text">
+          Generates all tracks for the selected episode in sequence automatically. The extension will automatically fill the form and click "Create" for each track.
+        </p>
+
+        <div class="form-group" style="margin-top: 8px;">
+          <label for="delay-input">Wait interval between generations</label>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="number" id="delay-input" value="2" min="1" max="15" style="width: 80px; text-align: center;">
+            <span style="font-size: 13px; color: var(--text-secondary);">Minutes per track</span>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 8px;">
+          <label for="start-track-select">Start sequence from track</label>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <select id="start-track-select" style="width: 80px; padding: 6px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 13px; text-align: center;">
+              <!-- Populated dynamically (1 to 13) -->
+            </select>
+            <span style="font-size: 13px; color: var(--text-secondary);">Choose starting track</span>
+          </div>
+        </div>
+
+        <button class="btn btn-accent" id="start-seq-btn" style="margin-top: 12px;">
+          <span class="btn-icon">🚀</span> Start Auto Sequence
+        </button>
+
+        <button class="btn btn-primary" id="start-full-run-btn" style="margin-top: 8px;">
+          <span class="btn-icon">⚡</span> Start Full Auto Run (Generate, Wait 5 mins, Download WAVs)
+        </button>
+
+        <button class="btn btn-primary" id="start-batch-dl-btn" style="margin-top: 8px;">
+          <span class="btn-icon">📥</span> Batch Download All WAVs
+        </button>
+
+        <!-- Local Server Integration -->
+        <div class="form-group" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+          <label>Local OS Server Integration (ws://localhost:8080)</label>
+          <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <button class="btn btn-secondary" id="connect-os-btn" style="flex: 1; padding: 8px; font-size: 11px; display: flex; align-items: center; justify-content: center; gap: 4px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-primary);">
+              🔗 Connect Server
+            </button>
+            <button class="btn btn-danger hidden" id="disconnect-os-btn" style="flex: 1; padding: 8px; font-size: 11px; display: flex; align-items: center; justify-content: center; gap: 4px;">
+              🔌 Disconnect
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Sequence Status -->
+        <div class="seq-status-box hidden" id="seq-status-box">
+          <div class="seq-status-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="pulse-indicator"></span>
+              <strong>Generating Song <span id="seq-current-track">1/13</span></strong>
+            </div>
+          </div>
+          <div class="seq-track-title" id="seq-track-name">Breeze on the Concrete Edge</div>
+          <div class="seq-timer-box">
+            <div class="seq-timer-label">Next track injection in:</div>
+            <div class="countdown-timer" id="seq-timer">02:00</div>
+          </div>
+
+          <button class="btn btn-danger" id="stop-seq-btn" style="background: linear-gradient(135deg, #ffa940 0%, #ffc069 100%);">
+            ⏸ Pause Auto Sequence
+          </button>
+          <button class="btn btn-secondary" id="reset-seq-btn" style="margin-top: 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-primary);">
+            🔄 Reset & Start from Track 1
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Preview Panel (Sticky/Collapsible when track selected) -->
+      <div class="preview-panel hidden" id="preview-panel">
+        <div class="preview-header">
+          <span class="preview-title" id="selected-track-name">No track selected</span>
+          <button class="close-preview-btn" id="close-preview">×</button>
+        </div>
+        <div class="preview-meta">
+          <span class="badge badge-bpm" id="selected-track-bpm">-- BPM</span>
+          <span class="badge badge-style" id="selected-track-genre">R&B</span>
+        </div>
+        <div class="preview-styles-box">
+          <strong>Styles:</strong> <span id="selected-track-styles-text">--</span>
+        </div>
+        <div class="preview-lyrics-box">
+          <strong>Lyrics Snippet:</strong>
+          <pre id="selected-track-lyrics-text">--</pre>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Actions -->
+    <footer class="footer">
+      <button class="btn btn-primary" id="fill-btn" disabled>
+        <span class="btn-icon">⚡</span> Fill Active Suno Tab
+      </button>
+      <div class="status-message" id="status-bar">
+        Open Suno.com Create page to begin
+      </div>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

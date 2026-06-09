@@ -1,6 +1,6 @@
 # Mellow Longplay Knowledge Contract
 
-Status: lean active  
+Status: lean active
 Updated: 2026-05-27
 
 ## Purpose
@@ -18,13 +18,19 @@ Updated: 2026-05-27
   - Remaining local creative gate: final video approval for render-01 or point revisions.
   - Release/upload/API/browser/account actions, transcript certification, Content ID, and rights/platform-safety claims remain blocked.
   - Truth paths: `channel/episodes/s01e02-classroom-window-longplay/manifest.json`, `reviews/current-state.md`, `reviews/final-video-approval.md`, `reviews/render-export-qa.md`, `reviews/agy-render-review.md`, and `tracking/*.csv`.
+- `s01e03-rooftop-golden-hour-longplay` — Season 1 Week 3 `Rooftop Golden Hour Longplay`.
+  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, authoritative subtitles timed using stable-ts, render-02 local QA, final-video user approval for upload, YouTube Data API video upload, custom thumbnail set, and top-level comment are completed and recorded. The requested top-level comment initially failed with a 403 response, then succeeded after retry when the video was observed as public/processed; comment pinning remains pending/manual.
+  - Current status: EP3 is marked closed as manual public release complete with pin pending (video ID: `2P6fPs7NB0E`, comment ID: `Ugw3CXuFnYeKOp4TNi54AaABAg`); remaining release/account actions remain blocked pending explicit gates.
+  - Truth paths: `channel/episodes/s01e03-rooftop-golden-hour-longplay/manifest.json`, `reviews/current-state.md`, `reviews/render-export-qa.md`, `reviews/youtube-api-execution-gate.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
+
 
 ## Operating Model
 
-- Default production flow is the three-HIL fastlane in `docs/workflow-map.md`:
+- Default production flow is the four-HIL fastlane in `docs/workflow-map.md`:
   1. HIL-1: user says to make a new episode; system creates source packet, song prompts, visual prompts, metadata draft, and handoff notes.
   2. HIL-2: user says generated/supplied media exists and to continue; system intakes real files, assembles, subtitles, renders locally, and self-reviews intensely.
-  3. HIL-3: user approves the exact final-video candidate for upload prep/execution or sends point revisions.
+  3. HIL-3: user approves the exact final-video candidate for upload prep or sends point revisions.
+  4. HIL-4: user approves exact final route for release execution/schedule, or requests route revisions.
 - Internal gates still exist for evidence/tracking; do not ask for routine micro-approval unless there is a blocker, contradiction, or risk boundary.
 - Candidate IDs/provenance require real local files or an exact provider gate. Never invent media facts.
 - Final video approval is not release approval and not a rights/platform-safety claim.

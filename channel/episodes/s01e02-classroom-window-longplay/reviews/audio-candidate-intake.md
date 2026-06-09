@@ -1,6 +1,6 @@
 # S01E02 Audio Candidate Intake — Classroom Window Longplay
 
-Status: selected_c01_user_approved_source_only / final video approval pending  
+Status: selected_c01_user_approved_source_only / render-02 subtitle-sync revision required / release blocked
 Updated: 2026-05-27
 
 ## Boundary
@@ -13,7 +13,7 @@ This review records local user-supplied audio candidate intake for S01E02. Candi
 - Raw audio pattern matched two WAV variants per track under `candidates/s01e02-classroom-window-longplay/audio/`.
 - Deterministic fallback was used overnight: filename without `(1)` became `c01` and was selected for the local draft render; filename with `(1)` became `c02` and was pooled.
 - All selected files are stereo `48000 Hz` 16-bit WAV and were copied without altering source audio content.
-- User later instructed that after agy check the selected audio/subtitle/visual gates should be treated as approved source-only, leaving only final video approval pending. This is a user approval record, not an independent agy audio-quality proof.
+- User later instructed that after agy check the selected audio/subtitle/visual gates should be treated as approved source-only. The earlier render-02 final-video approval is now superseded by a subtitle timing blocker; this is not an independent agy audio-quality proof or release approval.
 
 ## Selected Draft Set
 
@@ -42,14 +42,14 @@ This review records local user-supplied audio candidate intake for S01E02. Candi
 
 ## Approval State
 
-- Selected c01 set is approved source-only for the current render-01 final-video candidate.
+- Selected c01 set remains approved source-only for the current render-02 local QA evidence; final-video approval is blocked by subtitle sync.
 - c02 pool remains available only if a later issue-led revision gate is opened.
 - No upload, public release, transcript certification, Content ID, or rights/platform-safety claim is approved by this audio intake.
 
 ## Verdict
 
 ```text
-Verdict: selected_c01_user_approved_source_only_final_video_approval_pending
+Verdict: selected_c01_user_approved_source_only_render_02_subtitle_sync_revision_required_release_blocked
 Scope: local user-supplied audio intake and deterministic c01 selected / c02 pool organization
-Still blocked: final video approval, provider/account automation, upload/publish, transcript certification, Content ID, rights/platform-safety claims
+Still blocked: final video approval, subtitle sung-lyric alignment pass, provider/account automation, upload/publish, transcript certification, Content ID, rights/platform-safety claims
 ```

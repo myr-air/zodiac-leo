@@ -1,11 +1,11 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Subtitles
 
-Status: current render subtitle lane user-approved source-only / final video approval pending / no transcript certification  
+Status: subtitle sync blocker revision required / no transcript certification
 Updated: 2026-05-27
 
 ## Boundary
 
-This folder contains draft mechanical `.srt` / `.vtt` sidecars used for local render-01 QA. User instruction now approves the current render subtitle lane source-only for final-video candidate review. These files do not approve transcript certification, upload/API/browser/account action, public publish, or rights/platform-safety claims.
+This folder contains draft mechanical `.srt` / `.vtt` sidecars used for local render QA. The later user-reported subtitle timing mismatch supersedes the earlier current-render subtitle approval. These files do not approve final-video approval, transcript certification, upload/API/browser/account action, public publish, or rights/platform-safety claims.
 
 ## Source Plan
 
@@ -22,8 +22,8 @@ channel/episodes/s01e02-classroom-window-longplay/subtitles/s01e02-classroom-win
 channel/episodes/s01e02-classroom-window-longplay/subtitles/s01e02-classroom-window-longplay.draft.en.vtt
 ```
 
-Mechanical summary: `532` cues, max line length `37`, no overlaps, no cues crossing the planned 1s gaps. Timing method is deterministic even distribution from approved lyric lines over selected local audio durations; user approval clears it as a current-render blocker but not as transcript certification.
+Mechanical summary: `532` cues, max line length `37`, no overlaps, no cues crossing the planned 1s gaps. Timing method is deterministic even distribution from approved lyric lines over selected local audio durations. This is mechanical evidence only and is now blocked by user-reported sung-lyric timing mismatch.
 
 ## Still Blocked
 
-Do not claim transcript certification, upload readiness, or platform/right-safety status. Recreate or revise these sidecars only through a new issue-led subtitle gate.
+Do not claim final-video approval, transcript certification, upload readiness, or platform/right-safety status. Recreate or revise these sidecars only through a new issue-led subtitle gate, and require human-watch sung-lyric alignment evidence before any renewed final-video approval.

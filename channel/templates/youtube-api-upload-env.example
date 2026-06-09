@@ -6,3 +6,5 @@ MELLOW_YOUTUBE_EXPECTED_CHANNEL_ID=UC_REPLACE_WITH_TARGET_CHANNEL_ID
 MELLOW_YOUTUBE_VIDEO_ID=VIDEO_REPLACE_AFTER_PRIVATE_UPLOAD
 MELLOW_YOUTUBE_CLIENT_SECRETS=/absolute/path/outside/repo/client_secret.json
 MELLOW_YOUTUBE_TOKEN_CACHE=/absolute/path/outside/repo/youtube-token.json
+# Optional for the guarded post-upload comment helper. Prefer a text file for multiline copy.
+MELLOW_YOUTUBE_COMMENT_FILE=/absolute/path/to/comment.txt

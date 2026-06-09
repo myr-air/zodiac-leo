@@ -1,6 +1,6 @@
 # Provider And Platform Boundary
 
-Status: active  
+Status: active
 Updated: 2026-05-27
 
 ## Suno Boundary
@@ -18,7 +18,7 @@ Current exception status: S01E01 used the narrow OAuth/API execution gate in `ch
 
 No public publish, schedule, Studio/browser automation, Analytics API, playlist action, metadata edit after upload, comment action, unlist/delete, channel rename, caption upload, extra thumbnail variant, account edit, Content ID action, or positive platform/rights claim is approved in this standalone scope.
 
-Future release work must start after HIL-3 final-video approval or an exact HIL-3 upload/prep instruction. The release-decision gate must check:
+Future release work must start after HIL-4 release-route approval. The release-decision gate must check:
 
 - Actual final-video-approved local assets and sidecars.
 - AI-assisted disclosure wording.
@@ -27,6 +27,8 @@ Future release work must start after HIL-3 final-video approval or an exact HIL-
 - Rollback/manual-only responsibilities.
 
 For future videos, reuse the approved API helper shape and external env-file pattern by citation, but open a fresh episode-specific execution gate before any platform/API mutation. Final video approval alone is not upload/API/browser/account approval.
+
+If a later gate selects a post-upload engagement comment, keep it narrow: the official YouTube Data API v3 `commentThreads.insert` method can create one top-level comment after an existing video ID and authenticated-channel verification. The comment helper must first scan existing top-level comments from the authenticated channel and block exact duplicate text unless the user intentionally passes `--force-repost`. Comment pinning is not treated as API-supported in this repo; pin manually in YouTube/Studio only if the user opens that account action. Do not combine comment posting with upload, thumbnail, metadata update, public publish, analytics, or Content ID actions by implication.
 
 ## Forbidden Positive Claims
 

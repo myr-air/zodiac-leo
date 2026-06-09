@@ -1,6 +1,6 @@
 # Mellow Longplay Local Audio Candidate Intake Workflow Template
 
-Status: reusable workflow / source-only / three-HIL fastlane compatible
+Status: reusable workflow / source-only / four-HIL fastlane compatible
 Updated: 2026-05-27
 
 ## 0. Boundary
@@ -48,7 +48,7 @@ Use local tools first, before any external supplemental review:
 - `ffmpeg` `volumedetect`: mean volume, max volume, rough clipping/headroom check.
 - Inventory completeness: expected track count x variants, missing/extra titles, duplicate names, unexpected formats.
 
-Record only compact results, not raw logs. Treat technical picks as fallback only; under the three-HIL fastlane they must be carried into the system's intensive render review and HIL-3 final-video decision rather than causing a separate planned HIL prompt.
+Record only compact results, not raw logs. Treat technical picks as fallback only; under the four-HIL fastlane they must be carried into the system's intensive render review and HIL-3 final-video decision rather than causing a separate planned HIL prompt.
 
 ## 4. Optional Gemini Supplemental A/B Listening
 
@@ -94,7 +94,7 @@ After organizing selected/pool candidates, update:
 
 - `reviews/audio-candidate-intake.md`: selected/pool map, inventory, technical QA summary, Gemini caveat, still-blocked actions.
 - `reviews/candidate-intake-checklist.md`: track coverage statuses and candidate IDs.
-- `reviews/current-state.md`: selected draft status and HIL-3/final-video-review carry-forward.
+- `reviews/current-state.md`: selected draft status and HIL-3/final-video-review + HIL-4 route carry-forward.
 - `manifest.json`: audio candidate state only.
 - `tracking/assets.csv`: candidate asset rows with actual local paths.
 - `tracking/provenance.csv`: `unknown_user_supplied` or non-private known facts only.
@@ -117,4 +117,4 @@ Allowed exit statuses:
 - `needs_regeneration_or_pool_swap_source_only`
 - `quarantine_rejected`
 
-Still blocked unless the relevant HIL/gate approves: render/export before HIL-2, upload/publish, scheduling, analytics, Content ID action, rights/platform-safety claims, and release readiness. Final video approval happens at HIL-3, not inside audio intake.
+Still blocked unless the relevant HIL/gate approves: render/export before HIL-2, upload/publish, scheduling, analytics, Content ID action, rights/platform-safety claims, and release readiness. Final video approval happens at HIL-3; route execution and release actions happen at HIL-4, not inside audio intake.

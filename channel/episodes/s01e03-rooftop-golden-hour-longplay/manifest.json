@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "s01e03-rooftop-golden-hour-longplay",
+  "channel": "Mellow Longplay",
+  "status": "manual_public_release_completed_pin_pending",
+  "gate": "release_gate_public_release_completed",
+  "created": "2026-05-29",
+  "updated": "2026-06-03",
+  "working_longplay": "Rooftop Golden Hour Longplay",
+  "format_target": {
+    "main_songs": 12,
+    "bonus_songs": 1,
+    "language": "English-first"
+  },
+  "source_state": {
+    "episode_brief": "source_approved_v1.0_source_only",
+    "lyrics": "source_approved_v1.0_source_only",
+    "suno_tracks": "source_approved_v1.0_source_only",
+    "prompt_pack": "source_approved_v1.0_source_only",
+    "metadata": "source_approved_v1.0_source_only",
+    "audio_candidates": "tracks_1_13_c01_user_approved_source_only_c02_pool_retained",
+    "visual_candidates": "vis_c01_user_selected_source_only_ep1_render05_video_standard_adopted",
+    "subtitles": "authoritative_stable_ts_aligned_cues_promoted",
+    "assembly_package": "local_sequence_chapter_plan_approved_for_render_02_candidate_47m22s16_source_only",
+    "render_export_plan": "render_02_full_local_qa_completed_mechanical_qa_passed_user_approved_for_private_upload",
+    "release_decision": "manual_public_release_completed_video_id_2P6fPs7NB0E_pin_pending_manual",
+    "youtube_api_video_upload_package": "video_uploaded_2P6fPs7NB0E_comment_posted_pin_pending",
+    "youtube_api_thumbnail_upload_package": "thumbnail_set_completed_maxres_1280x720"
+  },
+  "claim_boundary": "S01E03 YouTube API upload and local thumbnail/comment tasks are completed for video ID 2P6fPs7NB0E. The upload helper initially reported private, and a later API check observed public + processed. The top-level comment was posted on retry with ID Ugw3CXuFnYeKOp4TNi54AaABAg. Thumbnail upload completed with maxres 1280x720 via thumbnails.set. Remaining blocked actions are pinning (manual/browser-only path), captions, playlists, analytics, Content ID, account edits, credentials in repo, and rights/platform-safety claims.",
+  "pipeline": {
+    "schema_version": "1.0",
+    "profile": "mellow-longplay-hil-4",
+    "stages": [
+      {
+        "key": "hil-1",
+        "title": "Prompt packet",
+        "scope": "Draft and lock source prompts/metadata, no provider/media/release changes."
+      },
+      {
+        "key": "hil-2",
+        "title": "Preview + issue-led review",
+        "scope": "Intake real media, detect risky segments, review + patch before any upload gate."
+      },
+      {
+        "key": "hil-3",
+        "title": "Full render + thumbnail + comment prep",
+        "scope": "Create final candidate, thumbnail, and post-upload comment draft locally."
+      },
+      {
+        "key": "hil-4",
+        "title": "Upload + schedule",
+        "scope": "Run approved upload and post-upload operations, then schedule release."
+      }
+    ]
+  }
+}

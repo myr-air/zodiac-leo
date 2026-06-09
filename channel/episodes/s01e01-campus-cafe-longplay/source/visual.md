@@ -1,7 +1,7 @@
 # S01E01 Visual Source — After-School First Love Longplay
 
-Status: draft / source-only  
-Episode: `s01e01-campus-cafe-longplay`  
+Status: draft / source-only
+Episode: `s01e01-campus-cafe-longplay`
 Prepared date: 2026-05-18
 
 ## Source-Only Boundary
@@ -43,7 +43,7 @@ logos, brand names, readable text, real school names, real cafe names, celebrity
 | Focal subject | center/right 60 percent | do not cover face, notebook, coffee, or charm with text |
 | Mobile crop | keep critical text and charm away from outer 10 percent | title remains readable in 16:9 and thumbnail crop |
 
-Current `vis-c01` V6 proof direction supersedes the generic lower-subtitle/title-card layout for the selected `G.png` background: keep the full top-left header with cute readable fonts, use timed lyric subtitles in the middle-left area, slide the track title in/out from the divider area, use a soft bottom-right waveform/ribbon equalizer, and keep motion near-still with subtle local hair/leaf movement as recorded in `source/visual-overlay-motion-plan.md`.
+Current `vis-c01` visual direction uses the premium playlist layout: a high-contrast cream/parchment wash on the left third with elegant serif typography reading "First Love Longplay" and "Cozy Chill Vocals for Coffee Breaks", circular pastel icon badges at the bottom left (`CAFÉ`, `RETRO`, `PLAYLIST`), and timed lyric subtitles in the middle-left area. The right 60 percent displays the cozy after-school cafe scene with a sleeping kitten, warm afternoon light, a cup of tea, and a subtle gold vinyl charm, keeping motion near-still as recorded in `source/visual-overlay-motion-plan.md`.
 
 ## Review Need Before Any Visual Candidate
 

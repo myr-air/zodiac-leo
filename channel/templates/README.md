@@ -1,11 +1,11 @@
 # Mellow Longplay Templates
 
-Status: source-only reusable worksheets / three-HIL fastlane  
+Status: source-only reusable worksheets / four-HIL fastlane
 Updated: 2026-05-27
 
 This folder holds copyable worksheet templates for future `Mellow Longplay` episode planning and review. They are internal source documents only: they do not approve media generation, render/export, upload, publishing, API/browser/provider/account automation, credential handling, or rights/platform-safety claims.
 
-Default rule for the next videos: use the compact three-HIL fastlane worksheet first, cite approved channel defaults and `docs/episode-lessons.md` once, and re-review only changed episode deltas or newly opened local/external gates. Planned HIL happens at new episode command, generated-media-ready continue command, and final-video approval/upload-or-revision command.
+Default rule for the next videos: use the compact four-HIL fastlane worksheet first, cite approved channel defaults and `docs/episode-lessons.md` once, and re-review only changed episode deltas or newly opened local/external gates. Planned HIL happens at new episode command, generated-media-ready continue command, final-video approval/revision, and release-route command.
 
 Recommended copy destinations:
 
@@ -20,8 +20,8 @@ Use episode templates after the episode has a real source packet or, for analyti
 
 ## Templates
 
-- `episode-production-worksheet-template.md` — compact three-HIL next-video fastlane worksheet for approved-default reuse, episode-delta review, source package readiness, local render QA, and final-video decision.
-- `episode-zero-to-youtube-runbook-template.md` — three-HIL gated runbook from packet bootstrap to guarded YouTube handoff planning, including the S01E02 bootstrap command and publish blockers.
+- `episode-production-worksheet-template.md` — compact four-HIL next-video fastlane worksheet for approved-default reuse, episode-delta review, metadata chapters/comment drafting, source package readiness, local render QA, and final-video/route decisions.
+- `episode-zero-to-youtube-runbook-template.md` — four-HIL gated runbook from packet bootstrap to guarded YouTube handoff planning, including chapter/comment handoff notes, the S01E02 bootstrap command, and publish blockers.
 - `episode-analytics-loop-template.md` — manual, non-private 24h/7d/30d/season-end notes template for future separately approved releases.
 - `season-scoring-sheet-template.md` — 12-week / 12-episode / 3-season cycle source scoring sheet for roadmap rollup, milestone checks, throughput/revision control, content pattern analysis, and final source-system verdict.
 

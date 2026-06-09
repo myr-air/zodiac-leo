@@ -1,11 +1,11 @@
 # S01E02 Visual Review — Classroom Window Longplay
 
-Status: pass_source_only_visual_direction_night_mode_candidate_gate_open_ep1_style_locked_no_files  
+Status: pass_source_only_visual_direction_vis_c01_selected_ep1_render05_video_standard_revision_proof_created
 Updated: 2026-05-27
 
 ## Boundary
 
-This review covers source-only visual direction and the separately opened night-mode local visual candidate gate. The gate allows future user-supplied local still-image candidates to be reviewed after real files exist, but no candidate files, candidate IDs, accepted visual media, or proof outputs exist yet. It does not approve agent-side image generation/editing, reference-image input use, render/export, upload/publish, provider/API/browser/account action, credentials, or positive rights/platform claims.
+This review covers source-only visual direction, the selected local `vis-c01` still-image candidate recorded in the candidate-intake review, and the channel-level EP1 render-05 video overlay/motion standard. It does not approve agent-side image generation/editing, reference-image input use, upload/publish, provider/API/browser/account action, credentials, transcript certification, Content ID, or positive rights/platform claims.
 
 ## Inputs Checked
 
@@ -26,15 +26,16 @@ This review covers source-only visual direction and the separately opened night-
 | Signature motif use | pass_source | The gray backpack plus gold crescent charm are kept as source-only identity cues without exact face-copy requirements. |
 | Non-branded environment | pass_source | Real school names, logos, emblems, and readable text are excluded. |
 | Overlay/safe-zone planning | pass_source | Title, subtitle, equalizer, focal-subject, and mobile-crop zones are specified for later local proofing if a future gate opens. |
-| Night-mode visual gate | pass_for_manual_candidate_intake | User opened a local visual candidate gate for night-mode still-image candidates before audio intake. The source prompt preserves the classroom-window episode identity and safe-zone requirements. |
-| Candidate/proof state | open_no_files_no_ids | No visual candidate files, candidate IDs, accepted visual direction, or proof outputs are recorded yet. |
+| EP1 render-05 video shell standard | pass_source | User approved the EP1 render-05 visual language as the default for every video: refined Bézier headphone icon, tiny animated notes, warm particles/light, custom ribbon/dot equalizer, and near-still motion adapted per image. |
+| Night-mode visual gate | selected_source_only | User opened a local visual candidate gate and selected `vis-c01` as local evidence for the classroom-window night image. |
+| Candidate/proof state | render_02_visual_qa_exists_subtitle_sync_blocked | Render-02 proofs and full local QA output exist as ignored local evidence; earlier final-video approval is superseded by subtitle sync blocker while release remains blocked. |
 | Provider/account boundary | pass_source | The file does not approve agent-side image generation/editing, reference-image input use, proof output, or provider/account automation. |
 
 ## Verdict
 
 ```text
-Verdict: pass_source_only_visual_direction_classroom_window_night_mode_candidate_gate_open_ep1_style_locked_no_files
-Scope: source-only visual direction, mandatory channel house style for every channel image, soft lifelike recurring listener woman archetype with pose variation, gold crescent-vinyl totem, safe-zone planning, and night-mode local still-image candidate gate
-Next allowed action: user may manually create or supply local night-mode still-image candidates for later review; record candidate IDs only after real files exist
-Still blocked: agent-side image generation/editing, provider/browser/API/account automation, reference-image input use, exact face-copying, proof output acceptance, render/export, upload/publish, credentials in repo, Content ID, and rights/platform-safety claims
+Verdict: pass_source_only_visual_direction_vis_c01_selected_ep1_render05_video_standard_render_02_visual_qa_exists_subtitle_sync_blocked
+Scope: source-only visual direction, mandatory channel image style, EP1 render-05 video shell standard, selected local vis-c01 evidence, render-02 visual proof evidence, and full render-02 local QA evidence
+Next allowed action: issue-led subtitle repair and human-watch alignment review before any renewed final-video approval
+Still blocked: agent-side image generation/editing, provider/browser/API/account automation, reference-image input use, exact face-copying, upload/publish, credentials in repo, Content ID, and rights/platform-safety claims
 ```

@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Suno Mellow Copilot",
+  "version": "1.2.2",
+  "description": "Automate pasting lyrics, styles, and managing sequential track generation on Suno.com for Mellow Longplay.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://*.suno.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {},
+  "side_panel": {
+    "default_path": "popup.html"
+  }
+}

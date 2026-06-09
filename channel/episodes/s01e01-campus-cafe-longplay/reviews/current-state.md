@@ -1,9 +1,9 @@
 # S01E01 Current State — After-School First Love Longplay
 
-Status: OAuth/API private video upload completed / selected thumbnail set completed / public release blocked  
-Updated: 2026-05-25
+Status: manual public release completed / Season 1 Week 1 finalized
+Updated: 2026-05-29
 
-- Gate is now `gate_5_release_decision_api_execution`. The narrow OAuth/API execution gate has been used for one private YouTube Data API video upload and one selected-thumbnail follow-up; the source packet remains open/reviewable and public release/publish stays blocked.
+- Gate is now `release_gate_public_release_completed`. The manual public release has been completed successfully by the user, transitioning this episode from its private execution gate to a finalized public state on YouTube (video ID: `4pOLXPMQO5g`).
 - Previous 13-song source set is user-rejected/superseded.
 - Track 1 replacement opener `Margin Notes at Table Three` v0.6, Track 2 `Two Lids, One Tray` v0.9 macro-form revision, and Track 3 `Borrowed Eraser, Written Name` v1.0 are user-accepted/source synced.
 - Track 4 has been retitled from instrument-led `Piano Between Shelves` to story-led `Checkout Slip at Chapter Nine` v1.1 and passed lyric/Suno source review while preserving the only piano-forward arrangement lane.
@@ -36,6 +36,6 @@ Updated: 2026-05-25
 - 2026-05-25 API execution evidence: the selected local thumbnail `candidates/s01e01-campus-cafe-longplay/thumbnail/s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg` was user-approved and uploaded with guarded `thumbnails.set` for video ID `4pOLXPMQO5g` after authenticated channel verification matched `UC4qQwe3oiykEGhL_WyVFtMg`; the API response kind was `youtube#thumbnailSetResponse` and reported a `1280x720` maxres thumbnail variant. This records the completed thumbnail follow-up only and does not approve public release, schedule, visibility mutation, captions, analytics, Content ID, account edits, or rights/platform claims.
 - 2026-05-25 user-reported private-video title note: the current private YouTube title is `『 After-School First Love Longplay 』| Soft Cozy Vocals for Study & Coffee Breaks`. The user reported this was already corrected outside this repo; no metadata API mutation was performed by this note, and public release remains blocked.
 - A future provider/manual handoff still requires a separate explicit gate and current source/boundary check.
-- The narrow private YouTube Data API video upload plus selected-thumbnail follow-up execution has been used for S01E01; no provider/browser/Studio/public publish/schedule/caption/analytics/Content ID/account-edit/release action is approved, and no additional render/export or thumbnail variants beyond the approved render-05 local QA output and selected local thumbnail derivative are approved.
+- The S01E01 episode is now fully finalized and released publicly on YouTube (video ID: `4pOLXPMQO5g`). No further local renders, thumbnail variants, or API uploads are planned for S01E01.
 
-Verdict: `selected_audio_duration_accepted_gate_8_sequence_chapter_plan_passed_visual_v6_passed_gate_10_all_subtitle_human_watch_passed_gate_11_metadata_disclosure_passed_gate_12_internal_readiness_96_assembly_package_plan_passed_final_sidecars_promoted_track_1_cue_58_text_corrected_render_export_plan_passed_render_01_visual_fail_render_02_render_03_render_04_superseded_render_05_local_qa_user_approved_oauth_api_private_video_uploaded_selected_thumbnail_set_public_release_blocked`
+Verdict: `manual_public_release_completed_video_id_4pOLXPMQO5g`

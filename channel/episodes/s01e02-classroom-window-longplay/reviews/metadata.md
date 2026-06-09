@@ -1,11 +1,11 @@
 # S01E02 Metadata Review — Classroom Window Longplay
 
-Status: pass_metadata_disclosure_pack_source_only / local chapter draft QA-only / no upload approval  
+Status: pass_metadata_disclosure_pack_source_only / local chapter draft QA-only / no upload approval
 Updated: 2026-05-27
 
 ## Boundary
 
-This review covers source-only metadata and disclosure wording plus the render-01 local chapter timestamp draft. It does not approve final upload metadata, YouTube Studio/API/browser/account action, scheduling, public publish, analytics, Content ID, transcript certification, or rights/platform claims.
+This review covers source-only metadata and disclosure wording plus the local chapter timestamp draft. It does not approve final upload metadata, YouTube Studio/API/browser/account action, scheduling, public publish, analytics, Content ID, transcript certification, or rights/platform claims.
 
 ## Inputs Checked
 

@@ -1,7 +1,7 @@
 # Mellow Longplay Episode Lessons And Rules
 
-Status: active carry-forward summary  
-Updated: 2026-05-27
+Status: active carry-forward summary
+Updated: 2026-06-05
 
 ## Why This Exists
 
@@ -18,7 +18,7 @@ Keep the working memory lean. Detailed episode evidence stays in each episode pa
 
 ### Workflow / HIL
 
-- Too many micro-approvals slow the channel. Use three planned HIL checkpoints: new episode, generated-media-ready continue, final-video decision.
+- Too many micro-approvals slow the channel. Use four planned HIL checkpoints: new episode, generated-media-ready continue, final-video decision, and release-route decision.
 - Internal gates are still required for evidence, but they should not become user interruptions unless a blocker appears.
 - Final video approval and upload/release approval are separate. Do not merge them by implication.
 
@@ -42,12 +42,14 @@ Keep the working memory lean. Detailed episode evidence stays in each episode pa
 - Candidate IDs and provenance start only after real local files exist.
 - Technical fallback is allowed for overnight/local automation, but any weak evidence must be carried into final-video review rather than becoming a hidden claim.
 - Keep pool variants until final-video approval or an issue-led replacement decision.
+- Do not rely on blind mechanical fallback (e.g. choosing files without suffix) for audio selection. Run automatic silence detection (silencedetect filter) to identify Suno generation glitches (such as long silent gaps) before finalizing the selection.
 
 ### Subtitles
 
 - Mechanical cue checks prove structure, not transcript certification.
 - Keep cue checks: parseable files, no overlaps, no cues in planned gaps, readable line length, and current-source lyric basis.
 - If selected audio differs from source lyrics, record uncertainty; do not silently rewrite subtitles.
+- When swapping an audio candidate or changing track durations, always regenerate track-level subtitle alignments and verify that absolute cue timestamps across the entire longplay match the updated chapter timeline window. Run strict validation tests to check for cues outside track windows.
 
 ### Render And Review
 
@@ -59,6 +61,8 @@ Keep the working memory lean. Detailed episode evidence stays in each episode pa
 
 - API helpers must verify the authenticated channel ID before mutation and keep env/client/token paths outside repo.
 - Captions were not uploaded for S01E01 because subtitles were burned in; do not assume that for future episodes without a gate.
+- Start metadata source with chapter timestamps whenever a local/final timeline exists; chapters belong in the upload description package, not as an afterthought.
+- Draft one short English post-upload engagement comment during metadata work. API posting can use a separate `commentThreads.insert` gate after a video ID exists; pinning remains manual/account-side unless a future official API gate is recorded.
 - Never claim `copyright-free`, `royalty-free`, `Content ID-safe`, `monetization-safe`, `platform-safe`, `upload-ready`, or `publish-ready` except as blocked/caution language.
 
 ## Next Episode Rules
@@ -66,6 +70,6 @@ Keep the working memory lean. Detailed episode evidence stays in each episode pa
 1. Start with HIL-1, then create only source/prompt handoff materials.
 2. Stop for user/manual generation; do not create candidate IDs before real files exist.
 3. After HIL-2, run intake -> assembly -> subtitles -> render -> intensive QA as one local system slice.
-4. Stop at HIL-3 with one exact final-video candidate and a short issue list.
-5. If HIL-3 approves upload prep/execution, open a separate release/upload gate with current policy/account checks.
+4. Stop at HIL-3 with one exact final-video candidate and a short issue list, then advance to HIL-4 for the release route decision when ready.
+5. If HIL-3 approves final-video candidate, move to HIL-4 (release route). HIL-4 opens the separate release/upload gate with current policy/account checks, metadata chapters, and the English post-upload comment draft.
 6. If HIL-3 requests revisions, change only the named issue area.

@@ -2,10 +2,10 @@
   "schema_version": "1.0",
   "episode_id": "s01e02-classroom-window-longplay",
   "channel": "Mellow Longplay",
-  "status": "pre_final_audio_subtitle_visual_approved_final_video_approval_pending_release_blocked",
-  "gate": "gate_5_final_video_approval",
+  "status": "manual_public_release_completed",
+  "gate": "release_gate_public_release_completed",
   "created": "2026-05-26",
-  "updated": "2026-05-27",
+  "updated": "2026-05-29",
   "working_longplay": "Classroom Window Longplay",
   "format_target": {
     "main_songs": 12,
@@ -19,13 +19,39 @@
     "prompt_pack": "full_source_sequence_synced_source_only_not_provider_ready",
     "metadata": "metadata_disclosure_pack_pass_source_only_local_chapter_draft_qa_only",
     "audio_candidates": "tracks_1_13_c01_user_approved_source_only_c02_pool_retained",
-    "visual_candidates": "vis_c01_agy_pass_user_approved_source_only",
-    "subtitles": "current_render_subtitles_user_approved_532_cues_source_only",
+    "visual_candidates": "vis_c01_user_selected_source_only_ep1_render05_video_standard_adopted",
+    "subtitles": "authoritative_stable_ts_aligned_cues_promoted_and_burned_in",
     "assembly_package": "local_sequence_chapter_plan_approved_for_render_01_candidate_39m45s96_source_only",
-    "render_export_plan": "render_01_candidate_final_video_pending_user_final_video_approval",
-    "release_decision": "blocked_until_final_video_approval_and_separate_release_gate",
-    "youtube_api_video_upload_package": "blocked_not_created",
-    "youtube_api_thumbnail_upload_package": "blocked_not_created"
+    "render_export_plan": "render_02_full_local_qa_updated_with_authoritative_subtitles_waiting_for_approval",
+    "release_decision": "manual_public_release_completed_video_id_KZNjs0Z7-Pw",
+    "youtube_api_video_upload_package": "completed_private_video_id_KZNjs0Z7-Pw",
+    "youtube_api_thumbnail_upload_package": "completed_custom_thumbnail_v4_uploaded"
   },
-  "claim_boundary": "Local-only S01E02 render-01 has mechanical QA evidence, an agy read-only visual/layout PASS with limitations, and user-directed source-only approval for selected audio, current subtitles, and visual/readability. The only remaining local creative gate is user final-video approval for render-01 or a future revised render. Release decision, upload/API execution, public publish, transcript certification, Content ID, rights/platform-safety claims, provider automation, reference-image input approval, exact face-copy approval, and exact pose-copy approval remain blocked."
+  "claim_boundary": "Local-only S01E02 render-02 final video and custom thumbnail successfully uploaded to YouTube as private (video ID: KZNjs0Z7-Pw) using the YouTube Data API execution gates. Manual public release successfully completed on YouTube (video ID: KZNjs0Z7-Pw).",
+  "pipeline": {
+    "schema_version": "1.0",
+    "profile": "mellow-longplay-hil-4",
+    "stages": [
+      {
+        "key": "hil-1",
+        "title": "Prompt packet",
+        "scope": "Draft and lock source prompts/metadata, no provider/media/release changes."
+      },
+      {
+        "key": "hil-2",
+        "title": "Preview + issue-led review",
+        "scope": "Intake real media, detect risky segments, review + patch before any upload gate."
+      },
+      {
+        "key": "hil-3",
+        "title": "Full render + thumbnail + comment prep",
+        "scope": "Create final candidate, thumbnail, and post-upload comment draft locally."
+      },
+      {
+        "key": "hil-4",
+        "title": "Upload + schedule",
+        "scope": "Run approved upload and post-upload operations, then schedule release."
+      }
+    ]
+  }
 }

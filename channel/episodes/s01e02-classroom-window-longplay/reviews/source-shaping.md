@@ -1,6 +1,6 @@
 # S01E02 Source Shaping Review — Classroom Window Longplay
 
-Status: Gate 1 source shaping complete source-only / pre-final approvals recorded / final video approval pending / release blocked  
+Status: Gate 1 source shaping complete source-only / render-02 subtitle-sync revision required / release blocked
 Updated: 2026-05-27
 
 ## Boundary
@@ -33,9 +33,9 @@ This review covers source-only episode shaping plus the recorded local candidate
 | Mandatory channel image style | Soft watercolor semi-realistic anime playlist-cover illustration / lo-fi watercolor anime poster style, soft lifelike recurring listener woman archetype, pose/gesture variation, and gold crescent-vinyl totem locked as channel source guidance for every channel image. | pass_source_only_style_lock |
 | Night-mode visual candidate gate | Separate local still-image candidate gate opened before audio intake using the channel style lock; `vis-c01` is now selected source-only. | vis_c01_selected_source_only |
 | Local candidate intake | User-supplied audio and visual candidates organized for local render-01; selected c01 audio set and vis-c01 image recorded source-only. | local_candidates_recorded_source_only |
-| Draft subtitles/render | Current render subtitle lane, selected audio, and visual/readability are user-approved source-only after agy visual/layout PASS; final video approval remains pending. | pre_final_approved_final_video_pending |
+| Draft subtitles/render | Selected audio and visual/readability remain approved source-only, and render-02 local QA exists; current subtitle lane is blocked by user-reported sung-lyric timing mismatch. | render_02_subtitle_sync_revision_required |
 | Metadata/disclosure | Source-only metadata/disclosure pack passed; local render-01 chapter timestamp draft now exists for QA only. | pass_source_local_chapter_draft |
-| Subtitle planning | Source-only subtitle text policy passed; current render subtitle lane is user-approved source-only for final-video candidate review. | current_render_subtitles_user_approved_source_only |
+| Subtitle planning | Source-only subtitle text policy passed; draft sidecars are mechanical evidence only until repaired timing receives human-watch sung-lyric alignment evidence. | subtitle_sync_blocker_revision_required |
 
 ## Working Track Arc
 
@@ -65,10 +65,10 @@ This review covers source-only episode shaping plus the recorded local candidate
 ## Verdict
 
 ```text
-Verdict: pre_final_audio_subtitle_visual_approved_final_video_approval_pending_release_blocked
-Scope: episode spine, sub-theme matrix, Tracks 1-13 source-approved lyrics/fields, synced prompt pack, approved visual direction, mandatory channel style lock, selected local candidates, local chapter draft, draft mechanical subtitles, and render-01 mechanical QA
+Verdict: render_02_subtitle_sync_revision_required_release_blocked
+Scope: episode spine, sub-theme matrix, Tracks 1-13 source-approved lyrics/fields, synced prompt pack, approved visual direction, mandatory channel style lock, selected local candidates, local chapter draft, draft mechanical subtitles, render-01 mechanical QA, render-02 full local QA, and current subtitle-sync blocker
 Evidence: source/songs.md, source/suno-manual-fields.md, source/prompt-pack.md, reviews/prompt-pack.md, source/visual.md, reviews/visual.md, reviews/visual-candidate-intake.md, source/metadata.md, reviews/metadata.md, subtitles/README.md, reviews/subtitles.md, reviews/source-approval-workflow.md, reviews/lyric-antipatterns.md, tracking/*.csv
-Critical blockers: final video approval is pending; release remains blocked
-Next allowed action: final video approval decision for render-01 or a narrow issue-led local revision; do not open provider/upload gates by implication
-Still blocked: provider/account automation, reference-image input use, exact face/pose copying, additional render without a new gate, final video approval, upload/API, public publish, credentials in repo, Content ID, transcript certification, and rights/platform-safety claims
+Critical blockers: subtitle sung-lyric alignment repair/pass and release remain blocked
+Next allowed action: issue-led subtitle repair and human-watch alignment review; do not open provider/upload gates by implication
+Still blocked: provider/account automation, reference-image input use, exact face/pose copying, additional render without a new gate, upload/API, public publish, credentials in repo, Content ID, transcript certification, and rights/platform-safety claims
 ```

@@ -1,11 +1,11 @@
 # S01E02-CLASSROOM-WINDOW-LONGPLAY Visual Source — Classroom Window Longplay
 
-Status: source_direction_approved_night_mode_candidate_gate_open_ep1_style_locked_source_only_no_files  
+Status: source_direction_approved_night_mode_vis_c01_selected_ep1_render05_video_standard_revision_requested_source_only
 Updated: 2026-05-27
 
 ## Source-Only Boundary
 
-This file is a still-frame and layout plan with a separately opened night-mode visual candidate gate. The gate allows future user-supplied local still-image candidates to be reviewed after real files exist, but no candidate file, candidate ID, accepted visual direction, proof output, or media fact exists yet. It does not approve agent-side image generation/editing, reference-image input use, screenshots as evidence, render/export, upload, publishing, provider/account/API/browser automation, credentials, or positive rights/platform claims.
+This file is a still-frame, layout, and local video-shell source plan. A user-supplied local night-mode still has been selected as `vis-c01` for local QA evidence in `reviews/visual-candidate-intake.md`; this source file does not create new provider media facts. It does not approve agent-side image generation/editing, reference-image input use, upload, publishing, provider/account/API/browser automation, credentials, transcript certification, Content ID, or positive rights/platform claims.
 
 ## Visual Promise
 
@@ -21,16 +21,24 @@ A late-afternoon college classroom by a tall window: warm sun rectangles across 
 - Vary posture and gesture from prior visuals; for EP2 night mode, avoid simply repeating the EP1 hand-on-cheek cafe writing pose. Prefer a classroom-specific action such as turning a page, reaching toward the backpack charm, adjusting a pencil case, looking toward the dark window, or resting one hand near the notebook while the other holds a highlighter.
 - Optional second peer presence may appear only as a partial shoulder, hand, or adjacent seat cue; the scene should still work if it becomes object-led.
 
-## Carry-Forward Layout Default
+## Approved Carry-Forward Video Overlay / Motion Standard
 
-If a later local proof/layout gate is opened, start from the approved S01E01 overlay grammar by citation:
+User approval recorded on 2026-05-27: use the approved S01E01 render-05 visual language as the canonical standard for S01E02 and every future video, then adapt it to the current image.
+
+Start every local proof/render shell from `channel/signature-visual-system.md` and the S01E01 render-05 source record:
 
 - compact top-left information block;
+- refined Bézier headphone icon, not the simpler render-01 mark;
+- tiny low-opacity warm animated music notes near the icon;
 - lyric subtitle lane in the middle-left or lower-left clear area;
-- subdued bottom-right waveform/equalizer;
+- subdued bottom-right V6-style ribbon/dot equalizer with smoothed audio energy, not a plain `showwaves` line;
+- warm particles, soft light/glow/reflection/shadow layers, and near-still parallax;
+- global-time motion continuity across tracks;
 - no heavy text boxes, no loud UI cards, no brand-like badges.
 
-This is a source-only carry-forward default, not proof approval for this episode.
+For S01E02 specifically, use the premium playlist layout: a high-contrast cream/parchment wash on the left third with elegant serif typography reading "Classroom Window" and "Cozy Chill Vocals for Study & Focus", circular pastel icon badges at the bottom left (`STUDY`, `CLASSIC`, `PLAYLIST`), and timed lyric subtitles in the middle-left area. The right 60 percent displays the cozy classroom scene with a sleeping kitten on a student desk next to a book and a coffee cup by a warm sunny window, with amber desk-lamp dust and slow random-looking x/y particles as recorded in the motion standard.
+
+This is a source-only design/revision standard. Actual render/export outputs still require the narrow local render gate and QA records.
 
 ## Draft Still-Frame Prompt
 
