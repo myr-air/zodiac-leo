@@ -24,9 +24,9 @@ Public publish execution is complete (video observed as public). Policy/account 
 ## 2. Current Verdict
 
 ```text
-Verdict: manual_public_release_completed_pending_governance
-Scope: private API route and follow-up visibility update executed for video upload + thumbnail; local QC-complete subtitle/track alignment remains the creative gate source
-Current assets: final MP4 render-01 (`199e1e7d4eb56a`) + source `.srt/.vtt` + public YouTube asset `ShWN-wK-ZNY` (thumbnail uploaded) + top-level comment `UgyS7hWhDBqla58T9214AaABAg` posted (latest)
-Pending for final rollout governance: policy/account checks and explicit user confirmation of rollback/visibility controls
-Still blocked: schedule/account-side actions, captions, playlists, analytics, Content ID, account edits, credentials/account-state storage in repo, and rights/platform-safety claims
+Verdict: private_video_upload_completed
+Scope: private API route executed for re-rendered video upload + thumbnail; local QC-complete subtitle/track alignment remains the creative gate source
+Current assets: final MP4 render-01 (`f15526d2736616`) + source `.srt/.vtt` + private YouTube asset `QR9h3p4C3Vg` (thumbnail uploaded)
+Pending for final rollout governance: video visibility update to public (releasing the video), soft Thai captions manual upload (due to API quota exceeded), and posting top-level comment (once public)
+Still blocked: schedule/account-side actions, playlists, analytics, Content ID, account edits, credentials/account-state storage in repo, and rights/platform-safety claims
 ```

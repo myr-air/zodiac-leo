@@ -25,7 +25,7 @@ Do not describe this episode, render, audio, visual, sidecars, or channel as `co
 
 | Item | Source path / value | Notes |
 |---|---|---|
-| Video candidate | `candidates/s01e05-apartment-window-longplay/render/local-render-01/video/s01e05-apartment-window-longplay.local-render-01-draft-subtitled-199e1e7d4eb56a-1080p24-qa.mp4` | User-approved final-video candidate. |
+| Video candidate | `candidates/s01e05-apartment-window-longplay/render/local-render-01/video/s01e05-apartment-window-longplay.local-render-01-draft-subtitled-f15526d2736616-1080p24-qa.mp4` | User-approved final-video candidate. |
 | Metadata source | `channel/episodes/s01e05-apartment-window-longplay/source/metadata.md` | Gate 1 title, description, chapters, tags, and disclosure source. |
 | API helper | `scripts/youtube_api_video_upload.py` | Generic guarded dry-run default helper. |
 | API resource JSON | `channel/episodes/s01e05-apartment-window-longplay/source/youtube-video-resource.json` | Request body for `videos.insert`; validates `privacyStatus: private` and no captions/thumbnail fields. |
@@ -58,7 +58,7 @@ Ensure you test the configuration using dry-run first:
 ```bash
 bash scripts/dev-python.sh scripts/youtube_api_video_upload.py \
   --episode-id s01e05-apartment-window-longplay \
-  --video candidates/s01e05-apartment-window-longplay/render/local-render-01/video/s01e05-apartment-window-longplay.local-render-01-draft-subtitled-199e1e7d4eb56a-1080p24-qa.mp4 \
+  --video candidates/s01e05-apartment-window-longplay/render/local-render-01/video/s01e05-apartment-window-longplay.local-render-01-draft-subtitled-f15526d2736616-1080p24-qa.mp4 \
   --resource-json channel/episodes/s01e05-apartment-window-longplay/source/youtube-video-resource.json \
   --metadata-source channel/episodes/s01e05-apartment-window-longplay/source/youtube-api-video-upload-package.md \
   --expected-channel-id UC4qQwe3oiykEGhL_WyVFtMg
@@ -79,7 +79,7 @@ Blocked operations for this helper: public publish, schedule, visibility update,
 
 ```text
 Verdict: youtube_video_private_upload_completed
-Result: private upload completed via YouTube Data API videos.insert on 2026-06-11
-Video ID: ShWN-wK-ZNY
+Result: private upload completed via YouTube Data API videos.insert on 2026-06-12
+Video ID: QR9h3p4C3Vg
 Channel: UC4qQwe3oiykEGhL_WyVFtMg
 ```

@@ -2,10 +2,10 @@
   "schema_version": "1.0",
   "episode_id": "s01e05-apartment-window-longplay",
   "channel": "Mellow Longplay",
-  "status": "manual_public_release_completed",
-  "gate": "release_gate_public_release_completed",
+  "status": "private_video_uploaded",
+  "gate": "release_gate_upload_completed",
   "created": "2026-06-09",
-  "updated": "2026-06-11",
+  "updated": "2026-06-12",
   "working_longplay": "Apartment Window Longplay",
   "format_target": {
     "main_songs": 12,
@@ -23,11 +23,11 @@
     "subtitles": "promoted_and_translated_source_only",
     "assembly_package": "not_started_source_only",
     "render_export_plan": "blocked_until_explicit_gate",
-    "release_decision": "manual_public_release_completed_video_id_ShWN-wK-ZNY",
-    "youtube_api_video_upload_package": "private_video_uploaded_ShWN-wK-ZNY_private",
-    "youtube_api_thumbnail_upload_package": "thumbnail_set_completed_ShWN-wK-ZNY"
+    "release_decision": "private_video_uploaded_video_id_QR9h3p4C3Vg",
+    "youtube_api_video_upload_package": "private_video_uploaded_QR9h3p4C3Vg_private",
+    "youtube_api_thumbnail_upload_package": "thumbnail_set_completed_QR9h3p4C3Vg"
   },
-  "claim_boundary": "Private upload, thumbnail, and public release are complete; video ID ShWN-wK-ZNY is public. A top-level comment was posted via YouTube Data API. Comment pin is pending manual Studio action.",
+  "claim_boundary": "Re-rendered video with corrected subtitles uploaded as private (video ID: QR9h3p4C3Vg). Custom layered thumbnail uploaded. Soft English captions uploaded and active. Soft Thai captions failed due to API quota limits (can be uploaded manually via Studio). Comment posting is pending public/unlisted release because comments are disabled on private videos.",
   "pipeline": {
     "schema_version": "1.0",
     "profile": "mellow-longplay-hil-4",

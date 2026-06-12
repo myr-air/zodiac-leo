@@ -21,7 +21,7 @@
     "defaultLanguage": "en"
   },
   "status": {
-    "privacyStatus": "public",
+    "privacyStatus": "private",
     "selfDeclaredMadeForKids": false,
     "containsSyntheticMedia": true,
     "license": "youtube"
