@@ -1,0 +1,15 @@
+date,episode_id,asset_type,asset_id,path,status,notes
+2026-06-09,s01e05-apartment-window-longplay,source_doc,manifest,channel/episodes/s01e05-apartment-window-longplay/manifest.json,active,Episode truth file scaffold
+2026-06-09,s01e05-apartment-window-longplay,review_doc,current_state,channel/episodes/s01e05-apartment-window-longplay/reviews/current-state.md,active,Current source-only state scaffold
+2026-06-09,s01e05-apartment-window-longplay,review_doc,audio_candidate_intake,channel/episodes/s01e05-apartment-window-longplay/reviews/audio-candidate-intake.md,active,26 raw audio files organized as c01 selected and c02 pool
+2026-06-09,s01e05-apartment-window-longplay,review_doc,visual_candidate_intake,channel/episodes/s01e05-apartment-window-longplay/reviews/visual-candidate-intake.md,active,vis-c01 selected and recorded
+2026-06-09,s01e05-apartment-window-longplay,review_doc,candidate_intake_checklist,channel/episodes/s01e05-apartment-window-longplay/reviews/candidate-intake-checklist.md,active,"Intake checks: 26 raw wav, 13 selected, 13 pool, 1 visual"
+2026-06-09,s01e05-apartment-window-longplay,review_doc,preview_risk_review,channel/episodes/s01e05-apartment-window-longplay/reviews/preview-risk-review.md,active,Cozy interior background and track-wise risk checks
+2026-06-09,s01e05-apartment-window-longplay,media,audio_raw,/Users/xiivth/workspaces/zodiac/leo/candidates/s01e05-apartment-window-longplay/audio,active,26 user-supplied raw WAV files
+2026-06-09,s01e05-apartment-window-longplay,media,audio_selected,/Users/xiivth/workspaces/zodiac/leo/candidates/s01e05-apartment-window-longplay/audio/selected,active,13 selected c01 WAV files
+2026-06-09,s01e05-apartment-window-longplay,media,audio_pool,/Users/xiivth/workspaces/zodiac/leo/candidates/s01e05-apartment-window-longplay/audio/pool,active,13 pool c02 WAV files
+2026-06-09,s01e05-apartment-window-longplay,media,visual_raw,"/Users/xiivth/workspaces/zodiac/leo/candidates/s01e05-apartment-window-longplay/visual/ChatGPT Image Jun 9, 2026, 02_33_09 PM.png",active,User-supplied raw background visual
+2026-06-09,s01e05-apartment-window-longplay,media,visual_selected,/Users/xiivth/workspaces/zodiac/leo/candidates/s01e05-apartment-window-longplay/visual/selected/vis-c01--apartment-window-playlist-cover.png,active,vis-c01 selected cover image
+2026-06-11,s01e05-apartment-window-longplay,youtube_video,video_id_ShWN-wK-ZNY,https://www.youtube.com/watch?v=ShWN-wK-ZNY,active,Uploaded private video via youtube.videos.insert
+2026-06-11,s01e05-apartment-window-longplay,youtube_thumbnail,thumbnail_uploaded,https://www.youtube.com/watch?v=ShWN-wK-ZNY,active,Uploaded premium thumbnail via youtube.thumbnails.set
+2026-06-11,s01e05-apartment-window-longplay,youtube_video_comment,comment_thread_id_UgyS7hWhDBqla58T9214AaABAg,https://www.youtube.com/watch?v=ShWN-wK-ZNY,active,Top-level comment posted via youtube.commentThreads.insert on video ShWN-wK-ZNY. Comment thread ID UgyS7hWhDBqla58T9214AaABAg.

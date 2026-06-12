@@ -66,7 +66,7 @@ class YoutubeApiCommentTest(unittest.TestCase):
             )
 
     def test_comment_env_file_loads_video_id_comment_file_and_rejects_repo_path(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             temp_root = Path(tmpdir)
             comment_file = temp_root / "comment.txt"
             env_file = temp_root / "comment.env"
@@ -89,7 +89,7 @@ class YoutubeApiCommentTest(unittest.TestCase):
             comment_helper.load_comment_env_file(PROJECT_ROOT / ".env")
 
     def test_comment_env_file_expands_environment_variables_in_paths(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             temp_root = Path(tmpdir)
             env_file = temp_root / "comment.env"
             os.environ["MELLOW_TEST_SECRET_ROOT"] = str(temp_root)

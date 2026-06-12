@@ -745,14 +745,20 @@ function getClipIdFromRow(row) {
   if (allUuids.length > 0) {
     // Use the FIRST image UUID that appears (image src, not data-src, to be more specific)
     const imgSrcMatch = rowHtml.match(/src="[^"]*\/image_([a-f0-9-]{36})[^"]*"/i);
-    if (imgSrcMatch) return imgSrcMatch[1];
-    return allUuids[0][1];
+    const baseId = imgSrcMatch ? imgSrcMatch[1] : allUuids[0][1];
+
+    // Make the ID unique by appending the occurrence index of this baseId in the current list of rows
+    const allRows = Array.from(document.querySelectorAll(getClipRowSelector()));
+    const matchingRows = allRows.filter(r => r.innerHTML.includes(baseId));
+    const occurrenceIndex = matchingRows.indexOf(row);
+    return occurrenceIndex >= 0 ? `${baseId}_occ:${occurrenceIndex}` : baseId;
   }
 
-  // 5. Last resort: use DOM position index (always unique, never collides)
+  // 5. Last resort: use DOM position index combined with page number (always unique, never collides)
+  const pageNum = getCurrentPageNumber() || 1;
   const allRows = Array.from(document.querySelectorAll(getClipRowSelector()));
   const idx = allRows.indexOf(row);
-  return idx >= 0 ? 'idx:' + idx : null;
+  return idx >= 0 ? `p${pageNum}_idx:${idx}` : null;
 }
 
 function autoScanAndLoadAllClips(callback) {

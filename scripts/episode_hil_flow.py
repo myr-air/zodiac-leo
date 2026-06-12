@@ -150,9 +150,17 @@ STAGES = {
         custom_checks=("subtitle-alignment-gate",),
         checks=(
             EvidenceSpec(
-                "authoritative subtitles",
+                "authoritative English subtitles",
                 "episode",
-                ("subtitles/*.srt", "subtitles/*.vtt"),
+                ("subtitles/*.en.srt", "subtitles/*.en.vtt"),
+                "any",
+                True,
+                1,
+            ),
+            EvidenceSpec(
+                "authoritative Thai subtitles",
+                "episode",
+                ("subtitles/*.th.srt", "subtitles/*.th.vtt"),
                 "any",
                 True,
                 1,
@@ -370,6 +378,7 @@ _WATCHLIST_WORDS = {
     "dark",
     "day",
     "night",
+    "window",
 }
 _REQUIRED_TRACK_FIELDS = (
     "song_title",
@@ -400,6 +409,9 @@ _LYRICS_CONTEXT_KEYWORDS = (
     "arrangement map",
     "duration target",
     "suno direction",
+    "song structure",
+    "instrumentation",
+    "vocal style",
 )
 _STYLE_CONTROL_GROUPS = {
     "tempo": (r"\b(?:approx\.?\s*)?\d{2,3}\s*bpm\b",),
@@ -478,10 +490,16 @@ def _parse_suno_track_file(path: Path) -> dict[str, str]:
 def _extract_sections(lyrics: str) -> dict[str, list[str]]:
     sections: dict[str, list[str]] = {"unknown": []}
     current = "unknown"
+    header_counts: dict[str, int] = {}
     for line in lyrics.splitlines():
         section_match = _SECTION_HEADER_RE.match(line.strip())
         if section_match:
-            current = _normalise_title(section_match.group(1))
+            raw_title = _normalise_title(section_match.group(1))
+            header_counts[raw_title] = header_counts.get(raw_title, 0) + 1
+            if header_counts[raw_title] > 1:
+                current = f"{raw_title}_{header_counts[raw_title]}"
+            else:
+                current = raw_title
             sections.setdefault(current, [])
             continue
         sections.setdefault(current, [])
@@ -514,10 +532,11 @@ def _detect_prompt_control_issues(path: Path, lyrics: str, styles: str, exclude_
     if not context_sections:
         issues.append(f"{path.name} Lyrics missing pre-song context/control section for Suno custom mode.")
     elif first_section in context_sections and len(named_sections) > 1:
-        context_words = sum(
-            len(_tokenise(" ".join(sections.get(section, []))))
-            for section in context_sections
-        )
+        context_words = 0
+        for section in context_sections:
+            context_words += len(_tokenise(" ".join(sections.get(section, []))))
+            # Count words in the section name itself (headers like "Song Structure: ...")
+            context_words += len(_tokenise(section))
         if context_words < 18:
             issues.append(f"{path.name} Lyrics context/control section is too thin for Suno steering.")
 
@@ -525,12 +544,28 @@ def _detect_prompt_control_issues(path: Path, lyrics: str, styles: str, exclude_
         (
             index
             for index, section in enumerate(named_sections)
-            if any(keyword in section for keyword in _STANDARD_SONG_SECTION_KEYWORDS)
+            if any(section.startswith(keyword) for keyword in _STANDARD_SONG_SECTION_KEYWORDS)
         ),
         None,
     )
     if first_standard_index == 0:
         issues.append(f"{path.name} Lyrics start directly with song section; add context before the first sung section.")
+
+    # Ensure there is at least one bracketed section/line for an instrumental break or solo
+    # (e.g. [Instrumental Break], [Solo - Rhodes], [Cello solo]) to hit 3+ minutes
+    has_instrumental_or_solo = False
+    for line in lyrics.splitlines():
+        line_stripped = line.strip()
+        if line_stripped.startswith("[") and line_stripped.endswith("]"):
+            content = line_stripped[1:-1].lower()
+            if any(word in content for word in ("instrumental", "solo", "break")):
+                has_instrumental_or_solo = True
+                break
+    if not has_instrumental_or_solo:
+        issues.append(
+            f"{path.name} Lyrics missing explicit bracketed instrumental break/solo section "
+            "(e.g., [Instrumental Break] or [Solo]) to ensure song duration reaches 3+ minutes."
+        )
 
     styles_lower = styles.lower()
     missing_style_groups = [
@@ -689,8 +724,19 @@ def _build_hil1_track_analyses(episode_root: Path, episode_id: str) -> tuple[lis
         if not re.search(r"(?i)\b(?:approx\.?\s*)?\d{2,3}\s*bpm\b", styles):
             issues.append(f"{path.name} Styles missing approximate BPM.")
 
-        if len([line for line in lyrics.splitlines() if line.strip() and not line.strip().startswith("[")]) < 18:
-            issues.append(f"{path.name} lyrics look short for a full track source.")
+        episode_num = _extract_episode_number(episode_id)
+        min_lyric_lines = 18
+        if episode_num:
+            season, ep = episode_num
+            if season > 1 or (season == 1 and ep >= 5):
+                min_lyric_lines = 24
+
+        non_section_lines = len([line for line in lyrics.splitlines() if line.strip() and not line.strip().startswith("[")])
+        if non_section_lines < min_lyric_lines:
+            issues.append(
+                f"{path.name} lyrics look short for a full track source "
+                f"(found {non_section_lines} lines, expected at least {min_lyric_lines})."
+            )
 
         exclude_styles = str(parsed.get("exclude_styles", ""))
         issues.extend(_detect_prompt_control_issues(path, lyrics, styles, exclude_styles))
@@ -721,7 +767,12 @@ def _build_hil1_track_analyses(episode_root: Path, episode_id: str) -> tuple[lis
                     break
             previous_titles.append(title_norm)
 
-        tokens = Counter(_tokenise(lyrics))
+        sung_lyrics = "\n".join(
+            line
+            for line in lyrics.splitlines()
+            if not (line.strip().startswith("[") and line.strip().endswith("]"))
+        )
+        tokens = Counter(_tokenise(sung_lyrics))
         if tokens:
             recent_window = Counter()
             for prior in previous_word_windows:
@@ -765,6 +816,74 @@ def _make_quality_check(name: str, passed: bool, expected: tuple[str, ...], foun
     }
 
 
+def _run_hil1_core_package_checks(episode_root: Path) -> list[str]:
+    issues: list[str] = []
+
+    # 1. Check metadata.md
+    metadata_path = episode_root / "source" / "metadata.md"
+    if metadata_path.exists():
+        metadata_text = metadata_path.read_text(encoding="utf-8")
+
+        # Check Title format: 『 Title 』| Subtitle
+        title_matches = re.findall(r"『[^』]+』\s*\|\s*[^\n]+", metadata_text)
+        if not title_matches:
+            issues.append("metadata.md: Missing or incorrectly formatted listener-facing title. Title must follow '『 Title 』| Subtitle' format.")
+
+        # Check AI Disclosure
+        if "disclosure" not in metadata_text.lower() or not any(word in metadata_text.lower() for word in ("ai-assisted", "ai assistance", "synthesized", "generation")):
+            issues.append("metadata.md: Missing AI-assisted workflow disclosure statement in description.")
+
+        # Check forbidden platform claims in the description block itself
+        description_match = re.search(
+            r"### Description draft\s*\n+```[a-z]*\n(.*?)\n```",
+            metadata_text,
+            re.DOTALL | re.IGNORECASE
+        )
+        if description_match:
+            description_draft = description_match.group(1).lower()
+            for claim in ("copyright-free", "royalty-free", "monetization-safe", "content id-safe", "upload-ready", "publish-ready"):
+                if claim in description_draft:
+                    issues.append(f"metadata.md: Forbidden platform safety claim found in description: '{claim}'.")
+        else:
+            for claim in ("copyright-free", "royalty-free", "monetization-safe", "content id-safe", "upload-ready", "publish-ready"):
+                if f"claim {claim}" in metadata_text.lower() or f"is {claim}" in metadata_text.lower():
+                    issues.append(f"metadata.md: Forbidden platform safety claim found: '{claim}'.")
+    else:
+        issues.append("metadata.md: File is missing.")
+
+    # 2. Check visual.md
+    visual_path = episode_root / "source" / "visual.md"
+    if visual_path.exists():
+        visual_text = visual_path.read_text(encoding="utf-8")
+
+        # Check art direction keywords (watercolor, semi-realistic, anime, 16:9, lifelike)
+        missing_art_keys = []
+        for key in ("watercolor", "semi-realistic", "anime", "16:9", "lifelike"):
+            if key not in visual_text.lower():
+                missing_art_keys.append(key)
+        if missing_art_keys:
+            issues.append(f"visual.md: Missing signature art direction keywords: {', '.join(missing_art_keys)}.")
+
+        # Check safe-zone mapping guidelines
+        if "safe-zone" not in visual_text.lower() and "safe zone" not in visual_text.lower():
+            issues.append("visual.md: Missing Safe-Zone mapping instructions for overlays.")
+    else:
+        issues.append("visual.md: File is missing.")
+
+    # 3. Check comment.txt
+    comment_path = episode_root / "source" / "comment.txt"
+    if comment_path.exists():
+        comment_text = comment_path.read_text(encoding="utf-8")
+        if len(comment_text.strip()) < 20:
+            issues.append("comment.txt: Pinned comment draft is too short or empty.")
+        elif "?" not in comment_text:
+            issues.append("comment.txt: Pinned comment must include an engaging community question (?) to foster listener interaction.")
+    else:
+        issues.append("comment.txt: File is missing.")
+
+    return issues
+
+
 def _run_hil1_checks(episode_root: Path, episode_id: str) -> list[dict[str, Any]]:
     analyses, issues = _build_hil1_track_analyses(episode_root, episode_id)
     field_issues = [
@@ -783,6 +902,8 @@ def _run_hil1_checks(episode_root: Path, episode_id: str) -> list[dict[str, Any]
     structure_issues = [item for item in issues if "title" in item or "structure" in item or "repeats" in item or "pattern" in item]
     overlap_issues = [item for item in issues if "repeats watchlist" in item or "reuses" in item or "too close" in item]
     anti_issues = [item for item in issues if "payoff" in item or "Negative-construction" in item or "Maybe" in item or "Nothing" in item]
+
+    package_issues = _run_hil1_core_package_checks(episode_root)
 
     return [
         _make_quality_check(
@@ -843,6 +964,21 @@ def _run_hil1_checks(episode_root: Path, episode_id: str) -> list[dict[str, Any]
             ("no title-level overlap",),
             len([item for item in issues if "earlier episode" in item or "too close to previous" in item]),
             [item for item in issues if "earlier episode" in item or "too close to previous" in item],
+            required=True,
+        ),
+        _make_quality_check(
+            "cozy channel package gate",
+            not package_issues,
+            (
+                "title format validation",
+                "ai workflow disclosure",
+                "no platform safety claims",
+                "signature art direction keys",
+                "safe zone overlays",
+                "community pinned comment with engagement question",
+            ),
+            len(package_issues),
+            package_issues,
             required=True,
         ),
     ]

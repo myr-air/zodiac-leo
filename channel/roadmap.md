@@ -36,14 +36,14 @@ Roadmap titles are planning hooks only until a fresh episode packet and tracking
 | 3 | Rooftop Golden Hour Longplay | rooftop, warm sky, late-afternoon breeze | wholesome teenage first-love confidence, golden-hour anticipation, mood-led looking ahead |
 | 4 | Bookstore Afternoon Longplay | quiet bookstore corner, paper texture | teenage love, private thoughts, shy hope, calm reflection |
 
-## Season 2: City Windows
+## Season 2: City Journeys (Coming of Age + First Love + Travel)
 
-| Week | Working longplay | Hook | Lyric lane |
+| Week | Working longplay | Hook | Lyric lane / Secondary Theme |
 |---:|---|---|---|
-| 5 | Apartment Window Longplay | small apartment, city light | independence, missing someone without melodrama |
-| 6 | Crosswalk Evening Longplay | after-work street motion | self-possession, almost-love, city confidence |
-| 7 | Corner Store Lights Longplay | quiet corner store, late snack run | ordinary romance, small jokes, everyday details |
-| 8 | Last Train Home Longplay | train window reflections | distance, texting, open-ended feelings |
+| 5 | Apartment Window Longplay | small apartment, city light | First independence, moving to a new city, quiet longing of first love left in hometown |
+| 6 | Crosswalk Evening Longplay | after-work street motion, evening commute | The evening commute, walking through busy streets, city exploration, excitement of first meetings |
+| 7 | Corner Store Lights Longplay | quiet corner store, late snack run, highway rest stop | Late-night road trips, highway rest stops, snack runs at midnight, sharing quiet jokes |
+| 8 | Last Train Home Longplay | train window reflections, long rail journey | Long train journey back, reflecting on growing up, bittersweetness of leaving first love behind |
 
 ## Season 3: Seaside Mornings
 

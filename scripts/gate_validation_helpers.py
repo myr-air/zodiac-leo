@@ -93,13 +93,20 @@ def normalize_text_simple(text: str) -> str:
     return re.sub(r"[^\w]+", "", text.lower())
 
 def run_subtitle_alignment_check(episode_id: str, workspace_root: Path = Path(".")) -> list[str]:
-    """Check if the absolute timings of the promoted SRT file match the selected audio timeline and track alignment JSONs."""
+    """Check if the absolute timings of the promoted SRT files match the selected audio timeline and track alignment JSONs."""
     errors = []
-    srt_path = workspace_root / "channel" / "episodes" / episode_id / "subtitles" / f"{episode_id}.en.srt"
-    if not srt_path.is_file():
-        # Subtitles are required for HIL-3 and HIL-4, but might not be present in HIL-2 yet.
-        # So we warn or return empty if not found, but we will return error if called during build validation
+    subtitles_dir = workspace_root / "channel" / "episodes" / episode_id / "subtitles"
+    if not subtitles_dir.is_dir():
         return []
+
+    srt_files = list(subtitles_dir.glob(f"{episode_id}.*.srt"))
+    if not srt_files:
+        # Fallback to check default en.srt
+        default_srt = subtitles_dir / f"{episode_id}.en.srt"
+        if default_srt.is_file():
+            srt_files = [default_srt]
+        else:
+            return []
 
     # Get selected audio files to calculate expected timeline
     selected_dir = workspace_root / "candidates" / episode_id / "audio" / "selected"
@@ -138,103 +145,107 @@ def run_subtitle_alignment_check(episode_id: str, workspace_root: Path = Path(".
         })
         current_time = end + gap_seconds
 
-    # Parse SRT file
-    try:
-        srt_cues = parse_srt_cues(srt_path)
-    except Exception as exc:
-        return [f"Failed to parse promoted SRT {srt_path.name}: {exc}"]
-
-    if not srt_cues:
-        return [f"Promoted SRT file is empty: {srt_path.name}"]
-
-    # Verify each track's cues align with local alignment json
-    # Group SRT cues by timeline slot window
-    srt_cues_by_track = {t["track_number"]: [] for t in timeline}
-    for cue in srt_cues:
-        assigned = False
-        for t in timeline:
-            # Check if cue overlaps with this track's window.
-            # Allow a tiny margin of 0.05 seconds for edge cases.
-            if cue["start"] >= t["start"] - 0.05 and cue["end"] <= t["end"] + 0.05:
-                srt_cues_by_track[t["track_number"]].append(cue)
-                assigned = True
-                break
-        if not assigned:
-            errors.append(
-                f"SRT cue leaks outside any track window or lands in a gap: "
-                f"{cue['start']:.3f}s -> {cue['end']:.3f}s: {cue['text']!r}"
-            )
-
-    # Now verify each track's assigned cues against the original alignment JSON
-    align_pack_dir = workspace_root / "candidates" / episode_id / "subtitles" / "proofs" / "longplay" / "align-pack"
-    for t in timeline:
-        track_num = t["track_number"]
-        # Find alignment JSON
-        json_pattern = f"track-{track_num:02d}/*-track-{track_num:02d}-subtitle-alignment-draft-01.json"
-        json_matches = list(align_pack_dir.glob(json_pattern))
-        if not json_matches:
-            # Fallback to no-draft-01 suffix
-            json_pattern_alt = f"track-{track_num:02d}/*-track-{track_num:02d}-subtitle-alignment.json"
-            json_matches = list(align_pack_dir.glob(json_pattern_alt))
-
-        if not json_matches:
-            # If no JSON exists, we can't verify individual cues but we know SRT cues exist
-            continue
-
-        json_path = json_matches[0]
+    for srt_path in srt_files:
+        # Parse SRT file
         try:
-            json_data = json.loads(json_path.read_text(encoding="utf-8"))
+            srt_cues = parse_srt_cues(srt_path)
         except Exception as exc:
-            errors.append(f"Failed to read local alignment JSON {json_path.name}: {exc}")
+            errors.append(f"Failed to parse promoted SRT {srt_path.name}: {exc}")
             continue
 
-        # Get display cues or cues
-        local_cues = json_data.get("display_cues")
-        if local_cues is None:
-            local_cues = json_data.get("raw_cues")
-        if local_cues is None:
-            local_cues = json_data.get("cues") or []
-
-        track_srt_cues = srt_cues_by_track[track_num]
-
-        if len(track_srt_cues) != len(local_cues):
-            errors.append(
-                f"Track {track_num:02d} subtitle cue count mismatch: "
-                f"promoted SRT has {len(track_srt_cues)} cues, but local alignment JSON has {len(local_cues)} cues. "
-                f"Subtitle timings are out-of-sync! Did you swap a song candidate without re-promoting sidecars?"
-            )
+        if not srt_cues:
+            errors.append(f"Promoted SRT file is empty: {srt_path.name}")
             continue
 
-        # Compare each cue's time shifted to absolute timeline
-        for idx, (srt_cue, local_cue) in enumerate(zip(track_srt_cues, local_cues)):
-            expected_start = t["start"] + float(local_cue["start"])
-            expected_end = t["start"] + float(local_cue["end"])
-
-            # Verify time matches (with 0.05s tolerance)
-            start_diff = abs(srt_cue["start"] - expected_start)
-            end_diff = abs(srt_cue["end"] - expected_end)
-
-            if start_diff > 0.05 or end_diff > 0.05:
-                errors.append(
-                    f"Track {track_num:02d} subtitle timing misalignment at cue {idx+1}: "
-                    f"promoted SRT cue has {srt_cue['start']:.3f}s -> {srt_cue['end']:.3f}s, "
-                    f"but expected {expected_start:.3f}s -> {expected_end:.3f}s (based on track start {t['start']:.3f}s and local cue). "
-                    f"Text: {srt_cue['text']!r}. Subtitle timings are out-of-sync! Did you swap a song candidate without re-promoting sidecars?"
-                )
-                break # Show only first mismatch per track to keep output clean
-
-            # Optional: Verify text matches roughly
-            srt_norm = normalize_text_simple(srt_cue["text"])
-            local_norm = normalize_text_simple(local_cue["text"])
-            if srt_norm != local_norm:
-                # Text mismatch (allow if minor, but warn/error if completely different)
-                # We can do a sequence matcher or just check if one is subset
-                if len(srt_norm) > 0 and len(local_norm) > 0:
-                    errors.append(
-                        f"Track {track_num:02d} subtitle text mismatch at cue {idx+1}: "
-                        f"promoted SRT has {srt_cue['text']!r}, local JSON has {local_cue['text']!r}"
-                    )
+        # Group SRT cues by timeline slot window
+        srt_cues_by_track = {t["track_number"]: [] for t in timeline}
+        for cue in srt_cues:
+            assigned = False
+            for t in timeline:
+                # Check if cue overlaps with this track's window.
+                # Allow a tiny margin of 0.05 seconds for edge cases.
+                if cue["start"] >= t["start"] - 0.05 and cue["end"] <= t["end"] + 0.05:
+                    srt_cues_by_track[t["track_number"]].append(cue)
+                    assigned = True
                     break
+            if not assigned:
+                errors.append(
+                    f"[{srt_path.name}] SRT cue leaks outside any track window or lands in a gap: "
+                    f"{cue['start']:.3f}s -> {cue['end']:.3f}s: {cue['text']!r}"
+                )
+
+        # Verify each track's assigned cues against the original alignment JSON
+        align_pack_dir = workspace_root / "candidates" / episode_id / "subtitles" / "proofs" / "longplay" / "align-pack"
+        for t in timeline:
+            track_num = t["track_number"]
+            track_srt_cues = srt_cues_by_track[track_num]
+
+            is_english = srt_path.name.endswith(".en.srt")
+
+            # Find alignment JSON
+            json_pattern = f"track-{track_num:02d}/*-track-{track_num:02d}-subtitle-alignment-draft-01.json"
+            json_matches = list(align_pack_dir.glob(json_pattern))
+            if not json_matches:
+                # Fallback to no-draft-01 suffix
+                json_pattern_alt = f"track-{track_num:02d}/*-track-{track_num:02d}-subtitle-alignment.json"
+                json_matches = list(align_pack_dir.glob(json_pattern_alt))
+
+            if not json_matches:
+                # If no JSON exists, we can't verify individual cues but we know SRT cues exist
+                continue
+
+            json_path = json_matches[0]
+            try:
+                json_data = json.loads(json_path.read_text(encoding="utf-8"))
+            except Exception as exc:
+                errors.append(f"Failed to read local alignment JSON {json_path.name}: {exc}")
+                continue
+
+            # Get display cues or cues
+            local_cues = json_data.get("display_cues")
+            if local_cues is None:
+                local_cues = json_data.get("raw_cues")
+            if local_cues is None:
+                local_cues = json_data.get("cues") or []
+
+            if is_english and len(track_srt_cues) != len(local_cues):
+                errors.append(
+                    f"[{srt_path.name}] Track {track_num:02d} subtitle cue count mismatch: "
+                    f"promoted SRT has {len(track_srt_cues)} cues, but local alignment JSON has {len(local_cues)} cues. "
+                    f"Subtitle timings are out-of-sync! Did you swap a song candidate without re-promoting sidecars?"
+                )
+                continue
+
+            # Compare each cue's time shifted to absolute timeline
+            for idx, (srt_cue, local_cue) in enumerate(zip(track_srt_cues, local_cues)):
+                expected_start = t["start"] + float(local_cue["start"])
+                expected_end = t["start"] + float(local_cue["end"])
+
+                # Verify time matches (with 0.05s tolerance)
+                start_diff = abs(srt_cue["start"] - expected_start)
+                end_diff = abs(srt_cue["end"] - expected_end)
+
+                if start_diff > 0.05 or end_diff > 0.05:
+                    errors.append(
+                        f"[{srt_path.name}] Track {track_num:02d} subtitle timing misalignment at cue {idx+1}: "
+                        f"promoted SRT cue has {srt_cue['start']:.3f}s -> {srt_cue['end']:.3f}s, "
+                        f"but expected {expected_start:.3f}s -> {expected_end:.3f}s (based on track start {t['start']:.3f}s and local cue). "
+                        f"Text: {srt_cue['text']!r}. Subtitle timings are out-of-sync! Did you swap a song candidate without re-promoting sidecars?"
+                    )
+                    break # Show only first mismatch per track to keep output clean
+
+                # Optional: Verify text matches roughly (only for English)
+                if is_english:
+                    srt_norm = normalize_text_simple(srt_cue["text"])
+                    local_norm = normalize_text_simple(local_cue["text"])
+                    if srt_norm != local_norm:
+                        # Text mismatch (allow if minor, but warn/error if completely different)
+                        if len(srt_norm) > 0 and len(local_norm) > 0:
+                            errors.append(
+                                f"[{srt_path.name}] Track {track_num:02d} subtitle text mismatch at cue {idx+1}: "
+                                f"promoted SRT has {srt_cue['text']!r}, local JSON has {local_cue['text']!r}"
+                            )
+                            break
 
     return errors
 

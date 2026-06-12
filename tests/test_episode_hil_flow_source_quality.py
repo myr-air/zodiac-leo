@@ -47,6 +47,8 @@ Full-length three-minute song, do not end before 3:00.
 The receipt folds once beside the register
 Your thumb keeps the corner from flying
 
+[Instrumental Break]
+
 [Chorus]
 Stay near the counter when the rain lets go
 We can read the weather without trying

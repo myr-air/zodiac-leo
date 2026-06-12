@@ -92,7 +92,7 @@ class ThumbnailWorkflowTest(unittest.TestCase):
             )
 
     def test_thumbnail_env_file_loads_video_id_and_rejects_repo_path(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode" if os.path.exists("/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") else None) as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             temp_root = Path(tmpdir)
             env_file = temp_root / "thumbnail.env"
             env_file.write_text(
@@ -112,7 +112,7 @@ class ThumbnailWorkflowTest(unittest.TestCase):
             thumbnail_upload.load_thumbnail_env_file(PROJECT_ROOT / ".env")
 
     def test_thumbnail_env_file_expands_environment_variables_in_paths(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode" if os.path.exists("/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") else None) as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             temp_root = Path(tmpdir)
             env_file = temp_root / "thumbnail.env"
             os.environ["MELLOW_TEST_SECRET_ROOT"] = str(temp_root)

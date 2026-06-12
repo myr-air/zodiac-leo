@@ -82,7 +82,7 @@ async def handle_connection(websocket, path=None):
                 print(f"[Local OS Server] Client requested Track #{track_id} for Episode '{episode_id}'")
 
                 # Reload tracks database in case it was recompiled while running
-                tracks = load_tracks()
+                tracks = load_tracks(rebuild=True)
 
                 if episode_id in tracks and track_id in tracks[episode_id]["tracks"]:
                     track_data = tracks[episode_id]["tracks"][track_id]
@@ -131,7 +131,7 @@ async def handle_connection(websocket, path=None):
     except Exception as e:
         print(f"[Local OS Server] Connection error or client disconnected: {e}")
 
-async def poll_and_move_downloaded_wav(song_title, episode_id, max_wait_sec=25):
+async def poll_and_move_downloaded_wav(song_title, episode_id, max_wait_sec=90):
     """
     Scans ~/Downloads for WAV files matching the song title.
     Polls every second for up to max_wait_sec WITHOUT early-return so
@@ -160,10 +160,18 @@ async def poll_and_move_downloaded_wav(song_title, episode_id, max_wait_sec=25):
                 if not os.path.exists(src_path):
                     continue
 
-                # Skip if destination already exists (avoid overwrite)
+                # If destination already exists, generate a unique filename with a counter suffix (e.g. "Title (1).wav")
                 if os.path.exists(dst_path):
-                    print(f"[Local OS Server] Skipping '{filename}' — already exists in candidates.")
-                    continue
+                    base, ext = os.path.splitext(filename)
+                    counter = 1
+                    while True:
+                        new_filename = f"{base} ({counter}){ext}"
+                        new_dst_path = os.path.join(candidates_dir, new_filename)
+                        if not os.path.exists(new_dst_path):
+                            dst_path = new_dst_path
+                            filename = new_filename
+                            break
+                        counter += 1
 
                 try:
                     # Wait for file size to stabilise (browser still writing)

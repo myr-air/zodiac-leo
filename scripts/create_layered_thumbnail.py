@@ -353,6 +353,43 @@ def create_s01e04(base_resized: Image.Image, text_canvas: ImageDraw.ImageDraw, l
         draw_badge(draw_badges, center_x=340, center_y=badge_y, radius=32, bg_color=gold, border_color=border_color, label="PLAYLIST", icon_type="playlist")
 
 
+def create_s01e05(base_resized: Image.Image, text_canvas: ImageDraw.ImageDraw, layered: Image.Image, fill_color: tuple[int, int, int, int] | int | None = None) -> None:
+    """Specifies colors and elements for Apartment Window."""
+    if fill_color is None:
+        fill_color = (44, 48, 68, 255)
+    font_title = get_default_font(SERIF_FONT_PATH, 62)
+    font_header = get_default_font(SERIF_ITALIC_FONT_PATH, 25)
+
+    # Brand name "mellow longplay"
+    text_canvas.text((60, 60), "mellow longplay", fill=fill_color, font=font_header)
+
+    # Title
+    title_text = "APARTMENT\nWINDOW"
+    title_y = 185
+    draw_spaced_text(
+        text_canvas,
+        (60, title_y),
+        title_text,
+        font_title,
+        fill=fill_color,
+        letter_spacing=10,
+        line_spacing=34,
+        stroke_width=3,
+        stroke_fill=fill_color
+    )
+
+    # Badges
+    if isinstance(fill_color, tuple):
+        paper_blue = (212, 220, 235, 240)
+        sage = (212, 224, 208, 240)
+        gold = (253, 235, 205, 240)
+        border_color = (122, 136, 150, 160)
+        draw_badges = ImageDraw.Draw(layered, "RGBA")
+        badge_y = 540
+        draw_badge(draw_badges, center_x=100, center_y=badge_y, radius=32, bg_color=paper_blue, border_color=border_color, label="RAINY", icon_type="classic")
+        draw_badge(draw_badges, center_x=220, center_y=badge_y, radius=32, bg_color=sage, border_color=border_color, label="COZY", icon_type="classic")
+        draw_badge(draw_badges, center_x=340, center_y=badge_y, radius=32, bg_color=gold, border_color=border_color, label="PLAYLIST", icon_type="playlist")
+
 
 def process_episode(episode_id: str, background_path: Path, output_path: Path) -> None:
     """Executes the high-precision premium thumbnail generation process."""
@@ -450,6 +487,26 @@ def process_episode(episode_id: str, background_path: Path, output_path: Path) -
         create_s01e04(base_resized, draw_text, layered)
         layered.alpha_composite(text_canvas)
 
+    elif episode_id == "s01e05":
+        glow_color = (255, 253, 248, 230)
+        shadow_color = (24, 28, 48, 35)
+        glow_blur = 18
+        caption_text = "Cozy Chill Vocals for Evening Study & Solitary Calm"
+        tr_text = "S01E05"
+
+        # Build layered base using text masks
+        glow_mask = Image.new("L", (WIDTH, HEIGHT), 0)
+        glow_mask_draw = ImageDraw.Draw(glow_mask)
+        create_s01e05(base_resized, glow_mask_draw, base_resized, fill_color=255)
+
+        blurred_glow_mask = glow_mask.filter(ImageFilter.GaussianBlur(glow_blur))
+        glow_layer = Image.new("RGBA", (WIDTH, HEIGHT), glow_color)
+        layered = Image.composite(glow_layer, base_resized, blurred_glow_mask)
+
+        # Draw final clean text on top of the glow halo
+        create_s01e05(base_resized, draw_text, layered)
+        layered.alpha_composite(text_canvas)
+
     else:
         print(f"Error: Reusable configuration for episode '{episode_id}' is not implemented yet.")
         sys.exit(1)
@@ -494,7 +551,7 @@ def process_episode(episode_id: str, background_path: Path, output_path: Path) -
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Create Mellow Longplay layered premium thumbnails.")
-    parser.add_argument("--episode", required=True, choices=["s01e01", "s01e02", "s01e03", "s01e04"], help="Episode identifier (s01e01, s01e02, s01e03, or s01e04)")
+    parser.add_argument("--episode", required=True, choices=["s01e01", "s01e02", "s01e03", "s01e04", "s01e05"], help="Episode identifier (s01e01, s01e02, s01e03, s01e04, or s01e05)")
     parser.add_argument("--background", required=True, type=Path, help="Path to input visual background illustration")
     parser.add_argument("--output", required=True, type=Path, help="Path to write the final 1280x720 PNG thumbnail")
 

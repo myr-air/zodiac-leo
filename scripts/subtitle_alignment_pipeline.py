@@ -260,6 +260,35 @@ def is_stage_direction(line: str) -> bool:
     return stripped.startswith("[") and stripped.endswith("]")
 
 
+def is_parenthetical_stage_direction(line: str) -> bool:
+    """Return True for parenthetical non-lyric annotations such as (Humming low),
+    (Vocalise), (Humming), (ฮัมเพลง...) that should never appear as subtitle cues.
+
+    These are distinct from bracketed [Section] markers: they use round parentheses
+    and describe a non-sung vocal action rather than a lyric line.  Auto-excluding
+    them here prevents stable-ts from producing a spurious long low-confidence cue
+    at the start of an instrumental intro/break.
+    """
+    stripped = line.strip()
+    if not (stripped.startswith("(") and stripped.endswith(")")):
+        return False
+    inner = stripped[1:-1].strip().lower()
+    # Accept parentheticals whose inner text contains known non-lyric vocal labels
+    NON_LYRIC_PATTERNS = (
+        "humming",
+        "hum ",
+        "vocalise",
+        "vocalize",
+        "la la",
+        "mmm",
+        "ooh",
+        "doo doo",
+        "ฮัม",  # Thai humming label
+    )
+    return any(inner.startswith(p) or p in inner for p in NON_LYRIC_PATTERNS)
+
+
+
 def parse_track_from_song_source(source_path: Path | str, track_number: int) -> dict[str, Any]:
     source = project_path(source_path).read_text(encoding="utf-8")
     pattern = re.compile(
@@ -346,6 +375,12 @@ def build_track_text(track: dict[str, Any], excluded_sections: Iterable[str] = (
         for index, line in enumerate(section.get("lines", [])):
             cleaned = clean_subtitle_text(line)
             if not cleaned:
+                continue
+            # Auto-exclude parenthetical non-lyric stage directions such as
+            # "(Humming low)" or "(Vocalise)" before they reach stable-ts.
+            # These produce spurious long low-confidence cues over instrumental
+            # breaks and must never appear as subtitle cues.
+            if is_parenthetical_stage_direction(cleaned):
                 continue
             lines.append(cleaned)
             meta.append(
@@ -821,6 +856,15 @@ def cue_review_summary(cues: list[Cue], *, min_gap: float) -> dict[str, Any]:
     max_line_chars = 0
     for cue in cues:
         max_line_chars = max(max_line_chars, *(len(line) for line in cue.text.split("\n")))
+    # Duration outlier detection: flag cues whose display duration is implausibly long.
+    # Threshold is 15 s per cue; anything beyond that is almost certainly a stable-ts
+    # drift over an instrumental break rather than a genuine sung lyric.
+    DURATION_OUTLIER_THRESHOLD_S = 15.0
+    duration_outliers = [
+        {"cue_index": index + 1, "text": cue.text[:60], "duration_s": round(cue.end - cue.start, 3)}
+        for index, cue in enumerate(cues)
+        if (cue.end - cue.start) > DURATION_OUTLIER_THRESHOLD_S
+    ]
     return {
         "cue_count": len(cues),
         "min_gap_seconds": min(gaps) if gaps else None,
@@ -828,6 +872,8 @@ def cue_review_summary(cues: list[Cue], *, min_gap: float) -> dict[str, Any]:
         "max_line_chars": max_line_chars,
         "low_confidence_cues": [index + 1 for index, cue in enumerate(cues) if cue.confidence is not None and cue.confidence < 0.55],
         "stretched_word_corrections": [index + 1 for index, cue in enumerate(cues) if cue.source and "stretched-word-correction" in cue.source],
+        "duration_outliers": duration_outliers,
+        "duration_outlier_threshold_s": DURATION_OUTLIER_THRESHOLD_S,
     }
 
 
@@ -1003,6 +1049,24 @@ def align_song_source_track(args: argparse.Namespace) -> Path:
     )
     assert_no_overlap(display_cues, min_gap=args.min_gap)
     onset_evidence = estimate_onset_deltas(audio_path, raw_cues) if args.onset_evidence else []
+
+    # Duration outlier check: warn if any display cue exceeds 15 s.
+    # This usually means stable-ts drifted over an instrumental break;
+    # re-run with --exclude-sections for that section or check track audio.
+    _DURATION_WARN_S = 15.0
+    _duration_outliers = [c for c in display_cues if (c.end - c.start) > _DURATION_WARN_S]
+    if _duration_outliers:
+        for _c in _duration_outliers:
+            draft_notes.append(
+                f"DURATION OUTLIER: cue '{_c.text[:60]}' is {_c.end - _c.start:.1f}s "
+                f"(threshold {_DURATION_WARN_S}s). Check for instrumental break drift; "
+                "consider --exclude-sections or manual timing correction."
+            )
+            print(
+                f"DURATION OUTLIER [{slot}] {_c.start:.2f}-{_c.end:.2f} ({_c.end - _c.start:.1f}s): "
+                f"'{_c.text[:60]}'",
+                file=sys.stderr,
+            )
 
     prefix = args.prefix or f"s01e01-track-{args.track_number:02d}-subtitle-alignment-draft-01"
     json_path = out_dir / f"{prefix}.json"

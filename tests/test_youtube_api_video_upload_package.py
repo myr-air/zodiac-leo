@@ -64,7 +64,7 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
             uploader.validate_execute_preconditions(execute=True, expected_channel_id="")
 
     def test_load_external_env_file_for_execution_inputs(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             temp_root = Path(tmpdir)
             env_file = temp_root / "mellow-youtube-channel.env"
             env_file.write_text(
@@ -81,7 +81,7 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
         self.assertEqual(values["token_cache"].name, "youtube-token.json")
 
     def test_load_external_env_file_expands_environment_variables_in_paths(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             temp_root = Path(tmpdir)
             env_file = temp_root / "mellow-youtube-channel.env"
             os.environ["MELLOW_TEST_SECRET_ROOT"] = str(temp_root)
@@ -102,7 +102,7 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
             uploader.load_env_file(PROJECT_ROOT / ".env")
 
     def test_cli_values_override_env_file_values(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             temp_root = Path(tmpdir)
             env_file = temp_root / "mellow-youtube-channel.env"
             env_file.write_text(
@@ -130,7 +130,7 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
             uploader.assert_expected_channel(actual_channel_id="UCACTUAL", expected_channel_id="UCEXPECTED")
 
     def test_video_resource_json_must_remain_private(self):
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             resource_json = Path(tmpdir) / "resource.json"
             resource_json.write_text(
                 '{"snippet":{"title":"Bad"},"status":{"privacyStatus":"public"}}',
@@ -146,7 +146,7 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
             def from_authorized_user_file(path):
                 raise ValueError("invalid cached token")
 
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             token_cache = Path(tmpdir) / "youtube-token.json"
             token_cache.write_text("", encoding="utf-8")
 
@@ -161,7 +161,7 @@ class YoutubeApiVideoUploadTest(unittest.TestCase):
             def has_scopes(self, scopes):
                 return set(scopes).issubset({"https://www.googleapis.com/auth/youtube.upload"})
 
-        with tempfile.TemporaryDirectory(dir="/var/folders/_5/tcpqynxn5y34vhqy2v98xmxh0000gn/T/opencode") as tmpdir:
+        with tempfile.TemporaryDirectory(dir=None) as tmpdir:
             token_cache = Path(tmpdir) / "youtube-token.json"
             token_cache.write_text("{}", encoding="utf-8")
 

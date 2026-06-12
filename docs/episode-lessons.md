@@ -15,6 +15,7 @@ Keep the working memory lean. Detailed episode evidence stays in each episode pa
 | S01E02 `Classroom Window Longplay` | Render-02 final video, private YouTube API upload, selected thumbnail set, and manual public release are recorded in the episode packet. | Transcript certification, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
 | S01E03 `Rooftop Golden Hour Longplay` | Render-02 local QA, private upload, thumbnail set, public visibility observation, and top-level comment are recorded; comment pin remains manual. | Comment pinning, captions, analytics, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
 | S01E04 `Bookstore Afternoon Longplay` | Track 3 replacement, promoted subtitles, local render-01, private upload, thumbnail set, public visibility observation, and top-level comment are recorded. | Policy/account follow-ups, comment pinning, captions, analytics, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
+| S01E05 `Apartment Window Longplay` | Source packet locked, 13 c01 tracks selected, subtitles generated, local render-01, private upload, thumbnail set, public visibility observation, top-level comment, and post-release subtitle timing fix are recorded. | Comment pinning, captions, playlists, analytics, Content ID, monetization, platform safety, and rights safety are not proven by repo evidence. |
 
 ## Lessons Learned
 
@@ -52,6 +53,10 @@ Keep the working memory lean. Detailed episode evidence stays in each episode pa
 - Keep cue checks: parseable files, no overlaps, no cues in planned gaps, readable line length, and current-source lyric basis.
 - If selected audio differs from source lyrics, record uncertainty; do not silently rewrite subtitles.
 - When swapping an audio candidate or changing track durations, always regenerate track-level subtitle alignments and verify that absolute cue timestamps across the entire longplay match the updated chapter timeline window. Run strict validation tests to check for cues outside track windows.
+- **Parenthetical stage directions must never appear as subtitle cues.** Lines like `(Humming low)` or `(ฮัมเพลงเสียงต่ำ)` describe vocal actions, not lyrics. The `build_track_text` function in `subtitle_alignment_pipeline.py` now auto-excludes them via `is_parenthetical_stage_direction()`. If a parenthetical slips through, remove it from all four subtitle files (`.en.srt`, `.en.vtt`, `.th.srt`, `.th.vtt`) and renumber.
+- **Cue duration outliers signal instrumental break drift.** Any cue displaying for more than ~15 s almost certainly means stable-ts mapped a lyric over an instrumental break rather than the actual vocal window. The `align-song-source-track` command now prints a `DURATION OUTLIER` warning to stderr and records it in `notes`. Treat this as a Gate 3 blocker: re-run with `--exclude-sections <Section>` for the affected section, or fix the JSON manually using corrected stable-ts alignment.
+- **Confidence below 0.3 is a strong timing-drift signal.** When `review_summary.low_confidence_cues` includes an Outro/Outro-adjacent cue with confidence ≤ 0.3, inspect the vocal_start/vocal_end range. A 40+ second vocal_end almost always indicates drift over a fade-out or fade-to-instrumental section.
+- **Post-release subtitle fix procedure:** source SRT/VTT can be corrected at any time; burn-in re-render and re-upload are a separate decision gate. Record the fix in `tracking/status.csv`, `reviews/current-state.md`, and update `KNOWLEDGE.md` episode summary.
 
 ### Render And Review
 

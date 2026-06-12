@@ -24,6 +24,7 @@ S01E01: Manual public release completed (video ID: 4pOLXPMQO5g).
 S01E02: Manual public release completed (video ID: KZNjs0Z7-Pw).
 S01E03: Manual public release completed with comment pin pending (video ID: 2P6fPs7NB0E).
 S01E04: Manual public release completed with policy/account follow-ups still gated (video ID: OMjvEEAIFSU).
+S01E05: Manual public release completed; post-release subtitle timing fix applied (video ID: ShWN-wK-ZNY).
 ```
 
 Default future-episode workflow stays on the same four-HIL fastlane:
@@ -116,7 +117,7 @@ provider/platform risk.
 | 0 | Scaffold source packet | run bootstrap dry-run/create command, create source/review/tracking placeholders | HIL-1 opens | `manifest.json`, `reviews/current-state.md`, source placeholders, tracking CSVs, `verify-standalone` pass | source packet exists; no media/external facts |
 | 1 | Source prompt packet | draft episode spine, track plan, lyrics, Suno fields, song prompts, visual prompts, metadata draft; run source reviews; sync docs | no extra planned HIL unless blocker | `source/songs.md`, `source/suno-manual-fields.md`, `source/suno-tracks/*.md`, visual prompt/source reviews, tracking rows | source-only prompt/media-generation handoff; stop for HIL-2 |
 | 2 | Candidate intake | organize supplied local files, map selected/pool, run local technical QA, record compact provenance | HIL-2 opens | real file paths under `candidates/`, asset/provenance/status rows, intake review, no invented IDs | selected media evidence |
-| 3 | Assembly package | create sequence/chapter plan, metadata/disclosure draft, upload-description chapter timestamps, post-upload English comment draft, subtitle sidecars/plan, blocked-claim scan | no extra planned HIL unless blocker | assembly review, metadata source with chapters/comment draft, chapter plan, subtitle plan/sidecars, parser checks | source-only assembly package |
+| 3 | Assembly package | create sequence/chapter plan, metadata/disclosure draft, upload-description chapter timestamps, post-upload English comment draft, subtitle sidecars/plan, blocked-claim scan | no extra planned HIL unless blocker | assembly review, metadata source with chapters/comment draft, chapter plan, subtitle plan/sidecars, parser checks; **subtitle timing quality gate: (a) zero parenthetical stage-direction cues, (b) zero duration outliers > 15 s, (c) zero low-confidence cues (conf < 0.3) adjacent to Outro/instrumental break sections** | source-only assembly package |
 | 4 | Local render/export + intensive QA | run local render/export helper; mechanical QA; sidecar checks; visual/layout review; issue-led rerender loop if allowed | no extra planned HIL unless blocker | local asset path, codec/duration/resolution checks, sidecar/cue checks, snapshots/review notes, tracking sync | final-video candidate |
 | 5 | Final video approval | package final-video candidate and residual risks | HIL-3 decides approve or revise | exact MP4 path, render QA, review summaries, known limits, no blocked claims | release/upload package gate (HIL-4) or issue-led revision |
 | 6 | Release/upload package or exact execution, if selected | prepare source-only manual/API package; execute only exact approved private/public action under gate; optional post-upload `commentThreads.insert` can be a separate exact gate after a video ID exists | HIL-4 exact action approval | final asset list, metadata/disclosure review with chapters and English comment draft, current official policy/account check, external env/no-store hygiene, channel verification if API | platform evidence or hold |
@@ -214,6 +215,8 @@ boundary.
 | “Can we store OAuth/token/env in repo?” | No. Use external env path; credentials/tokens stay outside repo. |
 | “Generated media is done, so candidate facts can be invented?” | No. HIL-2 needs real local files or an exact provider gate before candidate IDs/provenance. |
 | “Final video approval means upload-ready/platform-safe?” | No. It only opens a possible release/upload gate; rights/platform claims stay blocked. |
+| “Parenthetical lines like (Humming low) are lyrics and should be subtitled?” | No. They are stage directions that describe vocal actions. `build_track_text` now auto-excludes them; any that slip through must be removed from all four subtitle files before Gate 3 passes. |
+| “A Gate 3 mechanical pass (parseable, no overlap) means subtitle timing is correct?” | No. Mechanical checks only verify structure. Timing quality requires: (a) no duration outliers > 15 s, (b) no low-confidence cues (< 0.3) adjacent to instrumental break sections, and (c) human watch-pass confirmation. |
 
 ## 9. Source Paths To Trust
 

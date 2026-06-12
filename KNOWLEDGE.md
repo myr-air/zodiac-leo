@@ -12,21 +12,25 @@ There is no separate older active system. EP1-EP4 are episode packets inside the
 ## Current Episode State
 
 - `s01e01-campus-cafe-longplay` — Season 1 Week 1 `After-School First Love Longplay`.
-  - Evidence state: source packet, final local render-05 QA, final burned-in subtitle sidecars, private YouTube Data API video upload, selected thumbnail set, and manual public release are recorded.
+  - Evidence state: source packet, final local render-05 QA, final burned-in subtitle sidecars, private YouTube Data API video upload, selected thumbnail set, and manual public release are recorded. Post-release Thai pronoun and spoken style subtitle fix applied on 2026-06-12.
   - Current status: manual public release completed for video ID `4pOLXPMQO5g`; do not claim platform safety, Content ID safety, monetization safety, or rights safety.
   - Truth paths: `channel/episodes/s01e01-campus-cafe-longplay/manifest.json`, `reviews/current-state.md`, `reviews/youtube-api-execution-gate.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-api-thumbnail-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
 - `s01e02-classroom-window-longplay` — Season 1 Week 2 `Classroom Window Longplay`.
-  - Evidence state: source packet, selected c01 audio, `vis-c01` visual, authoritative stable-ts subtitles, render-02 local QA, final-video approval, private YouTube Data API video upload, selected thumbnail set, and manual public release are recorded.
+  - Evidence state: source packet, selected c01 audio, `vis-c01` visual, authoritative stable-ts subtitles, render-02 local QA, final-video approval, private YouTube Data API video upload, selected thumbnail set, and manual public release are recorded. Post-release Thai pronoun and spoken style subtitle fix applied on 2026-06-12.
   - Current status: manual public release completed for video ID `KZNjs0Z7-Pw`; transcript certification, Content ID, monetization/platform-safety, and rights claims remain blocked.
   - Truth paths: `channel/episodes/s01e02-classroom-window-longplay/manifest.json`, `reviews/current-state.md`, `reviews/final-video-approval.md`, `reviews/render-export-qa.md`, `reviews/agy-render-review.md`, and `tracking/*.csv`.
 - `s01e03-rooftop-golden-hour-longplay` — Season 1 Week 3 `Rooftop Golden Hour Longplay`.
-  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, authoritative subtitles timed using stable-ts, render-02 local QA, final-video user approval for upload, YouTube Data API video upload, custom thumbnail set, and top-level comment are completed and recorded. The requested top-level comment initially failed with a 403 response, then succeeded after retry when the video was observed as public/processed; comment pinning remains pending/manual.
+  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, authoritative subtitles timed using stable-ts, render-02 local QA, final-video user approval for upload, YouTube Data API video upload, custom thumbnail set, and top-level comment are completed and recorded. The requested top-level comment initially failed with a 403 response, then succeeded after retry when the video was observed as public/processed; comment pinning remains pending/manual. Post-release Thai pronoun and spoken style subtitle fix applied on 2026-06-12.
   - Current status: EP3 is marked closed as manual public release complete with pin pending (video ID: `2P6fPs7NB0E`, comment ID: `Ugw3CXuFnYeKOp4TNi54AaABAg`); remaining release/account actions remain blocked pending explicit gates.
   - Truth paths: `channel/episodes/s01e03-rooftop-golden-hour-longplay/manifest.json`, `reviews/current-state.md`, `reviews/render-export-qa.md`, `reviews/youtube-api-execution-gate.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
 - `s01e04-bookstore-afternoon-longplay` — Season 1 Week 4 `Bookstore Afternoon Longplay`.
-  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, promoted track-aligned subtitles, local render-01 after track 3 replacement, private YouTube Data API upload, selected thumbnail set, public visibility observation, and top-level comment are recorded.
+  - Evidence state: source packet is synced; selected c01 audio, `vis-c01` visual, promoted track-aligned subtitles, local render-01 after track 3 replacement, private YouTube Data API upload, selected thumbnail set, public visibility observation, and top-level comment are recorded. Post-release Thai pronoun and spoken style subtitle fix applied on 2026-06-12.
   - Current status: manual public release completed for video ID `OMjvEEAIFSU`; comment pinning, captions, playlists, analytics, Content ID, account edits, platform-safety, monetization-safety, and rights claims remain blocked pending explicit gates.
   - Truth paths: `channel/episodes/s01e04-bookstore-afternoon-longplay/manifest.json`, `reviews/current-state.md`, `reviews/release-decision-plan.md`, `source/youtube-api-video-upload-package.md`, `source/youtube-video-resource.json`, and `tracking/*.csv`.
+- `s01e05-apartment-window-longplay` — Season 2 Week 5 `Apartment Window Longplay`.
+  - Evidence state: Gate 1 source-only prompts, lyrics, Suno manual fields, visual prompts, metadata draft, and comment are completed, synced, and locked. All 13 c01 audio selected, vis-c01 visual selected. Subtitles generated. Local render-01 completed. YouTube private upload, thumbnail, and public release completed. Top-level comment posted. Post-release subtitle fix applied (removed humming cues, patched track-01 Outro timing). Post-release Thai pronoun and spoken style subtitle fix applied on 2026-06-12.
+  - Current status: manual public release completed for video ID `ShWN-wK-ZNY`; re-render/re-upload with fixed subtitle burn-in is a separate gate; comment pinning, captions, playlists, analytics, Content ID, and account edits remain blocked.
+  - Truth paths: `channel/episodes/s01e05-apartment-window-longplay/manifest.json`, `reviews/current-state.md`, `tracking/*.csv`.
 
 
 ## Operating Model
@@ -55,6 +59,7 @@ There is no separate older active system. EP1-EP4 are episode packets inside the
 - Future episode slates should include several feeling/mood-led tracks, not only cafe/classroom/campus object-proof songs.
 - Lyrics/source workflow must keep Episode Style & Theme Spine, Track Delta, Story + Reference Brief, structure fingerprint, strict micro-pattern gate, lexical count ledger, title/lyric relationship gate, and BPM in every `Styles` field.
 - Visual/render revisions must be issue-led: name the exact audio, subtitle, visual, overlay, crop, or render problem before regenerating/rerendering.
+- Subtitle quality: parenthetical non-lyric lines (`(Humming low)`, `(Vocalise)` etc.) are auto-excluded from `build_track_text` via `is_parenthetical_stage_direction()`. Gate 3 subtitle pass now requires zero duration outliers > 15 s and zero low-confidence cues (< 0.3) adjacent to Outro or instrumental-break sections. See `docs/episode-lessons.md` for full rules.
 
 ## Safety
 
