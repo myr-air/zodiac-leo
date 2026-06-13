@@ -54,6 +54,22 @@ export LEO_RESOURCE_ROOT="$HOME/GoogleDrive/zodiac/leo"
 
 - This keeps `./candidates` in the repo as a symlink while all media lives on Drive, so running 2-3 episodes in parallel is safe as long as each command uses the correct `--episode-id` and each episode has its own folder.
 
+## Move / setup on a new machine
+
+Use the one-shot migrator:
+
+```bash
+bash scripts/migrate_leo_new_machine.sh --repo-url git@github.com:<owner>/zodiac-leo.git --write-shell-profile
+```
+
+Then continue with:
+
+```bash
+export LEO_RESOURCE_ROOT="$HOME/GoogleDrive/zodiac/leo"
+bash scripts/setup_google_drive_root.sh "$LEO_RESOURCE_ROOT"
+bash scripts/dev-python.sh scripts/episode_hil_flow.py --episode-id s01e01-campus-cafe-longplay
+```
+
 New episode bootstrap example:
 
 ```bash

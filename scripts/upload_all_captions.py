@@ -2,16 +2,18 @@
 """Automated script to delete old Thai caption tracks and upload updated ones across all 5 Mellow Longplay episodes."""
 from __future__ import annotations
 import sys
+import os
 from pathlib import Path
 
 # Add scripts directory to path to import helpers
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+SECRET_ROOT = Path(os.environ.get("LEO_SECRET_DIR", Path.home() / ".config" / "mellow-longplay" / ".secret"))
 
 import youtube_api_video_upload as v
 
-SECRETS = Path("/Users/xiivth/.config/mellow-longplay/.secret/google-oauth-client-desktop.json")
-TOKEN = Path("/Users/xiivth/.config/mellow-longplay/.secret/youtube-token.json")
+SECRETS = SECRET_ROOT / "google-oauth-client-desktop.json"
+TOKEN = SECRET_ROOT / "youtube-token.json"
 EXPECTED_CHANNEL_ID = "UC4qQwe3oiykEGhL_WyVFtMg"
 
 EPISODES = [
