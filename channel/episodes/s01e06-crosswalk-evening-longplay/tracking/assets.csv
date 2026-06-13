@@ -1,0 +1,9 @@
+date,episode_id,asset_type,asset_id,path,status,notes
+2026-06-12,s01e06-crosswalk-evening-longplay,source_doc,manifest,channel/episodes/s01e06-crosswalk-evening-longplay/manifest.json,active,Episode truth file scaffold
+2026-06-12,s01e06-crosswalk-evening-longplay,review_doc,current_state,channel/episodes/s01e06-crosswalk-evening-longplay/reviews/current-state.md,active,Current source-only state scaffold
+2026-06-12,s01e06-crosswalk-evening-longplay,media,candidate_media,candidates/,none,No candidate media or IDs exist
+2026-06-12,s01e06-crosswalk-evening-longplay,source_doc,songs,channel/episodes/s01e06-crosswalk-evening-longplay/source/songs.md,active,Episode style spine and track plan
+2026-06-12,s01e06-crosswalk-evening-longplay,source_doc,suno_manual_fields,channel/episodes/s01e06-crosswalk-evening-longplay/source/suno-manual-fields.md,active,Compiled Suno manual fields default index
+2026-06-12,s01e06-crosswalk-evening-longplay,source_doc,prompt_pack,channel/episodes/s01e06-crosswalk-evening-longplay/source/prompt-pack.md,active,Prompt pack pointing to track sources
+2026-06-12,s01e06-crosswalk-evening-longplay,source_doc,visual,channel/episodes/s01e06-crosswalk-evening-longplay/source/visual.md,active,Visual prompt draft
+2026-06-12,s01e06-crosswalk-evening-longplay,source_doc,metadata,channel/episodes/s01e06-crosswalk-evening-longplay/source/metadata.md,active,Metadata and disclosure draft

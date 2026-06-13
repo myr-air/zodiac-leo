@@ -1,0 +1,4 @@
+date,episode_id,item_type,item_id,source_path,provenance_status,notes
+2026-06-12,s01e06-crosswalk-evening-longplay,planning_hook,season_week,channel/roadmap.md,source_internal,Seeded from roadmap concept: Crosswalk Evening Longplay
+2026-06-12,s01e06-crosswalk-evening-longplay,operating_boundary,local_source_first,docs/operating-boundary.md,source_internal,Only source packet work is allowed by this scaffold
+2026-06-12,s01e06-crosswalk-evening-longplay,source_prompt_packet,tracks_1_13,channel/episodes/s01e06-crosswalk-evening-longplay/source/songs.md,source_internal,Generated original reference-free lyrics and prompts following spine/delta guardrails

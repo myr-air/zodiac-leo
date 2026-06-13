@@ -1,0 +1,5 @@
+date,episode_id,gate,area,status,source_path,notes
+2026-06-12,s01e06-crosswalk-evening-longplay,gate_0_bootstrap,episode_packet,scaffolded_source_only,channel/episodes/s01e06-crosswalk-evening-longplay/manifest.json,Fresh episode packet scaffold created with no media candidates or release facts
+2026-06-12,s01e06-crosswalk-evening-longplay,gate_0_bootstrap,source_packet,pending,channel/episodes/s01e06-crosswalk-evening-longplay/source/songs.md,Gate 1 source packet still needs shape review song source Suno fields visual source metadata and reviews
+2026-06-12,s01e06-crosswalk-evening-longplay,gate_0_bootstrap,release_gate,blocked,channel/episodes/s01e06-crosswalk-evening-longplay/reviews/release-decision-plan.md,Upload publish API browser schedule analytics Content ID and account actions remain blocked
+2026-06-12,s01e06-crosswalk-evening-longplay,gate_1_source_only,source_packet,locked,channel/episodes/s01e06-crosswalk-evening-longplay/source/songs.md,Gate 1 source prompts lyrics visual prompts and metadata completed and locked
