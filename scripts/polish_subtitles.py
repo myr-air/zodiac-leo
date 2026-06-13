@@ -1,6 +1,8 @@
 import os
 import re
 
+from pathlib import Path
+
 episodes = [
     "s01e01-campus-cafe-longplay",
     "s01e02-classroom-window-longplay",
@@ -88,7 +90,7 @@ def process_file(filepath, episode):
         print(f"  ... and {len(changes) - 15} more changes.")
 
 def main():
-    base_dir = "/Users/xiivth/workspaces/zodiac/leo/channel/episodes"
+    base_dir = str(Path(__file__).resolve().parents[1] / "channel" / "episodes")
     for ep in episodes:
         filepath = os.path.join(base_dir, ep, "subtitles", f"{ep}.th.srt")
         process_file(filepath, ep)

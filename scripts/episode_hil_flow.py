@@ -17,10 +17,12 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any, Iterable
 
+from leo_resource_paths import resolve_candidates_root
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 EPISODE_ROOT = PROJECT_ROOT / "channel" / "episodes"
-CANDIDATE_ROOT = PROJECT_ROOT / "candidates"
+CANDIDATE_ROOT = resolve_candidates_root(PROJECT_ROOT)
 
 
 @dataclass(frozen=True)

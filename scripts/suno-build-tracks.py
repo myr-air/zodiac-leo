@@ -2,6 +2,8 @@ import os
 import re
 import json
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 def parse_track_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -59,8 +61,8 @@ def parse_track_file(file_path):
     }
 
 def main():
-    episodes_dir = "/Users/xiivth/workspaces/zodiac/leo/channel/episodes"
-    output_path = "/Users/xiivth/workspaces/zodiac/leo/scripts/suno-copilot-extension/tracks.json"
+    episodes_dir = os.path.join(PROJECT_ROOT, "..", "channel", "episodes")
+    output_path = os.path.join(PROJECT_ROOT, "suno-copilot-extension", "tracks.json")
 
     if not os.path.exists(episodes_dir):
         print(f"Episodes directory not found: {episodes_dir}")

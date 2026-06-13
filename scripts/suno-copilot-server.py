@@ -4,27 +4,31 @@ import os
 import subprocess
 import shutil
 import sys
+from pathlib import Path
+
+from leo_resource_paths import resolve_candidates_root
 
 # Configs
 HOST = "localhost"
 PORT = 8080
-TRACKS_JSON = "/Users/xiivth/workspaces/zodiac/leo/scripts/suno-copilot-extension/tracks.json"
-CANDIDATES_BASE = "/Users/xiivth/workspaces/zodiac/leo/candidates"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+TRACKS_JSON = PROJECT_ROOT / "scripts" / "suno-copilot-extension" / "tracks.json"
+CANDIDATES_BASE = str(resolve_candidates_root(PROJECT_ROOT))
 DOWNLOADS_DIR = os.path.expanduser("~/Downloads")
-TRACKS_BUILD_SCRIPT = "/Users/xiivth/workspaces/zodiac/leo/scripts/suno-build-tracks.py"
+TRACKS_BUILD_SCRIPT = PROJECT_ROOT / "scripts" / "suno-build-tracks.py"
 
 
 def rebuild_tracks_database():
     """
     Regenerate tracks.json from channel/episodes before serving data.
     """
-    if not os.path.exists(TRACKS_BUILD_SCRIPT):
+    if not os.path.exists(str(TRACKS_BUILD_SCRIPT)):
         print(f"[Local OS Server] Build script not found: {TRACKS_BUILD_SCRIPT}")
         return
 
     try:
         result = subprocess.run(
-            [sys.executable, TRACKS_BUILD_SCRIPT],
+            [sys.executable, str(TRACKS_BUILD_SCRIPT)],
             check=False,
             capture_output=True,
             text=True,
@@ -43,7 +47,7 @@ def load_tracks(rebuild=False):
         rebuild_tracks_database()
 
     if os.path.exists(TRACKS_JSON):
-        with open(TRACKS_JSON, "r", encoding="utf-8") as f:
+        with open(str(TRACKS_JSON), "r", encoding="utf-8") as f:
             return json.load(f)
     return {}
 

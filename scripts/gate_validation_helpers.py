@@ -9,10 +9,16 @@ import wave
 import subprocess
 from pathlib import Path
 
+from leo_resource_paths import resolve_candidates_root
+
+
+def _candidate_root(workspace_root: Path) -> Path:
+    return resolve_candidates_root(workspace_root)
+
 def run_audio_silence_check(episode_id: str, workspace_root: Path = Path(".")) -> list[str]:
     """Scan all selected and pool audio files for silence glitches using ffmpeg."""
     errors = []
-    candidate_dir = workspace_root / "candidates" / episode_id / "audio"
+    candidate_dir = _candidate_root(workspace_root) / episode_id / "audio"
     if not candidate_dir.exists():
         return [f"Audio candidate directory does not exist: {candidate_dir}"]
 
@@ -109,7 +115,7 @@ def run_subtitle_alignment_check(episode_id: str, workspace_root: Path = Path(".
             return []
 
     # Get selected audio files to calculate expected timeline
-    selected_dir = workspace_root / "candidates" / episode_id / "audio" / "selected"
+    selected_dir = _candidate_root(workspace_root) / episode_id / "audio" / "selected"
     if not selected_dir.is_dir():
         return [f"Selected audio directory does not exist: {selected_dir}"]
 
@@ -175,7 +181,7 @@ def run_subtitle_alignment_check(episode_id: str, workspace_root: Path = Path(".
                 )
 
         # Verify each track's assigned cues against the original alignment JSON
-        align_pack_dir = workspace_root / "candidates" / episode_id / "subtitles" / "proofs" / "longplay" / "align-pack"
+        align_pack_dir = _candidate_root(workspace_root) / episode_id / "subtitles" / "proofs" / "longplay" / "align-pack"
         for t in timeline:
             track_num = t["track_number"]
             track_srt_cues = srt_cues_by_track[track_num]

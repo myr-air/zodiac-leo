@@ -13,17 +13,20 @@ import glob
 from datetime import date
 from pathlib import Path
 
+from leo_resource_paths import resolve_candidates_root
+
 
 ROOT = Path(__file__).resolve().parents[1]
 EPISODE = "s01e01-campus-cafe-longplay"
 EPISODE_ROOT = ROOT / "channel" / "episodes" / EPISODE
 OUTPUT = EPISODE_ROOT / "reviews" / "local-provenance-evidence.md"
+CANDIDATES_ROOT = resolve_candidates_root(ROOT)
 
 
 GROUPS = {
-    "selected_audio_wav": ROOT / "candidates" / EPISODE / "audio" / "selected" / "*.wav",
-    "subtitle_draft_json": ROOT / "candidates" / EPISODE / "subtitles" / "proofs" / "track-*" / "s01e01-track-*-subtitle-alignment-draft-01.json",
-    "visual_v6_proof_media": ROOT / "candidates" / EPISODE / "visual" / "proofs" / "animated-v6" / "s01e01-vis-c01-v6-*",
+    "selected_audio_wav": CANDIDATES_ROOT / EPISODE / "audio" / "selected" / "*.wav",
+    "subtitle_draft_json": CANDIDATES_ROOT / EPISODE / "subtitles" / "proofs" / "track-*" / "s01e01-track-*-subtitle-alignment-draft-01.json",
+    "visual_v6_proof_media": CANDIDATES_ROOT / EPISODE / "visual" / "proofs" / "animated-v6" / "s01e01-vis-c01-v6-*",
     "source_truth_docs": EPISODE_ROOT / "source" / "*.md",
 }
 
@@ -44,7 +47,7 @@ def records_for(pattern: Path) -> list[dict[str, str | int]]:
             stat = path.stat()
             records.append(
                 {
-                    "path": str(path.relative_to(ROOT)),
+                    "path": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
                     "bytes": stat.st_size,
                     "sha256": sha256(path),
                 }

@@ -14,6 +14,7 @@ There is one active system here: the Mellow Longplay core. EP1-EP4 are historica
 - `channel/episodes/` holds episode packets.
 - `channel/templates/` contains reusable source-only worksheets, including the compact next-video fastlane.
 - `candidates/` is ignored local evidence storage for future user-supplied audio and visuals.
+- `scripts/` now reads candidate media from `LEO_RESOURCE_ROOT` when set, defaulting to `<repo>/candidates`.
 - `scripts/bootstrap_episode_packet.py` creates source-only episode scaffolds; use `--dry-run` first.
 - `scripts/dev-python.sh` and `scripts/run-tests.sh` route repo Python through `uv`.
 - `scripts/verify-standalone.sh` validates the core structure and retired-scope guards.
@@ -34,6 +35,24 @@ Each packet carries its own manifest, current-state review, source docs, subtitl
 For future videos, start from `channel/templates/episode-zero-to-youtube-runbook-template.md` and `channel/templates/episode-production-worksheet-template.md`: reuse approved channel defaults by citation, review only episode deltas, and keep local render/export or external platform/API actions behind explicit gates.
 
 If the workflow feels unclear, read `docs/workflow-map.md` first.
+
+## Drive resource root (multi-episode / cross-machine)
+
+- Use `~/GoogleDrive/zodiac/leo` as the shared resource root:
+  - `~/GoogleDrive/zodiac/leo/candidates/<episode-id>/...`
+- Run once per machine:
+
+```bash
+bash scripts/setup_google_drive_root.sh
+```
+
+- For each shell session, set:
+
+```bash
+export LEO_RESOURCE_ROOT="$HOME/GoogleDrive/zodiac/leo"
+```
+
+- This keeps `./candidates` in the repo as a symlink while all media lives on Drive, so running 2-3 episodes in parallel is safe as long as each command uses the correct `--episode-id` and each episode has its own folder.
 
 New episode bootstrap example:
 

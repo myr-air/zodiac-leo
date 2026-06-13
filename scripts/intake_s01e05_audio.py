@@ -1,9 +1,13 @@
 import os
 import shutil
 import re
+from pathlib import Path
+
+from leo_resource_paths import resolve_candidates_root
 
 ep_id = "s01e05-apartment-window-longplay"
-audio_dir = f"/Users/xiivth/workspaces/zodiac/leo/candidates/{ep_id}/audio"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+audio_dir = resolve_candidates_root(PROJECT_ROOT) / ep_id / "audio"
 selected_dir = os.path.join(audio_dir, "selected")
 pool_dir = os.path.join(audio_dir, "pool")
 
