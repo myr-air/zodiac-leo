@@ -27,6 +27,7 @@ from typing import Iterable
 from PIL import Image, ImageDraw, ImageFilter
 
 import create_v6_cute_smooth_motion_proof as v6
+from leo_resource_paths import resolve_candidates_root
 from subtitle_lane_policy import infer_subtitle_drift_with_fallback
 from subtitle_lane_policy import lane_summary
 from subtitle_lane_policy import resolve_subtitle_lane
@@ -37,11 +38,12 @@ with warnings.catch_warnings():
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
 EPISODE_ID = "s01e01-campus-cafe-longplay"
-DEFAULT_OUTPUT_ROOT = Path("candidates/s01e01-campus-cafe-longplay/render/future-local-render-05")
+DEFAULT_OUTPUT_ROOT = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/render/future-local-render-05"
 ALLOWED_OUTPUT_ROOTS = (DEFAULT_OUTPUT_ROOT,)
 DEFAULT_TEMP_ROOT = Path(tempfile.gettempdir()) / "opencode" / "s01e01-render"
-BACKGROUND = Path("candidates/s01e01-campus-cafe-longplay/visual/G.png")
+BACKGROUND = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/visual/G.png"
 SOURCE_SUBTITLE_ROOT = Path(f"channel/episodes/{EPISODE_ID}/subtitles")
 PROMOTED_SRT = SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.en.srt"
 PROMOTED_VTT = SOURCE_SUBTITLE_ROOT / f"{EPISODE_ID}.en.vtt"
@@ -113,19 +115,19 @@ class RenderSegment:
 
 
 TRACKS: tuple[Track, ...] = (
-    Track(1, "Margin Notes at Table Three", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav"), 0.00, 279.92),
-    Track(2, "Two Lids, One Tray", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t02_c01--two-lids-one-tray.wav"), 280.92, 505.92),
-    Track(3, "Borrowed Eraser, Written Name", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t03_c01--borrowed-eraser-written-name.wav"), 506.92, 711.04),
-    Track(4, "Checkout Slip at Chapter Nine", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t04_c01--checkout-slip-at-chapter-nine.wav"), 712.04, 921.60),
-    Track(5, "Steam on the Glass Door", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t05_c01--steam-on-the-glass-door.wav"), 922.60, 1141.00),
-    Track(6, "Peach Can at B4", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t06_c02--peach-can-at-b4.wav"), 1142.00, 1301.92),
-    Track(7, "Green Dot on Your Schedule", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t07_c01--green-dot-on-your-schedule.wav"), 1302.92, 1497.84),
-    Track(8, "Cushion Seat, Charging Cord", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t08_c01--cushion-seat-charging-cord.wav"), 1498.84, 1630.72),
-    Track(9, "Crosswalk Stripes Before Six", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t09_c01--crosswalk-stripes-before-six.wav"), 1631.72, 1797.64),
-    Track(10, "Yellow Tag on the Umbrella Rack", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t10_c01--yellow-tag-on-the-umbrella-rack.wav"), 1798.64, 1991.08),
-    Track(11, "Quiz Key in Blue Ink", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t11_c01--quiz-key-in-blue-ink.wav"), 1992.08, 2151.96),
-    Track(12, "Tray Return at 5:59", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t12_c01--tray-return-at-559.wav"), 2152.96, 2352.28),
-    Track(13, "Latch Click at the Courtyard Gate", Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t13_c01--latch-click-at-the-courtyard-gate.wav"), 2353.28, 2503.28),
+    Track(1, "Margin Notes at Table Three", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav"), 0.00, 279.92),
+    Track(2, "Two Lids, One Tray", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t02_c01--two-lids-one-tray.wav"), 280.92, 505.92),
+    Track(3, "Borrowed Eraser, Written Name", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t03_c01--borrowed-eraser-written-name.wav"), 506.92, 711.04),
+    Track(4, "Checkout Slip at Chapter Nine", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t04_c01--checkout-slip-at-chapter-nine.wav"), 712.04, 921.60),
+    Track(5, "Steam on the Glass Door", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t05_c01--steam-on-the-glass-door.wav"), 922.60, 1141.00),
+    Track(6, "Peach Can at B4", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t06_c02--peach-can-at-b4.wav"), 1142.00, 1301.92),
+    Track(7, "Green Dot on Your Schedule", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t07_c01--green-dot-on-your-schedule.wav"), 1302.92, 1497.84),
+    Track(8, "Cushion Seat, Charging Cord", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t08_c01--cushion-seat-charging-cord.wav"), 1498.84, 1630.72),
+    Track(9, "Crosswalk Stripes Before Six", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t09_c01--crosswalk-stripes-before-six.wav"), 1631.72, 1797.64),
+    Track(10, "Yellow Tag on the Umbrella Rack", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t10_c01--yellow-tag-on-the-umbrella-rack.wav"), 1798.64, 1991.08),
+    Track(11, "Quiz Key in Blue Ink", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t11_c01--quiz-key-in-blue-ink.wav"), 1992.08, 2151.96),
+    Track(12, "Tray Return at 5:59", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t12_c01--tray-return-at-559.wav"), 2152.96, 2352.28),
+    Track(13, "Latch Click at the Courtyard Gate", LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t13_c01--latch-click-at-the-courtyard-gate.wav"), 2353.28, 2503.28),
 )
 
 
@@ -143,9 +145,13 @@ def project_path(path: Path | str) -> Path:
     return path if path.is_absolute() else PROJECT_ROOT / path
 
 
+def as_output_path(path: Path) -> str:
+    return str(path.relative_to(PROJECT_ROOT)) if PROJECT_ROOT in [path, *path.parents] else str(path)
+
+
 def assert_under_candidates(path: Path) -> None:
     resolved = path.resolve()
-    candidates = (PROJECT_ROOT / "candidates").resolve()
+    candidates = Path(LEO_CANDIDATES_ROOT).resolve()
     if candidates not in [resolved, *resolved.parents]:
         raise ValueError(f"refusing to write local render evidence outside candidates/: {path}")
 
@@ -227,7 +233,7 @@ def expected_audio_plan() -> tuple[wave._wave_params, int, list[dict[str, object
 def audio_summary(audio_out: Path, params: wave._wave_params, total_frames: int, track_summaries: list[dict[str, object]], reused: bool) -> dict[str, object]:
     duration = total_frames / params.framerate
     return {
-        "path": str(audio_out.relative_to(PROJECT_ROOT)),
+        "path": str(as_output_path(audio_out)),
         "sample_rate": params.framerate,
         "channels": params.nchannels,
         "sample_width_bytes": params.sampwidth,
@@ -280,11 +286,11 @@ def copy_sidecars(output_root: Path, source_srt: Path, source_vtt: Path) -> list
         if dest.exists():
             if dest.read_bytes() != src.read_bytes():
                 raise ValueError(f"existing sidecar copy differs from source: {dest}")
-            copied.append(str(dest.relative_to(PROJECT_ROOT)))
+            copied.append(str(as_output_path(dest)))
             continue
         prepare_output(dest)
         shutil.copy2(src, dest)
-        copied.append(str(dest.relative_to(PROJECT_ROOT)))
+        copied.append(str(as_output_path(dest)))
     return copied
 
 
@@ -1603,7 +1609,7 @@ def extract_snapshots(video_path: Path, output_root: Path) -> list[str]:
         path = snapshot_dir / name
         if path.exists():
             Image.open(path).verify()
-            paths.append(str(path.relative_to(PROJECT_ROOT)))
+            paths.append(str(as_output_path(path)))
             continue
         prepare_output(path)
         subprocess.run(
@@ -1622,7 +1628,7 @@ def extract_snapshots(video_path: Path, output_root: Path) -> list[str]:
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
-        paths.append(str(path.relative_to(PROJECT_ROOT)))
+        paths.append(str(as_output_path(path)))
     return paths
 
 
@@ -1651,7 +1657,7 @@ def summarize_probe(path: Path) -> dict[str, object]:
     video_stream = next((stream for stream in streams if stream.get("codec_type") == "video"), {})
     audio_stream = next((stream for stream in streams if stream.get("codec_type") == "audio"), {})
     return {
-        "path": str(path.relative_to(PROJECT_ROOT)),
+        "path": str(as_output_path(path)),
         "bytes": path.stat().st_size,
         "duration_seconds": round(float(probe.get("format", {}).get("duration", 0.0)), 3),
         "video": {
@@ -1772,7 +1778,7 @@ def main() -> int:
                 "track": segment.track.number,
                 "start_seconds": round(segment.start, 3),
                 "duration_seconds": round(segment.duration, 3),
-                "path": str(segment_path.relative_to(PROJECT_ROOT)),
+                "path": str(as_output_path(segment_path)),
                 "reused_existing": reused_segment,
                 "subtitle_cue_count": len(local_cues),
                 "overlay": overlay_summary,

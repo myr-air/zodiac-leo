@@ -53,6 +53,7 @@ export LEO_RESOURCE_ROOT="$HOME/GoogleDrive/zodiac/leo"
 ```
 
 - This keeps `./candidates` in the repo as a symlink while all media lives on Drive, so running 2-3 episodes in parallel is safe as long as each command uses the correct `--episode-id` and each episode has its own folder.
+- If `./candidates` already exists (for example the repository copy still contains the tracked `candidates/README.md`), the setup script backs it up to `candidates.old-<timestamp>` and re-links `./candidates` to the Drive root.
 
 ## Move / setup on a new machine
 

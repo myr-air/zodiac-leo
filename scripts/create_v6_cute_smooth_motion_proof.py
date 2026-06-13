@@ -19,14 +19,16 @@ import wave
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from leo_resource_paths import resolve_candidates_root
 
 import create_visual_layout_mockups as static
 import create_v5_readable_motion_proof as v5
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_AUDIO = Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav")
-DEFAULT_OUTPUT = Path("candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-cute-smooth-motion-proof-30s-01.mp4")
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
+DEFAULT_AUDIO = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav"
+DEFAULT_OUTPUT = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/visual/proofs/animated-v6/s01e01-vis-c01-v6-cute-smooth-motion-proof-30s-01.mp4"
 WIDTH = static.WIDTH
 HEIGHT = static.HEIGHT
 
@@ -38,7 +40,7 @@ CREAM = (255, 239, 213, 170)
 
 
 def root_path(path: Path) -> Path:
-    return path if path.is_absolute() else PROJECT_ROOT / path
+    return path if path.is_absolute() else LEO_CANDIDATES_ROOT / path
 
 
 def load_font(paths: list[str], size: int, index: int = 0) -> ImageFont.FreeTypeFont:
@@ -463,7 +465,7 @@ def main() -> int:
     parser.add_argument("--fps", type=int, default=24)
     args = parser.parse_args()
     output = render(args)
-    print(output.relative_to(PROJECT_ROOT))
+    print(output)
     return 0
 
 

@@ -26,6 +26,7 @@ from pathlib import Path
 from typing import Iterable
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from leo_resource_paths import resolve_candidates_root
 from subtitle_lane_policy import TIMING_METHOD_MECHANICAL
 from subtitle_lane_policy import infer_subtitle_drift_with_fallback
 from subtitle_lane_policy import lane_summary
@@ -39,7 +40,8 @@ with warnings.catch_warnings():
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 EPISODE_ID = "s01e05-apartment-window-longplay"
 EPISODE_DIR = Path("channel/episodes") / EPISODE_ID
-CANDIDATE_ROOT = Path("candidates") / EPISODE_ID
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
+CANDIDATE_ROOT = LEO_CANDIDATES_ROOT / EPISODE_ID
 AUDIO_ROOT = CANDIDATE_ROOT / "audio"
 VISUAL_ROOT = CANDIDATE_ROOT / "visual"
 SELECTED_AUDIO_ROOT = AUDIO_ROOT / "selected"
@@ -211,6 +213,10 @@ def project_path(path: Path | str) -> Path:
     return path if path.is_absolute() else PROJECT_ROOT / path
 
 
+def as_output_path(path: Path) -> str:
+    return str(path.relative_to(PROJECT_ROOT)) if PROJECT_ROOT in [path, *path.parents] else str(path)
+
+
 def assert_under(path: Path, root: Path) -> None:
     resolved = path.resolve()
     root_resolved = root.resolve()
@@ -219,7 +225,7 @@ def assert_under(path: Path, root: Path) -> None:
 
 
 def assert_under_candidates(path: Path) -> None:
-    assert_under(path, PROJECT_ROOT / "candidates")
+    assert_under(path, Path(LEO_CANDIDATES_ROOT))
 
 
 def assert_safe_temp_root(path: Path) -> None:
@@ -275,8 +281,8 @@ def copy_if_needed(src: Path, dest: Path) -> dict[str, object]:
         shutil.copy2(src, dest)
         reused = False
     return {
-        "source": str(src.relative_to(PROJECT_ROOT)),
-        "path": str(dest.relative_to(PROJECT_ROOT)),
+        "source": str(as_output_path(src)),
+        "path": str(as_output_path(dest)),
         "sha256": src_hash,
         "reused_existing": reused,
     }
@@ -387,7 +393,7 @@ def concat_audio(output_root: Path) -> dict[str, object]:
                     out.writeframes(silence)
         reused = False
     return {
-        "path": str(audio_out.relative_to(PROJECT_ROOT)),
+        "path": str(as_output_path(audio_out)),
         "sample_rate": params.framerate,
         "channels": params.nchannels,
         "sample_width_bytes": params.sampwidth,
@@ -1797,7 +1803,7 @@ def run_ffmpeg_segment_render(
     segment_signature = hashlib.sha256(segment_signature_payload.encode("utf-8")).hexdigest()[:18]
     video_out = segment_video_path(output_root, segment, cache_key=segment_signature)
     if video_probe_matches(video_out, segment.duration):
-        return video_out, {"reused_existing": True, "path": str(video_out.relative_to(PROJECT_ROOT))}
+        return video_out, {"reused_existing": True, "path": str(as_output_path(video_out))}
     if video_out.exists():
         video_out.unlink()
     prepare_output(video_out)
@@ -1939,7 +1945,7 @@ def run_ffmpeg_segment_render(
     shutil.move(str(temp_video), video_out)
     return video_out, {
         "reused_existing": False,
-        "path": str(video_out.relative_to(PROJECT_ROOT)),
+        "path": str(as_output_path(video_out)),
         "overlay": overlay_summary,
         "music_notes": music_note_summary,
         "global_time_start_seconds": round(segment.start, 3),
@@ -2069,7 +2075,7 @@ def summarize_probe(path: Path) -> dict[str, object]:
     video_stream = next((stream for stream in streams if stream.get("codec_type") == "video"), {})
     audio_stream = next((stream for stream in streams if stream.get("codec_type") == "audio"), {})
     return {
-        "path": str(project_path(path).relative_to(PROJECT_ROOT)),
+        "path": str(as_output_path(project_path(path))),
         "bytes": project_path(path).stat().st_size,
         "duration_seconds": round(float(probe.get("format", {}).get("duration", 0.0)), 3),
         "video": {"codec": video_stream.get("codec_name"), "width": video_stream.get("width"), "height": video_stream.get("height"), "frame_rate": video_stream.get("r_frame_rate")},
@@ -2093,7 +2099,7 @@ def extract_snapshots(video_path: Path, output_root: Path, duration: float) -> l
         path = snapshot_dir / name
         if path.exists():
             Image.open(path).verify()
-            outputs.append(str(path.relative_to(PROJECT_ROOT)))
+            outputs.append(str(as_output_path(path)))
             continue
         prepare_output(path)
         subprocess.run(
@@ -2101,7 +2107,7 @@ def extract_snapshots(video_path: Path, output_root: Path, duration: float) -> l
             check=True,
         )
         Image.open(path).verify()
-        outputs.append(str(path.relative_to(PROJECT_ROOT)))
+        outputs.append(str(as_output_path(path)))
     return outputs
 
 

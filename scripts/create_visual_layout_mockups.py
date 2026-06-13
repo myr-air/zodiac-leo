@@ -17,14 +17,16 @@ from pathlib import Path
 from typing import Callable
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from leo_resource_paths import resolve_candidates_root
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
 WIDTH = 1920
 HEIGHT = 1080
 
-BG_PATH = Path("candidates/s01e01-campus-cafe-longplay/visual/G.png")
-OUT_DIR = Path("candidates/s01e01-campus-cafe-longplay/visual/proofs/static-layout-mockups-v4")
+BG_PATH = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/visual/G.png"
+OUT_DIR = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/visual/proofs/static-layout-mockups-v4"
 
 CHANNEL = "MELLOW LONGPLAY"
 EPISODE = "S01 - E01"
@@ -50,7 +52,11 @@ class Mockup:
 
 
 def root_path(path: Path) -> Path:
-    return path if path.is_absolute() else PROJECT_ROOT / path
+    return path if path.is_absolute() else LEO_CANDIDATES_ROOT / path
+
+
+def as_report_path(path: Path) -> str:
+    return str(path.relative_to(PROJECT_ROOT)) if PROJECT_ROOT in [path, *path.parents] else str(path)
 
 
 def load_font(path: str, size: int, index: int = 0) -> ImageFont.FreeTypeFont:
@@ -452,7 +458,7 @@ def main() -> int:
         "schema_version": "0.4.1",
         "status": "local_static_layout_mockups_v4_source_only",
         "boundary": "No provider/API/browser/upload/render/release action. Static proof images only.",
-        "background": str(background.relative_to(PROJECT_ROOT)),
+        "background": as_report_path(background),
         "requirements": [
             "top-left info block uses NewYork serif like the previous After Class Gently title",
             "vector headphone icon plus MELLOW LONGPLAY dot S01 - E01",
@@ -473,14 +479,14 @@ def main() -> int:
         output_paths.append(output_path)
         index["outputs"].append(
             {
-                "path": str(output_path.relative_to(PROJECT_ROOT)),
+                "path": as_report_path(output_path),
                 "label": mockup.label,
                 "description": mockup.description,
             }
         )
     contact_path = out_dir / "s01e01-vis-c01-layout-v4-contact-sheet.png"
     save_contact_sheet(output_paths, contact_path)
-    index["contact_sheet"] = str(contact_path.relative_to(PROJECT_ROOT))
+    index["contact_sheet"] = as_report_path(contact_path)
     for output in index["outputs"]:
         print(output["path"])
     print(index["contact_sheet"])

@@ -19,14 +19,17 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any, Iterable, NamedTuple
 
+from leo_resource_paths import resolve_candidates_root
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
 DEFAULT_OUTPUT_DIR = Path("outputs/subtitle-alignment-prototype")
-DEFAULT_TRACK1_AUDIO = Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav")
-DEFAULT_TRACK1_PROOF_DIR = Path("candidates/s01e01-campus-cafe-longplay/subtitles/proofs/track-01")
+DEFAULT_TRACK1_AUDIO = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav"
+DEFAULT_TRACK1_PROOF_DIR = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/subtitles/proofs/track-01"
 DEFAULT_SONG_SOURCE = Path("channel/episodes/s01e01-campus-cafe-longplay/source/songs.md")
 DEFAULT_EPISODE_ID = "s01e01-campus-cafe-longplay"
-DEFAULT_S01E01_PROOF_ROOT = Path("candidates/s01e01-campus-cafe-longplay/subtitles/proofs")
+DEFAULT_S01E01_PROOF_ROOT = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/subtitles/proofs"
 DEFAULT_S01E01_SUBTITLE_DIR = Path("channel/episodes/s01e01-campus-cafe-longplay/subtitles")
 
 
@@ -87,6 +90,13 @@ def project_path(path: Path | str) -> Path:
     return PROJECT_ROOT / path
 
 
+def as_output_path(path: Path) -> str:
+    resolved = path
+    if not path.is_absolute():
+        resolved = project_path(path)
+    return str(resolved.relative_to(PROJECT_ROOT)) if PROJECT_ROOT in [resolved, *resolved.parents] else str(resolved)
+
+
 def episode_slug(value: str) -> str:
     slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
     return slug or "episode"
@@ -97,7 +107,7 @@ def assert_safe_generated_path(path: Path) -> None:
     resolved = path.resolve()
     allowed_roots = [
         (PROJECT_ROOT / "outputs").resolve(),
-        (PROJECT_ROOT / "candidates").resolve(),
+        LEO_CANDIDATES_ROOT.resolve(),
     ]
     if not any(root in [resolved, *resolved.parents] for root in allowed_roots):
         raise ValueError(f"refusing to write generated prototype outside outputs/ or candidates/: {path}")
@@ -969,7 +979,7 @@ def align_track(args: argparse.Namespace) -> Path:
         "method": "stable-ts-align",
         "model": args.model,
         "language": args.language,
-        "audio_path": str(audio_path.relative_to(PROJECT_ROOT)),
+        "audio_path": str(as_output_path(audio_path)),
         "audio_duration_seconds": audio_duration_seconds(audio_path),
         "line_count_expected": len(line_meta),
         "cue_count_returned": len(cues),
@@ -983,7 +993,7 @@ def align_track(args: argparse.Namespace) -> Path:
     out_path = out_dir / f"{slug}-{args.slot.lower()}-stable-ts-alignment.json"
     out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (out_dir / f"{slug}-{args.slot.lower()}-stable-ts.local.srt").write_text(serialize_srt(cues), encoding="utf-8")
-    print(out_path.relative_to(PROJECT_ROOT))
+    print(as_output_path(out_path))
     return out_path
 
 
@@ -1085,7 +1095,7 @@ def align_song_source_track(args: argparse.Namespace) -> Path:
         "method": "stable-ts-align-with-display-padding",
         "model": args.model,
         "language": args.language,
-        "audio_path": str(audio_path.relative_to(PROJECT_ROOT)),
+        "audio_path": str(as_output_path(audio_path)),
         "audio_duration_seconds": duration,
         "display_timing_rules": {
             "lead_in_seconds": args.lead_in,
@@ -1132,7 +1142,7 @@ def align_song_source_track(args: argparse.Namespace) -> Path:
             slide_pixels=args.motion_slide_pixels,
             slide_out_pixels=args.motion_slide_out_pixels,
         )
-    print(json_path.relative_to(PROJECT_ROOT))
+    print(as_output_path(json_path))
     return json_path
 
 
@@ -1321,7 +1331,7 @@ def build_longplay(args: argparse.Namespace) -> Path:
         + "\n",
         encoding="utf-8",
     )
-    print(timeline_path.relative_to(PROJECT_ROOT))
+    print(as_output_path(timeline_path))
     return timeline_path
 
 
@@ -1357,16 +1367,16 @@ def promote_final_sidecars(args: argparse.Namespace) -> Path:
         "status": "final_sidecars_promoted_source_only",
         "boundary": "Source-only subtitle sidecars. Not render/export, upload, release, account action, or rights/platform-safety approval.",
         "episode_id": args.episode_id,
-        "srt_path": str(srt_path.relative_to(PROJECT_ROOT)),
-        "vtt_path": str(vtt_path.relative_to(PROJECT_ROOT)),
+        "srt_path": str(as_output_path(srt_path)),
+        "vtt_path": str(as_output_path(vtt_path)),
         "summary": summary,
         "timeline": timeline,
     }
     if args.print_json:
         print(json.dumps(result, indent=2, ensure_ascii=False))
     else:
-        print(srt_path.relative_to(PROJECT_ROOT))
-        print(vtt_path.relative_to(PROJECT_ROOT))
+        print(as_output_path(srt_path))
+        print(as_output_path(vtt_path))
         print(f"cue_count={summary['cue_count']} timeline_duration={summary['timeline_duration_seconds']}")
     return srt_path
 

@@ -19,18 +19,20 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
+from leo_resource_paths import resolve_candidates_root
 import create_visual_layout_mockups as static
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_AUDIO = Path("candidates/s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav")
-DEFAULT_OUTPUT = Path("candidates/s01e01-campus-cafe-longplay/visual/proofs/animated-v4-07/s01e01-vis-c01-v4-07-animated-proof-15s-01.mp4")
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
+DEFAULT_AUDIO = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/audio/selected/aud-t01_c02--margin-notes-at-table-three.wav"
+DEFAULT_OUTPUT = LEO_CANDIDATES_ROOT / "s01e01-campus-cafe-longplay/visual/proofs/animated-v4-07/s01e01-vis-c01-v4-07-animated-proof-15s-01.mp4"
 WIDTH = static.WIDTH
 HEIGHT = static.HEIGHT
 
 
 def root_path(path: Path) -> Path:
-    return path if path.is_absolute() else PROJECT_ROOT / path
+    return path if path.is_absolute() else LEO_CANDIDATES_ROOT / path
 
 
 def opacity(layer: Image.Image, value: float) -> Image.Image:
@@ -249,7 +251,7 @@ def main() -> int:
     parser.add_argument("--fps", type=int, default=24)
     args = parser.parse_args()
     output = render(args)
-    print(output.relative_to(PROJECT_ROOT))
+    print(output)
     return 0
 
 

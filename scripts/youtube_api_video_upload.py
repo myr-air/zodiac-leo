@@ -15,11 +15,15 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from leo_resource_paths import resolve_candidates_root
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
 DEFAULT_EPISODE_ID = "s01e01-campus-cafe-longplay"
 DEFAULT_VIDEO_PATH = Path(
-    "candidates/s01e01-campus-cafe-longplay/render/future-local-render-05/video/"
+    LEO_CANDIDATES_ROOT
+    / "s01e01-campus-cafe-longplay/render/future-local-render-05/video/"
     "s01e01-campus-cafe-longplay.v6-subtitled-1080p24-qa.mp4"
 )
 DEFAULT_RESOURCE_JSON = Path(f"channel/episodes/{DEFAULT_EPISODE_ID}/source/youtube-video-resource.json")

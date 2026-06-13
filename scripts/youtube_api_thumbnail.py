@@ -10,12 +10,15 @@ from pathlib import Path
 from typing import Any
 
 import youtube_api_video_upload as video_upload
+from leo_resource_paths import resolve_candidates_root
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LEO_CANDIDATES_ROOT = resolve_candidates_root(PROJECT_ROOT)
 DEFAULT_EPISODE_ID = "s01e01-campus-cafe-longplay"
 DEFAULT_THUMBNAIL_PATH = Path(
-    "candidates/s01e01-campus-cafe-longplay/thumbnail/"
+    LEO_CANDIDATES_ROOT
+    / "s01e01-campus-cafe-longplay/thumbnail/"
     "s01e01-campus-cafe-longplay.thumbnail-v4-big-brand-depth-1280x720.jpg"
 )
 DEFAULT_THUMBNAIL_SOURCE = Path(f"channel/episodes/{DEFAULT_EPISODE_ID}/source/youtube-api-thumbnail-upload-package.md")
@@ -26,6 +29,10 @@ ENV_KEY_VIDEO_ID = "MELLOW_YOUTUBE_VIDEO_ID"
 def project_path(path: Path | str) -> Path:
     path = video_upload.expand_path(path)
     return path if path.is_absolute() else PROJECT_ROOT / path
+
+
+def as_report_path(path: Path) -> str:
+    return str(path.relative_to(PROJECT_ROOT)) if PROJECT_ROOT in [path, *path.parents] else str(path)
 
 
 def load_thumbnail_env_file(env_file: Path) -> dict[str, str | Path]:
@@ -164,7 +171,7 @@ def execute_thumbnail_upload(
     return {
         "video_id": video_id,
         "channel_id": actual_channel_id,
-        "thumbnail_path": str(thumbnail.relative_to(PROJECT_ROOT) if PROJECT_ROOT in [thumbnail, *thumbnail.parents] else thumbnail),
+        "thumbnail_path": as_report_path(thumbnail),
         "thumbnail_upload_attempted": True,
         "response": response,
     }

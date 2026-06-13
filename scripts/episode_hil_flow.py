@@ -25,6 +25,10 @@ EPISODE_ROOT = PROJECT_ROOT / "channel" / "episodes"
 CANDIDATE_ROOT = resolve_candidates_root(PROJECT_ROOT)
 
 
+def _as_project_or_abs(path: Path) -> str:
+    return str(path.relative_to(PROJECT_ROOT)) if PROJECT_ROOT in [path, *path.parents] else str(path)
+
+
 @dataclass(frozen=True)
 class EvidenceSpec:
     name: str
@@ -1086,7 +1090,7 @@ def _run_hil2_checks(episode_root: Path, episode_id: str) -> list[dict[str, Any]
             selected_ok and pool_ok,
             ("audio/selected/*.wav", "audio/pool/*.wav"),
             len(selected_files) + len(pool_files),
-            [str(path.relative_to(PROJECT_ROOT)) for path in selected_files[:8]] + [str(path.relative_to(PROJECT_ROOT)) for path in pool_files[:8]],
+            [_as_project_or_abs(path) for path in selected_files[:8]] + [_as_project_or_abs(path) for path in pool_files[:8]],
             required=True,
         ),
         _make_quality_check(
@@ -1136,7 +1140,7 @@ def _run_hil2_checks(episode_root: Path, episode_id: str) -> list[dict[str, Any]
             bool(selected_visual_files),
             ("visual/*.png", "visual/*.jpg", "visual/*.jpeg", "visual/*.webp", "visual/selected/*", "visual/proofs/*"),
             len(selected_visual_files),
-            [str(path.relative_to(PROJECT_ROOT)) for path in selected_visual_files[:8]],
+            [_as_project_or_abs(path) for path in selected_visual_files[:8]],
             required=True,
         ),
         _make_quality_check(
@@ -1341,7 +1345,7 @@ def check_evidence(episode_root: Path, episode_id: str, spec: EvidenceSpec) -> d
     else:
         raise ValueError(f"invalid operator {spec.operator!r}")
 
-    samples = [str(item.relative_to(PROJECT_ROOT)) for item in all_unique[:8]]
+    samples = [_as_project_or_abs(item) for item in all_unique[:8]]
     return {
         "name": spec.name,
         "required": spec.required,

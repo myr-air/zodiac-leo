@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-PROJECT_ROOT="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT_ROOT="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="${LEO_SETUP_PROJECT_ROOT:-$(CDPATH= cd -- "${SCRIPT_ROOT}/.." && pwd)}"
 DEFAULT_RESOURCE_ROOT="${HOME}/GoogleDrive/zodiac/leo"
 RESOURCE_ROOT="${1:-${LEO_RESOURCE_ROOT:-$DEFAULT_RESOURCE_ROOT}}"
 
@@ -28,8 +29,13 @@ LINK_PATH="$PROJECT_ROOT/candidates"
 if [[ -L "$LINK_PATH" ]]; then
   ln -sfn "$CANDIDATE_ROOT" "$LINK_PATH"
 elif [[ -e "$LINK_PATH" ]]; then
-  echo "Blocking: $LINK_PATH exists and is not a symlink. Please move or remove it." >&2
-  exit 1
+  BACKUP_PATH="${LINK_PATH}.old-$(date +%s)"
+  if ! mv "$LINK_PATH" "$BACKUP_PATH"; then
+    echo "Blocking: could not move existing $LINK_PATH; please move or remove it manually." >&2
+    exit 1
+  fi
+  echo "Backed up existing candidates directory to: $BACKUP_PATH"
+  ln -s "$CANDIDATE_ROOT" "$LINK_PATH"
 else
   ln -s "$CANDIDATE_ROOT" "$LINK_PATH"
 fi
