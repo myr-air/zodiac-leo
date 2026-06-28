@@ -70,3 +70,6 @@ candidates/**/subtitles/**/*.ass
 candidates/**/subtitles/**/*.json
 candidates/**/subtitles/**/*.srt
 candidates/**/subtitles/**/*.vtt
+
+# Scratch workspace (local only)
+scratch/
